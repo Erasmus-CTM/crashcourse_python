@@ -1,0 +1,38 @@
+---
+title: "Apples"
+author: "Example Document"
+format: html
+---
+
+## Introduction
+
+Apples are one of the most widely consumed fruits in the world. They grow on trees belonging to the genus *Malus* and are cultivated in many climates.
+
+## Characteristics
+
+- Apples come in many varieties, such as **Granny Smith**, **Fuji**, and **Gala**.
+- They can taste **sweet**, **tart**, or a mix of both.
+- Apples are often eaten raw but are also used in cooking and baking.
+
+## Nutrition
+
+Apples are a good source of:
+
+- Vitamin C  
+- Dietary fiber  
+- Antioxidants  
+
+> An apple a day keeps the doctor away.
+
+## Python Example
+
+```{python}
+apples = 5
+price_per_apple = 0.5
+total_price = apples * price_per_apple
+print(total_price)
+```
+
+## Conclusion
+
+Apples are versatile, nutritious, and widely available. Because of their flavor and health benefits, they remain a staple fruit in many diets around the world.

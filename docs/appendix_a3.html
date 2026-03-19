@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Appendix A.6 Answers – ConvertingAppendix</title>
+<title>Appendix A.3 Control Statements – ConvertingAppendix</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -230,7 +230,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"code":"total = 0\nk = 0\nwhile abs(total - 2) >= 1 / 10000:\n    total = total + 1 / 2**k\n    k = k + 1  # In a while-loop, we must update k manually.\n\nprint(k - 1)","id":1,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"my_list = [n / (1 + n**2) for n in range(0, 10**6)]\nk = 0\nfor x in my_list:\n    if x < 1e-4:\n        break\n    k = k + 1\n\nprint(k)","id":2,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"my_list = [n / (1 + n**2) for n in range(0, 10**6)]\nk = 0\nwhile my_list[k] > 1e-4:\n    k = k + 1\n\nprint(k)","id":3,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"def absolute1(x):\n    if x >= 0:\n        return x\n    return -x\n\ndef absolute2(x):\n    return (x**2) ** 0.5","id":4,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"def product(x):\n    temp_prod = 1\n    for a in x:\n        temp_prod = temp_prod * a\n    return temp_prod","id":5,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import matplotlib.pyplot as plt\n\n# Insert code for absolute1\n\nX = [k / 10 for k in range(-20, 21)]\nY = [absolute1(x) for x in X]\nplt.plot(X, Y)\nplt.show()","id":6,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import matplotlib.pyplot as plt\nimport numpy as np\n\n# Insert code for absolute2\n\nX = np.linspace(-2, 2, 40)\nY = absolute2(X)\nplt.plot(X, Y)\nplt.show()","id":7,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}}];
+globalThis.qpyodideCellDetails = [{"code":"S = 0\nn = 1\nwhile n <= 10:\n    S = S + 1 / n\n    n = n + 1\n\nprint(S)","id":1,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"# TODO: find the smallest n such that 2 - S_n < 1/10000.","id":2,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"a = 10\n\nif a >= 3:\n    print(\"a is a BIG number\")\nelse:\n    print(\"a is a tiny number\")","id":3,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"a = 10\n\nif a >= 3:\n    print(\"a is a BIG number\")\nelif a > -3 and a < 3:\n    print(\"a is a tiny number\")\nelif a <= -3:\n    print(\"a is a BIG but negative number\")","id":4,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"# TODO: implement the suffix fix inside a loop that prints Fibonacci numbers.","id":5,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"S = 0\nfor n in range(1, 1000):\n    if n > 10:\n        break\n    S = S + 1 / n\n\nprint(S)","id":6,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"my_list = [n / (1 + n**2) for n in range(0, 10**6)]","id":7,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"# TODO: implement part (a) with break.","id":8,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"# TODO: implement part (b) with a while-loop.","id":9,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}}];
 
 
 </script>
@@ -476,28 +476,32 @@ window.Quarto = {
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./appendix_d1.html"> 
+    <a class="nav-link" href="./appendix_a1.html"> 
 <span class="menu-text">A.1 Introduction</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./appendix_d2.html"> 
+    <a class="nav-link" href="./appendix_a2.html"> 
 <span class="menu-text">A.2 Sequences and Sums</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./appendix_d3.html"> 
+    <a class="nav-link active" href="./appendix_a3.html" aria-current="page"> 
 <span class="menu-text">A.3 Control Statements</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./appendix_d4.html"> 
+    <a class="nav-link" href="./appendix_a4.html"> 
 <span class="menu-text">A.4 Functions</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./appendix_d5.html"> 
+    <a class="nav-link" href="./appendix_a5.html"> 
 <span class="menu-text">A.5 Number Representation</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./appendix_d6.html" aria-current="page"> 
+    <a class="nav-link" href="./appendix_a6.html"> 
 <span class="menu-text">A.6 Answers</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./appendix_all.html"> 
+<span class="menu-text">A.All Combined</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./about.html"> 
@@ -519,7 +523,12 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#a.6-answers-to-selected-exercises" id="toc-a.6-answers-to-selected-exercises" class="nav-link active" data-scroll-target="#a.6-answers-to-selected-exercises">A.6 Answers to selected exercises</a></li>
+  <li><a href="#a.3-some-additional-control-statements-in-python" id="toc-a.3-some-additional-control-statements-in-python" class="nav-link active" data-scroll-target="#a.3-some-additional-control-statements-in-python">A.3 Some additional control statements in Python</a>
+  <ul class="collapse">
+  <li><a href="#while-loops" id="toc-while-loops" class="nav-link" data-scroll-target="#while-loops">While-loops</a></li>
+  <li><a href="#if-else-statements" id="toc-if-else-statements" class="nav-link" data-scroll-target="#if-else-statements">If-else statements</a></li>
+  <li><a href="#the-break-command" id="toc-the-break-command" class="nav-link" data-scroll-target="#the-break-command">The break command</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -538,7 +547,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Appendix A.6 Answers</h1>
+<h1 class="title">Appendix A.3 Control Statements</h1>
 </div>
 
 
@@ -558,253 +567,64 @@ window.Quarto = {
 <p>Appendix A: A crash course in Python<br>
 NUMA01: Computational Programming with Python<br>
 Malin Christersson, Robert Klofkorn</p>
-<section id="a.6-answers-to-selected-exercises" class="level2">
-<h2 class="anchored" data-anchor-id="a.6-answers-to-selected-exercises">A.6 Answers to selected exercises</h2>
-<section id="e.4" class="level4">
-<h4 class="anchored" data-anchor-id="e.4">E.4</h4>
-<ul>
-<li><ol type="a">
-<li>addition</li>
-</ol></li>
-<li><ol start="2" type="a">
-<li>subtraction</li>
-</ol></li>
-<li><ol start="3" type="a">
-<li>multiplication</li>
-</ol></li>
-<li><ol start="4" type="a">
-<li>power</li>
-</ol></li>
-<li><ol start="5" type="a">
-<li>division</li>
-</ol></li>
-<li><ol start="6" type="a">
-<li>floor division (division rounded down)</li>
-</ol></li>
-<li><ol start="7" type="a">
-<li>modulo (remainder)</li>
-</ol></li>
-</ul>
-</section>
-<section id="e.8" class="level4">
-<h4 class="anchored" data-anchor-id="e.8">E.8</h4>
-<p>Codes (a), (d), and (f) will not run.</p>
-</section>
-<section id="e.9" class="level4">
-<h4 class="anchored" data-anchor-id="e.9">E.9</h4>
-<ul>
-<li><ol type="a">
-<li><span class="math inline">\(1 + 1/2 + 1/4 + 1/8 + 1/16\)</span></li>
-</ol></li>
-<li><ol start="2" type="a">
-<li><span class="math inline">\(1/(1 + 1/(1 + 1/(1 + 1/(1 + 1))))\)</span></li>
-</ol></li>
-</ul>
-</section>
-<section id="e.11" class="level4">
-<h4 class="anchored" data-anchor-id="e.11">E.11</h4>
-<p>The code in (a) will run.</p>
-</section>
-<section id="e.36" class="level4">
-<h4 class="anchored" data-anchor-id="e.36">E.36</h4>
-<p>The code computes the partial sum <span class="math inline">\(S_{99999}\)</span> of the harmonic series. The speed of the computations will depend on your processor.</p>
-</section>
-<section id="e.40" class="level4">
-<h4 class="anchored" data-anchor-id="e.40">E.40</h4>
-<p>Here is one solution:</p>
+<section id="a.3-some-additional-control-statements-in-python" class="level2">
+<h2 class="anchored" data-anchor-id="a.3-some-additional-control-statements-in-python">A.3 Some additional control statements in Python</h2>
+<section id="while-loops" class="level3">
+<h3 class="anchored" data-anchor-id="while-loops">While-loops</h3>
+<p>The while-loop is a close cousin of the for-loop. In most cases, what you can do with one of them, you can also do with the other. The point is that in most situations, one of them will usually be much easier to use than the other.</p>
+<p><strong>Example E.38 (Partial sums with a while-loop)</strong><br>
+The following code computes the sum <span class="math display">\[\sum_{n=1}^{10} \frac{1}{n} = 1 + \frac{1}{2} + \frac{1}{3} + \cdots + \frac{1}{10}.\]</span></p>
 <div id="qpyodide-insertion-location-1"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-</section>
-<section id="e.46" class="level4">
-<h4 class="anchored" data-anchor-id="e.46">E.46</h4>
-<p><strong>(a)</strong> Using a for-loop and break:</p>
+<p>Explanation:</p>
+<ol type="1">
+<li>We initialize <code>S</code> and <code>n</code>.</li>
+<li>The loop continues while <code>n &lt;= 10</code>.</li>
+<li>We must update <code>n</code> manually inside the loop.</li>
+</ol>
+<p><strong>Remark R.39 (Logical operators)</strong><br>
+In the above example, we used <code>&lt;=</code>. The logical operators <code>&gt;=</code>, <code>==</code>, and <code>!=</code> are also useful. Note that <code>==</code> checks equality and <code>!=</code> checks inequality.</p>
+<p><strong>Exercise E.40</strong></p>
+<p>Use a while-loop to check how large <code>n</code> has to be for the partial sums <span class="math display">\[S_n = \sum_{k=0}^n \frac{1}{2^k}\]</span> to be closer to <code>2</code> than <code>1/10000</code>.</p>
 <div id="qpyodide-insertion-location-2"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p><strong>(b)</strong> Using a while-loop:</p>
+</section>
+<section id="if-else-statements" class="level3">
+<h3 class="anchored" data-anchor-id="if-else-statements">If-else statements</h3>
+<p>Alongside for- and while-loops, the if-else statement is the most important tool in programming.</p>
+<p><strong>Example E.41 (if-statements in Python)</strong></p>
 <div id="qpyodide-insertion-location-3"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-</section>
-<section id="e.48" class="level4">
-<h4 class="anchored" data-anchor-id="e.48">E.48</h4>
+<p>If you want to add more conditions, you can use <code>elif</code> and combine conditions using <code>and</code> or <code>or</code>.</p>
+<p><strong>Example E.42</strong></p>
 <div id="qpyodide-insertion-location-4"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-</section>
-<section id="e.49" class="level4">
-<h4 class="anchored" data-anchor-id="e.49">E.49</h4>
+<p><strong>Exercise E.43</strong></p>
+<p>Use an if-type statement to modify the code from Example E.31 (Fibonacci numbers) so that <code>1th</code>, <code>2th</code>, and <code>3th</code> are replaced by <code>1st</code>, <code>2nd</code>, and <code>3rd</code>.</p>
 <div id="qpyodide-insertion-location-5"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
-<section id="e.54" class="level4">
-<h4 class="anchored" data-anchor-id="e.54">E.54</h4>
+<section id="the-break-command" class="level3">
+<h3 class="anchored" data-anchor-id="the-break-command">The break command</h3>
+<p>The <code>break</code> command tells Python to stop the nearest loop and to continue the program on the first unindented line below it.</p>
+<p><strong>Example E.44</strong><br>
+The following code does exactly the same as the one in Example E.38.</p>
 <div id="qpyodide-insertion-location-6"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-</section>
-<section id="e.58" class="level4">
-<h4 class="anchored" data-anchor-id="e.58">E.58</h4>
-<p><code>absolute1</code> does not work for numpy arrays because the if-statement does not make sense for arrays. For <code>absolute2</code>, the following code works:</p>
+<p><strong>Remark R.45</strong><br>
+If you have nested loops, <code>break</code> only stops the inner-most loop.</p>
+<p><strong>Exercise E.46</strong></p>
+<p>Consider the list:</p>
 <div id="qpyodide-insertion-location-7"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-</section>
-<section id="e.63" class="level4">
-<h4 class="anchored" data-anchor-id="e.63">E.63</h4>
-<p>Python crashes with a <code>ZeroDivisionError</code>. In other words, Python really believes that <span class="math inline">\(S_{100} = 2\)</span>.</p>
-</section>
-<section id="e.66" class="level4">
-<h4 class="anchored" data-anchor-id="e.66">E.66</h4>
-<p>The first 21 numbers in both binary and decimal notation:</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th style="text-align: right;">Decimal</th>
-<th style="text-align: left;">Binary</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: right;">0</td>
-<td style="text-align: left;">0</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">1</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2</td>
-<td style="text-align: left;">10</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">3</td>
-<td style="text-align: left;">11</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">4</td>
-<td style="text-align: left;">100</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">5</td>
-<td style="text-align: left;">101</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">6</td>
-<td style="text-align: left;">110</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">7</td>
-<td style="text-align: left;">111</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">8</td>
-<td style="text-align: left;">1000</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">9</td>
-<td style="text-align: left;">1001</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">10</td>
-<td style="text-align: left;">1010</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">11</td>
-<td style="text-align: left;">1011</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">12</td>
-<td style="text-align: left;">1100</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">13</td>
-<td style="text-align: left;">1101</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">14</td>
-<td style="text-align: left;">1110</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">15</td>
-<td style="text-align: left;">1111</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">16</td>
-<td style="text-align: left;">10000</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">17</td>
-<td style="text-align: left;">10001</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">18</td>
-<td style="text-align: left;">10010</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">19</td>
-<td style="text-align: left;">10011</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">20</td>
-<td style="text-align: left;">10100</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="e.68" class="level4">
-<h4 class="anchored" data-anchor-id="e.68">E.68</h4>
-<ul>
-<li><ol type="a">
-<li><span class="math inline">\(2^7 - 1 = 127\)</span></li>
-</ol></li>
-<li><ol start="2" type="a">
-<li><span class="math inline">\(2^{63} - 1\)</span></li>
-</ol></li>
-</ul>
-</section>
-<section id="e.72" class="level4">
-<h4 class="anchored" data-anchor-id="e.72">E.72</h4>
-<ul>
-<li><ol type="a">
-<li>Roughly <span class="math inline">\(10^{-16}\)</span></li>
-</ol></li>
-<li><ol start="2" type="a">
-<li>Roughly <span class="math inline">\(10^{-340}\)</span></li>
-</ol></li>
-</ul>
-</section>
-<section id="e.73" class="level4">
-<h4 class="anchored" data-anchor-id="e.73">E.73</h4>
-<p>According to the sloppy description, <span class="math inline">\(a + b\)</span> is stored as <span class="math inline">\(3256600000000325 \cdot 10^{17}\)</span>. When printing <code>100*(a+b)</code>, <code>1000*(a+b)</code> and <code>10000*(a+b)</code>, the 17th digit keeps changing due to round-off errors.</p>
-</section>
-<section id="e.74" class="level4">
-<h4 class="anchored" data-anchor-id="e.74">E.74</h4>
-<ul>
-<li><ol type="a">
-<li><span class="math inline">\(N = 53\)</span></li>
-</ol></li>
-<li><ol start="2" type="a">
-<li><span class="math inline">\(N = 1075\)</span></li>
-</ol></li>
-</ul>
-</section>
-<section id="e.76" class="level4">
-<h4 class="anchored" data-anchor-id="e.76">E.76</h4>
-<ul>
-<li><ol type="a">
-<li><span class="math inline">\((10101)_2 = 21\)</span></li>
-</ol></li>
-<li><ol start="2" type="a">
-<li><span class="math inline">\((1010.1)_2 = 10.5\)</span></li>
-</ol></li>
-<li><ol start="3" type="a">
-<li><span class="math inline">\((10.101)_2 = 2.625\)</span></li>
-</ol></li>
-</ul>
-</section>
-<section id="e.79" class="level4">
-<h4 class="anchored" data-anchor-id="e.79">E.79</h4>
-<p>The exponent <span class="math inline">\(\alpha\)</span> is between <span class="math inline">\(-1024\)</span> and <span class="math inline">\(1023\)</span> (counting two’s complement). This means that <span class="math inline">\(2^\alpha\)</span> is between <span class="math inline">\(10^{-308}\)</span> and <span class="math inline">\(10^{308}\)</span>, roughly. Taking into account that <span class="math inline">\(\epsilon\)</span> is between <span class="math inline">\(1\)</span> and <span class="math inline">\(10^{16}\)</span>, and that <span class="math inline">\((1.\epsilon)_2\)</span> is replaced by <span class="math inline">\((0.\epsilon)_2\)</span> when <span class="math inline">\(\alpha = -1024\)</span>, we obtain the rough description.</p>
-</section>
-<section id="e.80" class="level4">
-<h4 class="anchored" data-anchor-id="e.80">E.80</h4>
-<p>Exactly the fractions <span class="math inline">\(a / 2^n\)</span>, where <span class="math inline">\(a\)</span> is an integer and <span class="math inline">\(n\)</span> is a natural number. These are the numbers with finite binary expansions.</p>
+<ol type="1">
+<li>Write a code that combines a for-loop with the break command to check when the first entry in the list is smaller than <code>1e-4</code>.</li>
+<li>Do the same as in (1), but with a while-loop and no break command.</li>
+</ol>
+<div id="qpyodide-insertion-location-8"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div id="qpyodide-insertion-location-9"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 
 
 </section>

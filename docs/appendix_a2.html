@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Appendix A.4 Functions – ConvertingAppendix</title>
+<title>Appendix A.2 Sequences and Sums – ConvertingAppendix</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -230,7 +230,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"code":"def f(x):\n    y = x**2 - 5 * x + 4\n    return y\n\nz = f(3)\nprint(z)","id":1,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"# TODO: implement absolute value with if.","id":2,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"# TODO: implement absolute value without if.","id":3,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"# TODO: implement a product function.","id":4,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"x = 3\n\ndef f(x):\n    y = x**2 - 5 * x + 4\n    return y\n\nprint(y)","id":5,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"x = 3\n\ndef f(x):\n    y = x**2 - 5 * x + 4\n    return y\n\nf(x)\nprint(y)","id":6,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"a = [1, 2, 3]\nb = [4, 5, 6]\nc = sum(a)\nprint(b)","id":7,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import matplotlib.pyplot as plt\n\ndef f(x):\n    y = x**2 + 2 * x + 3\n    return y\n\nX = [n / 10 for n in range(0, 11)]\nY = [f(x) for x in X]\n\nplt.plot(X, Y)\nplt.show()","id":8,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"# TODO: plot your absolute value functions on [1/2, 2].","id":9,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import matplotlib.pyplot as plt\n\nN = 10**4\n\ndef a(k):\n    return 1 / 2**k\n\ndef S(a_func, n):\n    return sum([a_func(k) for k in range(0, n)])\n\nn_values = [n for n in range(0, N)]\nY = [S(a, n) for n in n_values]\n\nplt.plot(n_values, Y, \"bo\")","id":10,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import numpy as np\n\ndef f(x):\n    return x**2\n\na = [1, 2, 3, 4]\nb = [1, 2, 5, 3]\n\nA = np.array(a)\nB = np.array(b)\n\nC = A - B\nD = A + B\nE = A / B\n\nF = np.zeros(3)\nG = np.ones(4)\nH = np.arange(4)\nI = np.linspace(0, 1, 5)\n\nJ = I.tolist()\nK = f(A)\n\nprint(\"A =\", A)\nprint(\"B =\", B)\nprint(\"C =\", C)\nprint(\"D =\", D)\nprint(\"E =\", E)\nprint(\"F =\", F)\nprint(\"G =\", G)\nprint(\"H =\", H)\nprint(\"I =\", I)\nprint(\"J =\", J)\nprint(\"K =\", K)","id":11,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import matplotlib.pyplot as plt\nimport numpy as np\n\ndef f(x):\n    y = x**2 + 2 * x + 3\n    return y\n\nX = np.linspace(0, 1, 11)\nY = f(X)\n\nplt.plot(X, Y)\nplt.show()","id":12,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import numpy as np\n\ny = np.sin(np.pi)\nprint(y)","id":13,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}}];
+globalThis.qpyodideCellDetails = [{"code":"print(1 / 2**0)\nprint(1 / 2**1)\nprint(1 / 2**2)","id":1,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"for k in range(0, 3):\n    print(1 / 2**k)","id":2,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"a = [1 / 2**0, 1 / 2**1, 1 / 2**2]\nprint(a)","id":3,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"a = [1 / 2**k for k in range(0, 3)]\nprint(a)","id":4,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"a = 0\nfor k in range(0, 3):\n    a = 1 / 2**k\n\n# TODO: print something useful here.","id":5,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"a = []\nfor k in range(0, 3):\n    a.append(1 / 2**k)\n\n# TODO: print something useful here.","id":6,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"a = 0\na = a + 1 / 2**0\na = a + 1 / 2**1\na = a + 1 / 2**2","id":7,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"a = 0\nfor k in range(0, 3):\n    a = a + 1 / 2**k","id":8,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"a = [1 / 2**0, 1 / 2**1, 1 / 2**2]\nb = sum(a)","id":9,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"a = [1 / 2**k for k in range(0, 3)]\nb = sum(a)","id":10,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"b = sum([1 / 2**k for k in range(0, 3)])","id":11,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"# TODO: compute a partial sum for a large N and print the result.\nN = 10**6\ns = 0.0\nfor k in range(0, N):\n    s += 1 / 2**k\n\n# TODO: print the result.","id":12,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import matplotlib.pyplot as plt\n\nfor k in range(0, 10):\n    plt.plot(k, 1 / 2**k, \"bo\")\n\nplt.show()","id":13,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import matplotlib.pyplot as plt\n\na = 0\nfor k in range(0, 3):\n    a = a + 1 / 2**k\n    plt.plot(k, a, \"bo\")\n\nplt.show()","id":14,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import matplotlib.pyplot as plt\n\nn_values = [n for n in range(0, 10)]\na = [1 / 2**n for n in n_values]\n\nplt.plot(n_values, a, \"bo\")\nplt.show()","id":15,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import matplotlib.pyplot as plt\n\nindices = [i for i in range(0, 20)]\na = [1 / 2**k for k in indices]\nS = [sum(a[0:n + 1]) for n in indices]\n\nplt.plot(indices, S, \"bo\")\nplt.show()","id":16,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"a = [1, 1]\n\nfor n in range(2, 20):\n    new_term = a[n - 1] + a[n - 2]\n    a.append(new_term)\n\nfor n in range(0, 20):\n    print(\"The\", n + 1, \"th Fibonacci number is\", a[n])","id":17,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"# TODO: build a list of partial sums for 1/2**k.","id":18,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import time\n\ntime_start = time.process_time()\n\n# Your code here\n\ntime_elapsed = time.process_time() - time_start\nprint(time_elapsed)","id":19,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"S = 0\nfor n in range(1, 100000):\n    S = S + 1 / n\n\nprint(S)","id":20,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}}];
 
 
 </script>
@@ -476,28 +476,32 @@ window.Quarto = {
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./appendix_d1.html"> 
+    <a class="nav-link" href="./appendix_a1.html"> 
 <span class="menu-text">A.1 Introduction</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./appendix_d2.html"> 
+    <a class="nav-link active" href="./appendix_a2.html" aria-current="page"> 
 <span class="menu-text">A.2 Sequences and Sums</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./appendix_d3.html"> 
+    <a class="nav-link" href="./appendix_a3.html"> 
 <span class="menu-text">A.3 Control Statements</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./appendix_d4.html" aria-current="page"> 
+    <a class="nav-link" href="./appendix_a4.html"> 
 <span class="menu-text">A.4 Functions</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./appendix_d5.html"> 
+    <a class="nav-link" href="./appendix_a5.html"> 
 <span class="menu-text">A.5 Number Representation</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./appendix_d6.html"> 
+    <a class="nav-link" href="./appendix_a6.html"> 
 <span class="menu-text">A.6 Answers</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./appendix_all.html"> 
+<span class="menu-text">A.All Combined</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./about.html"> 
@@ -519,13 +523,13 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#a.4-functions-in-python" id="toc-a.4-functions-in-python" class="nav-link active" data-scroll-target="#a.4-functions-in-python">A.4 Functions in Python</a>
+  <li><a href="#a.2-how-to-compute-and-visualize-sequences-and-sums" id="toc-a.2-how-to-compute-and-visualize-sequences-and-sums" class="nav-link active" data-scroll-target="#a.2-how-to-compute-and-visualize-sequences-and-sums">A.2 How to compute and visualize sequences and sums</a>
   <ul class="collapse">
-  <li><a href="#how-to-define-a-function-in-python" id="toc-how-to-define-a-function-in-python" class="nav-link" data-scroll-target="#how-to-define-a-function-in-python">How to define a function in Python</a></li>
-  <li><a href="#warning-the-importance-of-local-namespaces" id="toc-warning-the-importance-of-local-namespaces" class="nav-link" data-scroll-target="#warning-the-importance-of-local-namespaces">Warning: the importance of local namespaces</a></li>
-  <li><a href="#how-to-plot-functions-in-python-using-lists" id="toc-how-to-plot-functions-in-python-using-lists" class="nav-link" data-scroll-target="#how-to-plot-functions-in-python-using-lists">How to plot functions in Python using lists</a></li>
-  <li><a href="#plotting-functions-using-numpy-arrays" id="toc-plotting-functions-using-numpy-arrays" class="nav-link" data-scroll-target="#plotting-functions-using-numpy-arrays">Plotting functions using numpy arrays</a></li>
-  <li><a href="#predefined-functions-in-python" id="toc-predefined-functions-in-python" class="nav-link" data-scroll-target="#predefined-functions-in-python">Predefined functions in Python</a></li>
+  <li><a href="#some-ways-to-compute-sequences-in-python" id="toc-some-ways-to-compute-sequences-in-python" class="nav-link" data-scroll-target="#some-ways-to-compute-sequences-in-python">Some ways to compute sequences in Python</a></li>
+  <li><a href="#some-ways-to-compute-partial-sums-of-infinite-series" id="toc-some-ways-to-compute-partial-sums-of-infinite-series" class="nav-link" data-scroll-target="#some-ways-to-compute-partial-sums-of-infinite-series">Some ways to compute partial sums of infinite series</a></li>
+  <li><a href="#how-to-visualize-sequences-and-partial-sums-using-for-loops" id="toc-how-to-visualize-sequences-and-partial-sums-using-for-loops" class="nav-link" data-scroll-target="#how-to-visualize-sequences-and-partial-sums-using-for-loops">How to visualize sequences and partial sums using for-loops</a></li>
+  <li><a href="#visualizing-sequences-and-partial-sums-stored-as-lists" id="toc-visualizing-sequences-and-partial-sums-stored-as-lists" class="nav-link" data-scroll-target="#visualizing-sequences-and-partial-sums-stored-as-lists">Visualizing sequences and partial sums stored as lists</a></li>
+  <li><a href="#a-slightly-more-advanced-example-the-fibonacci-sequence" id="toc-a-slightly-more-advanced-example-the-fibonacci-sequence" class="nav-link" data-scroll-target="#a-slightly-more-advanced-example-the-fibonacci-sequence">A slightly more advanced example: the Fibonacci sequence</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -545,7 +549,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Appendix A.4 Functions</h1>
+<h1 class="title">Appendix A.2 Sequences and Sums</h1>
 </div>
 
 
@@ -565,147 +569,146 @@ window.Quarto = {
 <p>Appendix A: A crash course in Python<br>
 NUMA01: Computational Programming with Python<br>
 Malin Christersson, Robert Klofkorn</p>
-<section id="a.4-functions-in-python" class="level2">
-<h2 class="anchored" data-anchor-id="a.4-functions-in-python">A.4 Functions in Python</h2>
-<section id="how-to-define-a-function-in-python" class="level3">
-<h3 class="anchored" data-anchor-id="how-to-define-a-function-in-python">How to define a function in Python</h3>
-<p><strong>Example E.47 (Defining functions in Python)</strong><br>
-In the following code we define <span class="math inline">\(f(x) = x^2 - 5x + 4\)</span> in Python and compute <span class="math inline">\(f(3)\)</span>.</p>
+<section id="a.2-how-to-compute-and-visualize-sequences-and-sums" class="level2">
+<h2 class="anchored" data-anchor-id="a.2-how-to-compute-and-visualize-sequences-and-sums">A.2 How to compute and visualize sequences and sums</h2>
+<section id="some-ways-to-compute-sequences-in-python" class="level3">
+<h3 class="anchored" data-anchor-id="some-ways-to-compute-sequences-in-python">Some ways to compute sequences in Python</h3>
+<p>Suppose we want to compute many entries of the sequence <span class="math display">\[\left(\frac{1}{2^k}\right)_{k=0}^\infty = \left(1, \frac{1}{2}, \frac{1}{4}, \dots \right).\]</span></p>
+<p><strong>Example E.17 (Computing sequences using a for-loop)</strong><br>
+The following two codes do exactly the same thing when run.</p>
 <div id="qpyodide-insertion-location-1"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p>Explanation:</p>
-<ol type="1">
-<li><code>def f(x):</code> tells Python that a function named <code>f</code> is being defined.</li>
-<li>The <code>return</code> value is the output of the function.</li>
-<li>When we write <code>f(3)</code>, the function code is run with <code>x = 3</code>.</li>
-</ol>
-<section id="exercise-e.48" class="level4">
-<h4 class="anchored" data-anchor-id="exercise-e.48">Exercise E.48</h4>
-<ol type="1">
-<li>Use the if-control statement to implement the absolute value function. Use it on a few values to check that it works.</li>
-<li>Implement the absolute value function without using the if-control statement.</li>
-</ol>
-<p>Remark: It is not really necessary to program the absolute value function by hand since it already exists in Python as <code>abs(x)</code>.</p>
 <div id="qpyodide-insertion-location-2"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>Another way of computing lists is to use a list comprehension. It has the benefit of both computing and storing a sequence of numbers in a single line of code.</p>
+<p><strong>Example E.18 (Computing sequences using a list)</strong><br>
+The following two codes do exactly the same thing when run.</p>
 <div id="qpyodide-insertion-location-3"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-</section>
-<section id="exercise-e.49" class="level4">
-<h4 class="anchored" data-anchor-id="exercise-e.49">Exercise E.49</h4>
-<p>Write the code for a function that will take a list of numbers as input and return their product as output. This is analogous to the built-in function <code>sum()</code> which returns the sum.</p>
 <div id="qpyodide-insertion-location-4"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-</section>
-</section>
-<section id="warning-the-importance-of-local-namespaces" class="level3">
-<h3 class="anchored" data-anchor-id="warning-the-importance-of-local-namespaces">Warning: the importance of local namespaces</h3>
-<p>Variables created inside a function are local and cannot be accessed outside the function. This is a common source of bugs.</p>
-<p><strong>Example E.50</strong><br>
-The following code makes no sense and will crash.</p>
+<p><strong>Exercise E.19</strong></p>
+<p>Run and compare the output of the codes in the above examples.</p>
+<p><strong>Exercise E.20</strong></p>
+<p>A difference between the right-most codes in Examples E.17 and E.18 is that in the first, we do not store the values of the sequence anywhere. Here are two suggestions for how to fix this:</p>
 <div id="qpyodide-insertion-location-5"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p><strong>Example E.51</strong><br>
-The following code also crashes.</p>
 <div id="qpyodide-insertion-location-6"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p>The variable <code>y</code> only exists inside the function definition. After the function returns, local variables are deleted.</p>
-<p><strong>Example E.52</strong><br>
-Thanks to local namespaces, we can be sure that the following code works:</p>
+<p>Explain what is going on in each code. What information is stored at the end of each program? Also, why do these not give any output? Can you fix this?</p>
+</section>
+<section id="some-ways-to-compute-partial-sums-of-infinite-series" class="level3">
+<h3 class="anchored" data-anchor-id="some-ways-to-compute-partial-sums-of-infinite-series">Some ways to compute partial sums of infinite series</h3>
+<p>On the previous page, we discussed how to compute and store values of a sequence. Let us now consider how to compute the sum of the first, say, million terms of the infinite series <span class="math display">\[\sum_{k=0}^{\infty} \frac{1}{2^k} = 1 + \frac{1}{2} + \frac{1}{4} + \cdots.\]</span></p>
+<p><strong>Example E.21 (Computing sums using a for-loop)</strong><br>
+The following two codes both compute the sum <span class="math inline">\(1 + 1/2 + 1/4 + 1/8\)</span>.</p>
 <div id="qpyodide-insertion-location-7"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-</section>
-<section id="how-to-plot-functions-in-python-using-lists" class="level3">
-<h3 class="anchored" data-anchor-id="how-to-plot-functions-in-python-using-lists">How to plot functions in Python using lists</h3>
-<p><strong>Example E.53 (Plotting with datatype list)</strong><br>
-The following code plots <span class="math inline">\(f(x) = x^2 + 2x + 3\)</span> over the interval <span class="math inline">\([0, 1]\)</span>.</p>
 <div id="qpyodide-insertion-location-8"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p>The command <code>plt.plot(X, Y)</code> connects the points with straight line segments. If you use <code>plt.plot(X, Y, "bo")</code> you will get blue dots instead of a line.</p>
-<section id="exercise-e.54" class="level4">
-<h4 class="anchored" data-anchor-id="exercise-e.54">Exercise E.54</h4>
-<p>Plot the functions you implemented in Exercise E.48 on <span class="math inline">\([1/2, 2]\)</span>.</p>
+<p><strong>Example E.22 (Computing a sum using lists)</strong><br>
+The following two codes do exactly the same thing when run.</p>
 <div id="qpyodide-insertion-location-9"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-</section>
-<section id="exercise-e.55" class="level4">
-<h4 class="anchored" data-anchor-id="exercise-e.55">Exercise E.55</h4>
-<p>Consider the following code:</p>
 <div id="qpyodide-insertion-location-10"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<ol type="1">
-<li>Explain in mathematical terms what this code does.</li>
-<li>The symbol <code>a</code> takes more than one role in the above code. Explain what roles these are.</li>
-<li>Make the code easier to read by giving <code>a</code> different names where possible.</li>
-</ol>
-</section>
-</section>
-<section id="plotting-functions-using-numpy-arrays" class="level3">
-<h3 class="anchored" data-anchor-id="plotting-functions-using-numpy-arrays">Plotting functions using numpy arrays</h3>
-<p>Numpy arrays are like lists, but restricted to numeric entries. This makes it possible to do fast, element-wise operations.</p>
-<p><strong>Example E.56 (Features of numpy arrays)</strong></p>
+<p>Using this technique, we can compute the sum in just one line:</p>
 <div id="qpyodide-insertion-location-11"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p>Notes:</p>
-<ul>
-<li><code>np.linspace(a, b, N)</code> creates <code>N</code> equally spaced points in <code>[a, b]</code>.</li>
-<li>Applying a function to an array is done element-wise.</li>
-</ul>
-<p><strong>Example E.57</strong><br>
-The following code gives exactly the same output as Example E.53.</p>
+<p><strong>Exercise E.23</strong></p>
+<ol type="1">
+<li>Run the codes from the examples on this page. Why do they not give any output? Fix this.</li>
+<li>Modify the code so that you can compute the sum of the first million terms or so. What result do you get?</li>
+</ol>
 <div id="qpyodide-insertion-location-12"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<section id="exercise-e.58" class="level4">
-<h4 class="anchored" data-anchor-id="exercise-e.58">Exercise E.58</h4>
-<p>Try to use numpy arrays to plot the functions from Exercise E.48. For one of them, the code will not work. Can you imagine why?</p>
 </section>
-</section>
-<section id="predefined-functions-in-python" class="level3">
-<h3 class="anchored" data-anchor-id="predefined-functions-in-python">Predefined functions in Python</h3>
-<p><strong>Remark R.59 (Built-in functions in Python)</strong><br>
-Here is a list of some functions that are built into Python:</p>
-<ul>
-<li><code>abs(x)</code> computes the absolute value of <code>x</code>.</li>
-<li><code>complex(a, b)</code> returns the complex number <code>a + ib</code>.</li>
-<li><code>float(x)</code> converts an integer to a float.</li>
-<li><code>int(x)</code> converts a float to an integer (rounds down).</li>
-<li><code>round(a, n)</code> rounds the floating point number <code>a</code> to <code>n</code> digits.</li>
-<li><code>type(x)</code> returns the datatype of the variable <code>x</code>.</li>
-</ul>
-<p>For a full list, see <a href="https://docs.python.org/3/library/functions.html" class="uri">https://docs.python.org/3/library/functions.html</a>.</p>
-<p><strong>Remark R.60 (Functions in the numpy package)</strong><br>
-To use these functions, start your code with <code>import numpy as np</code>.</p>
-<ul>
-<li><code>np.exp(x)</code> exponential function</li>
-<li><code>np.log(x)</code> natural log</li>
-<li><code>np.log2(x)</code> log base 2</li>
-<li><code>np.log10(x)</code> log base 10</li>
-<li><code>np.sin(x)</code> sine (radians)</li>
-<li><code>np.cos(x)</code> cosine (radians)</li>
-<li><code>np.tan(x)</code> tangent (radians)</li>
-<li><code>np.arcsin(x)</code> arcsine</li>
-<li><code>np.arccos(x)</code> arccosine</li>
-<li><code>np.arctan(x)</code> arctangent</li>
-<li><code>np.absolute(x)</code> absolute value</li>
-<li><code>np.deg2rad(x)</code> degrees to radians</li>
-<li><code>np.rad2deg(x)</code> radians to degrees</li>
-<li><code>np.sum(x)</code> sum of elements</li>
-<li><code>np.prod(x)</code> product of elements</li>
-<li><code>np.imag(z)</code> imaginary part</li>
-<li><code>np.real(z)</code> real part</li>
-<li><code>np.angle(z)</code> angle of a complex number (radians)</li>
-<li><code>np.conj(z)</code> complex conjugate</li>
-</ul>
-<p>Some constants:</p>
-<ul>
-<li><code>np.pi</code></li>
-<li><code>np.e</code></li>
-</ul>
-<p>More info: <a href="https://docs.scipy.org/doc/numpy-1.13.0/reference/routines.math.html" class="uri">https://docs.scipy.org/doc/numpy-1.13.0/reference/routines.math.html</a></p>
-<p><strong>Example E.61</strong></p>
+<section id="how-to-visualize-sequences-and-partial-sums-using-for-loops" class="level3">
+<h3 class="anchored" data-anchor-id="how-to-visualize-sequences-and-partial-sums-using-for-loops">How to visualize sequences and partial sums using for-loops</h3>
+<p><strong>Example E.24</strong><br>
+The following code is perhaps the simplest way to visualize a sequence in Python. Here, we visualize the sequence <span class="math inline">\((1/2^k)_{k=0}^9\)</span>.</p>
 <div id="qpyodide-insertion-location-13"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p>There are other packages with even more functions, such as <code>math</code> and <code>scipy</code>. In particular, <code>numpy</code> makes the <code>math</code> package mostly obsolete when working with numpy arrays.</p>
+<p>Explanation:</p>
+<ul>
+<li><code>matplotlib.pyplot</code> provides plotting commands.</li>
+<li>The <code>for</code> loop plots a blue dot at <span class="math inline">\((k, 1/2^k)\)</span> for each <code>k</code>.</li>
+<li><code>plt.show()</code> displays the figure.</li>
+</ul>
+<p>Now modify the code so that we plot partial sums of the infinite series <span class="math display">\[\sum_{k=0}^\infty \frac{1}{2^k}.\]</span></p>
+<p><strong>Example E.25</strong><br>
+The following code computes and visualizes the partial sums.</p>
+<div id="qpyodide-insertion-location-14"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p><strong>Exercise E.26</strong></p>
+<p>Run this code, and verify by computing the first three partial sums by hand that the plot is correct. What happens when you increase <code>range(0, 3)</code> to, say, <code>range(0, 100)</code>?</p>
+<p><strong>Exercise E.27</strong></p>
+<p>Several commands can be used to change how the above figure looks. Try inserting the following into the code anywhere after the <code>import</code> and before <code>plt.plot</code>. What happens?</p>
+<ul>
+<li>Replace <code>"bo"</code> by <code>"rx"</code>.</li>
+<li><code>plt.xlim(-3, 15)</code></li>
+<li><code>plt.ylim(-5, 2)</code></li>
+<li><code>plt.xlabel("There was")</code></li>
+<li><code>plt.ylabel("a graph")</code></li>
+<li><code>plt.title("that had a title")</code></li>
+<li><code>plt.xticks([-2, 0, 3, 4, 6.5, 10])</code></li>
+<li><code>plt.yticks([0, 1, 1.5])</code></li>
+<li><code>plt.grid(True)</code></li>
+<li><code>plt.figure(figsize=(4, 3))</code></li>
+<li><code>plt.savefig("myfigure.jpg")</code></li>
+</ul>
+<p>Remark: Note that by choosing the extension <code>.jpg</code>, you tell Python to save your figure as a jpg file. Only a limited number of file formats are supported.</p>
+</section>
+<section id="visualizing-sequences-and-partial-sums-stored-as-lists" class="level3">
+<h3 class="anchored" data-anchor-id="visualizing-sequences-and-partial-sums-stored-as-lists">Visualizing sequences and partial sums stored as lists</h3>
+<p><strong>Example E.28</strong><br>
+We now use lists to create and plot the sequence <span class="math inline">\((1/2^n)_{n=0}^9\)</span>.</p>
+<div id="qpyodide-insertion-location-15"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>Explanation:</p>
+<ul>
+<li><code>n_values</code> gives the x-axis values.</li>
+<li><code>a</code> stores the sequence values.</li>
+<li><code>plt.plot(n_values, a, "bo")</code> plots the points.</li>
+</ul>
+<p><strong>Example E.29</strong><br>
+We now use lists to compute and plot partial sums of <span class="math display">\[\sum_{k=0}^\infty \frac{1}{2^k}.\]</span></p>
+<div id="qpyodide-insertion-location-16"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>The key line is the list comprehension: <code>S = [sum(a[0:n + 1]) for n in indices]</code>. Remember that <code>a[0:n + 1]</code> contains the entries <code>a[0], a[1], ..., a[n]</code>.</p>
+<p><strong>Exercise E.30</strong></p>
+<p>Implement the code in Example E.29. Verify that it gives the same output as Example E.25 when the range in the latter example is suitably adjusted.</p>
+</section>
+<section id="a-slightly-more-advanced-example-the-fibonacci-sequence" class="level3">
+<h3 class="anchored" data-anchor-id="a-slightly-more-advanced-example-the-fibonacci-sequence">A slightly more advanced example: the Fibonacci sequence</h3>
+<p>The Fibonacci numbers are <span class="math display">\[1, 1, 2, 3, 5, 8, 13, \dots\]</span> and satisfy <span class="math inline">\(a_n = a_{n-1} + a_{n-2}\)</span> for <span class="math inline">\(n \ge 2\)</span> when we set <span class="math inline">\(a_0 = 1\)</span> and <span class="math inline">\(a_1 = 1\)</span>.</p>
+<p><strong>Example E.31</strong><br>
+The following code can be used to compute Fibonacci numbers.</p>
+<div id="qpyodide-insertion-location-17"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p><strong>Exercise E.32</strong></p>
+<p>Implement the code from the above example. Use a reference (for example, a list of Fibonacci numbers) to verify that it gives the correct output.</p>
+<p><strong>Exercise E.33</strong></p>
+<p>Use the method of the above examples to create a list containing a few partial sums of the infinite series <span class="math inline">\(\sum_{k=0}^\infty 1/2^k\)</span>.</p>
+<div id="qpyodide-insertion-location-18"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p><strong>Remark R.34 (for-loops versus list comprehensions)</strong></p>
+<p>Pure for-loops are available in most programming languages, while list comprehensions are specific to Python. If you want to adapt to other languages, use list comprehensions sparingly.</p>
+<p><strong>Remark R.35 (how to time a computation)</strong></p>
+<p>You can measure how long it takes for a program to run. Here is how:</p>
+<div id="qpyodide-insertion-location-19"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p><strong>Exercise E.36</strong></p>
+<p>Consider the code:</p>
+<div id="qpyodide-insertion-location-20"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<ol type="1">
+<li>What does the code compute?</li>
+<li>Do the same as in (1), except by first creating a sequence <code>a</code> and then computing its sum using <code>sum(a)</code>.</li>
+<li>Use the timing code above to compare which method is fastest.</li>
+</ol>
+<p><strong>Remark R.37</strong></p>
+<p>Python is useful but fairly slow. Built-in commands are usually implemented in faster languages (such as C++), so if speed is important, use built-in functions as much as possible.</p>
 
 
 </section>
