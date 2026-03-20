@@ -1,15 +1,12 @@
 ---
-title: "Appendix A.2 Sequences and Sums"
+title: "A.2 Sequences and Sums"
 format: html
 filters:
   - pyodide
 ---
+ 
 
-Appendix A: A crash course in Python  
-NUMA01: Computational Programming with Python  
-Malin Christersson, Robert Klofkorn  
-
-## A.2 How to compute and visualize sequences and sums
+## How to compute and visualize sequences and sums
 
 ### Some ways to compute sequences in Python
 

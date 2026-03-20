@@ -1,8 +1,8 @@
 ---
-title: "Appendix Conversion"
+title: "Python Crashcourse"
 ---
 
-## Appendix
+## Contents
 
 - [A.1 Introduction](appendix_a1.qmd)
 - [A.2 Sequences and Sums](appendix_a2.qmd)

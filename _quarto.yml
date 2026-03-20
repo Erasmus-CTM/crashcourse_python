@@ -1,9 +1,9 @@
 project:
   type: website
-  output-dir: public
+  output-dir: docs
 
 website:
-  title: "ConvertingAppendix"
+  title: "Python Crashcourse"
   navbar:
     left:
       - href: index.qmd

@@ -1,15 +1,11 @@
 ---
-title: "Appendix A.4 Functions"
+title: "A.4 Functions"
 format: html
 filters:
   - pyodide
 ---
 
-Appendix A: A crash course in Python  
-NUMA01: Computational Programming with Python  
-Malin Christersson, Robert Klofkorn  
-
-## A.4 Functions in Python
+## Functions in Python
 
 ### How to define a function in Python
 

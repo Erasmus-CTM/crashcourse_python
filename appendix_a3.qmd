@@ -1,15 +1,11 @@
 ---
-title: "Appendix A.3 Control Statements"
+title: "A.3 Control Statements"
 format: html
 filters:
   - pyodide
 ---
 
-Appendix A: A crash course in Python  
-NUMA01: Computational Programming with Python  
-Malin Christersson, Robert Klofkorn  
-
-## A.3 Some additional control statements in Python
+## Some additional control statements in Python
 
 ### While-loops
 

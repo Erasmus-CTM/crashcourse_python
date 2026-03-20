@@ -2,4 +2,4 @@
 title: "About"
 ---
 
-About this site
+This content is based on Jan-Fredrik Olssens lecture notes "Don't panic".
