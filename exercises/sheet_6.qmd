@@ -1,0 +1,136 @@
+---
+title: "Sheet Six"
+format: html
+filters:
+  - pyodide
+---
+
+NUMA01: Computational Programming with Python  
+Malin Christersson, Robert Klofkorn  
+
+This exercise trains knowledge about vectors and arrays, i.e. the basics from
+Chapter 4 and 5 in the course book.  
+This assignment has 8 tasks.
+
+Solutions: [Sheet 6 Solutions](sheet_6_solutions.qmd)
+
+## Warming-up Exercises
+
+### Task 1
+
+Read Chapter 4 of the course book.
+
+### Task 2
+
+Implement the following code.
+
+```{pyodide-python}
+#| read-only: false
+from numpy import *
+
+v = array([1., 2., 3])
+M = array([[1., 2, 3.],
+           [4., 5., 6],
+           [7., 8., 9]])
+# what does this line do?
+z = M @ v
+print(z)
+```
+
+---
+
+## Exercises
+
+### Task 3
+
+Consider a square matrix $A$ (number of rows is the same as columns).
+
+$A$ is symmetric if and only if $A = A^T$, i.e. if $a_{ij} = a_{ji}$ for indices
+$i, j$. Accordingly, $A$ is skew-symmetric if and only if $-A = A^T$.
+
+Write a function that takes a matrix as parameter. It should check if this matrix
+is symmetric. The function should return `1` for a symmetric matrix, `-1` for a
+skew-symmetric matrix and `0` otherwise. Test your function.
+
+```{pyodide-python}
+#| read-only: false
+# TODO: implement and test a symmetry check for a square matrix.
+```
+
+### Task 4
+
+Write a function that takes two vectors as parameters. It should check if these
+vectors are orthogonal. If they are orthogonal it should return `True`, otherwise
+`False`.
+
+Do not forget to provide your function with a docstring.
+
+```{pyodide-python}
+#| read-only: false
+# TODO: implement and test an orthogonality check for two vectors.
+```
+
+### Task 5
+
+Write a function that takes a vector as parameter and returns the corresponding
+normalized vector, i.e. $x / \lVert x \rVert$.
+
+Write two variants of this program: one in which you compute the norm (use the
+2-norm) of the vector by yourself and another which uses the function `norm`
+from the module `numpy.linalg`.
+
+Recall that to be able to use NumPy's norm function you must have the line
+`from numpy.linalg import norm` at the start of your program. Note that you
+cannot then call your own function `norm` too. If this is inconvenient, use
+`from numpy.linalg import norm as npnorm` to give NumPy's norm function a new name.
+
+```{pyodide-python}
+#| read-only: false
+# TODO: implement two normalization variants (manual norm and numpy.linalg.norm).
+```
+
+### Task 6
+
+Show experimentally that the inverse of a rotation matrix is its transpose.
+
+Hint: $B$ is the inverse of $A$ if $AB = BA = I$, the identity matrix.
+In 2D, a rotation matrix has the form
+
+$$
+\begin{pmatrix}
+\cos \alpha & \sin \alpha \\
+-\sin \alpha & \cos \alpha
+\end{pmatrix}
+$$
+
+where $\alpha$ can be any angle.
+
+```{pyodide-python}
+#| read-only: false
+# TODO: verify experimentally that R^{-1} = R^T for rotation matrices.
+```
+
+### Extra Task 7 (in case you want an extra challenge)
+
+(If you do not know eigenvalues yet, skip this task for now.)
+Construct a $20 \times 20$ matrix with the value 4 on its diagonal and the value 1
+on its sub- and super-diagonal. The rest of the matrix is zero.
+Compute its eigenvalues. (Use the function `eig` from the module `numpy.linalg`.)
+You might also want to check the function `diag` for this task.
+
+```{pyodide-python}
+#| read-only: false
+# TODO: build the tridiagonal matrix and compute its eigenvalues.
+```
+
+### Extra Task 8 (in case you want an extra challenge)
+
+(If you do not know eigenvalues yet, skip this task for now.)
+Change the matrix in the above task in such a way that all the elements of its
+subdiagonal instead have the value $-1$. How are the eigenvalues affected by
+this change?
+
+```{pyodide-python}
+#| read-only: false
+# TODO: modify the subdiagonal to -1 and compare eigenvalues.
+```

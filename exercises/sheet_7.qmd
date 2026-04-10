@@ -1,0 +1,72 @@
+---
+title: "Sheet Seven"
+format: html
+filters:
+  - pyodide
+---
+
+NUMA01: Computational Programming with Python  
+Claus Fuhrer, Malin Christersson, Robert Klofkorn  
+
+This assignment has 3 tasks.
+
+Solutions: [Sheet 7 Solutions](sheet_7_solutions.qmd)
+
+## Exercises
+
+For these tasks you need knowledge about vectors and arrays, Chapter 4/5 in the
+course book.
+
+### Task 1
+
+A central theorem in linear algebra says that the eigenvalues of real symmetric
+matrices are real and that their eigenvectors are orthogonal. Try to verify this
+theorem by using square random matrices of dimensions not less than 5.
+
+```{pyodide-python}
+#| read-only: false
+# TODO: verify the theorem for random symmetric matrices of size >= 5.
+```
+
+### Task 2
+
+Given a vector $u \in \mathbb{R}^n$. Construct a $n \times n$ matrix $A$ with the
+properties
+
+$$
+A_{i,i} = -2 u_i,\quad i = 1, \dots, n,
+$$
+
+$$
+A_{i+1,i} = u_i,\quad i = 1, \dots, n-1,
+$$
+
+$$
+A_{i,i+1} = u_{i+1},\quad i = 1, \dots, n-1,
+$$
+
+and all other elements being zero.
+
+Do this task by using the NumPy command `diag` and alternatively by using
+for-loops. Write a function that takes a vector and returns such a matrix.
+
+```{pyodide-python}
+#| read-only: false
+# TODO: build the matrix using np.diag and for-loops.
+```
+
+### Task 3
+
+Call the function you created in the last task with
+
+```
+u = linspace(0, 2 * pi, 500)
+```
+
+as input to get a matrix $D$. Compute the matrix $\sin(D)$. Multiply this matrix
+with the one-vector (a vector filled with 1's) and plot the result versus $u$.
+
+```{pyodide-python}
+#| read-only: false
+# TODO: compute sin(D) * ones and plot the result versus u.
+```

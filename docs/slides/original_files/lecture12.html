@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>GUI using matplotlib – Python Crashcourse</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-5b4ad623e5705c0698d39aec6f10cf02.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Python Crashcourse</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-crashcourse" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Crashcourse</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-crashcourse">    
+        <li>
+    <a class="dropdown-item" href="../../appendix/appendix_a1.html">
+ <span class="dropdown-text">A.1 Introduction</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../appendix/appendix_a2.html">
+ <span class="dropdown-text">A.2 Sequences and Sums</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../appendix/appendix_a3.html">
+ <span class="dropdown-text">A.3 Control Statements</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../appendix/appendix_a4.html">
+ <span class="dropdown-text">A.4 Functions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../appendix/appendix_a5.html">
+ <span class="dropdown-text">A.5 Number Representation</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../appendix/appendix_a6.html">
+ <span class="dropdown-text">A.6 Answers</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../appendix/appendix_all.html">
+ <span class="dropdown-text">A.All Combined</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-lecture-slides" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Lecture Slides</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-lecture-slides">    
+        <li>
+    <a class="dropdown-item" href="../../slides/lecture01.html">
+ <span class="dropdown-text">Lecture 1</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-exercises" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Exercises</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-exercises">    
+        <li>
+    <a class="dropdown-item" href="../../exercises/sheet_2.html">
+ <span class="dropdown-text">Sheet 2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../exercises/sheet_3.html">
+ <span class="dropdown-text">Sheet 3</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../exercises/sheet_4.html">
+ <span class="dropdown-text">Sheet 4</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../exercises/sheet_5.html">
+ <span class="dropdown-text">Sheet 5</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../exercises/sheet_6.html">
+ <span class="dropdown-text">Sheet 6</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../exercises/sheet_7.html">
+ <span class="dropdown-text">Sheet 7</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../exercises/sheet_8.html">
+ <span class="dropdown-text">Sheet 8</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../exercises/sheet_9.html">
+ <span class="dropdown-text">Sheet 9</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../exercises/sheet_11.html">
+ <span class="dropdown-text">Sheet 11</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../exercises/sheet_12.html">
+ <span class="dropdown-text">Sheet 12</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../exercises/sheet_13.html">
+ <span class="dropdown-text">Sheet 13</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#center-for-mathematical-sciences-lund-university" id="toc-center-for-mathematical-sciences-lund-university" class="nav-link active" data-scroll-target="#center-for-mathematical-sciences-lund-university">Center for Mathematical Sciences, Lund University</a></li>
+  <li><a href="#this-lecture" id="toc-this-lecture" class="nav-link" data-scroll-target="#this-lecture">This lecture</a></li>
+  <li><a href="#last-lecture" id="toc-last-lecture" class="nav-link" data-scroll-target="#last-lecture">Last lecture</a>
+  <ul class="collapse">
+  <li><a href="#revision-interactive-plots" id="toc-revision-interactive-plots" class="nav-link" data-scroll-target="#revision-interactive-plots">Revision: Interactive plots</a>
+  <ul class="collapse">
+  <li><a href="#jupyter-notebook" id="toc-jupyter-notebook" class="nav-link" data-scroll-target="#jupyter-notebook">Jupyter Notebook</a></li>
+  <li><a href="#spyder" id="toc-spyder" class="nav-link" data-scroll-target="#spyder">Spyder</a></li>
+  </ul></li>
+  <li><a href="#revision-references-to-figure-and-axes-objects" id="toc-revision-references-to-figure-and-axes-objects" class="nav-link" data-scroll-target="#revision-references-to-figure-and-axes-objects">Revision: References to figure and axes objects</a></li>
+  <li><a href="#revision-references-to-line-plot-objects" id="toc-revision-references-to-line-plot-objects" class="nav-link" data-scroll-target="#revision-references-to-line-plot-objects">Revision: References to line plot objects</a></li>
+  </ul></li>
+  <li><a href="#widgets-and-events" id="toc-widgets-and-events" class="nav-link" data-scroll-target="#widgets-and-events">Widgets and events</a>
+  <ul class="collapse">
+  <li><a href="#making-a-widget" id="toc-making-a-widget" class="nav-link" data-scroll-target="#making-a-widget">Making a widget</a></li>
+  <li><a href="#making-an-axes-object-for-a-widget" id="toc-making-an-axes-object-for-a-widget" class="nav-link" data-scroll-target="#making-an-axes-object-for-a-widget">Making an axes object for a widget</a></li>
+  <li><a href="#the-show-command" id="toc-the-show-command" class="nav-link" data-scroll-target="#the-show-command">The <code>show()</code> command</a></li>
+  <li><a href="#example-1---one-slider" id="toc-example-1---one-slider" class="nav-link" data-scroll-target="#example-1---one-slider">Example 1 - One slider</a></li>
+  <li><a href="#example-1-the-full-program" id="toc-example-1-the-full-program" class="nav-link" data-scroll-target="#example-1-the-full-program">Example 1: The full program</a></li>
+  <li><a href="#example-2---a-button-and-a-slider" id="toc-example-2---a-button-and-a-slider" class="nav-link" data-scroll-target="#example-2---a-button-and-a-slider">Example 2 - A button and a slider</a></li>
+  <li><a href="#example-2-the-full-program" id="toc-example-2-the-full-program" class="nav-link" data-scroll-target="#example-2-the-full-program">Example 2: The full program</a></li>
+  <li><a href="#example-3---two-sliders-in-a-list" id="toc-example-3---two-sliders-in-a-list" class="nav-link" data-scroll-target="#example-3---two-sliders-in-a-list">Example 3 - Two sliders in a list</a>
+  <ul class="collapse">
+  <li><a href="#two-sliders-in-a-list" id="toc-two-sliders-in-a-list" class="nav-link" data-scroll-target="#two-sliders-in-a-list">Two sliders in a list</a></li>
+  <li><a href="#a-function-for-making-sliders-in-a-list" id="toc-a-function-for-making-sliders-in-a-list" class="nav-link" data-scroll-target="#a-function-for-making-sliders-in-a-list">A function for making sliders in a list</a></li>
+  <li><a href="#the-callback-function" id="toc-the-callback-function" class="nav-link" data-scroll-target="#the-callback-function">The callback function</a></li>
+  <li><a href="#make-the-axes-for-the-initial-plot" id="toc-make-the-axes-for-the-initial-plot" class="nav-link" data-scroll-target="#make-the-axes-for-the-initial-plot">Make the axes for the initial plot</a></li>
+  </ul></li>
+  <li><a href="#example-3-the-full-program" id="toc-example-3-the-full-program" class="nav-link" data-scroll-target="#example-3-the-full-program">Example 3: The full program</a></li>
+  <li><a href="#events" id="toc-events" class="nav-link" data-scroll-target="#events">Events</a></li>
+  <li><a href="#the-callback-function-1" id="toc-the-callback-function-1" class="nav-link" data-scroll-target="#the-callback-function-1">The callback function</a></li>
+  <li><a href="#the-callback-function-cont" id="toc-the-callback-function-cont" class="nav-link" data-scroll-target="#the-callback-function-cont">The callback function (cont)</a></li>
+  <li><a href="#a-simple-example" id="toc-a-simple-example" class="nav-link" data-scroll-target="#a-simple-example">A simple example</a></li>
+  <li><a href="#example-4---click-to-make-points-and-a-spline" id="toc-example-4---click-to-make-points-and-a-spline" class="nav-link" data-scroll-target="#example-4---click-to-make-points-and-a-spline">Example 4 - Click to make points and a spline</a>
+  <ul class="collapse">
+  <li><a href="#make-two-empty-line-plots-and-lists-for-storing-coordinates" id="toc-make-two-empty-line-plots-and-lists-for-storing-coordinates" class="nav-link" data-scroll-target="#make-two-empty-line-plots-and-lists-for-storing-coordinates">Make two empty line plots and lists for storing coordinates</a></li>
+  <li><a href="#make-a-callback-function-using-global-variables" id="toc-make-a-callback-function-using-global-variables" class="nav-link" data-scroll-target="#make-a-callback-function-using-global-variables">Make a callback function using global variables</a></li>
+  <li><a href="#example-4-click-to-make-points" id="toc-example-4-click-to-make-points" class="nav-link" data-scroll-target="#example-4-click-to-make-points">Example 4: Click to make points</a></li>
+  <li><a href="#making-a-spline" id="toc-making-a-spline" class="nav-link" data-scroll-target="#making-a-spline">Making a spline</a></li>
+  <li><a href="#making-a-spline-cont" id="toc-making-a-spline-cont" class="nav-link" data-scroll-target="#making-a-spline-cont">Making a spline (cont)</a></li>
+  <li><a href="#example-4-the-full-program" id="toc-example-4-the-full-program" class="nav-link" data-scroll-target="#example-4-the-full-program">Example 4: The full program</a></li>
+  </ul></li>
+  <li><a href="#summary---widgets" id="toc-summary---widgets" class="nav-link" data-scroll-target="#summary---widgets">Summary - Widgets</a></li>
+  <li><a href="#summary---events" id="toc-summary---events" class="nav-link" data-scroll-target="#summary---events">Summary - Events</a></li>
+  <li><a href="#rtfm" id="toc-rtfm" class="nav-link" data-scroll-target="#rtfm">RTFM</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">GUI using matplotlib</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="center-for-mathematical-sciences-lund-university" class="level3">
+<h3 class="anchored" data-anchor-id="center-for-mathematical-sciences-lund-university">Center for Mathematical Sciences, Lund University</h3>
+<p>Lecturer: Malin Christersson, <code>Robert Klöfkorn</code></p>
+</section>
+<section id="this-lecture" class="level1">
+<h1>This lecture</h1>
+<ul>
+<li>Last lecture - More about plotting</li>
+<li>Widgets and events</li>
+<li>Sliders and buttons</li>
+<li>Example 1 ‐ One slider</li>
+<li>Example 2 ‐ A slider and a button</li>
+<li>Example 3 ‐ Two sliders in a list</li>
+<li>Events</li>
+<li>Example 4 ‐ Click to make points and a spline</li>
+<li>Summary</li>
+</ul>
+</section>
+<section id="last-lecture" class="level1">
+<h1>Last lecture</h1>
+<section id="revision-interactive-plots" class="level2">
+<h2 class="anchored" data-anchor-id="revision-interactive-plots">Revision: Interactive plots</h2>
+<section id="jupyter-notebook" class="level3">
+<h3 class="anchored" data-anchor-id="jupyter-notebook">Jupyter Notebook</h3>
+<p>Use</p>
+<p><code>%matplotlib notebook</code></p>
+</section>
+<section id="spyder" class="level3">
+<h3 class="anchored" data-anchor-id="spyder">Spyder</h3>
+<p>In <code>Tools</code> select <code>Preferences</code> and then in the <code>IPython console</code> section on the right side click on the <code>Graphics</code> tab select <code>Automatic</code> as backend.</p>
+</section>
+</section>
+<section id="revision-references-to-figure-and-axes-objects" class="level2">
+<h2 class="anchored" data-anchor-id="revision-references-to-figure-and-axes-objects">Revision: References to figure and axes objects</h2>
+<p>We can use</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> subplots()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>or</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> figure()</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> subplot(<span class="dv">111</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>In some cases we will use the <code>axes</code> function to make an axes object.</p>
+</section>
+<section id="revision-references-to-line-plot-objects" class="level2">
+<h2 class="anchored" data-anchor-id="revision-references-to-line-plot-objects">Revision: References to line plot objects</h2>
+<p>We can use</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># unpack a list with one element</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>line, <span class="op">=</span> ax.plot(xvalues, yvalues) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Last lecture we used setter methods to change the visual appearance.</p>
+<p>Now we will update a line plot by setting new 𝑥 - and 𝑦 -values.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>line.set_xdata(new_xvalues)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>line.set_ydata(new_yvalues)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="widgets-and-events" class="level1">
+<h1>Widgets and events</h1>
+<ol type="1">
+<li>Using <code>matplotlib.widgets</code> we will make sliders and buttons.</li>
+<li>In any plot (without using widgets) you can handle mouse events such as <code>mouse pressed</code>. We will make such an example.</li>
+</ol>
+<section id="making-a-widget" class="level2">
+<h2 class="anchored" data-anchor-id="making-a-widget">Making a widget</h2>
+<ol type="1">
+<li>Import classes <code>Slider</code>and <code>Button</code> from <code>matplotlib.widgets</code>.</li>
+<li>Make an axes object by specifying a rectangular part of the figure.</li>
+<li>Create the widget using the axes object as first argument.</li>
+<li>Define a <code>callback</code> function and use it as argument to an event handler of the widget.</li>
+</ol>
+<p>A slider has a <code>on_changed</code> event handler.</p>
+<p>A button has a <code>on_clicked</code> event handler.</p>
+</section>
+<section id="making-an-axes-object-for-a-widget" class="level2">
+<h2 class="anchored" data-anchor-id="making-an-axes-object-for-a-widget">Making an axes object for a widget</h2>
+<p>Use the <code>axes</code> function:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>widget_ax <span class="op">=</span> axes([left, bottom, width, height])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The rectangular region is specified using a relative coordinate system. <img src="http://cmc.education/slides/notebookImages/axesRectangle.svg" class="img-fluid" alt="axesRectangle"></p>
+</section>
+<section id="the-show-command" class="level2">
+<h2 class="anchored" data-anchor-id="the-show-command">The <code>show()</code> command</h2>
+<p>If running a Python program from an editor that doesn’t have an IPython console, or if running it in a terminal:</p>
+<p><code>python example1.py</code></p>
+<p>you must show a plot by using the matplotlib function</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="example-1---one-slider" class="level2">
+<h2 class="anchored" data-anchor-id="example-1---one-slider">Example 1 - One slider</h2>
+<p>The graph of <span class="math inline">\(f(x) = A\sin(x)\)</span>.</p>
+<p>We will use a slider for the value of the amplitude <span class="math inline">\(A\)</span>.</p>
+<p>Import the Slider class (and for later, the Button class).</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.widgets <span class="im">import</span> Slider, Button</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Make a figure object and the axes objects for the slider and the plot:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> figure()</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># layout</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>sld_ax <span class="op">=</span> axes([<span class="fl">0.2</span>, <span class="fl">0.9</span>, <span class="fl">0.6</span>, <span class="fl">0.05</span>])  <span class="co"># axes for slider</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> axes([<span class="fl">0.1</span>, <span class="fl">0.15</span>, <span class="fl">0.8</span>, <span class="fl">0.7</span>])      <span class="co"># axes for the plot</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Make the slider.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>sld <span class="op">=</span> Slider(sld_ax, <span class="st">'amp'</span>, <span class="fl">0.</span>, <span class="fl">5.</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>You can also use keyword arguments.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>sld <span class="op">=</span> Slider(sld_ax, <span class="st">'amp'</span>, <span class="fl">0.</span>, <span class="fl">5.</span>, </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>             valinit<span class="op">=</span><span class="dv">1</span>, valstep<span class="op">=</span><span class="fl">0.1</span>, valfmt<span class="op">=</span><span class="st">"</span><span class="sc">%1.1f</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The value of the slider will be stored in <code>sld.val</code>.</p>
+<p>Make <span class="math inline">\(x\)</span>-values and format the plot.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> linspace(<span class="op">-</span><span class="dv">2</span><span class="op">*</span>pi, <span class="dv">2</span><span class="op">*</span>pi, <span class="dv">200</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="op">-</span><span class="fl">5.5</span>, <span class="fl">5.5</span>)  <span class="co"># why is this needed in this case</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Make the plot and get a reference to the line plot object.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>lines, <span class="op">=</span> ax.plot(x, sld.val<span class="op">*</span>sin(x))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Define a callback function and use it as argument for the event handler.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> update_amplitude(val):</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    lines.set_ydata(val<span class="op">*</span>sin(x))</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>sld.on_changed(update_amplitude)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The parameter <code>val</code> holds the value of the slider. You could also use <code>sld.val</code> when setting the ydata.</p>
+<ol type="1">
+<li><p>Note that your callback function only can have one single parameter.</p></li>
+<li><p>Note that your callback function changes a global variable. This can be avoided by enclosing the code in a class.</p></li>
+</ol>
+</section>
+<section id="example-1-the-full-program" class="level2">
+<h2 class="anchored" data-anchor-id="example-1-the-full-program">Example 1: The full program</h2>
+<p>Make sure all imports have been made:</p>
+<div id="cell-15" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> numpy <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.pyplot <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.widgets <span class="im">import</span> Slider, Button</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib notebook</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="cell-16" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> figure(figsize <span class="op">=</span> (<span class="dv">8</span>,<span class="dv">3</span>))</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> axes([<span class="fl">0.1</span>, <span class="fl">0.15</span>, <span class="fl">0.8</span>, <span class="fl">0.7</span>])     <span class="co"># axes for the plot</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="op">-</span><span class="fl">5.5</span>, <span class="fl">5.5</span>)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>sld_ax <span class="op">=</span> axes([<span class="fl">0.2</span>, <span class="fl">0.9</span>, <span class="fl">0.6</span>, <span class="fl">0.05</span>]) <span class="co"># axes for slider</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>sld <span class="op">=</span> Slider(sld_ax, <span class="st">'amp'</span>, <span class="fl">0.</span>, <span class="fl">5.</span>)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> linspace(<span class="op">-</span><span class="dv">2</span><span class="op">*</span>pi, <span class="dv">2</span><span class="op">*</span>pi, <span class="dv">200</span>)</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>lines, <span class="op">=</span> ax.plot(x, sld.val<span class="op">*</span>sin(x))</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> update_amplitude( A ):</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    lines.set_ydata(A<span class="op">*</span>sin(x))</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>sld.on_changed(update_amplitude)<span class="op">;</span>  <span class="co"># ; to suppress Out[xx]                     </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="example-2---a-button-and-a-slider" class="level2">
+<h2 class="anchored" data-anchor-id="example-2---a-button-and-a-slider">Example 2 - A button and a slider</h2>
+<p>We will again use</p>
+<p><span class="math display">\[f(x) = A\sin(x).\]</span></p>
+<ul>
+<li>A slider has a <code>on_changed</code> event handler.</li>
+<li>A button has a <code>on_clicked</code> event handler.</li>
+</ul>
+<p>Let the slider hold the value of the amplitude of a sine-curve. Let the button, not the slider, show the updated curve.</p>
+<p>In this case the button is meaningless. For cases where lengthy calculations are performed when sliders change values, it’s better not to use the <code>on_changed</code> event to update plots.</p>
+</section>
+<section id="example-2-the-full-program" class="level2">
+<h2 class="anchored" data-anchor-id="example-2-the-full-program">Example 2: The full program</h2>
+<div id="cell-19" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> figure(figsize <span class="op">=</span> (<span class="dv">8</span>, <span class="dv">3</span>))      </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>sld_ax <span class="op">=</span> axes([<span class="fl">0.2</span>, <span class="fl">0.9</span>, <span class="fl">0.6</span>, <span class="fl">0.05</span>])  <span class="co"># axes for slider</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>btn_ax <span class="op">=</span> axes([<span class="fl">0.7</span>, <span class="fl">0.8</span>, <span class="fl">0.2</span>, <span class="fl">0.07</span>])  <span class="co"># axes for button</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> axes([<span class="fl">0.1</span>, <span class="fl">0.15</span>, <span class="fl">0.8</span>, <span class="fl">0.6</span>])      <span class="co"># axes for the plot</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>sld <span class="op">=</span> Slider(sld_ax, <span class="st">'amp'</span>, <span class="fl">0.</span>, <span class="fl">5.</span>)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>btn <span class="op">=</span> Button(btn_ax, <span class="st">'Show curve'</span>)    </span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> linspace(<span class="op">-</span><span class="dv">2</span><span class="op">*</span>pi, <span class="dv">2</span><span class="op">*</span>pi, <span class="dv">200</span>)</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="op">-</span><span class="fl">5.5</span>, <span class="fl">5.5</span>)</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>lines, <span class="op">=</span> ax.plot(x, sld.val<span class="op">*</span>sin(x))</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> show_curve(event):</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>    lines.set_ydata(sld.val<span class="op">*</span>sin(x))  <span class="co"># the amplitude is given by the slider value</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>btn.on_clicked(show_curve)<span class="op">;</span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="example-3---two-sliders-in-a-list" class="level2">
+<h2 class="anchored" data-anchor-id="example-3---two-sliders-in-a-list">Example 3 - Two sliders in a list</h2>
+<p>For the damped Lissajous curve defined by</p>
+<p><span class="math display">\[
+\begin{cases}
+        x(t) &amp;= \cos(at)e^{-dt} \\
+        y(t) &amp;= \sin(t)e^{-dt}
+    \end{cases}
+    , 0\leq t \lt 14\pi
+\]</span></p>
+<p>use one slider for the angular frequency <span class="math inline">\(a\)</span> and one for the damping factor <span class="math inline">\(d\)</span>.</p>
+<section id="two-sliders-in-a-list" class="level3">
+<h3 class="anchored" data-anchor-id="two-sliders-in-a-list">Two sliders in a list</h3>
+<p>Two sliders are fairly easy to handle. If many sliders are needed, the code will be shorter if the layout is made in some loop.</p>
+<p>To make a slider, we use:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>sld <span class="op">=</span> Slider(sld_ax, label, valmin, valmax)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>For our two values, <span class="math inline">\(a\in[0, 2]\)</span> and <span class="math inline">\(d\in[0, 0.1]\)</span></p>
+<p>Our two values will have different labels and different valmax values.</p>
+</section>
+<section id="a-function-for-making-sliders-in-a-list" class="level3">
+<h3 class="anchored" data-anchor-id="a-function-for-making-sliders-in-a-list">A function for making sliders in a list</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> make_sliders(labels, valmaxs):</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    sliders <span class="op">=</span> []</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>):</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>        sld_ax <span class="op">=</span> axes([<span class="fl">0.05</span>, <span class="fl">0.4</span><span class="op">+</span><span class="fl">0.1</span><span class="op">*</span>i, <span class="fl">0.28</span>, <span class="fl">0.03</span>])</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>        sld <span class="op">=</span> Slider(sld_ax, labels[i], <span class="dv">0</span>, valmaxs[i])</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>        sliders.append(sld)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> sliders</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>It is easy to afterwards change the layout of all sliders.</p>
+<p>To make the list of sliders, we use:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>sld <span class="op">=</span> make_sliders([<span class="st">'a'</span>, <span class="st">'d'</span>], [<span class="dv">2</span>, <span class="fl">0.1</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="the-callback-function" class="level3">
+<h3 class="anchored" data-anchor-id="the-callback-function">The callback function</h3>
+<p>We use the same callback function for both sliders</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> update_curve(val):</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    a, d <span class="op">=</span> sld[<span class="dv">0</span>].val, sld[<span class="dv">1</span>].val</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    line.set_xdata(cos(a<span class="op">*</span>t)<span class="op">*</span>exp(<span class="op">-</span>d<span class="op">*</span>t))</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    line.set_ydata(sin(t)<span class="op">*</span>exp(<span class="op">-</span>d<span class="op">*</span>t))</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> s <span class="kw">in</span> sld:</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    s.on_changed(update_curve)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>If we had many sliders in a list and a callback function depending on the index of a list element, we could use a closure to make a function with only <strong>one</strong> parameter.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> outer(i):</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> inner(val):</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>        <span class="co"># code using i and val</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> inner</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(sld)):</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    s.on_changed(outer(i))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="make-the-axes-for-the-initial-plot" class="level3">
+<h3 class="anchored" data-anchor-id="make-the-axes-for-the-initial-plot">Make the axes for the initial plot</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> axes([<span class="fl">0.5</span>, <span class="fl">0.1</span>, <span class="fl">0.5</span>, <span class="fl">0.8</span>])</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>ax.set_xlim([<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>])</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>ax.set_ylim([<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>])</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>ax.set_aspect(<span class="fl">1.0</span>)  <span class="co"># the aspect ratio should be 1 in this case</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>a, d <span class="op">=</span> sld[<span class="dv">0</span>].val, sld[<span class="dv">1</span>].val</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>line, <span class="op">=</span> ax.plot(cos(a<span class="op">*</span>t)<span class="op">*</span>exp(<span class="op">-</span>d<span class="op">*</span>t), sin(t)<span class="op">*</span>exp(<span class="op">-</span>d<span class="op">*</span>t))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="example-3-the-full-program" class="level2">
+<h2 class="anchored" data-anchor-id="example-3-the-full-program">Example 3: The full program</h2>
+<p>Assuming all imports have been made. The two functions:</p>
+<div id="cell-26" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> make_sliders(labels, valmaxs):</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    sliders <span class="op">=</span> []</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>):</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>        sld_ax <span class="op">=</span> axes([<span class="fl">0.05</span>, <span class="fl">0.4</span><span class="op">+</span><span class="fl">0.1</span><span class="op">*</span>i, <span class="fl">0.28</span>, <span class="fl">0.03</span>])</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>        sld <span class="op">=</span> Slider(sld_ax, labels[i], <span class="dv">0</span>, valmaxs[i])</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>        sliders.append(sld)</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> sliders</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> update_curve(val):</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>    a, d <span class="op">=</span> sld[<span class="dv">0</span>].val, sld[<span class="dv">1</span>].val</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>    line.set_xdata(cos(a<span class="op">*</span>t)<span class="op">*</span>exp(<span class="op">-</span>d<span class="op">*</span>t))</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>    line.set_ydata(sin(t)<span class="op">*</span>exp(<span class="op">-</span>d<span class="op">*</span>t))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="cell-27" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">3</span>))</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>sld <span class="op">=</span> make_sliders([<span class="st">'a'</span>, <span class="st">'d'</span>], [<span class="dv">2</span>, <span class="fl">0.1</span>])</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> s <span class="kw">in</span> sld: s.on_changed(update_curve)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> axes([<span class="fl">0.48</span>, <span class="fl">0.1</span>, <span class="fl">0.5</span>, <span class="fl">0.8</span>])</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>ax.set_xlim([<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>])</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>ax.set_ylim([<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>])</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>ax.set_aspect(<span class="fl">1.0</span>)</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> linspace(<span class="dv">0</span>, <span class="dv">14</span><span class="op">*</span>pi, <span class="dv">500</span>)</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>a, d <span class="op">=</span> sld[<span class="dv">0</span>].val, sld[<span class="dv">1</span>].val</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>line, <span class="op">=</span> ax.plot(cos(a<span class="op">*</span>t)<span class="op">*</span>exp(<span class="op">-</span>d<span class="op">*</span>t), sin(t)<span class="op">*</span>exp(<span class="op">-</span>d<span class="op">*</span>t))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="events" class="level2">
+<h2 class="anchored" data-anchor-id="events">Events</h2>
+<p>Matplotlib has an event manager that can handle mouse events (and some other events).</p>
+<p>To handle an event:</p>
+<ol type="1">
+<li>Write a callback function</li>
+<li>Connect the callback function to the event manager.</li>
+</ol>
+<p>If your callback function updates a plot, you must use</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>fig.canvas.draw_idle()  <span class="co"># redraws the canvas</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="the-callback-function-1" class="level2">
+<h2 class="anchored" data-anchor-id="the-callback-function-1">The callback function</h2>
+<p>Assuming there is a figure object <code>fig</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> my_callback(event):</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># code</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>cid <span class="op">=</span> fig.canvas.mpl_connect(<span class="st">'button_press_event'</span>, my_callback)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>cid</code> stands for <strong>connection id</strong>. If you want to disconnect your callback use:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>fig.canvas.mpl_disconnect(cid)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>You could also use other mouse events: <code>'button_released_event'</code>, <code>'motion_notify_event'</code>, <code>'scroll_event'</code>.</p>
+</section>
+<section id="the-callback-function-cont" class="level2">
+<h2 class="anchored" data-anchor-id="the-callback-function-cont">The callback function (cont)</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> my_callback(event):</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># code</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>cid <span class="op">=</span> fig.canvas.mpl_connect(<span class="st">'button_press_event'</span>, my_callback)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The parameter <code>event</code> has attributes that you can use in your callback function.</p>
+<ul>
+<li><code>event.xdata</code> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; the <span class="math inline">\(x\)</span>-coordinate of the mouse in data coordinates</li>
+<li><code>event.ydata</code> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; the <span class="math inline">\(y\)</span>-coordinate of the mouse in data coordinates</li>
+<li><code>event.inaxes</code> &nbsp;&nbsp;&nbsp; the axes object where the event occurred</li>
+<li><code>event.button</code> &nbsp;&nbsp;&nbsp; 1 = left click, 2 = middle click, 3 = right click</li>
+</ul>
+</section>
+<section id="a-simple-example" class="level2">
+<h2 class="anchored" data-anchor-id="a-simple-example">A simple example</h2>
+<p>This code works in Spyder (but not in a notebook):</p>
+<div id="cell-32" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> subplots()</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> my_callback(event):</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> event.inaxes <span class="op">==</span> ax:</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> event.xdata</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>        y <span class="op">=</span> event.ydata</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"x=</span><span class="sc">{</span>x<span class="sc">:0.2f}</span><span class="ss">, y=</span><span class="sc">{</span>y<span class="sc">:0.2f}</span><span class="ss">"</span>)</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>cid <span class="op">=</span> fig.canvas.mpl_connect(<span class="st">'button_press_event'</span>, my_callback)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="example-4---click-to-make-points-and-a-spline" class="level2">
+<h2 class="anchored" data-anchor-id="example-4---click-to-make-points-and-a-spline">Example 4 - Click to make points and a spline</h2>
+<p>As long as the user left clicks in the plotting area, a new point will be made.</p>
+<p>The points will be in a line plot that is <strong>an empty line plot</strong> when the program starts.</p>
+<p>When all points have been made, a <strong>spline</strong> will be created from the points.</p>
+<p><img src="http://cmc.education/slides/notebookImages/spline.png" class="img-fluid" alt="spline"> <span style="font-size: 80%">(Image of spline from Wikipedia: https://en.wikipedia.org/wiki/Flat_spline) </span></p>
+<section id="make-two-empty-line-plots-and-lists-for-storing-coordinates" class="level3">
+<h3 class="anchored" data-anchor-id="make-two-empty-line-plots-and-lists-for-storing-coordinates">Make two empty line plots and lists for storing coordinates</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> subplots()</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>points, <span class="op">=</span> ax.plot([], [], <span class="st">'or'</span>)  <span class="co"># line plot of red points</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>lines, <span class="op">=</span> ax.plot([], [], <span class="st">'-b'</span>)   <span class="co"># line plot for a blue spline</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>xlist, ylist <span class="op">=</span> [], []            <span class="co"># lists for storing coordinates</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="make-a-callback-function-using-global-variables" class="level3">
+<h3 class="anchored" data-anchor-id="make-a-callback-function-using-global-variables">Make a callback function using global variables</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> onclick(event):</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> event.inaxes <span class="op">==</span> ax:</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> event.button <span class="op">==</span> <span class="dv">1</span>:</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>            xlist.append(event.xdata)</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>            ylist.append(event.ydata)</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>            points.set_xdata(xlist)</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>            points.set_ydata(ylist)</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>            fig.canvas.mpl_disconnect(cid)</span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>        fig.canvas.draw_idle()</span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>cid <span class="op">=</span> fig.canvas.mpl_connect(<span class="st">'button_press_event'</span>, onclick)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>To avoid having to use global variables, make a class.</p>
+</section>
+<section id="example-4-click-to-make-points" class="level3">
+<h3 class="anchored" data-anchor-id="example-4-click-to-make-points">Example 4: Click to make points</h3>
+<div id="cell-37" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">2</span>))</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>points, <span class="op">=</span> ax.plot([], [], <span class="st">'or'</span>)  <span class="co"># line plot of red points</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>lines, <span class="op">=</span> ax.plot([], [], <span class="st">'-b'</span>)   <span class="co"># line plot for the blue spline</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>xlist, ylist <span class="op">=</span> [], []            <span class="co"># lists for storing coordinates</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> onclick(event):</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> event.inaxes <span class="op">==</span> ax:</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> event.button <span class="op">==</span> <span class="dv">1</span>:</span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>            xlist.append(event.xdata)</span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>            ylist.append(event.ydata)</span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>            points.set_xdata(xlist)</span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>            points.set_ydata(ylist)</span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>            fig.canvas.mpl_disconnect(cid)</span>
+<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a>        fig.canvas.draw_idle()</span>
+<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a>cid <span class="op">=</span> fig.canvas.mpl_connect(<span class="st">'button_press_event'</span>, onclick)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="making-a-spline" class="level3">
+<h3 class="anchored" data-anchor-id="making-a-spline">Making a spline</h3>
+<p>The scipy package <code>interpolate</code> has several functions and classes for making splines.</p>
+<div id="cell-39" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.interpolate <span class="im">import</span> splprep, splev</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>To make a B-spline (basic spline) as a parametric curve: - get a representation of the spline using <code>splprep</code> - use the representation of the spline to evaluate the spline using <code>splev</code></p>
+<p>This procedure resembles the procedure to fit a polynomial to data: use numpy <code>polyfit</code> to get coefficients, use <code>polyval</code> with the coefficients to make the polynomial.</p>
+</section>
+<section id="making-a-spline-cont" class="level3">
+<h3 class="anchored" data-anchor-id="making-a-spline-cont">Making a spline (cont)</h3>
+<section id="using-splprep" class="level4">
+<h4 class="anchored" data-anchor-id="using-splprep">Using <code>splprep</code></h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>tck, u <span class="op">=</span> interpolate.splprep([x, y], s<span class="op">=</span><span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>where</p>
+<ul>
+<li><code>tck</code> is a tuple containing the vector of knots, the B-spline coefficients, and the degree of the spline.</li>
+<li><code>u</code> is an array of parameter values (for the parametric curve).</li>
+</ul>
+<p>If the keyword argument <code>s=0</code>(s stand for <em>smoothness</em>) is given, the spline will go through the points. It is possible to make a closed curve by providing the keyword argument <code>per=1</code>. In that case, the first list element should be the same as the last list element for the lists <code>x</code> and <code>y</code> (use <code>append</code>).</p>
+</section>
+<section id="using-splev" class="level4">
+<h4 class="anchored" data-anchor-id="using-splev">Using <code>splev</code></h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>xvalues, yvalues <span class="op">=</span> splev(linspace(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">100</span>), tck)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>xvalues</code> and <code>yvalues</code> can be used for making a plot. The first argument is an array of parameter values. If <code>u</code> (from <code>splprep</code>) is used as first argument, line segments will be drawn between the points.</p>
+</section>
+</section>
+<section id="example-4-the-full-program" class="level3">
+<h3 class="anchored" data-anchor-id="example-4-the-full-program">Example 4: The full program</h3>
+<div id="cell-44" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">2</span>))</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>points, <span class="op">=</span> ax.plot([], [], <span class="st">'or'</span>)</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>lines, <span class="op">=</span> ax.plot([], [], <span class="st">'-b'</span>)</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>xlist, ylist <span class="op">=</span> [], []</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> onclick(event):</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> event.inaxes <span class="op">==</span> ax:</span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> event.button <span class="op">==</span> <span class="dv">1</span>:</span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>            xlist.append(event.xdata)</span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>            ylist.append(event.ydata)</span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>            points.set_xdata(xlist)</span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>            points.set_ydata(ylist)</span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a>            tck, u <span class="op">=</span> splprep([xlist, ylist], s<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a>            xi, yi <span class="op">=</span> splev(linspace(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">100</span>), tck)</span>
+<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a>            lines.set_xdata(xi)</span>
+<span id="cb36-16"><a href="#cb36-16" aria-hidden="true" tabindex="-1"></a>            lines.set_ydata(yi)</span>
+<span id="cb36-17"><a href="#cb36-17" aria-hidden="true" tabindex="-1"></a>            fig.canvas.mpl_disconnect(cid)</span>
+<span id="cb36-18"><a href="#cb36-18" aria-hidden="true" tabindex="-1"></a>        fig.canvas.draw_idle()</span>
+<span id="cb36-19"><a href="#cb36-19" aria-hidden="true" tabindex="-1"></a>cid <span class="op">=</span> fig.canvas.mpl_connect(<span class="st">'button_press_event'</span>, onclick)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+</section>
+<section id="summary---widgets" class="level2">
+<h2 class="anchored" data-anchor-id="summary---widgets">Summary - Widgets</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.widgets <span class="im">import</span> Slider, Button</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>sld_ax <span class="op">=</span> axes([left1, bottom1, width1, height1])</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>btn_ax <span class="op">=</span> axes([left2, bottom2, width2, height2])</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> axes([left3, bottom3, width3, height3])  <span class="co"># for the plot</span></span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a><span class="co"># code to make plot</span></span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>sld <span class="op">=</span> Slider(sld_ax, <span class="st">'label text'</span>, valmin, valmax)</span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a>btn <span class="op">=</span> Button(btn_ax, <span class="st">'button text'</span>)</span>
+<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a>lines, <span class="op">=</span> ax.plot(xvalues, yvalues)  <span class="co"># get a reference to the line plot</span></span>
+<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a><span class="co"># define sld_callback and btn_callback</span></span>
+<span id="cb37-15"><a href="#cb37-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-16"><a href="#cb37-16" aria-hidden="true" tabindex="-1"></a>sld.on_changed(sld_callback)  <span class="co"># slider method using sld_callback(val)</span></span>
+<span id="cb37-17"><a href="#cb37-17" aria-hidden="true" tabindex="-1"></a>sld.val                       <span class="co"># slider data attribute</span></span>
+<span id="cb37-18"><a href="#cb37-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-19"><a href="#cb37-19" aria-hidden="true" tabindex="-1"></a>btn.on_clicked(btn_callback)  <span class="co"># button method using btn_callback(event)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="summary---events" class="level2">
+<h2 class="anchored" data-anchor-id="summary---events">Summary - Events</h2>
+<div id="cell-47" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># you may need an empty line plot</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>lines, <span class="op">=</span> ax.plot([], [])  <span class="co"># can be formatted</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> my_callback(event):</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># you can use:</span></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># event.inaxes</span></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># event.button</span></span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># event.xdata , event.ydata</span></span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>    fig.canvas.draw_idle()</span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>cid <span class="op">=</span> fig.canvas.mpl_connect(<span class="st">'button_press_event'</span>, my_callback)</span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a><span class="co"># to disconnect, use</span></span>
+<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a>fig.canvas.mpl_disconnect(cid)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="rtfm" class="level2">
+<h2 class="anchored" data-anchor-id="rtfm">RTFM</h2>
+<p>Please take a look at the matplotlib gallery. There are a lot of examples to start from:</p>
+<p><a href="https://matplotlib.org/stable/gallery/">https://matplotlib.org/stable/gallery/</a></p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

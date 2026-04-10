@@ -8,20 +8,50 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - href: appendix_a1.qmd
-        text: A.1 Introduction
-      - href: appendix_a2.qmd
-        text: A.2 Sequences and Sums
-      - href: appendix_a3.qmd
-        text: A.3 Control Statements
-      - href: appendix_a4.qmd
-        text: A.4 Functions
-      - href: appendix_a5.qmd
-        text: A.5 Number Representation
-      - href: appendix_a6.qmd
-        text: A.6 Answers
-      - href: appendix_all.qmd
-        text: A.All Combined
+      - text: Crashcourse
+        menu:
+          - href: appendix/appendix_a1.qmd
+            text: A.1 Introduction
+          - href: appendix/appendix_a2.qmd
+            text: A.2 Sequences and Sums
+          - href: appendix/appendix_a3.qmd
+            text: A.3 Control Statements
+          - href: appendix/appendix_a4.qmd
+            text: A.4 Functions
+          - href: appendix/appendix_a5.qmd
+            text: A.5 Number Representation
+          - href: appendix/appendix_a6.qmd
+            text: A.6 Answers
+          - href: appendix/appendix_all.qmd
+            text: A.All Combined
+      - text: Lecture Slides
+        menu:
+          - href: slides/lecture01.qmd
+            text: Lecture 1
+      - text: Exercises
+        menu:
+          - href: exercises/sheet_2.qmd
+            text: Sheet 2
+          - href: exercises/sheet_3.qmd
+            text: Sheet 3
+          - href: exercises/sheet_4.qmd
+            text: Sheet 4
+          - href: exercises/sheet_5.qmd
+            text: Sheet 5
+          - href: exercises/sheet_6.qmd
+            text: Sheet 6
+          - href: exercises/sheet_7.qmd
+            text: Sheet 7
+          - href: exercises/sheet_8.qmd
+            text: Sheet 8
+          - href: exercises/sheet_9.qmd
+            text: Sheet 9
+          - href: exercises/sheet_11.qmd
+            text: Sheet 11
+          - href: exercises/sheet_12.qmd
+            text: Sheet 12
+          - href: exercises/sheet_13.qmd
+            text: Sheet 13
       - about.qmd
 
 format:

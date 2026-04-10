@@ -1,0 +1,126 @@
+---
+title: "Sheet Five"
+format: html
+filters:
+  - pyodide
+---
+
+NUMA01: Computational Programming with Python  
+Malin Christersson, Robert Klofkorn  
+
+This assignment has 8 tasks.
+
+Solutions: [Sheet 5 Solutions](sheet_5_solutions.qmd)
+
+## Warming-up Exercises
+
+Consult the lecture notes for solutions to the warming-up exercises.
+
+### Task 1
+
+Write a function that implements the polynomial
+
+$$
+p(x) = a x^3 + b x^2 + c x + d.
+$$
+
+```{pyodide-python}
+#| read-only: false
+# TODO: implement the polynomial p(x) = a x^3 + b x^2 + c x + d.
+```
+
+### Task 2
+
+Rewrite your polynomial from the previous task such that the coefficients are
+represented by a list (of length 4).
+
+```{pyodide-python}
+#| read-only: false
+# TODO: implement the polynomial using a list of coefficients.
+```
+
+### Task 3
+
+Discuss with your colleagues how to use packing/unpacking techniques to use
+a list as input for the polynomial from the first task.
+
+```{pyodide-python}
+#| read-only: false
+# TODO: discuss and test packing/unpacking with your polynomial function.
+```
+
+### Task 4
+
+Rewrite your polynomial such that arbitrary polynomials can be represented, i.e.
+lists of coefficients of arbitrary length.
+
+```{pyodide-python}
+#| read-only: false
+# TODO: implement a general polynomial for an arbitrary coefficient list.
+```
+
+---
+
+## Exercises
+
+### Task 5 - Integrals
+
+Compute approximately the integral
+
+$$
+\int_0^{\pi/2} \sin(\omega x)\,dx
+$$
+
+for $\omega = 2\pi$.
+
+For this end run at the beginning of your program the import statement
+
+```
+from scipy.integrate import quad
+```
+
+The method to integrate a function $f$ over an interval $[a, b]$ is `quad(f, a, b)`.
+It returns a tuple with the approximated solution and the estimated error.
+
+```{pyodide-python}
+#| read-only: false
+# TODO: compute the integral using quad and report the result and error.
+```
+
+### Task 6 - Integrals and plots
+
+Compute the integral above for 1000 equidistant values of $\omega$ in the interval
+$[0, 2\pi]$ and plot the results versus $\omega$.
+Label the axes and add a title to the plot.
+
+```{pyodide-python}
+#| read-only: false
+# TODO: compute the integral for many omega values and plot the results.
+```
+
+### Task 7 - Zeros of a function
+
+Use `scipy.optimize.fsolve` to compute the positive zero of the polynomial
+$p(x) = x^2 + x - 3$. Use your implemented polynomial with the appropriate
+coefficients.
+
+```{pyodide-python}
+#| read-only: false
+# TODO: use fsolve to compute the positive root of x^2 + x - 3.
+```
+
+### Task 8 - Zeros of a parameter dependent function
+
+Plot the positive zeros of the polynomials
+
+$$
+p(x) = a x^2 + x - 3
+$$
+
+for $a \in [1, 5]$ versus $a$.
+Do the zeros depend linearly on $a$?
+
+```{pyodide-python}
+#| read-only: false
+# TODO: compute and plot positive roots versus a in [1, 5].
+```

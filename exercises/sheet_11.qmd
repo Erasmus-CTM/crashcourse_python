@@ -1,0 +1,124 @@
+---
+title: "Sheet Eleven"
+format: html
+filters:
+  - pyodide
+---
+
+NUMA01: Computational Programming with Python  
+Malin Christersson, Robert Klofkorn  
+
+The purpose of this training exercise is to work with object oriented techniques in plotting.  
+This assignment has 11 tasks.
+
+Solutions: [Sheet 11 Solutions](sheet_11_solutions.qmd)
+
+## Warming-up Exercises
+
+### Task 1
+
+Obtain the mandelbrot function code from the course book Chapter 6 - Plotting
+and create the same plot as in the book. While there glance through the chapter.
+
+```{pyodide-python}
+#| read-only: false
+# TODO: obtain the mandelbrot example and reproduce the plot.
+```
+
+### Task 2
+
+Change the color map for the plot. Potential color maps can be obtained by
+
+```{pyodide-python}
+#| read-only: false
+from matplotlib import colormaps
+print(colormaps)
+```
+
+---
+
+## Exercises
+
+We imagine that we are in a teaching situation and want to demonstrate properties
+of a polynomial.
+
+### Task 3
+
+Choose a polynomial of degree 3 and plot it together with its first derivative.
+
+```{pyodide-python}
+#| read-only: false
+# TODO: choose a cubic polynomial and plot it with its derivative.
+```
+
+### Task 4
+
+Plot a tangent segment to this curve at its inflection point(s).
+
+```{pyodide-python}
+#| read-only: false
+# TODO: add a tangent segment at the inflection point(s).
+```
+
+### Task 5
+
+Do the same for its extremal values.
+
+```{pyodide-python}
+#| read-only: false
+# TODO: add tangents at the extrema.
+```
+
+### Task 6
+
+Make the tangents a small, black, dotted line.
+
+```{pyodide-python}
+#| read-only: false
+# TODO: set the tangent line style to dotted black.
+```
+
+### Task 7
+
+Make the polynomial curve thicker than its derivative.
+
+```{pyodide-python}
+#| read-only: false
+# TODO: adjust line widths.
+```
+
+### Task 8
+
+Add annotations.
+
+```{pyodide-python}
+#| read-only: false
+# TODO: add annotations to highlight key points.
+```
+
+### Task 9
+
+Put only the x and y coordinate of these points as tick labels.
+
+```{pyodide-python}
+#| read-only: false
+# TODO: set custom tick labels.
+```
+
+### Task 10
+
+Give the figure a title.
+
+```{pyodide-python}
+#| read-only: false
+# TODO: add a title.
+```
+
+### Task 11
+
+Save it as a png file.
+
+```{pyodide-python}
+#| read-only: false
+# TODO: save the figure as a PNG file.
+```

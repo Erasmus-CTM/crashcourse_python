@@ -1,0 +1,1328 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Computational Programming with Python – Python Crashcourse</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-5b4ad623e5705c0698d39aec6f10cf02.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Python Crashcourse</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-crashcourse" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Crashcourse</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-crashcourse">    
+        <li>
+    <a class="dropdown-item" href="../../appendix/appendix_a1.html">
+ <span class="dropdown-text">A.1 Introduction</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../appendix/appendix_a2.html">
+ <span class="dropdown-text">A.2 Sequences and Sums</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../appendix/appendix_a3.html">
+ <span class="dropdown-text">A.3 Control Statements</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../appendix/appendix_a4.html">
+ <span class="dropdown-text">A.4 Functions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../appendix/appendix_a5.html">
+ <span class="dropdown-text">A.5 Number Representation</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../appendix/appendix_a6.html">
+ <span class="dropdown-text">A.6 Answers</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../appendix/appendix_all.html">
+ <span class="dropdown-text">A.All Combined</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-lecture-slides" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Lecture Slides</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-lecture-slides">    
+        <li>
+    <a class="dropdown-item" href="../../slides/lecture01.html">
+ <span class="dropdown-text">Lecture 1</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-exercises" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Exercises</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-exercises">    
+        <li>
+    <a class="dropdown-item" href="../../exercises/sheet_2.html">
+ <span class="dropdown-text">Sheet 2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../exercises/sheet_3.html">
+ <span class="dropdown-text">Sheet 3</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../exercises/sheet_4.html">
+ <span class="dropdown-text">Sheet 4</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../exercises/sheet_5.html">
+ <span class="dropdown-text">Sheet 5</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../exercises/sheet_6.html">
+ <span class="dropdown-text">Sheet 6</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../exercises/sheet_7.html">
+ <span class="dropdown-text">Sheet 7</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../exercises/sheet_8.html">
+ <span class="dropdown-text">Sheet 8</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../exercises/sheet_9.html">
+ <span class="dropdown-text">Sheet 9</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../exercises/sheet_11.html">
+ <span class="dropdown-text">Sheet 11</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../exercises/sheet_12.html">
+ <span class="dropdown-text">Sheet 12</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../exercises/sheet_13.html">
+ <span class="dropdown-text">Sheet 13</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#lecture-3-string-formatting-other-container-types-and-floating-point-numbers" id="toc-lecture-3-string-formatting-other-container-types-and-floating-point-numbers" class="nav-link active" data-scroll-target="#lecture-3-string-formatting-other-container-types-and-floating-point-numbers">Lecture 3: String Formatting, other Container Types and Floating Point Numbers</a></li>
+  <li><a href="#center-for-mathematical-sciences-lund-university" id="toc-center-for-mathematical-sciences-lund-university" class="nav-link" data-scroll-target="#center-for-mathematical-sciences-lund-university">Center for Mathematical Sciences, Lund University</a></li>
+  <li><a href="#this-lecture" id="toc-this-lecture" class="nav-link" data-scroll-target="#this-lecture">This lecture</a></li>
+  <li><a href="#basic-string-formatting" id="toc-basic-string-formatting" class="nav-link" data-scroll-target="#basic-string-formatting">Basic string formatting</a></li>
+  <li><a href="#f-strings" id="toc-f-strings" class="nav-link" data-scroll-target="#f-strings">f-strings</a></li>
+  <li><a href="#old-string-formatting" id="toc-old-string-formatting" class="nav-link" data-scroll-target="#old-string-formatting">Old string formatting</a></li>
+  <li><a href="#formatting-numbers-using-f-strings" id="toc-formatting-numbers-using-f-strings" class="nav-link" data-scroll-target="#formatting-numbers-using-f-strings">Formatting numbers using f-strings</a></li>
+  <li><a href="#alignment-and-decimals" id="toc-alignment-and-decimals" class="nav-link" data-scroll-target="#alignment-and-decimals">Alignment and decimals</a></li>
+  <li><a href="#decimals-and-scientific-notation" id="toc-decimals-and-scientific-notation" class="nav-link" data-scroll-target="#decimals-and-scientific-notation">Decimals and scientific notation</a></li>
+  <li><a href="#dictionaries" id="toc-dictionaries" class="nav-link" data-scroll-target="#dictionaries">Dictionaries</a></li>
+  <li><a href="#adding-and-deleting" id="toc-adding-and-deleting" class="nav-link" data-scroll-target="#adding-and-deleting">Adding and deleting</a></li>
+  <li><a href="#datatypes-of-keys" id="toc-datatypes-of-keys" class="nav-link" data-scroll-target="#datatypes-of-keys">Datatypes of keys</a></li>
+  <li><a href="#looping-through-dictionaries" id="toc-looping-through-dictionaries" class="nav-link" data-scroll-target="#looping-through-dictionaries">Looping through dictionaries</a></li>
+  <li><a href="#dictionaries-in-this-course" id="toc-dictionaries-in-this-course" class="nav-link" data-scroll-target="#dictionaries-in-this-course">Dictionaries in this course</a></li>
+  <li><a href="#sets" id="toc-sets" class="nav-link" data-scroll-target="#sets">Sets</a>
+  <ul class="collapse">
+  <li><a href="#definition" id="toc-definition" class="nav-link" data-scroll-target="#definition">Definition:</a></li>
+  </ul></li>
+  <li><a href="#operations-on-sets" id="toc-operations-on-sets" class="nav-link" data-scroll-target="#operations-on-sets">Operations on Sets</a></li>
+  <li><a href="#no-duplicate-elements" id="toc-no-duplicate-elements" class="nav-link" data-scroll-target="#no-duplicate-elements">No duplicate elements</a></li>
+  <li><a href="#tuples" id="toc-tuples" class="nav-link" data-scroll-target="#tuples">Tuples</a>
+  <ul class="collapse">
+  <li><a href="#definition-1" id="toc-definition-1" class="nav-link" data-scroll-target="#definition-1">Definition</a></li>
+  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example</a></li>
+  </ul></li>
+  <li><a href="#packing-and-unpacking" id="toc-packing-and-unpacking" class="nav-link" data-scroll-target="#packing-and-unpacking">Packing and unpacking</a>
+  <ul class="collapse">
+  <li><a href="#the-swapping-trick" id="toc-the-swapping-trick" class="nav-link" data-scroll-target="#the-swapping-trick">The swapping trick!</a></li>
+  </ul></li>
+  <li><a href="#a-final-word-on-tuples" id="toc-a-final-word-on-tuples" class="nav-link" data-scroll-target="#a-final-word-on-tuples">A final word on tuples</a></li>
+  <li><a href="#container-conversions" id="toc-container-conversions" class="nav-link" data-scroll-target="#container-conversions">Container conversions</a></li>
+  <li><a href="#summary-and-overview" id="toc-summary-and-overview" class="nav-link" data-scroll-target="#summary-and-overview">Summary and overview</a></li>
+  <li><a href="#what-are-floating-point-numbers" id="toc-what-are-floating-point-numbers" class="nav-link" data-scroll-target="#what-are-floating-point-numbers">What are Floating Point Numbers?</a></li>
+  <li><a href="#floating-point-numbers-the-number-e" id="toc-floating-point-numbers-the-number-e" class="nav-link" data-scroll-target="#floating-point-numbers-the-number-e">Floating point numbers – The number e</a>
+  <ul class="collapse">
+  <li><a href="#how-to-create-a-floating-point-number" id="toc-how-to-create-a-floating-point-number" class="nav-link" data-scroll-target="#how-to-create-a-floating-point-number">How to create a Floating Point Number?</a></li>
+  <li><a href="#comparing-floating-point-numbers" id="toc-comparing-floating-point-numbers" class="nav-link" data-scroll-target="#comparing-floating-point-numbers">Comparing floating point numbers</a></li>
+  </ul></li>
+  <li><a href="#example-for-internal-representation-simplified" id="toc-example-for-internal-representation-simplified" class="nav-link" data-scroll-target="#example-for-internal-representation-simplified">Example for internal representation (simplified)</a>
+  <ul class="collapse">
+  <li><a href="#internal-representation" id="toc-internal-representation" class="nav-link" data-scroll-target="#internal-representation">Internal representation</a></li>
+  <li><a href="#internal-representation-cont." id="toc-internal-representation-cont." class="nav-link" data-scroll-target="#internal-representation-cont.">Internal representation (cont.)</a></li>
+  <li><a href="#precision-machine-epsilon" id="toc-precision-machine-epsilon" class="nav-link" data-scroll-target="#precision-machine-epsilon">Precision – Machine epsilon</a>
+  <ul class="collapse">
+  <li><a href="#definition-maching-epsilon" id="toc-definition-maching-epsilon" class="nav-link" data-scroll-target="#definition-maching-epsilon">Definition (Maching epsilon):</a></li>
+  </ul></li>
+  <li><a href="#what-precision-do-i-have-at-what-number" id="toc-what-precision-do-i-have-at-what-number" class="nav-link" data-scroll-target="#what-precision-do-i-have-at-what-number">What precision do I have at what number</a></li>
+  <li><a href="#internal-representation-cont.-1" id="toc-internal-representation-cont.-1" class="nav-link" data-scroll-target="#internal-representation-cont.-1">Internal representation (cont.)</a></li>
+  <li><a href="#infinite-and-not-a-number" id="toc-infinite-and-not-a-number" class="nav-link" data-scroll-target="#infinite-and-not-a-number">Infinite and Not a Number</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Computational Programming with Python</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="lecture-3-string-formatting-other-container-types-and-floating-point-numbers" class="level3">
+<h3 class="anchored" data-anchor-id="lecture-3-string-formatting-other-container-types-and-floating-point-numbers">Lecture 3: String Formatting, other Container Types and Floating Point Numbers</h3>
+</section>
+<section id="center-for-mathematical-sciences-lund-university" class="level3">
+<h3 class="anchored" data-anchor-id="center-for-mathematical-sciences-lund-university">Center for Mathematical Sciences, Lund University</h3>
+<p>Lecturer: Malin Christersson, <code>Robert Klöfkorn</code></p>
+</section>
+<section id="this-lecture" class="level2">
+<h2 class="anchored" data-anchor-id="this-lecture">This lecture</h2>
+<ul>
+<li>Training exercises</li>
+<li>String formatting</li>
+<li>Dictionaries</li>
+<li>Sets</li>
+<li>Tuples</li>
+<li>Container conversions</li>
+<li>Floating point numbers</li>
+</ul>
+</section>
+<section id="basic-string-formatting" class="level2">
+<h2 class="anchored" data-anchor-id="basic-string-formatting">Basic string formatting</h2>
+<p>Book p.&nbsp;43</p>
+<ul>
+<li>Using keywords:</li>
+</ul>
+<div id="cell-4" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>str1 <span class="op">=</span> <span class="st">"I'm a </span><span class="sc">{somethingelse}</span><span class="st">."</span>.<span class="bu">format</span>(somethingelse <span class="op">=</span> <span class="st">"string"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>str2 <span class="op">=</span> <span class="st">"I'm a </span><span class="sc">{something}</span><span class="st">."</span>.<span class="bu">format</span>(something <span class="op">=</span> <span class="dv">10</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>something <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>str3 <span class="op">=</span> <span class="ss">f"I'm a </span><span class="sc">{</span>something<span class="sc">}</span><span class="ss">."</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(str2)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(str3)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ul>
+<li>Using positional arguments:</li>
+</ul>
+<div id="cell-6" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Two strings, </span><span class="sc">{}</span><span class="st"> and </span><span class="sc">{}</span><span class="st">."</span>.<span class="bu">format</span>(<span class="st">"a"</span>, <span class="st">"b"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="f-strings" class="level2">
+<h2 class="anchored" data-anchor-id="f-strings">f-strings</h2>
+<p>An elegant alternative in modern Python is the use of <code>f-strings</code>.</p>
+<div id="cell-8" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>quantity <span class="op">=</span> <span class="fl">33.45</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>other_quantity <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>text <span class="op">=</span> <span class="ss">f"""</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ss">We use </span><span class="sc">{</span>quantity<span class="sc">}</span><span class="ss"> g sugar and </span><span class="sc">{</span>other_quantity<span class="sc">}</span><span class="ss"> g salt.</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ss">In total </span><span class="sc">{</span>quantity <span class="op">+</span> other_quantity<span class="sc">}</span><span class="ss"> g."""</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(text)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>To enable this interpretation of the text enclosed in <code>{...}</code> the string has to prefixed by the letter <code>f</code>.</p>
+</section>
+<section id="old-string-formatting" class="level2">
+<h2 class="anchored" data-anchor-id="old-string-formatting">Old string formatting</h2>
+<ul>
+<li>for strings</li>
+</ul>
+<div id="cell-11" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>course_code <span class="op">=</span> <span class="st">"NUMA01"</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"This course’s code is </span><span class="sc">%s</span><span class="st">"</span> <span class="op">%</span> course_code)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ul>
+<li>for integers</li>
+</ul>
+<div id="cell-13" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>nb_students <span class="op">=</span> <span class="dv">16</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"There are </span><span class="sc">%i</span><span class="st"> students"</span> <span class="op">%</span> nb_students)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ul>
+<li>for floats</li>
+</ul>
+<div id="cell-15" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>average_grade <span class="op">=</span> <span class="fl">3.4</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Average grade: </span><span class="sc">%f</span><span class="st">"</span> <span class="op">%</span> average_grade)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>See for example <a href="https://en.cppreference.com/w/c/io/fprintf"><strong>C</strong> function printf</a> for explanation of formatting characters.</p>
+</section>
+<section id="formatting-numbers-using-f-strings" class="level2">
+<h2 class="anchored" data-anchor-id="formatting-numbers-using-f-strings">Formatting numbers using f-strings</h2>
+<p>We can right-align numbers at some position which is written after a colon.</p>
+<div id="cell-18" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"number      square"</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"------------------"</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="op">-</span><span class="dv">2</span>, <span class="dv">3</span>):</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>i<span class="sc">:6}</span><span class="ss"> </span><span class="sc">{</span>i<span class="op">*</span>i<span class="sc">:10}</span><span class="ss">"</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">#print(f"{i} {i*i}")</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="alignment-and-decimals" class="level2">
+<h2 class="anchored" data-anchor-id="alignment-and-decimals">Alignment and decimals</h2>
+<p>We can add <code>.2f</code>to show two decimals:</p>
+<div id="cell-20" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> numpy <span class="im">import</span> arange</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"number      square"</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"------------------"</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> arange(<span class="fl">0.2</span>, <span class="fl">0.5</span>, <span class="fl">0.1</span>):</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>i<span class="sc">:6.2f}</span><span class="ss"> </span><span class="sc">{</span>i<span class="op">*</span>i<span class="sc">:10.2f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="decimals-and-scientific-notation" class="level2">
+<h2 class="anchored" data-anchor-id="decimals-and-scientific-notation">Decimals and scientific notation</h2>
+<p>More examples</p>
+<div id="cell-22" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>quantity <span class="op">=</span> <span class="fl">33.45</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"five decimals: </span><span class="sc">{</span>quantity<span class="sc">:0.5f}</span><span class="ss">"</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"scientific notation with two decimals: </span><span class="sc">{</span>quantity<span class="sc">:0.2e}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="dictionaries" class="level2">
+<h2 class="anchored" data-anchor-id="dictionaries">Dictionaries</h2>
+<p>A dictionary is an unordered structure of <code>key:value</code> pairs. It is similar to a list but the objects are accessed by <code>keys</code> instead of index.</p>
+<p>One indicates dictionaries by curly brackets:</p>
+<div id="cell-24" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>homework <span class="op">=</span> {<span class="st">'Alice'</span>: <span class="va">True</span>, <span class="st">'Bob'</span>: <span class="va">False</span>}</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>homework[<span class="st">'Alice'</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="cell-25" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>homework[<span class="st">'Bob'</span>] <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>homework[<span class="st">'Bob'</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="adding-and-deleting" class="level2">
+<h2 class="anchored" data-anchor-id="adding-and-deleting">Adding and deleting</h2>
+<div id="cell-27" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>homework <span class="op">=</span> {<span class="st">'Alice'</span>: <span class="va">True</span>, <span class="st">'Bob'</span>: <span class="va">False</span>, <span class="st">'Alice'</span>: <span class="va">False</span>}</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>homework[<span class="st">'Caesar'</span>] <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(homework)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="kw">del</span> homework[<span class="st">'Bob'</span>]</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(homework)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Note: The keys must be <strong>unique</strong>.</p>
+</section>
+<section id="datatypes-of-keys" class="level2">
+<h2 class="anchored" data-anchor-id="datatypes-of-keys">Datatypes of keys</h2>
+<p>Any <strong>immutable</strong> (unchangable) object can be used as a key, e.g.&nbsp;strings, numbers, Booleans, etc are fine, but <strong>not list</strong>s.</p>
+<div id="cell-30" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>my_dict <span class="op">=</span> {<span class="dv">1</span>: <span class="st">"alpha"</span>, <span class="dv">2</span>: <span class="st">"beta"</span>, <span class="dv">3</span>: <span class="st">"gamma"</span>, <span class="st">"lang"</span>: <span class="st">"Greek"</span>, <span class="dv">5</span>: [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>]}</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(my_dict[<span class="dv">1</span>])</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(my_dict[<span class="dv">5</span>])</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(my_dict[<span class="st">"lang"</span>])</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>aa <span class="op">=</span> <span class="dv">10</span> </span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>my_dict[ aa ] <span class="op">=</span> <span class="va">True</span> </span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(my_dict)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="looping-through-dictionaries" class="level2">
+<h2 class="anchored" data-anchor-id="looping-through-dictionaries">Looping through dictionaries</h2>
+<p>A dictionary is an object with the following useful methods: <code>keys</code>, <code>items</code>, <code>values</code>.</p>
+<p>By default a dictionary is considered as a list of keys:</p>
+<div id="cell-32" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;fragment&quot;}}">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> key <span class="kw">in</span> homework:  <span class="co"># or homework.keys()</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"The key </span><span class="sc">{</span>key<span class="sc">}</span><span class="ss"> has the value </span><span class="sc">{</span>homework[key]<span class="sc">}</span><span class="ss">."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="cell-33" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;fragment&quot;}}">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> key, value <span class="kw">in</span> homework.items():  <span class="co"># using the items method</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>key<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>value<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="cell-34" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;fragment&quot;}}">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> value <span class="kw">in</span> homework.values():  <span class="co"># using the value method</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(value)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="dictionaries-in-this-course" class="level2">
+<h2 class="anchored" data-anchor-id="dictionaries-in-this-course">Dictionaries in this course</h2>
+<p>Dictionaries are mainly used for</p>
+<ul>
+<li>providing functions with argument in a compact way (Lecture 4)</li>
+<li>to collect options of a method:</li>
+</ul>
+<p><code>{'tol':1.e-3, 'step':0.1, 'maxit':1000}</code></p>
+</section>
+<section id="sets" class="level2">
+<h2 class="anchored" data-anchor-id="sets">Sets</h2>
+<p>Sets are containers which mimic sets in their mathematical sense:</p>
+<section id="definition" class="level3">
+<h3 class="anchored" data-anchor-id="definition">Definition:</h3>
+<p>A set is a collection of well defined and distinct objects, considered as an object in its own right. (Wikipedia)</p>
+<div id="cell-37" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>fruits <span class="op">=</span> <span class="bu">set</span>([<span class="st">'apple'</span>, <span class="st">'pear'</span>, <span class="st">'banana'</span>, <span class="st">'banana'</span>])</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fruits)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The most important operation is <code>in</code>, meaning <span class="math inline">\(\in\)</span> (is element of):</p>
+<div id="cell-39" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">'plum'</span> <span class="kw">in</span> fruits</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="cell-40" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">'pear'</span> <span class="kw">in</span> fruits</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+</section>
+<section id="operations-on-sets" class="level2">
+<h2 class="anchored" data-anchor-id="operations-on-sets">Operations on Sets</h2>
+<ul>
+<li><span class="math inline">\(A \cap B\)</span> ‐ method <code>intersection</code></li>
+<li><span class="math inline">\(A \cup B\)</span> ‐ method <code>union</code></li>
+<li><span class="math inline">\(A/B\)</span>, relative complement ‐ subtract operation</li>
+</ul>
+<div id="cell-42" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>fruitbasket <span class="op">=</span> <span class="bu">set</span>([<span class="st">'apple'</span>, <span class="st">'pear'</span>, <span class="st">'banana'</span>, <span class="st">'banana'</span>])</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fruitbasket)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>rotten <span class="op">=</span> <span class="bu">set</span>([<span class="st">'pear'</span>, <span class="st">'orange'</span>])</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>exotic <span class="op">=</span> <span class="bu">set</span>([<span class="st">'banana'</span>, <span class="st">'mango'</span>, <span class="st">'kiwi'</span>])</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>emptyset <span class="op">=</span> <span class="bu">set</span>([])</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(emptyset <span class="op">==</span> fruitbasket.intersection(rotten)) <span class="co"># are all edible</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>extendedbasket <span class="op">=</span> fruitbasket.union(exotic)</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>goodfruits <span class="op">=</span> fruitbasket <span class="op">-</span> rotten</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"extendedbasket ="</span>, extendedbasket)</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"goodfruits ="</span>, goodfruits)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="no-duplicate-elements" class="level2">
+<h2 class="anchored" data-anchor-id="no-duplicate-elements">No duplicate elements</h2>
+<p>“…distinct objects…” (see mathematical definition)</p>
+<p>This is reflected in Python by</p>
+<div id="cell-44" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> {<span class="st">'apple'</span>, <span class="st">'apple'</span>, <span class="st">'pear'</span>}</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(s)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span>([<span class="st">'apple'</span>, <span class="st">'apple'</span>, <span class="st">'pear'</span>]) <span class="op">==</span> <span class="bu">set</span>([<span class="st">'apple'</span>, <span class="st">'pear'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="tuples" class="level2">
+<h2 class="anchored" data-anchor-id="tuples">Tuples</h2>
+<section id="definition-1" class="level3">
+<h3 class="anchored" data-anchor-id="definition-1">Definition</h3>
+<p>A <strong>tuple</strong> is an <strong>immutable</strong> list. Immutable means that it cannot be modified.</p>
+</section>
+<section id="example" class="level3">
+<h3 class="anchored" data-anchor-id="example">Example</h3>
+<div id="cell-46" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>my_tuple <span class="op">=</span> (<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>) <span class="co"># our first tuple</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>my_tuple <span class="op">=</span> <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>   <span class="co"># parentheses not required</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The length of my_tuple is"</span>, <span class="bu">len</span>(my_tuple))  <span class="co"># same as for lists</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="co"># my_tuple[0] = 'a'    # error! tuples are immutable</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>my_tuple <span class="op">=</span> (<span class="st">'a'</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>singleton <span class="op">=</span> <span class="dv">1</span>,    <span class="co"># note the comma</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>singleton <span class="op">=</span> (<span class="dv">1</span>,)  <span class="co"># preferred for readability</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(singleton[<span class="dv">0</span>])</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(singleton))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+</section>
+<section id="packing-and-unpacking" class="level2">
+<h2 class="anchored" data-anchor-id="packing-and-unpacking">Packing and unpacking</h2>
+<p>One may assign several variables at once by <strong>unpacking</strong> a list or a tuple:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>a, b <span class="op">=</span> <span class="dv">0</span>, <span class="dv">1</span>     <span class="co"># a gets value 0 and b gets value 1</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>a, b <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">1</span>]   <span class="co"># exactly the same</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>(a, b) <span class="op">=</span> <span class="dv">0</span>, <span class="dv">1</span>   <span class="co"># same</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>[a, b] <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">1</span>] <span class="co"># same</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="the-swapping-trick" class="level3">
+<h3 class="anchored" data-anchor-id="the-swapping-trick">The swapping trick!</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>a, b <span class="op">=</span> b, a</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="a-final-word-on-tuples" class="level2">
+<h2 class="anchored" data-anchor-id="a-final-word-on-tuples">A final word on tuples</h2>
+<ul>
+<li>Tuples are nothing else than immutable lists</li>
+<li>In most cases lists may be used instead of tuples</li>
+<li>The parentheses free notation is nice but <strong>dangerous</strong>, you should <strong>use parenthesis when you’re not sure</strong>:</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>a, b <span class="op">=</span> b, a    <span class="co"># the swap trick, equivalent to</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>(a, b) <span class="op">=</span> (b, a)</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="co"># but:</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="cell-49" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>t1 <span class="op">=</span> a, b <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">1</span>]</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(t1))</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>value1 <span class="op">=</span> <span class="dv">1</span>, <span class="dv">2</span> <span class="op">==</span> <span class="dv">3</span>, <span class="dv">4</span>       <span class="co"># a tuple</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>value2 <span class="op">=</span> (<span class="dv">1</span>, <span class="dv">2</span>) <span class="op">==</span> (<span class="dv">3</span>, <span class="dv">4</span>)   <span class="co"># a bool</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"value1 ="</span>, value1)</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"value2 ="</span>, value2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="container-conversions" class="level2">
+<h2 class="anchored" data-anchor-id="container-conversions">Container conversions</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">From</th>
+<th style="text-align: left;">To</th>
+<th style="text-align: left;">Command</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">List</td>
+<td style="text-align: left;">Tuple</td>
+<td style="text-align: left;"><code>tuple([1, 2, 3])</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Tuple</td>
+<td style="text-align: left;">List</td>
+<td style="text-align: left;"><code>list((1, 2, 3))</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">List, Tuple</td>
+<td style="text-align: left;">Set</td>
+<td style="text-align: left;"><code>set([1,2,3]), set((1,2,3))</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Set</td>
+<td style="text-align: left;">List</td>
+<td style="text-align: left;"><code>list({1, 2, 3})</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Dictionary</td>
+<td style="text-align: left;">List</td>
+<td style="text-align: left;"><code>{'a':4}.values()</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">List</td>
+<td style="text-align: left;">Dictionary</td>
+<td style="text-align: left;">-</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="summary-and-overview" class="level2">
+<h2 class="anchored" data-anchor-id="summary-and-overview">Summary and overview</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Type</th>
+<th style="text-align: center;">Access</th>
+<th style="text-align: center;">Order</th>
+<th style="text-align: center;">Duplicate values</th>
+<th style="text-align: center;">Mutability</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">List</td>
+<td style="text-align: center;">index</td>
+<td style="text-align: center;">yes</td>
+<td style="text-align: center;">yes</td>
+<td style="text-align: center;">yes</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Tuple</td>
+<td style="text-align: center;">index</td>
+<td style="text-align: center;">yes</td>
+<td style="text-align: center;">yes</td>
+<td style="text-align: center;">no</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Dictionary</td>
+<td style="text-align: center;">key</td>
+<td style="text-align: center;">no</td>
+<td style="text-align: center;">yes</td>
+<td style="text-align: center;">yes</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Set</td>
+<td style="text-align: center;">no</td>
+<td style="text-align: center;">no</td>
+<td style="text-align: center;">no</td>
+<td style="text-align: center;">yes</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="what-are-floating-point-numbers" class="level1">
+<h1>What are Floating Point Numbers?</h1>
+</section>
+<section id="floating-point-numbers-the-number-e" class="level1">
+<h1>Floating point numbers – The number e</h1>
+<p>The number <span class="math inline">\(e\)</span> can be defined as</p>
+<p><span class="math display">\[e = e^1 = \exp(1) = \lim_{n\to\infty} \Big ( 1 + \frac{1}{n} \Big )^n.\]</span></p>
+<div id="cell-54" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;fragment&quot;}}">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> numpy <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>e <span class="op">=</span> exp(<span class="dv">1</span>)</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>e<span class="sc">:2.16f}</span><span class="ss">"</span>)</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">100000000</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>e <span class="op">=</span> (<span class="dv">1</span> <span class="op">+</span> <span class="dv">1</span><span class="op">/</span>n)<span class="op">**</span>n</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>e<span class="sc">:2.16f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="cell-55" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;fragment&quot;}}">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">100000000000000000</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>e <span class="op">=</span> (<span class="dv">1</span> <span class="op">+</span> <span class="dv">1</span><span class="op">/</span>n)<span class="op">**</span>n</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>e<span class="sc">:2.16f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="how-to-create-a-floating-point-number" class="level2">
+<h2 class="anchored" data-anchor-id="how-to-create-a-floating-point-number">How to create a Floating Point Number?</h2>
+<ul>
+<li>By typing it:</li>
+</ul>
+<div id="cell-57" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="fl">3.012</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="fl">30.12e-1</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> <span class="fl">0.3012e+1</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> <span class="fl">3e-1</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a)</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(b)</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(c)</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ul>
+<li>As a result from a computation</li>
+</ul>
+<div id="cell-59" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">2</span>       <span class="co"># This is an integer</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> n<span class="op">/</span>n     <span class="co"># This is a float</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> <span class="bu">int</span>(n<span class="op">/</span>n)</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(n)</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a)</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(m)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="comparing-floating-point-numbers" class="level2">
+<h2 class="anchored" data-anchor-id="comparing-floating-point-numbers">Comparing floating point numbers</h2>
+<p>Operations on floating point numbers rarely return the exact result:</p>
+<div id="cell-61" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="fl">0.4</span> <span class="op">-</span> <span class="fl">0.3</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>a<span class="sc">:2.18f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>This fact matters when <strong>comparing</strong> floating point numbers:</p>
+<div id="cell-63" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;-&quot;}}">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>(<span class="fl">0.4</span> <span class="op">-</span> <span class="fl">0.3</span>) <span class="op">==</span> <span class="fl">0.1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Never compare floats using <code>==</code>. Ask instead if they are <code>near</code>:</p>
+<div id="cell-65" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="bu">abs</span>((<span class="fl">0.4</span> <span class="op">-</span> <span class="fl">0.3</span>) <span class="op">-</span> <span class="fl">0.1</span>) <span class="op">&lt;</span> <span class="fl">1e-13</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="cell-66" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> numpy <span class="im">import</span> exp, inf, nan <span class="co"># not a number</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="co">#print(exp(1000.))</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> inf</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">3</span> <span class="op">-</span> a)</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">3</span> <span class="op">+</span> a)</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a <span class="op">+</span> a)</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a <span class="op">-</span> a)</span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a <span class="op">/</span> a)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+</section>
+<section id="example-for-internal-representation-simplified" class="level1">
+<h1>Example for internal representation (simplified)</h1>
+<p>Roughly speaking, a floating-point number is represented by a fixed number of significant digits (the significand) and scaled using an exponent in some fixed base.</p>
+<p>The base for the scaling is normally <span class="math inline">\(2\)</span>, <span class="math inline">\(10\)</span> or <span class="math inline">\(16\)</span>.</p>
+<p>A number that can be represented exactly is of the following form:</p>
+<p><span class="math display">\[ \mbox{significand} \times \mbox{base}^{\mbox{exponent}},\]</span> where <code>significand</code>, <code>base</code> and <code>exponent</code> are integers (which have a simple representation).</p>
+<p><strong>Note:</strong> The significand is also called <code>mantissa</code>.</p>
+<p>Example:</p>
+<p><span class="math display">\[1.2345 = \underbrace{12345}_{\mbox{significand}} \times \underbrace{10\phantom{x}}_{\mbox{base}}^{\overbrace{\phantom{x}-4}^{\phantom{xxxxxxxxxx}\mbox{exponent}}}\]</span></p>
+<section id="internal-representation" class="level2">
+<h2 class="anchored" data-anchor-id="internal-representation">Internal representation</h2>
+<p>Floats are represented by three quantities: The <em>sign</em>, the <em>significand</em> (or <em>mantissa</em>) and the <em>exponent</em>: <span class="math display">\[
+\text{sign}(x) \left( x_0 + x_1 \beta^{-1} + \dots + x_{t-1} \beta^{-(t-1)} \right) \beta^k, \quad \beta \in \mathbb{N}, \quad x_0 \neq 0, \quad 0 \leq x_i &lt; \beta.
+\]</span></p>
+<ul>
+<li><span class="math inline">\(x_0, \dots, x_{t-1}\)</span> is the significand,</li>
+<li><span class="math inline">\(t\)</span> is the length of the significand,</li>
+<li><span class="math inline">\(\beta\)</span> is the basis,</li>
+<li><span class="math inline">\(k\)</span> is the exponent with <span class="math inline">\(|k| \leq k_{max}\)</span>.</li>
+</ul>
+<p>Normalization <span class="math inline">\(x_0 \neq 0\)</span> makes the representation unique (and saves one bit in the case <span class="math inline">\(\beta = 2\)</span> and allows to add <span class="math inline">\(x_t \beta^{-t}\)</span>).</p>
+<p>On your computer for a normal float (double): - <span class="math inline">\(\beta = 2\)</span>, - <span class="math inline">\(t = 52\)</span>, - <span class="math inline">\(k_{max} = 1023\)</span> (which needs 10 bits).</p>
+<p>Together with the sign and the full range (sign) of the exponent, this requires 64 bits.</p>
+</section>
+<section id="internal-representation-cont." class="level2">
+<h2 class="anchored" data-anchor-id="internal-representation-cont.">Internal representation (cont.)</h2>
+<p>We then have the following representation (adding <span class="math inline">\(x_t \beta^{-t}\)</span> because <span class="math inline">\(x_0\)</span> is fixed): <span class="math display">\[
+(-1)^{\text{sign}} \left( \underbrace{1}_{= x_0} + \sum_{i=1}^{t} x_i 2^{-i}\right) 2^k, \quad x_i \in \{0,1\}.
+\]</span></p>
+<p><span class="math inline">\(0\)</span> cannot be represented as a <em>normalized</em> float.</p>
+<p><strong>Two zeroes:</strong> All the exponent bits <span class="math inline">\(0\)</span> with all significand bits <span class="math inline">\(0\)</span> represents <span class="math inline">\(0\)</span>. If sign bit is <span class="math inline">\(0\)</span>, then we have <span class="math inline">\(0\)</span>, else <span class="math inline">\(-0\)</span>.</p>
+<p><strong>Infinity:</strong> All the exponent bits <span class="math inline">\(1\)</span> with all significand bits <span class="math inline">\(0\)</span> represents infinity.</p>
+<p><strong>Denormalized number:</strong> All the exponent bits <span class="math inline">\(0\)</span> and significand bits non-zero represents denormalized number.</p>
+<p><strong>Error:</strong> All the exponent bits <span class="math inline">\(1\)</span> and significand bits non-zero represents error or <code>nan</code> (Not a Number).</p>
+</section>
+<section id="precision-machine-epsilon" class="level2">
+<h2 class="anchored" data-anchor-id="precision-machine-epsilon">Precision – Machine epsilon</h2>
+<section id="definition-maching-epsilon" class="level3">
+<h3 class="anchored" data-anchor-id="definition-maching-epsilon">Definition (Maching epsilon):</h3>
+<p>The <em>machine epsilon</em> or rounding unit is the gap between <span class="math inline">\(1.0\)</span> and the next larger floating point number, i.e.&nbsp;the largest number <span class="math inline">\(\epsilon\)</span> such that <span class="math display">\[
+\mathrm{float}(1.0 + \epsilon) = 1.0
+\]</span></p>
+<p><strong>Challenge</strong>: Write a program which finds this number (or a good estimate for it).</p>
+<p>See also</p>
+<div id="cell-72" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;fragment&quot;}}">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>sys.float_info.epsilon</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+</section>
+<section id="what-precision-do-i-have-at-what-number" class="level2">
+<h2 class="anchored" data-anchor-id="what-precision-do-i-have-at-what-number">What precision do I have at what number</h2>
+<p>What decimal precision do I have at a given number <span class="math inline">\(a \in \mathbb{R}\)</span>?</p>
+<p>To figure out the precision we have at a number, we find the interval such that <span class="math inline">\(a \in [2^k, 2^{k+1})\)</span>. We then subdivide that range using the <code>significand</code> bits.</p>
+<p>Example: <span class="math inline">\(3.5 \in [2,4)\)</span>. A float in Python has 52 bits of <code>significand</code>, so the precision we have at 3.5 is:</p>
+<p><span class="math display">\[(4-2) 2^{-52} = \frac{2}{4503599627370496} \approx 0.00000000000000044408921\]</span></p>
+<p><span class="math inline">\(3.5\)</span> itself is actually exactly representable by a float, but the amount of precision numbers we have at that scale is that value. The smallest number you can add or subtract to a value between <span class="math inline">\(2\)</span> and <span class="math inline">\(4\)</span> is that value. That is the resolution of the values you are working with when working between <span class="math inline">\(2\)</span> and <span class="math inline">\(4\)</span> using a float.</p>
+<div id="cell-74" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>prec <span class="op">=</span> (<span class="dv">4</span><span class="op">-</span><span class="dv">2</span>) <span class="op">*</span> <span class="dv">2</span><span class="op">**-</span><span class="dv">52</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"prec for 3.5 is </span><span class="sc">{</span>prec<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ol type="1">
+<li>What decimal precision do I have at <span class="math inline">\(13689.0\)</span>?</li>
+<li>What is the largest possible floating point number in this double precision representation?</li>
+<li>What is the smallest gap between floating point numbers around zero?</li>
+</ol>
+<p><strong>5min, let’s go!</strong></p>
+<div id="cell-77" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;subslide&quot;}}">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>prec <span class="op">=</span> (<span class="dv">2</span><span class="op">**</span><span class="dv">14</span> <span class="op">-</span> <span class="dv">2</span><span class="op">**</span><span class="dv">13</span>)<span class="op">*</span> <span class="dv">2</span><span class="op">**-</span><span class="dv">52</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"prec for 13689 is </span><span class="sc">{</span>prec<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>largest <span class="op">=</span> <span class="dv">2</span><span class="op">**</span><span class="dv">1023</span></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Largest floating point number: </span><span class="sc">{</span>largest<span class="sc">:2.4e}</span><span class="ss">"</span>)</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>smallest <span class="op">=</span> <span class="dv">2</span><span class="op">**-</span><span class="dv">1023</span></span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Distance between 0 and next number: </span><span class="sc">{</span>smallest<span class="sc">:2.4e}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="internal-representation-cont.-1" class="level2">
+<h2 class="anchored" data-anchor-id="internal-representation-cont.-1">Internal representation (cont.)</h2>
+<p>The smallest positive representable number is <span class="math display">\[
+\mathrm{fl_{min}} = 1 \cdot 2^{-1023} \approx 10^{-308}
+\]</span> and the largest is <span class="math display">\[
+\mathrm{fl_{max}} = 1.111 \dots 1 \cdot 2^{1023} \approx 10^{308}.
+\]</span></p>
+<p>Floating point numbers are not equally spaced in <span class="math inline">\([0, \mathrm{fl_{max}}]\)</span>.</p>
+<p>Gap at zero (caused by normalization <span class="math inline">\(x_0 \neq 0\)</span>):</p>
+<p>Distance between <span class="math inline">\(0\)</span> and the first positive number is <span class="math inline">\(2^{-1023}\)</span>.</p>
+<p>Distance between the first and the second is smaller by a factor <span class="math inline">\(2^{-52}\)</span>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="floatz.png" class="img-fluid figure-img"></p>
+<figcaption>floatz.png</figcaption>
+</figure>
+</div>
+</section>
+<section id="infinite-and-not-a-number" class="level2">
+<h2 class="anchored" data-anchor-id="infinite-and-not-a-number">Infinite and Not a Number</h2>
+<p>There are in total <span class="math inline">\(2(\beta-1)\beta^{t-1}(2k_{max} + 1) + 1\)</span> floating point numbers, in short floating point numbers are limited.</p>
+<p>Numbers bigger than the maximal floating point number <span class="math inline">\(\mathrm{fl_{max}}\)</span> generate in numpy an <code>inf</code> or an overflow exception.</p>
+<p>Numbers smaller than the minimal floating point number <span class="math inline">\(\mathrm{fl_{min}}\)</span> generate subnormalized numbers or <code>not a number</code>, short <code>nan</code>. This leads to unexpected behavior.</p>
+<div id="cell-80" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;fragment&quot;}}">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> nan</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x <span class="op">&lt;</span> <span class="dv">0</span>)</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x <span class="op">&gt;</span> <span class="dv">0</span>)</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x <span class="op">==</span> x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The float <code>inf</code> behaves much more as expected:</p>
+<div id="cell-82" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;-&quot;}}">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">0</span> <span class="op">&lt;</span> inf)</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(inf <span class="op">&lt;=</span> inf)</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(inf <span class="op">==</span> inf)</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="op">-</span>inf <span class="op">&lt;</span> inf)</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(inf <span class="op">-</span> inf)</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(exp(<span class="op">-</span>inf))</span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(exp(<span class="dv">1</span><span class="op">/</span>inf))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

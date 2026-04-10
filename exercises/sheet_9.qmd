@@ -1,0 +1,61 @@
+---
+title: "Sheet Nine"
+format: html
+filters:
+  - pyodide
+---
+
+NUMA01: Computational Programming with Python  
+Malin Christersson, Robert Klofkorn  
+
+In this exercise we study inheritance of classes.  
+This assignment has 4 tasks.
+
+Solutions: [Sheet 9 Solutions](sheet_9_solutions.qmd)
+
+## Tasks
+
+### Task 1
+
+Define an abstract class `PolyGon`. It should have a method `plot` which plots
+the polygon by drawing its edges. It should also have an `__init__` method, which
+takes a list of corner points as input. Corner points are described by arrays with
+shape `(2,)` describing the coordinates of the corners. The `__init__` method
+assigns this corner list as an attribute and also computes the edges.
+
+```{pyodide-python}
+#| read-only: false
+# TODO: define the PolyGon abstract class with __init__ and plot.
+```
+
+### Task 2
+
+Define a class `Rectangle` which inherits as much as possible from the parent
+class `PolyGon`. Provide it also with a method to compute the area.
+
+```{pyodide-python}
+#| read-only: false
+# TODO: define Rectangle inheriting from PolyGon and add an area method.
+```
+
+### Task 3
+
+Define a third class `SpecialRectangle` which describes rectangles which have all
+its edges parallel to the coordinate axes. It should be constructed by inheritance
+from the class `Rectangle`.
+
+```{pyodide-python}
+#| read-only: false
+# TODO: define SpecialRectangle inheriting from Rectangle.
+```
+
+### Task 4
+
+Give this class a method `__contains__` such that for two given `SpecialRectangle`s
+`A` and `B` the statement `A in B` evaluates to `True` if `A` is contained in `B`
+and `False` otherwise.
+
+```{pyodide-python}
+#| read-only: false
+# TODO: implement __contains__ for SpecialRectangle.
+```

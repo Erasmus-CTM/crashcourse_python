@@ -2,12 +2,38 @@
 title: "Python Crashcourse"
 ---
 
-## Contents
+## Table of Contents
 
-- [A.1 Introduction](appendix_a1.qmd)
-- [A.2 Sequences and Sums](appendix_a2.qmd)
-- [A.3 Control Statements](appendix_a3.qmd)
-- [A.4 Functions](appendix_a4.qmd)
-- [A.5 Number Representation](appendix_a5.qmd)
-- [A.6 Answers](appendix_a6.qmd)
-- [A.All Combined](appendix_all.qmd)
+### Crashcourse
+Crashcourse in python based on the Jan-Fredrik Olsen's book "Don't Panic".
+
+- [A.1 Introduction](appendix/appendix_a1.qmd)
+- [A.2 Sequences and Sums](appendix/appendix_a2.qmd)
+- [A.3 Control Statements](appendix/appendix_a3.qmd)
+- [A.4 Functions](appendix/appendix_a4.qmd)
+- [A.5 Number Representation](appendix/appendix_a5.qmd)
+- [A.6 Answers](appendix/appendix_a6.qmd)
+- [A.All Combined](appendix/appendix_all.qmd)
+
+### Lecture Slides
+Lecture slides used in the course Computational **Programming with Python** given by **Dr. Robert Klöfkorn** at Lund University. 
+
+
+
+- [Lecture 1: First steps - A bit of everything](slides/lecture01.qmd)
+
+
+### Exercises
+Exercise sheets used in the course Computational **Programming with Python** given by **Dr. Robert Klöfkorn** at Lund University. 
+
+- [Sheet 2](exercises/sheet_2.qmd)
+- [Sheet 3](exercises/sheet_3.qmd)
+- [Sheet 4](exercises/sheet_4.qmd)
+- [Sheet 5](exercises/sheet_5.qmd)
+- [Sheet 6](exercises/sheet_6.qmd)
+- [Sheet 7](exercises/sheet_7.qmd)
+- [Sheet 8](exercises/sheet_8.qmd)
+- [Sheet 9](exercises/sheet_9.qmd)
+- [Sheet 11](exercises/sheet_11.qmd)
+- [Sheet 12](exercises/sheet_12.qmd)
+- [Sheet 13](exercises/sheet_13.qmd)
