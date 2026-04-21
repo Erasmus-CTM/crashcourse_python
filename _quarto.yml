@@ -28,6 +28,32 @@ website:
         menu:
           - href: slides/lecture01.qmd
             text: Lecture 1
+          - href: slides/lecture02_summer.qmd
+            text: Lecture 2
+          - href: slides/lecture03_summer.qmd
+            text: Lecture 3
+          - href: slides/lecture04.qmd
+            text: Lecture 4
+          - href: slides/lecture05.qmd
+            text: Lecture 5
+          - href: slides/lecture06.qmd
+            text: Lecture 6
+          - href: slides/lecture07.qmd
+            text: Lecture 7
+          - href: slides/lecture08.qmd
+            text: Lecture 8
+          - href: slides/lecture09.qmd
+            text: Lecture 9
+          - href: slides/lecture10.qmd
+            text: Lecture 10
+          - href: slides/lecture11.qmd
+            text: Lecture 11
+          - href: slides/lecture12.qmd
+            text: Lecture 12
+          - href: slides/lecture13.qmd
+            text: Lecture 13
+          - href: slides/lecture14.qmd
+            text: Lecture 14
       - text: Exercises
         menu:
           - href: exercises/sheet_2.qmd

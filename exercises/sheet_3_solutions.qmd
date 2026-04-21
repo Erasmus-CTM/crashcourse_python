@@ -96,3 +96,8 @@ print("atan root in [-1.5, -0.4]:", root2)
 print("3x^2 - 5 in [-0.5, 0.6]:", root3)
 print("3x^2 - 5 in [-1.5, -0.4]:", root4)
 ```
+
+<nav class="bottom-page-nav" aria-label="Page navigation">
+  <a class="page-nav-link prev" href="sheet_2_solutions.html">Previous: Sheet 2 Solutions</a>
+  <a class="page-nav-link next" href="sheet_4_solutions.html">Next: Sheet 4 Solutions</a>
+</nav>

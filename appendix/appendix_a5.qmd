@@ -190,3 +190,8 @@ point numbers.
 When using Python to compute and visualize data, we must consider whether results
 are real or caused by round-off error. This is especially important for functions
 with large or small scales.
+
+<nav class="bottom-page-nav" aria-label="Page navigation">
+  <a class="page-nav-link prev" href="appendix_a4.html">Previous: A.4 Functions</a>
+  <a class="page-nav-link next" href="appendix_a6.html">Next: A.6 Answers</a>
+</nav>

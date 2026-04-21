@@ -1,13 +1,10 @@
 ---
-title: "Lecture 1: First steps - A bit of everything"
+title: "Computational Programming with Python"
 format: html
 filters:
   - pyodide
 ---
-
-# Computational Programming with Python
-
-### Lecture 1: First steps - A bit of everything
+## Lecture 1: First steps - A bit of everything
 
 ### Center for Mathematical Sciences, Lund University
 
@@ -23,25 +20,6 @@ Lecturer: `Robert Klöfkorn` (Malin Christersson)
 - Importing modules
 - Presentation of teaching assistants
 
-## About this course 1/2
-
-14 Lectures: 
-- 5 basic lectures (basic data types, for loops, plotting, functions, etc.)
-- 2 lectures on matrix/vector and linear algebra 
-- 2 lectures on object oriented programming  
-- 1 lecture on file handling (data I/O)
-- 2 lectures on advanced plotting including interactive plotting 
-- 1 lecture debugging, timing, and time complexity
-- 1 lecture on data analysis with pandas
-
-## About this course 2/2
-
-- Lectures are followed by training exercises (**hand-in possible**)
-- Homework 1 and 2 (oral presentation 15-20min)
-- Final projects (oral presentation 20-40m)
-
-Need to pass HW1 & HW2, the Quiz, and the Final Project to pass the course.
-
 ### Course Book
 
 Scientific Computing with Python
@@ -54,19 +32,6 @@ Claus Führer, Jan Erik Solem, Olivier Verdier (2nd ed.), 2021
 [www.packtpub.com](https://www.packtpub.com)
 
 Available as [__eBook__](https://ebookcentral.proquest.com/lib/lund/detail.action?docID=6703044) in the LU library.
-
-### What do we expect from you?
-
-- Engagement in the course, i.e. attendance in lectures and training exercises 
-- Work with the material (only that will make you learn programming) 
-- Read the corresponding book chapter before the lecture 
-- If you cannot make it to the lecture (don't email me) it is expected that you keep up with the learning material by yourself  
-
-`Comment from student:`
-*I would have appreciated it if the lectures took a bit more of a middle ground. I was very lucky that my class was so nice. Often
-some of my classmates who have programmed before would explain more thoroughly the stuff we went through in the lectures to me.*
-
-**Questions?**
 
 ## Why Python?
 
@@ -489,7 +454,7 @@ print("We expected",2**10)
 
 ### Note &hyphen; Infinite loops
 
-```{pyodide-python}
+```python
 # Careful with the condition statement here!
 while True:
     # repeat task until forever
@@ -517,7 +482,7 @@ print("We obtain s =",s)
 
 The part to be repeated in the for loop has to be properly *indented*.
 
-```{pyodide-python}
+```Python
 for elt in my_list:
     do_something()
     something_else()
@@ -613,3 +578,8 @@ can highlight code in a good way.
 
 There are also development suites which bundle the interpreter,
 editor and other things into the same program.
+
+<nav class="bottom-page-nav" aria-label="Page navigation">
+  <span class="page-nav-link prev is-disabled">Previous</span>
+  <a class="page-nav-link next" href="lecture02_summer.html">Next: Lecture 2</a>
+</nav>

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>A.3 Control Statements – Python Crashcourse</title>
+<title>Computational Programming with Python – Python Crashcourse</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,27 +20,62 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-5b4ad623e5705c0698d39aec6f10cf02.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-5b4ad623e5705c0698d39aec6f10cf02.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -230,7 +265,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"code":"S = 0\nn = 1\nwhile n <= 10:\n    S = S + 1 / n\n    n = n + 1\n\nprint(S)","id":1,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"# TODO: find the smallest n such that 2 - S_n < 1/10000.","id":2,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"a = 10\n\nif a >= 3:\n    print(\"a is a BIG number\")\nelse:\n    print(\"a is a tiny number\")","id":3,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"a = 10\n\nif a >= 3:\n    print(\"a is a BIG number\")\nelif a > -3 and a < 3:\n    print(\"a is a tiny number\")\nelif a <= -3:\n    print(\"a is a BIG but negative number\")","id":4,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"# TODO: implement the suffix fix inside a loop that prints Fibonacci numbers.","id":5,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"S = 0\nfor n in range(1, 1000):\n    if n > 10:\n        break\n    S = S + 1 / n\n\nprint(S)","id":6,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"my_list = [n / (1 + n**2) for n in range(0, 10**6)]","id":7,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"# TODO: implement part (a) with break.","id":8,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"# TODO: implement part (b) with a while-loop.","id":9,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}}];
+globalThis.qpyodideCellDetails = [{"code":"from numpy import*\nfrom matplotlib.pyplot import *\n%matplotlib inline","id":1,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"def subtract(x1, x2):  \n    return x1 - x2","id":2,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"subtract(2, 1) \nsubtract(1, 2)","id":3,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"subtract(x2=2, x1=1)","id":4,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"def add(x1, x2, x3, x4):\n    return sum([x1, x2, x3, x4])\n\na1 = add(1, 2, x4=4, x3=3)  # this works\nprint(\"a1 =\", a1)","id":5,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"a2 = add(1, 2, x3=3, 4)  # this doesn't work","id":6,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"c = 3 \ndef mult2(x):\n    # global c\n    # c = 2.   # a local variable\n    #print(c)\n    # c = 2.0\n    # print(c)\n    return c*x\n\nprint(mult2(20)) \nprint(f\"final result for c = {c}\") # doesn't work, still has value 3","id":7,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"def myfunc(a, interval):\n    a = 0\n    print(a)\n    interval1 = interval.copy()\n    interval1[0] = 0\n    \n    \nmy_a = 10\nmy_interval = [-5, 7]\na = myfunc(my_a, my_interval)\n\nprint(f\"my_a = {my_a}, my_interval = {my_interval}\")","id":8,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"a = 3\ndef multiply(x):\n    a = 4\n    # a += 1 \n    x = 4 \n    return a*x\n\nprint(f\"result = {multiply(5)} a = {a}\")","id":9,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"def F(m, g = 9.81):\n    return m*g\n\nF1 = F(50)\nF2 = F(50, 1.625)\nprint(f\"On earth, the force is {F1:0.1f} Newton.\")\nprint(f\"On the mooon, the force is {F2:0.1f} Newton.\")","id":10,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"def show_message():\n    print(\"Hello World!\")\n    \na = show_message()\nprint(type(a))\n\nprint(a is None)","id":11,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"def argmin(L):  # return the minimum and index\n    minimum = min(L)\n    minimum_index = L.index(minimum)\n    return minimum, minimum_index  # a tuple\n\nmin_info = argmin([1, 2, 0, 5])\nprint(type(min_info))\nprint(\"min_info =\", min_info)\nprint(f\"m = {min_info[0]} and i = {min_info[1]}\")\n\n# often unpacking is used directly\nm, i = argmin([1, 2, 0, 5])\nprint(f\"m = {m} and i = {i}\")","id":12,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"def f(x):\n    return x**3 + x**2\n\n# TODO 1: Write a function that returns the derivative of f\ndef df(x):\n    return 3*x**2 + 2*x\n\ndef derivative1(x, h = 1e-8):\n    ...\n\ndef derivative2(x, h):\n    ...\n\n# TODO 2: write a function that uses the above approximations to \n#         compute the derivative, taking x, h as parameters\nprint(f\"Exact derivative   f'(1) = {df(1)}\")\nprint(f\"Using derivative1, f'(1) = {derivative1(1, 0.00001)}\")\nprint(f\"Using derivative2, f'(1) = {derivative2(1, 0.00001)}\")","id":13,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"def f(x):\n    return x**3 + x**2\n\ndef df(x):\n    return 3*x**2 + 2*x\n\ndef derivative1(g, x, h = 1e-8):\n    return (g(x+h) - g(x))/h\n\ndef derivative2(g, x, h = 1e-8):\n    return (g(x+h)-g(x-h))/(2*h)\n\nprint(f\"Exact derivative1, f'(1) = {df(1)}\")\nprint(f\"Using derivative1, f'(1) = {derivative1(f, 1, 0.00001)}\")\nprint(f\"Using derivative2, f'(1) = {derivative2(f, 1, 0.00001)}\")","id":14,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"print(\"   h               f'(1)                 error\")\nprint(56*\"-\")\nfor i in range(8):\n    print(f\"{'*':6} {'*':23} {'*':25}\")","id":15,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"df_1 = 5.\nprint(\"   h                  f'(1)                 error\")\nprint(56*\"-\")\nh = 0.001\nfor i in range(12):\n    print(f\"{h:.6e} {derivative1(f,1,h):20.10f} {abs(df_1 - derivative1(f,1,h)):20.8f}\")\n    h *= 0.1","id":16,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"def square(x):\n    return x**2\n\nprint(\"square(4) =\", square(4))\n\nsq = square  # now sq is the same as square\n\ndel square # square doesn't exist anymor\n\nprint(\"sq(4) =\", sq(4))","id":17,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"def f(x, a, b, c, d): \n    return a*x**3 + b*x**2 + c*x + d\n\ndef derivative1(f, x, h = 1e-6): \n    return (f(x+h)-f(x))/h\n\ndef makeOneParameterFunc(f, a, b, c, d):\n    def newf(x):\n        return f(x, a, b, c, d)\n    return newf  # a function is returned\n\nnewf = makeOneParameterFunc(f, 1, 1, 0, 0)\n\nprint(newf)\nprint(\"newf(1) =\", newf(1))  \nder = derivative1(newf, 1)\nprint(\"der =\", der)","id":18,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"def make_sin(omega):\n    def f(x):\n        return sin(omega*x)\n    return f\n\nfomega = make_sin(2)\nfigure(figsize = (4, 3))\nx = linspace(0, 2*pi, 100)\nxlabel('x')\nylabel('sin(omega *x)')\nplot(x, fomega(x))","id":19,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"f = lambda x: 3*x**2 + 2*x + 0.5\n\nprint(f(3))\n\ng = lambda x, y: 3*x - 2*y\n\nprint(g(1, 1))","id":20,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import scipy.integrate as si\nresult, error = si.quad(lambda x: x**2+5, 0, 1)\nprint(result)","id":21,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"omega = 3\nfomega = lambda x: sin(omega*x)\n\nresult, error = si.quad(fomega, 0, 2*pi)\nprint(result)\nx = linspace(0, 2*pi, 100)\nplot(x, fomega(x))","id":22,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"def f(x, a, b, c, d): \n    return a*x**3+b*x**2+c*x+d\n\ndef derivative1(f, x, h = 1e-6): \n    return (f(x+h)-f(x))/h\n\n# fix parameters a,b,c,d to the given arguments\nnewf = lambda x: f(x,1,1,0,0)\n\nprint(newf)\nprint(\"newf(1) =\", newf(1))  \nder = derivative1(newf, 1)\nprint(\"der =\", der)","id":23,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}}];
 
 
 </script>
@@ -451,7 +486,7 @@ window.Quarto = {
 };
 </script>
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-fixed quarto-light">
@@ -461,7 +496,7 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Python Crashcourse</span>
     </a>
   </div>
@@ -472,39 +507,160 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./appendix_a1.html"> 
-<span class="menu-text">A.1 Introduction</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-crashcourse" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Crashcourse</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-crashcourse">    
+        <li>
+    <a class="dropdown-item" href="../appendix/appendix_a1.html">
+ <span class="dropdown-text">A.1 Introduction</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./appendix_a2.html"> 
-<span class="menu-text">A.2 Sequences and Sums</span></a>
+        <li>
+    <a class="dropdown-item" href="../appendix/appendix_a2.html">
+ <span class="dropdown-text">A.2 Sequences and Sums</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link active" href="./appendix_a3.html" aria-current="page"> 
-<span class="menu-text">A.3 Control Statements</span></a>
+        <li>
+    <a class="dropdown-item" href="../appendix/appendix_a3.html">
+ <span class="dropdown-text">A.3 Control Statements</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./appendix_a4.html"> 
-<span class="menu-text">A.4 Functions</span></a>
+        <li>
+    <a class="dropdown-item" href="../appendix/appendix_a4.html">
+ <span class="dropdown-text">A.4 Functions</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./appendix_a5.html"> 
-<span class="menu-text">A.5 Number Representation</span></a>
+        <li>
+    <a class="dropdown-item" href="../appendix/appendix_a5.html">
+ <span class="dropdown-text">A.5 Number Representation</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./appendix_a6.html"> 
-<span class="menu-text">A.6 Answers</span></a>
+        <li>
+    <a class="dropdown-item" href="../appendix/appendix_a6.html">
+ <span class="dropdown-text">A.6 Answers</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./appendix_all.html"> 
-<span class="menu-text">A.All Combined</span></a>
+        <li>
+    <a class="dropdown-item" href="../appendix/appendix_all.html">
+ <span class="dropdown-text">A.All Combined</span></a>
   </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-lecture-slides" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Lecture Slides</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-lecture-slides">    
+        <li>
+    <a class="dropdown-item" href="../slides/lecture01.html">
+ <span class="dropdown-text">Lecture 1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture02_summer.html">
+ <span class="dropdown-text">Lecture 2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture03_summer.html">
+ <span class="dropdown-text">Lecture 3</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture04.html">
+ <span class="dropdown-text">Lecture 4</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture05.html">
+ <span class="dropdown-text">Lecture 5</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture06.html">
+ <span class="dropdown-text">Lecture 6</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture07.html">
+ <span class="dropdown-text">Lecture 7</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture08.html">
+ <span class="dropdown-text">Lecture 8</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture09.html">
+ <span class="dropdown-text">Lecture 9</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture10.html">
+ <span class="dropdown-text">Lecture 10</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture11.html">
+ <span class="dropdown-text">Lecture 11</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture12.html">
+ <span class="dropdown-text">Lecture 12</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture13.html">
+ <span class="dropdown-text">Lecture 13</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture14.html">
+ <span class="dropdown-text">Lecture 14</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-exercises" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Exercises</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-exercises">    
+        <li>
+    <a class="dropdown-item" href="../exercises/sheet_2.html">
+ <span class="dropdown-text">Sheet 2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../exercises/sheet_3.html">
+ <span class="dropdown-text">Sheet 3</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../exercises/sheet_4.html">
+ <span class="dropdown-text">Sheet 4</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../exercises/sheet_5.html">
+ <span class="dropdown-text">Sheet 5</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../exercises/sheet_6.html">
+ <span class="dropdown-text">Sheet 6</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../exercises/sheet_7.html">
+ <span class="dropdown-text">Sheet 7</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../exercises/sheet_8.html">
+ <span class="dropdown-text">Sheet 8</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../exercises/sheet_9.html">
+ <span class="dropdown-text">Sheet 9</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../exercises/sheet_11.html">
+ <span class="dropdown-text">Sheet 11</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../exercises/sheet_12.html">
+ <span class="dropdown-text">Sheet 12</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../exercises/sheet_13.html">
+ <span class="dropdown-text">Sheet 13</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -523,11 +679,41 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#some-additional-control-statements-in-python" id="toc-some-additional-control-statements-in-python" class="nav-link active" data-scroll-target="#some-additional-control-statements-in-python">Some additional control statements in Python</a>
+  <li><a href="#lecture-4-functions" id="toc-lecture-4-functions" class="nav-link active" data-scroll-target="#lecture-4-functions">Lecture 4: Functions</a>
   <ul class="collapse">
-  <li><a href="#while-loops" id="toc-while-loops" class="nav-link" data-scroll-target="#while-loops">While-loops</a></li>
-  <li><a href="#if-else-statements" id="toc-if-else-statements" class="nav-link" data-scroll-target="#if-else-statements">If-else statements</a></li>
-  <li><a href="#the-break-command" id="toc-the-break-command" class="nav-link" data-scroll-target="#the-break-command">The break command</a></li>
+  <li><a href="#center-for-mathematical-sciences-lund-university" id="toc-center-for-mathematical-sciences-lund-university" class="nav-link" data-scroll-target="#center-for-mathematical-sciences-lund-university">Center for Mathematical Sciences, Lund University</a></li>
+  </ul></li>
+  <li><a href="#this-lecture" id="toc-this-lecture" class="nav-link" data-scroll-target="#this-lecture">This lecture</a></li>
+  <li><a href="#basic-features" id="toc-basic-features" class="nav-link" data-scroll-target="#basic-features">Basic features</a></li>
+  <li><a href="#functions-in-mathematics" id="toc-functions-in-mathematics" class="nav-link" data-scroll-target="#functions-in-mathematics">Functions in mathematics</a></li>
+  <li><a href="#functions-in-python" id="toc-functions-in-python" class="nav-link" data-scroll-target="#functions-in-python">Functions in Python</a></li>
+  <li><a href="#passing-arguments" id="toc-passing-arguments" class="nav-link" data-scroll-target="#passing-arguments">Passing arguments</a></li>
+  <li><a href="#passing-arguments-cont" id="toc-passing-arguments-cont" class="nav-link" data-scroll-target="#passing-arguments-cont">Passing arguments (cont)</a></li>
+  <li><a href="#scope-of-variables" id="toc-scope-of-variables" class="nav-link" data-scroll-target="#scope-of-variables">Scope of variables</a></li>
+  <li><a href="#parameters-and-global-variables" id="toc-parameters-and-global-variables" class="nav-link" data-scroll-target="#parameters-and-global-variables">Parameters and global variables</a></li>
+  <li><a href="#changing-argument-values-inside-a-function" id="toc-changing-argument-values-inside-a-function" class="nav-link" data-scroll-target="#changing-argument-values-inside-a-function">Changing argument values inside a function</a></li>
+  <li><a href="#global-variables" id="toc-global-variables" class="nav-link" data-scroll-target="#global-variables">Global variables</a></li>
+  <li><a href="#default-arguments" id="toc-default-arguments" class="nav-link" data-scroll-target="#default-arguments">Default arguments</a></li>
+  <li><a href="#arguments-parameters---summary" id="toc-arguments-parameters---summary" class="nav-link" data-scroll-target="#arguments-parameters---summary">Arguments, Parameters - Summary</a></li>
+  <li><a href="#return" id="toc-return" class="nav-link" data-scroll-target="#return">Return</a></li>
+  <li><a href="#no-return" id="toc-no-return" class="nav-link" data-scroll-target="#no-return">No return</a></li>
+  <li><a href="#returning-multiple-values" id="toc-returning-multiple-values" class="nav-link" data-scroll-target="#returning-multiple-values">Returning multiple values</a></li>
+  <li><a href="#functions-as-arguments" id="toc-functions-as-arguments" class="nav-link" data-scroll-target="#functions-as-arguments">Functions as arguments</a>
+  <ul class="collapse">
+  <li><a href="#example-numerical-differentiation" id="toc-example-numerical-differentiation" class="nav-link" data-scroll-target="#example-numerical-differentiation">Example ‐ Numerical differentiation</a></li>
+  <li><a href="#approximating-the-derivative" id="toc-approximating-the-derivative" class="nav-link" data-scroll-target="#approximating-the-derivative">Approximating the derivative</a></li>
+  <li><a href="#example---numerical-differentiation-10min-lets-go" id="toc-example---numerical-differentiation-10min-lets-go" class="nav-link" data-scroll-target="#example---numerical-differentiation-10min-lets-go">Example - Numerical differentiation (10min, let’s go)</a></li>
+  </ul></li>
+  <li><a href="#functions-are-objects" id="toc-functions-are-objects" class="nav-link" data-scroll-target="#functions-are-objects">Functions are objects</a>
+  <ul class="collapse">
+  <li><a href="#a-functions-that-returns-a-function" id="toc-a-functions-that-returns-a-function" class="nav-link" data-scroll-target="#a-functions-that-returns-a-function">A functions that returns a function</a></li>
+  </ul></li>
+  <li><a href="#docstring" id="toc-docstring" class="nav-link" data-scroll-target="#docstring">Docstring</a></li>
+  <li><a href="#partial-application-or-closures" id="toc-partial-application-or-closures" class="nav-link" data-scroll-target="#partial-application-or-closures">Partial Application (or closures)</a></li>
+  <li><a href="#anonymous-functions-the-lambda-keyword" id="toc-anonymous-functions-the-lambda-keyword" class="nav-link" data-scroll-target="#anonymous-functions-the-lambda-keyword">Anonymous functions ‐ the <code>lambda</code> keyword</a></li>
+  <li><a href="#closures-and-lambda" id="toc-closures-and-lambda" class="nav-link" data-scroll-target="#closures-and-lambda">Closures and <span class="math inline">\(\lambda\)</span></a>
+  <ul class="collapse">
+  <li><a href="#a-shorter-version-of-the-derivative-example" id="toc-a-shorter-version-of-the-derivative-example" class="nav-link" data-scroll-target="#a-shorter-version-of-the-derivative-example">A shorter version of the derivative example</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -547,7 +733,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">A.3 Control Statements</h1>
+<h1 class="title">Computational Programming with Python</h1>
 </div>
 
 
@@ -564,63 +750,246 @@ window.Quarto = {
 </header>
 
 
-<section id="some-additional-control-statements-in-python" class="level2">
-<h2 class="anchored" data-anchor-id="some-additional-control-statements-in-python">Some additional control statements in Python</h2>
-<section id="while-loops" class="level3">
-<h3 class="anchored" data-anchor-id="while-loops">While-loops</h3>
-<p>The while-loop is a close cousin of the for-loop. In most cases, what you can do with one of them, you can also do with the other. The point is that in most situations, one of them will usually be much easier to use than the other.</p>
-<p><strong>Example E.38 (Partial sums with a while-loop)</strong><br>
-The following code computes the sum <span class="math display">\[\sum_{n=1}^{10} \frac{1}{n} = 1 + \frac{1}{2} + \frac{1}{3} + \cdots + \frac{1}{10}.\]</span></p>
+<section id="lecture-4-functions" class="level2">
+<h2 class="anchored" data-anchor-id="lecture-4-functions">Lecture 4: Functions</h2>
+<section id="center-for-mathematical-sciences-lund-university" class="level3">
+<h3 class="anchored" data-anchor-id="center-for-mathematical-sciences-lund-university">Center for Mathematical Sciences, Lund University</h3>
+<p>Lecturer: Malin Christersson, <code>Robert Klöfkorn</code></p>
+</section>
+</section>
+<section id="this-lecture" class="level2">
+<h2 class="anchored" data-anchor-id="this-lecture">This lecture</h2>
+<ul>
+<li>Basic features of functions</li>
+<li>Scope of variables</li>
+<li>Default arguments</li>
+<li>Docstring</li>
+<li>Parameters and arguments</li>
+<li>Functions are objects</li>
+</ul>
+</section>
+<section id="basic-features" class="level2">
+<h2 class="anchored" data-anchor-id="basic-features">Basic features</h2>
+<p>Comparing functions in mathematics and functions in Python</p>
 <div id="qpyodide-insertion-location-1"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p>Explanation:</p>
-<ol type="1">
-<li>We initialize <code>S</code> and <code>n</code>.</li>
-<li>The loop continues while <code>n &lt;= 10</code>.</li>
-<li>We must update <code>n</code> manually inside the loop.</li>
-</ol>
-<p><strong>Remark R.39 (Logical operators)</strong><br>
-In the above example, we used <code>&lt;=</code>. The logical operators <code>&gt;=</code>, <code>==</code>, and <code>!=</code> are also useful. Note that <code>==</code> checks equality and <code>!=</code> checks inequality.</p>
-<p><strong>Exercise E.40</strong></p>
-<p>Use a while-loop to check how large <code>n</code> has to be for the partial sums <span class="math display">\[S_n = \sum_{k=0}^n \frac{1}{2^k}\]</span> to be closer to <code>2</code> than <code>1/10000</code>.</p>
+</section>
+<section id="functions-in-mathematics" class="level2">
+<h2 class="anchored" data-anchor-id="functions-in-mathematics">Functions in mathematics</h2>
+<p>A function is written as a map, that uniquely assigns an element <span class="math inline">\(y\)</span> from the range <span class="math inline">\(R\)</span> to every element <span class="math inline">\(x\)</span> of the domain <span class="math inline">\(D\)</span>.</p>
+<p><span class="math display">\[f:x \mapsto y\]</span></p>
+<p><span class="math inline">\(f\)</span> is the function, <span class="math inline">\(x\)</span> is its argument, <span class="math inline">\(y\)</span> is its (return) value</p>
+<p>There can be several arguments of different type. Consider:</p>
+<p><span class="math display">\[ f(g, a, b) = \int_a^b g(x) dx \]</span></p>
+<p>The arguments are not interchangeable. Position matters.</p>
+</section>
+<section id="functions-in-python" class="level2">
+<h2 class="anchored" data-anchor-id="functions-in-python">Functions in Python</h2>
+<p>Definition of a function:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x1, x2, x3):</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># some computations</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> ... <span class="co">#</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> y</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Evaluation (call) of a function:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>f(<span class="dv">17</span>, <span class="dv">18</span>, <span class="op">-</span><span class="dv">2</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>f([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>], {<span class="st">'tol'</span>: <span class="fl">1.e-10</span>}, <span class="st">'ro'</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Wording:</p>
+<p><code>x1, x2, x3</code> are called <strong>parameters</strong> (needed for definition)</p>
+<p><code>17, 18, -2</code> are called <strong>arguments</strong> (needed for evaluation)</p>
+</section>
+<section id="passing-arguments" class="level2">
+<h2 class="anchored" data-anchor-id="passing-arguments">Passing arguments</h2>
+<p>Consider:</p>
 <div id="qpyodide-insertion-location-2"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-</section>
-<section id="if-else-statements" class="level3">
-<h3 class="anchored" data-anchor-id="if-else-statements">If-else statements</h3>
-<p>Alongside for- and while-loops, the if-else statement is the most important tool in programming.</p>
-<p><strong>Example E.41 (if-statements in Python)</strong></p>
+<p>Passing arguments by position: (Position matters.)</p>
 <div id="qpyodide-insertion-location-3"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p>If you want to add more conditions, you can use <code>elif</code> and combine conditions using <code>and</code> or <code>or</code>.</p>
-<p><strong>Example E.42</strong></p>
+<p>Passing arguments by keywords: (Position doesn’t matter)</p>
 <div id="qpyodide-insertion-location-4"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p><strong>Exercise E.43</strong></p>
-<p>Use an if-type statement to modify the code from Example E.31 (Fibonacci numbers) so that <code>1th</code>, <code>2th</code>, and <code>3th</code> are replaced by <code>1st</code>, <code>2nd</code>, and <code>3rd</code>.</p>
+</section>
+<section id="passing-arguments-cont" class="level2">
+<h2 class="anchored" data-anchor-id="passing-arguments-cont">Passing arguments (cont)</h2>
+<p>Positional arguments come first, then keyword arguments.</p>
 <div id="qpyodide-insertion-location-5"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-</section>
-<section id="the-break-command" class="level3">
-<h3 class="anchored" data-anchor-id="the-break-command">The break command</h3>
-<p>The <code>break</code> command tells Python to stop the nearest loop and to continue the program on the first unindented line below it.</p>
-<p><strong>Example E.44</strong><br>
-The following code does exactly the same as the one in Example E.38.</p>
 <div id="qpyodide-insertion-location-6"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p><strong>Remark R.45</strong><br>
-If you have nested loops, <code>break</code> only stops the inner-most loop.</p>
-<p><strong>Exercise E.46</strong></p>
-<p>Consider the list:</p>
+</section>
+<section id="scope-of-variables" class="level2">
+<h2 class="anchored" data-anchor-id="scope-of-variables">Scope of variables</h2>
+<p>Variables defined inside the function are said to belong to the function’s <strong>scope</strong>. They are unknown outside the function.</p>
 <div id="qpyodide-insertion-location-7"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<ol type="1">
-<li>Write a code that combines a for-loop with the break command to check when the first entry in the list is smaller than <code>1e-4</code>.</li>
-<li>Do the same as in (1), but with a while-loop and no break command.</li>
-</ol>
+</section>
+<section id="parameters-and-global-variables" class="level2">
+<h2 class="anchored" data-anchor-id="parameters-and-global-variables">Parameters and global variables</h2>
+<p>Compare:</p>
+<p><code>a</code> is a parameter of the function:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> multiply(x, a):</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> a<span class="op">*</span>x</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>a</code> is referenced from outside of the functions scope, a is a <strong>global</strong> variable:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">3</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> multiply(x):</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> a<span class="op">*</span>x</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="changing-argument-values-inside-a-function" class="level2">
+<h2 class="anchored" data-anchor-id="changing-argument-values-inside-a-function">Changing argument values inside a function</h2>
+<p>Example:</p>
 <div id="qpyodide-insertion-location-8"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="global-variables" class="level2">
+<h2 class="anchored" data-anchor-id="global-variables">Global variables</h2>
+<p>Example 1:</p>
 <div id="qpyodide-insertion-location-9"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>Inside the function, <code>a</code> is a local variable that is assigned a value.</p>
+<p>The following code doesn’t work:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">3</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> multiply(x):</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    a <span class="op">=</span> a <span class="op">+</span> <span class="dv">1</span>  <span class="co"># doesn't work</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> a<span class="op">*</span>x</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="default-arguments" class="level2">
+<h2 class="anchored" data-anchor-id="default-arguments">Default arguments</h2>
+<section id="example-free-fall-due-to-gravity" class="level4">
+<h4 class="anchored" data-anchor-id="example-free-fall-due-to-gravity">Example ‐ Free fall due to gravity</h4>
+<p>The force <span class="math inline">\(F\)</span> is proportional to the mass <span class="math inline">\(m\)</span>, <span class="math inline">\(F = mg\)</span>, where <span class="math inline">\(g\)</span> is the acceleration of gravity.</p>
+<p>On earth <span class="math inline">\(g \approx 9,81 \text{ m}/\text{s}^2\)</span>.</p>
+<div id="qpyodide-insertion-location-10"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>In the definition of the function, mandatory parameters must precede optional parameters (those with default values). Why?</p>
+</section>
+</section>
+<section id="arguments-parameters---summary" class="level2">
+<h2 class="anchored" data-anchor-id="arguments-parameters---summary">Arguments, Parameters - Summary</h2>
+<p>Make sure that you understood the difference</p>
+<ul>
+<li>between <code>arguments</code> and <code>parameters</code></li>
+<li>between function <code>definition</code> and function <code>evaluation</code> (call)</li>
+<li>between <code>positional</code> arguments and <code>keyword</code> arguments</li>
+</ul>
+</section>
+<section id="return" class="level2">
+<h2 class="anchored" data-anchor-id="return">Return</h2>
+<p>The <code>return</code> statement returns a <strong>single</strong> object!</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> myfunc(x):</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>What is the object returned here? Which type does it have?</p>
+<p>Statements after the <code>return</code> statement are ignored.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> myfunc(x):</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> <span class="dv">25</span>  <span class="co"># ignored</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="no-return" class="level2">
+<h2 class="anchored" data-anchor-id="no-return">No return</h2>
+<p>A function without a return statement returns <code>None</code>.</p>
+<div id="qpyodide-insertion-location-11"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="returning-multiple-values" class="level2">
+<h2 class="anchored" data-anchor-id="returning-multiple-values">Returning multiple values</h2>
+<p>A function may return several values:</p>
+<div id="qpyodide-insertion-location-12"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="functions-as-arguments" class="level2">
+<h2 class="anchored" data-anchor-id="functions-as-arguments">Functions as arguments</h2>
+<section id="example-numerical-differentiation" class="level3">
+<h3 class="anchored" data-anchor-id="example-numerical-differentiation">Example ‐ Numerical differentiation</h3>
+<p>Let</p>
+<p><span class="math display">\[ f(x) = x^3 + x^2,\]</span></p>
+<p>then</p>
+<p><span class="math display">\[ f'(x) = 3x^2 + 2x\]</span></p>
+<p>and</p>
+<p><span class="math display">\[f'(1) = 5.\]</span></p>
+</section>
+<section id="approximating-the-derivative" class="level3">
+<h3 class="anchored" data-anchor-id="approximating-the-derivative">Approximating the derivative</h3>
+<p>We can use some approximation to find the derivative.</p>
+<p>Example 1:</p>
+<p><span class="math display">\[f'(x) \approx \frac{f(x+h)-f(x)}{h} \]</span></p>
+<p>Example 2:</p>
+<p><span class="math display">\[f'(x) \approx \frac{f(x+h)-f(x-h)}{2h} \]</span></p>
+<p>Where <span class="math inline">\(h\)</span> is some small number, e.g.&nbsp;<span class="math inline">\(h=10^{-8}\)</span>.</p>
+</section>
+<section id="example---numerical-differentiation-10min-lets-go" class="level3">
+<h3 class="anchored" data-anchor-id="example---numerical-differentiation-10min-lets-go">Example - Numerical differentiation (10min, let’s go)</h3>
+<section id="part-1" class="level4">
+<h4 class="anchored" data-anchor-id="part-1">Part 1</h4>
+<p>Change the code so that the two derivative functions implement the approximations from last slide. Make it so that <span class="math inline">\(h\)</span> has a default value. Does a smaller value of <span class="math inline">\(h\)</span> make the approximation better?</p>
+<div id="qpyodide-insertion-location-13"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>Discuss the result!</p>
+<div id="qpyodide-insertion-location-14"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="part-2" class="level4">
+<h4 class="anchored" data-anchor-id="part-2">Part 2</h4>
+<p>Change the code so that <span class="math inline">\(h\)</span> takes on the values 0.001, 0.0001, 0.00001,…, 0.000000001. Replace the stars (’*’) in the f-strings with numerical values matching the top row, where <code>f'(1)</code> is the value obtained from <code>derivative1</code>.</p>
+<div id="qpyodide-insertion-location-15"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div id="qpyodide-insertion-location-16"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+</section>
+</section>
+<section id="functions-are-objects" class="level2">
+<h2 class="anchored" data-anchor-id="functions-are-objects">Functions are objects</h2>
+<p>Functions are objects, they can be deleted, reassigned, copied …</p>
+<div id="qpyodide-insertion-location-17"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<section id="a-functions-that-returns-a-function" class="level3">
+<h3 class="anchored" data-anchor-id="a-functions-that-returns-a-function">A functions that returns a function</h3>
+<div id="qpyodide-insertion-location-18"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<nav class="bottom-page-nav" aria-label="Page navigation">
+<a class="page-nav-link prev" href="lecture03_summer.html">Previous: Lecture 3</a> <a class="page-nav-link next" href="lecture05.html">Next: Lecture 5</a>
+</nav>
+</section>
+</section>
+<section id="docstring" class="level2">
+<h2 class="anchored" data-anchor-id="docstring">Docstring</h2>
+<p>All functions (and everything else) should be documented carefully.</p>
+<p>A docstring is the leading comment in a function (or class):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> newton(f, x0): </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Newton’s method for computing a zero of a function on input:</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">    f (function) given function f(x)</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">    x0 (float) initial guess </span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">    on return:</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co">    y (float) the approximated zero of f </span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>help(newton)</code> in Python or <code>newton?</code> in IPython displays the docstring as a help text.</p>
+</section>
+<section id="partial-application-or-closures" class="level2">
+<h2 class="anchored" data-anchor-id="partial-application-or-closures">Partial Application (or closures)</h2>
+<p>In mathematics we often “freeze” a parameter of a function: <span class="math inline">\(f_\omega(x) = f(x, \omega) = \sin(\omega x)\)</span></p>
+<p>In Python we can do this:</p>
+<div id="qpyodide-insertion-location-19"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="anonymous-functions-the-lambda-keyword" class="level2">
+<h2 class="anchored" data-anchor-id="anonymous-functions-the-lambda-keyword">Anonymous functions ‐ the <code>lambda</code> keyword</h2>
+<p>With <span class="math inline">\(\lambda\)</span>-functions one has a handy tool making one-line function definitions:</p>
+<div id="qpyodide-insertion-location-20"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>Example for a common application, compute <span class="math inline">\(\int_0^1 (x^2+5) \text{d}x\)</span>.</p>
+<div id="qpyodide-insertion-location-21"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="closures-and-lambda" class="level2">
+<h2 class="anchored" data-anchor-id="closures-and-lambda">Closures and <span class="math inline">\(\lambda\)</span></h2>
+<p><span class="math display">\[f_\omega(x)=f(x, \omega) = \sin(\omega x)\]</span></p>
+<div id="qpyodide-insertion-location-22"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<section id="a-shorter-version-of-the-derivative-example" class="level3">
+<h3 class="anchored" data-anchor-id="a-shorter-version-of-the-derivative-example">A shorter version of the derivative example</h3>
+<div id="qpyodide-insertion-location-23"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 
 

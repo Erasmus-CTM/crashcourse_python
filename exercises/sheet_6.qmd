@@ -134,3 +134,8 @@ this change?
 #| read-only: false
 # TODO: modify the subdiagonal to -1 and compare eigenvalues.
 ```
+
+<nav class="bottom-page-nav" aria-label="Page navigation">
+  <a class="page-nav-link prev" href="sheet_5.html">Previous: Sheet 5</a>
+  <a class="page-nav-link next" href="sheet_7.html">Next: Sheet 7</a>
+</nav>

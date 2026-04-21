@@ -137,3 +137,8 @@ my_list = [n / (1 + n**2) for n in range(0, 10**6)]
 #| read-only: false
 # TODO: implement part (b) with a while-loop.
 ```
+
+<nav class="bottom-page-nav" aria-label="Page navigation">
+  <a class="page-nav-link prev" href="appendix_a2.html">Previous: A.2 Sequences and Sums</a>
+  <a class="page-nav-link next" href="appendix_a4.html">Next: A.4 Functions</a>
+</nav>

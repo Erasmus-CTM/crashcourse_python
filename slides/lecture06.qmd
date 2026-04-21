@@ -1,0 +1,712 @@
+---
+title: "Computational Programming with Python"
+format: html
+filters:
+  - pyodide
+---
+
+## Lecture 6: Linear Algebra
+
+### Center for Mathematical Sciences, Lund University
+Lecturer: Malin Christersson, `Robert Klöfkorn`
+
+## This lecture
+
+- NumPy arrays &hyphen; `vectors`
+- NumPy arrays &hyphen; `matrices`
+- Linear transformations &hyphen; rotation matrix in the plane
+
+# Motivation
+
+Many technical applications ultimately lead to problems of the following form. 
+Given $A \in \mathbb{R}^{n \times n}$ and $b \in \mathbb{R}^n$, $n>0$, **find $x \in \mathbb{R}^n$ such that** 
+
+$$
+A \, x = b.
+$$
+
+- Weather forecast and renewable energies
+- Numerical simulation in general (droplet simulation)
+- Banking and financial applications
+- Data Science 
+- and many more
+
+## NumPy arrays &hyphen; vectors
+### The array type
+
+Lists are almost like vectors but operations on lists are **not** linear algebra operations.
+
+```{pyodide-python}
+L1 = [1, 2]
+L2 = [3, 4]
+print("L1 + L2 =", L1 + L2)
+print("3*L1 =", 3*L1)
+```
+
+#### Definition
+An **array** represents a vector or a matrix in linear algebra. It is often initialised from a list or another vector. Operations `+`, `*`, `/`, `-` are all **elementwise**. `dot` or the `@` operator are used for the scalar product.
+
+## Vector usage
+
+#### Example
+
+```{pyodide-python}
+from numpy import array, dot, sqrt, inf
+from scipy.linalg import norm
+
+vec = array([3, -4]) # a vector in the plane
+
+print("vec =", vec)
+print("2*vec =", 2*vec)
+print("vec*vec =", vec*vec)
+print("vec/2 =", vec/2) 
+print("vec/vec =", vec/vec) 
+
+# TODO: explain norms 
+print("||vec|| =", norm(vec, ord=2))
+print("|vec| = ", sqrt(dot(vec,vec))) # same as norm(vec, ord=2)
+
+# TODO: explain
+print("scalar product =", dot(vec, vec))
+print("scalar product =", vec @ vec)
+```
+
+## Vectors are similar to lists
+
+```{pyodide-python}
+L1 = [1, 2, 3]
+
+v1 = array(L1)
+
+print("L1 =", L1)
+print("v1 =", v1)
+print(type(L1))
+print(type(v1))
+```
+
+## Vectors are similar to lists (cont)
+
+- Acess vectors via their indices
+
+```{pyodide-python}
+v = array([1, 2, 3])
+
+print(v[0])
+```
+
+- The *length* of a vector is still obtained by the function `len`
+
+```{pyodide-python}
+print(len(v))
+```
+
+## Vectors are similar to lists (cont)
+
+- Parts of vectors using slices
+
+```{pyodide-python}
+v = array([1, 2, 3])
+print(v[:2])
+```
+
+- Replace parts of vectors using slices
+
+```{pyodide-python}
+v[:2] = [10, 20]
+print(v)
+```
+
+## Vectors are not lists!
+
+Operations are not the same:
+
+- Operations `+` and `*` are different
+- More operations are defined: `-`, `/`
+- Numpy functions act elementwise on vectors: `sin`, `exp`, `sqrt`, etc.
+- Scalar product with `dot` or `@`
+- Vectors have a **fixed size**: no `append` method!
+
+## Vectors are not lists! (cont)
+
+Two names are bound to the same list:
+
+```{pyodide-python}
+L1 = [1, 2]
+L2 = L1
+L1[0] = 10
+print(L2)
+L2[0] = 4
+print(L1)
+```
+
+To make an actual copy, you can use the `copy` method, or make a slice.
+
+```{pyodide-python}
+L1 = [1, 2] # compare with with numpy array (next silde)
+L2 = L1 
+L3 = L1.copy()
+L4 = L1[:]  # a slice of the entire list
+L1[0] = 10  # what happens here? 
+print("L2 =", L2)
+print("L3 =", L3)
+print("L4 =", L4)
+```
+
+## Vectors are not lists! (cont)
+
+- Vector slices, on the other hand, are **views**:
+
+```{pyodide-python}
+L1 = [1, 2, 3]
+
+v1 = array([1, 2, 3])
+
+L2 = L1[:2]
+L2[0] = 10
+print("now L1 = ", L1)
+
+v3 = v1[:2]
+#v3[0] = 10
+print("now v1 = ",v1)
+
+v2 = v1[:2]
+v2[0] = 10
+print("now v1 = ", v1)
+
+v3 = v1.copy()[:2]
+v3[0] = 10
+print("now v3 = ", v3)
+```
+
+## Vectors are not lists! (cont)
+
+- Only **one type** throughout the entire vector
+
+```{pyodide-python}
+
+v1 = array([1, 2., 3.]) # don't forget the dots!
+print(v1)
+v2 = array([2, 0, 1])    # one dot is enough
+
+print(v2)
+
+print(v1*v2)  # what about v1/v2
+
+print(3*v1 + 2*v2)
+
+print(v2)
+
+print(type(v1[0]))
+print(type(v2[0]))
+```
+
+## More examples
+
+```{pyodide-python}
+v1 = array([1., 2., 3.])
+v2 = array([2, 0, 1.]) 
+print(type(v2[0]))
+
+# s = v1[0]*v2[0] + v1[1]*v2[1] + v1[2] * v2[2]
+print("scalar product:", dot(v1, v2))
+print("scalar product:", v1 @ v2)
+
+# access
+v1[0] = 10
+print("v1 =", v1)
+
+# slices
+v1[:2] = [0, 1]
+print("v1 =", v1)
+# v1[0:2] = [1, 2, 3]  # error
+```
+
+## Creating vectors &hyphen; `linspace`
+
+The `linspace` function is convenient for creating equally spaced arrays.
+
+```{pyodide-python}
+from numpy import *
+xs = linspace(0, 10, 200) # 200 points between 0 and 10
+print(type(xs[0]))
+print(xs[0])   # the first point is 0
+print(xs[-1])  # the last point is 10
+```
+
+```{pyodide-python}
+from matplotlib.pyplot import *
+%matplotlib inline
+plot(xs, sin(xs))
+```
+
+## Creating vectors &hyphen; `zeros`, `ones`, `full`
+
+Some handy functions to quickly create vectors:
+
+```{pyodide-python}
+v1 = zeros(5)
+print("v1 =", v1)
+
+v2 = ones(3)
+print("v2 =", v2)
+
+v3 = full(4, 3.14)  # fill it with the value 3.14
+print("v3 =", v3)
+
+v4 = full(5, 0.0)
+print("v4 =", v4)
+```
+
+## Creating vectors using `dtype`
+
+```{pyodide-python}
+v1 = zeros(5, dtype = complex)
+print("v1 =", v1)
+
+v2 = ones(3, dtype = int) 
+print("v2 =", v2)
+
+v3 = full(4, "hello")
+print("v3 =", v3)
+print(type(v3[0]))
+```
+
+## Creating random vectors
+
+Fill a vector with random numbers in the interval [0, 1).
+
+```{pyodide-python}
+v1 = random.random(5)
+print(v1)
+```
+
+We can also `shuffle` the values in an array.
+
+```{pyodide-python}
+v2 = array([10, 20, 30, 40, 50, 60, 80])
+random.shuffle(v2)
+print(v2)
+```
+
+## Concatenating vectors
+
+Since the `+` operation is redefined, we need other means to concatenate vectors. 
+
+The command `hstack([v1, v2, ..., vn]) ` concatenates the vectors 
+$v_1, v_2, \ldots, v_n$.
+
+```{pyodide-python}
+v1 = [1, 2, 3]
+v2 = [4, 5]
+v3 = [6, 7, 8, 9]
+
+L = v1 + v2 + v3
+print(L)
+v = hstack([array(v1), v2, v3])
+# w = vstack([v1, v2, v3])
+print(v)
+```
+
+# Example
+
+Compute the distance between the unit vectors in $\mathbb{R}^2$, i.e. $a = (1,0)^T$ and $b = (0,1)^T$. Compute the distance between $a$ and $b$. **5 min, let's go!**
+
+```{pyodide-python}
+# TODO: distance between a and b
+```
+
+```{pyodide-python}
+from numpy import array, sqrt
+from scipy.linalg import norm
+a = array([1,0])
+b = array([0,1])
+d = a - b
+
+print(norm(d, ord=1))
+print(f"|a-b| = {sqrt( d@d )}")
+```
+
+## Functions and arrays
+
+As long as `+`, `-`, `*`, `/` and standard mathematical `numpy` functions are used, a function value can be calculated elementwise.
+
+```{pyodide-python}
+def my_func(x, A, omega):
+    return A*sin(omega*x)/x
+
+x = linspace(-100, 100, 200) # using an even number of values to avoid zero
+A = [2 for i in range(200)] # full(100, 2)
+y = my_func(x, A, 0.5)
+plot(x, y)
+```
+
+## Vectorized functions
+
+Note that **not all functions** may be applied to vectors. For instance this one:
+
+```{pyodide-python}
+def const(x):
+    return 1
+
+x = linspace(-100, 100, 50)
+y = const(x) 
+
+# what is the value of y?
+print(y)
+```
+
+We will see later how to automatically **vectorize** a function so that it works on vectors.
+
+## NumPy arrays &hyphen; matrices
+
+#### Definition
+Matrices are represented by arrays of lists of **rows**, which are lists as well.
+
+```{pyodide-python}
+# An identity matrix
+id_matrix = array([[1., 0.], [0., 1.]])
+
+# Python allows this:
+id_matrix = array([[1., 0],
+                   [0., 1.]])
+
+# Which is more readable?
+
+print(id_matrix)
+```
+
+## Accessing matrix entries
+
+Matrix elements are accessed with **two** indices.
+
+```{pyodide-python}
+M = array([[1., 2.], [3., 4.]])
+
+print(M[0, 0])  # first row, first column
+
+print(M[-1, 0]) # last row, first column
+
+# Don't do this:
+print(M[0][0])
+print(M[0])
+```
+
+Compare this to accessing list elements.
+
+```{pyodide-python}
+L = [[1., 2.], [3., 4.]]
+
+print(L[0][0])
+
+print(L[-1][0])
+```
+
+## Creating matrices &hyphen; `eye`, `zeros`, `full`
+
+- `eye(n)` is the identity matrix of size $n$.
+- `zeros([n, m])` fills an $n\times m$ matrix with zeroes
+- `full([n, m], value)`fills an $n\times m$ matrix with `value`
+
+```{pyodide-python}
+id_matrix = eye(100)
+M0 = zeros((2, 3))     # using a list [2, 3]
+M1 = full((2, 3), 7.)  # using a tuple (2, 3)
+
+print(id_matrix)
+print(M0, '\n')
+print(M1)
+```
+
+## Creating random matrices
+
+```{pyodide-python}
+M1 = random.random((3, 4))
+print(M1)
+```
+
+## Shape
+
+The **shape** of a matrix is the tuple of its dimensions. The shape of an $n\times m$ matrix is (n,m). It is given by the *attribute* `shape`:
+
+```{pyodide-python}
+M = eye(3) 
+print(M.shape)
+V = array([1., 2., 1., 4.])
+print(V.shape)               # tuple with one element
+```
+
+#### Tip
+`zeros(A.shape)` returns a matrix with the same shape as A containing only zeros.
+
+## Transpose
+
+The transpose of a matrix $A$ is a matrix $B$ such that
+
+$$B_{ij} = A_{ji}.$$
+
+By transposing a matrix you switch the two shape elements.
+
+```{pyodide-python}
+A = array([[1, 2, 3],
+           [4, 5, 6]])
+print("A.shape =", A.shape)
+print(A[1,2])
+
+B = A.T  # A transpose
+print("B.shape =", B.shape, '\n')
+
+#B[0,0] = 11
+print("A =")
+print(A, '\n')
+print("B =")
+print(B)
+```
+
+## 1D vectors and 2D row/column matrices
+
+(here D stands for *tensor dimension*, i.e. the length of `shape`)
+
+```{pyodide-python}
+from numpy import array 
+v = array([1, 2, 3])
+
+Mcol = array([[1], 
+              [2], 
+              [3]])
+Mrow = array([[1, 2, 3]])
+
+print("v.shape = ", v.shape)
+print("Mcol.shape = ", Mcol.shape)
+print("Mrow.shape = ", Mrow.shape)
+
+print(Mcol)
+print(Mrow)
+print(Mrow.T)
+```
+
+Transposing a 1D vector doesn't change it
+
+## Matrix multiplication
+
+We can use the `dot` function for matrix multiplication. We can also use the `@` operator.
+
+If $A$ is a $n\times m$ matrix and $B$ a $m \times p$ matrix, then $AB$ is a $n\times p$ matrix.
+
+```{pyodide-python}
+from numpy import dot
+A = array([[1, 0, 0],        # n = 2, m = 3
+           [2, -1, 3]])
+B = array([[2, 1, 0, 4],     # m = 3, p = 4
+           [1, 1, -1, 0],
+           [0, 1, 2, 2]])
+
+  
+
+AB = dot(A, B)
+print(AB)
+
+# same as 
+AB = A @ B
+print(AB)
+
+# BA = dot(B, A)  # error
+```
+
+## Matrix vector multiplication
+
+A matrix can be multipled with a vector using `dot` or the `@` operator. 
+The multiplication is matrix multiplication, as if the vector was a column or row matrix. The result is a vector.
+
+$$ 
+\left(
+\begin{array}{rr}
+1 & 2
+\end{array}
+\right)
+\left(
+\begin{array}{rr}
+1 & 0 \\
+4 & -1
+\end{array}
+\right) 
+= 
+\left(
+\begin{array}{rr}
+9 & -2
+\end{array}
+\right)
+$$
+
+$$
+\left(
+\begin{array}{rr}
+1 & 0 \\
+4 & -1
+\end{array}
+\right) 
+\left(
+\begin{array}{rr}
+1 \\
+2
+\end{array}
+\right)
+= 
+\left(
+\begin{array}{rr}
+1 \\
+2
+\end{array}
+\right)
+$$
+
+```{pyodide-python}
+A = array([[1, 0],
+           [4, -1]])
+v = array([1, 2])
+
+vA = dot(v, A)
+vA = v @ A
+Av = dot(A, v)
+
+print(vA)
+print(Av)
+print("vA.shape =", vA.shape, " Av.shape = ", Av.shape)
+```
+
+## Dot product and `@` operator
+
+
+| vector vector | $s = \sum_i x_i y_i$ | `s = x @ y` or `s = dot(x,y)` | scalar product |
+|:---|:---|:---|:---|
+| matrix matrix | $C_{ij} = \sum_k A_{ik}B_{kj}$ | `C = A @ B` or `C = dot(A, B)` | matrix multiplication |
+| matrix vector | $y_i = \sum_j A_{ij}x_j$ | `y = A @ x` or `y = dot(A, x)` | matrix multiplication, treating vector as column matrix |
+| vector matrix | $y_j = \sum_i x_i A_{ij}$ | `y = x @ A` or `y = dot(x, A)` | matrix multiplication, treating vector as row matrix |
+
+## Linear transformations ‐ rotation matrix in the plane
+
+### Definition
+
+A **linear transformation** in the plane is a function $f:\mathbb{R}^2 \mapsto \mathbb{R}^2$  such that
+
+
+$f(a\mathbf{u} + b\mathbf{v}) = af
+(\mathbf{u}) + bf(\mathbf{v}) \text{ for all }a, b\in\mathbb{R} \text{ and } \mathbf{u}, \mathbf{v} \in \mathbb{R}^2$
+
+## Matrices and linear transformations
+
+Let $x= (x_1, x_2) \in \mathbb{R}^2$ and $y= (y_1, y_2) \in \mathbb{R}^2$. Let $y = f(x)$ be the function defined by
+
+$$
+\begin{cases}
+y_1 = ax_1 + bx_2 \\
+y_2 = cx_1 + dx_2
+\end{cases}
+$$
+
+for some numbers $a, b, c, d$. Then matrix multiplication can be used to describe $f$.
+Let 
+
+$$A = 
+\left(
+\begin{array}{rr}
+a & b \\
+c & d
+\end{array}
+\right),
+x = 
+\left(
+\begin{array}{rr}
+x_1 \\
+x_2
+\end{array}
+\right),
+y = 
+\left(
+\begin{array}{rr}
+y_1 \\
+y_2
+\end{array}
+\right).
+\text{ Then }
+y = Ax, \text{ i.e. }
+\left(
+\begin{array}{rr}
+y_1 \\
+y_2
+\end{array}
+\right)
+=
+\left(
+\begin{array}{rr}
+a & b \\
+c & d
+\end{array}
+\right)
+\left(
+\begin{array}{rr}
+x_1 \\
+x_2
+\end{array}
+\right)
+$$
+
+$A$ is a **transformation matrix** of $f$, $y = f(x) = Ax$
+
+## Finding the transformation matrix of a rotation in the plane
+
+Let $\mathbf{e_1}, \mathbf{e_2}$ be two basis vectors and let $A$ be a transformation matrix that rotates a vector $\mathbf{u} = x\mathbf{e_1} + y\mathbf{e_2}$ by an angle $\alpha $. To find $A$ it suffices to consider the basis vectors.
+
+![rotated basis](http://cmc.education/slides/notebookImages/rotatedBasis.svg)
+
+Now $ A\mathbf{u} = xA\mathbf{e_1} + yA\mathbf{e_1} = x\mathbf{e_1}' + y\mathbf{e_2}'$
+
+### Rotate a point
+
+```{pyodide-python}
+from matplotlib.pyplot import *
+from numpy import *
+%matplotlib inline
+alpha = pi/2
+A = array([[cos(alpha), -sin(alpha)],
+           [sin(alpha), cos(alpha)]])
+x = 3
+y = 3
+P = array([x, y]) # a vector
+AP = dot(A, P)    # a vector
+AP = A @ P 
+plot(x, y, 'bo')
+xlim(-5, 5)
+ylim(-5, 5)
+grid()
+plot(*AP, 'ro')  # unpack to get x and y
+```
+
+### Rotate many points
+
+**5min, let's go!**
+
+```{pyodide-python}
+
+```
+
+<nav class="bottom-page-nav" aria-label="Page navigation">
+  <a class="page-nav-link prev" href="lecture05.html">Previous: Lecture 5</a>
+  <a class="page-nav-link next" href="lecture07.html">Next: Lecture 7</a>
+</nav>
+
+```{pyodide-python}
+alpha = pi/2
+A = array([[cos(alpha), -sin(alpha)],
+           [sin(alpha), cos(alpha)]])
+x = linspace(-10, 10, 200)
+y = sin(3*x)
+M = array([x, y]) # 2 times 200 matrix
+AM = dot(A, M)    # 2 times 200 matrix
+plot(x, y)
+grid()
+plot(*AM)  # unpack to get a x-list and a y-list
+```
+
+```{pyodide-python}
+
+```

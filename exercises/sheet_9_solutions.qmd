@@ -95,3 +95,8 @@ B.plot()
 plt.show()
 print("B in A?", B in A)
 ```
+
+<nav class="bottom-page-nav" aria-label="Page navigation">
+  <a class="page-nav-link prev" href="sheet_8_solutions.html">Previous: Sheet 8 Solutions</a>
+  <a class="page-nav-link next" href="sheet_11_solutions.html">Next: Sheet 11 Solutions</a>
+</nav>

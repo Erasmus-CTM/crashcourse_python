@@ -94,3 +94,8 @@ Compare the number of iterations needed to find a root within tolerance $1\times
 #| read-only: false
 # TODO: compare Newton vs. bisection iteration errors and plot the results.
 ```
+
+<nav class="bottom-page-nav" aria-label="Page navigation">
+  <a class="page-nav-link prev" href="sheet_3.html">Previous: Sheet 3</a>
+  <a class="page-nav-link next" href="sheet_5.html">Next: Sheet 5</a>
+</nav>

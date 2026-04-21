@@ -1,0 +1,2266 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Computational Programming with Python – Python Crashcourse</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-5b4ad623e5705c0698d39aec6f10cf02.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/monaco-editor@0.46.0/min/vs/editor/editor.main.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+<style type="text/css">
+.monaco-editor pre {
+  background-color: unset !important;
+}
+
+.qpyodide-editor-toolbar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.qpyodide-editor-toolbar-left-buttons, .qpyodide-editor-toolbar-right-buttons {
+  display: flex;
+}
+
+.qpyodide-non-interactive-loading-container.qpyodide-cell-needs-evaluation, .qpyodide-non-interactive-loading-container.qpyodide-cell-evaluated {
+  justify-content: center;
+  display: flex;
+  background-color: rgba(250, 250, 250, 0.65);
+  border: 1px solid rgba(233, 236, 239, 0.65);
+  border-radius: 0.5rem;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.qpyodide-r-project-logo {
+  color: #2767B0; /* R Project's blue color */
+}
+
+.qpyodide-icon-status-spinner {
+  color: #7894c4;
+}
+
+.qpyodide-icon-run-code {
+  color: #0d9c29
+}
+
+.qpyodide-output-code-stdout {
+  color: #111;
+}
+
+.qpyodide-output-code-stderr {
+  color: #db4133;
+}
+
+.qpyodide-editor {
+  border: 1px solid #EEEEEE;
+}
+
+.qpyodide-editor-toolbar {
+  background-color: #EEEEEE;
+  padding: 0.2rem 0.5rem;
+}
+
+.qpyodide-button {
+  background-color: #EEEEEE;
+  display: inline-block;
+  font-weight: 400;
+  line-height: 1;
+  text-decoration: none;
+  text-align: center;
+  color: #000;
+  border-color: #dee2e6;
+  border: 1px solid rgba(0,0,0,0);
+  padding: 0.375rem 0.75rem;
+  font-size: .9rem;
+  border-radius: 0.25rem;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.qpyodide-button:hover {
+  color: #000;
+  background-color: #d9dce0;
+  border-color: #c8ccd0;
+}
+
+.qpyodide-button:disabled,.qpyodide-button.disabled,fieldset:disabled .qpyodide-button {
+  pointer-events: none;
+  opacity: .65
+}
+
+.qpyodide-button-reset {
+  color: #696969; /*#4682b4;*/
+}
+
+.qpyodide-button-copy {
+  color: #696969;
+}
+
+
+/* Custom styling for RevealJS Presentations*/
+
+/* Reset the style of the interactive area */
+.reveal div.qpyodide-interactive-area {
+  display: block;
+  box-shadow: none;
+  max-width: 100%;
+  max-height: 100%;
+  margin: 0;
+  padding: 0;
+} 
+
+/* Provide space to entries */
+.reveal div.qpyodide-output-code-area pre div {
+  margin: 1px 2px 1px 10px;
+}
+
+/* Collapse the inside code tags to avoid extra space between line outputs */
+.reveal pre div code.qpyodide-output-code-stdout, .reveal pre div code.qpyodide-output-code-stderr {
+  padding: 0;
+  display: contents;
+}
+
+.reveal pre div code.qpyodide-output-code-stdout {
+  color: #111;
+}
+
+.reveal pre div code.qpyodide-output-code-stderr {
+  color: #db4133;
+}
+
+
+/* Create a border around console and output (does not effect graphs) */
+.reveal div.qpyodide-console-area {
+  border: 1px solid #EEEEEE;
+  box-shadow: 2px 2px 10px #EEEEEE;
+}
+
+/* Cap output height and allow text to scroll */
+/* TODO: Is there a better way to fit contents/max it parallel to the monaco editor size? */
+.reveal div.qpyodide-output-code-area pre {
+  max-height: 400px;
+  overflow: scroll;
+}
+</style>
+<script type="module">
+// Document level settings ----
+
+// Determine if we need to install python packages
+globalThis.qpyodideInstallPythonPackagesList = [''];
+
+// Check to see if we have an empty array, if we do set to skip the installation.
+globalThis.qpyodideSetupPythonPackages = !(qpyodideInstallPythonPackagesList.indexOf("") !== -1);
+
+// Display a startup message?
+globalThis.qpyodideShowStartupMessage = true;
+
+// Describe the webR settings that should be used
+globalThis.qpyodideCustomizedPyodideOptions = {
+  "indexURL": "https://cdn.jsdelivr.net/pyodide/v0.27.2/full/",
+  "env": {
+    "HOME": "/home/pyodide",
+  }, 
+  stdout: (text) => {qpyodideAddToOutputArray(text, "out");},
+  stderr: (text) => {qpyodideAddToOutputArray(text, "error");}
+}
+
+// Store cell data
+globalThis.qpyodideCellDetails = [{"code":"def bisect(f, a, b, tol=1.e-8):\n    if f(a) * f(b) > 0:\n        raise ValueError(\"Incorrect initial [a , b ]\")\n    for i in range(1000):\n        c = (a + b) / 2.\n        if f(a) * f(c) <= 0:\n            b = c\n        else:\n            a = c\n        if abs(a - b) < tol:\n            return (a + b) / 2\n    raise Exception(\"No root found\")","id":1,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import unittest\n# from bisection import bisect\n\nclass TestIdentity(unittest.TestCase):\n    def test_identity(self):\n        tol = 1e-4\n        result = bisect(lambda x: x, -1., 1., tol=tol)\n        #print(result)\n        assert isinstance(result, float)\n        expected = 0.\n        self.assertAlmostEqual(result , expected, delta=tol)\n\nif __name__ == '__main__':\n    #unittest.main()\n    unittest.main(argv=[''], verbosity=2, exit=False)","id":2,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import unittest\nclass TestIdentity(unittest.TestCase):\n    expected = 0. # solution\n    def identity_fcn(self, x):\n        return x\n    def test_functionality(self):\n        result = bisect(self.identity_fcn, -1.2, 1., tol=1.e-8)\n        self.assertAlmostEqual(result, self.expected)\n    def test_reverse_boundaries(self):\n        result = bisect(self.identity_fcn, 1., -1.)\n        self.assertAlmostEqual(result, self.expected)\n    def test_exceeded_tolerance(self):\n        tol = 1.e-4\n        self.assertRaises(\n            Exception, bisect, self.identity_fcn,\n            -1.2, 1., tol\n        )\n        \nif __name__ == '__main__':\n    #unittest.main()\n    unittest.main(argv=[''], verbosity=2, exit=False)","id":3,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import pytest # import the pytest module use with the below tests\nimport numpy as np # modules that need to be installed should be listed in requirements.txt\nfrom bisection import bisect\n\ndef test_root():\n    tol = 1.e-8\n    interval, root = bisect(lambda x: x, -1.2, 1.,tol=tol)\n    assert abs(root) <= tol\ndef root_param(a, b, maxit):\n    interval, root = bisect(lambda x: x, a, b,tol=1e-8, maxit=maxit)\n    return root\n# use parameterize decorators to test different parameter sets\n@pytest.mark.parametrize(\"inpt, exptd\", [((-1.2, 1, 100), 0),\n                                          ((-1.2, 1, 10),  0),\n                                          ((-2, -1, 100), np.inf)])\ndef test(inpt, exptd):\n    root = root_param(*inpt)\n    assert abs(root - exptd) < 1e-8","id":4,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"from matplotlib.pyplot import * # c1.1\nimport time              # c1.2\nfrom numpy import sqrt   # c1.3\ndef func(x, n):      \n    y = x + 10           # c2\n    y = 2.5 * y          # c3\n    for i in range(n):\n        y = sqrt(y + 1)  # c4\n    return y\ndef timed_func(x, n):\n    start = time.time()\n    res = func(x, n)\n    return time.time() - start\nx = range(0,150)\ny = [timed_func(3.5, n) for n in x]\n\nplot(x,y, label='runtime')\nxlabel('n')\nlegend(); show()","id":5,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"n = 10\nfor i in range(n): # vector operation\n    ...\n    # characteristic operation performed n times\n    \nfor i in range(n): # matrix-vector multiplcation\n    for j in range(n):\n        ...\n        # characteristic operation performed n^2 times\n        \nfor i in range(n): # matrix-matrix muliplication\n    for j in range(n):\n        for k in range(n):\n            ...\n            # characteristic operation performed n^3 times","id":6,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"def matmul(A, b):\n    ''' Computes the square matrix multiplication `Ab=c` '''\n    rows = len(A)\n    c = np.zeros(rows)\n    for i in range(rows):\n        for j in range(rows):\n            c[i] += A[i, j] * b[j]\n    return c","id":7,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"from matplotlib.pyplot import *\nimport time\ndef fibonacci(n):\n    if n == 0:\n        return 0\n    elif n == 1:\n        return 1\n    else:\n        return fibonacci(n - 1) + fibonacci(n - 2)\n    \ndef f_time(n):\n    start = time.time()\n    f_n = fibonacci(n)\n    return time.time() - start \n\nns = list(range(0,40))\ntimes = [f_time(n) for n in ns]\nplot(ns, times)","id":8,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"from matplotlib.pyplot import *\ndef fibonacci(n):\n    if n == 0:\n        return 0\n    elif n == 1:\n        return 1\n    else:\n        return fibonacci(n - 1) + fibonacci(n - 2)\ndef timed_fibonacci(n):\n    start = time.time()\n    fib = fibonacci(n)\n    return time.time()-start\n\nx = range(0,35) # 35 to showcase\ny = [timed_fibonacci(n) for n in x]\n\nplot(x,y, label='runtime')\nxlabel('n')\nlegend(); show()","id":9,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"from matplotlib.pyplot import *\n\ndef fibonacci(n):\n    fib = [0, 1] + [0]*(n-1)\n    for i in range(2,n+1):\n        fib[i] = fib[i-1] + fib[i-2]\n    return fib\n\ndef timed_fibonacci(n):\n    start = time.time()\n    fib = fibonacci(n)\n    return time.time()-start\n    \ny_fast = [timed_fibonacci(n) for n in x]\n\n#plot(x,y, label='runtime')\nplot(x,y_fast, label='runtime')\nxlabel('n')\nlegend(); show()","id":10,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import this","id":11,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import time\n\nstart = time.time()\n\n# Do some work\nimport numpy as np\n\ns = np.sum(np.arange(1000_000))\nprint(\"The sum is \", s)\n\nend = time.time()\nprint(f\"Calculating the sum took {end - start:.4f} seconds\")","id":12,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import numpy as np\nimport timeit\n\nrepetitions = 1000\n\ntotal_execution_time = timeit.timeit(\n    \"sum(arange(1_000_000))\",\n    number=repetitions,\n    setup=\"from numpy import sum, arange\"\n)\n\nprint(f\"Calculating the sum took {total_execution_time / repetitions:.6f} seconds on average\")","id":13,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"%timeit np.sum(np.arange(1000_000))","id":14,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"def moving_average(a):\n    N = len(a)\n    m = np.zeros(N-2)\n    for j in range(len(m)):\n        m[j] = (a[j] + a[j+1] + a[j+2]) / 3\n    return m\n\na = [1, 0, 0, 1, 0]\nmoving_average(a)","id":15,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"# Use a big array when timing.\na = np.random.randn(10000)\n%timeit moving_average(a)","id":16,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"def moving_average_comp(a):\n    N = len(a)\n    return np.array([(a[j] + a[j+1] + a[j+2]) / 3\n                     for j in range(N-2)])\n\n%timeit moving_average_comp(a)\nprint(a)","id":17,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"def moving_average_vec(a):\n    return (a[:-2] + a[1:-1] + a[2:]) / 3\n\n%timeit moving_average_vec(a)\nprint(a)","id":18,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"a = np.random.rand(10000)\n%timeit a * a\n%timeit a**2\n%timeit a**2.0\n%timeit a**2.1","id":19,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"# from numpy import *\nimport numpy as np\nb = np.random.randn(10000)\n%timeit np.sum(b)\n%timeit sum(b)","id":20,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"!pip install line_profiler\n%load_ext line_profiler","id":21,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import numpy as np\ndef bisect(f, a, b, tol=1.e-8):\n    if f(a) * f(b) > 0:\n        raise ValueError(\"Incorrect initial [a , b ]\")\n    for i in range(100):\n        c = (a + b) / 2.\n        if f(a) * f(c) <= 0:\n            b = c\n        else:\n            a = c\n        if abs(a - b) < tol:\n            return (a + b) / 2\n    raise Exception(\"No root found\")\n    \ndef main():\n    bisect(lambda x: (x + 1) * x, -1, 1)\n    bisect(lambda x: np.exp(x) - 1, -1, 1)\n    bisect(lambda x: 4 - x, 2, 6)","id":22,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"%load_ext line_profiler\n%lprun -f bisect main()","id":23,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"def say_hi_before_running_the_function(func, *args, **kwargs):\n    print(\"Hi!\")\n    # The argument `func` is a function,\n    # we can run it and return its return value.\n    return func(*args, **kwargs)\n\nsay_hi_before_running_the_function(sum, range(10))","id":24,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"def decorator(func):\n    def wrapper(*args, **kwargs):\n        print(\"Before calling function.\")\n        val = func(*args, **kwargs)\n        print(\"After calling function.\")\n        return val\n    return wrapper\n\ndef f(x):\n    print(\"Greetings from f(x)!\")\n    return x + 3\n\n# Overwrite f with new function\nf = decorator(f)\nprint(f)\n\na = f(1)\nprint(a)","id":25,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"def decorator(func):\n    def wrapper(*args, **kwargs):\n        print(\"Before calling function.\")\n        val = func(*args, **kwargs)\n        print(\"After calling function.\")\n        return val\n    return wrapper\n\n@decorator           # the same as: f = decorator(f)\ndef f(x):\n    print(\"Greetings from f(x)!\")\n    return x + 3\n\na = f(1)\nprint(a)","id":26,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"def f(x, y, z):\n    '''Docstring of f(x, y, z)'''\n    pass\n\nf.message = 'Hello!'  # adding an attribute\n\nprint(f.message)\nprint(f.__name__)\nprint(f.__doc__)\nprint(45 * '-')\nhelp(f)","id":27,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"@decorator\ndef f(x):\n    '''The docstring of f(x)'''\n    pass\n\ndef g(x):\n    '''The docstring of g(x)'''\n    pass\n\n# we lost the __name__ and __doc__ of the decorated function\nprint(f.__name__)\nprint(f.__doc__)\nprint(45 * '-')\nprint(g.__name__)\nprint(g.__doc__)","id":28,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"from functools import wraps\n\ndef decorator(func):\n    @wraps(func)  # Transfers important information from func to wrapper\n    def wrapper(*args, **kwargs):\n        print(\"Before calling function.\")\n        val = func(*args, **kwargs)\n        print(\"After calling function.\")\n        return val\n    return wrapper\n\n@decorator\ndef f(x):\n    '''The docstring of f(x)'''\n    pass\n\nprint(f.__name__)\nprint(f.__doc__)","id":29,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import time\nfrom numpy import *\n\ndef showtime(func):\n    @wraps(func)\n    def wrapper(*args, **kwargs):\n        start = time.time()\n        val = func(*args, **kwargs)\n        end = time.time()\n        print(f\"{func.__name__} took {end - start:.2E} seconds.\")\n        return val\n    return wrapper","id":30,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"from numpy import array \ndef shift_using_loop(vec):\n    V = vec.copy()  # make a copy to keep vec intact\n    n = len(V)\n    for i in range(n-1, 0, -1):  # we must do this in reverse order\n        V[i] = V[i-1]\n    return V\n\ndef shift_using_slices(vec):\n    V = vec.copy()\n    V[1:] = V[:-1]\n    return V\n\nn = 10\n\nL = list(range(n))\nL1 = shift_using_loop(L)\nL2 = shift_using_slices(L)\n\nA = array(list(range(n)))\nA1 = shift_using_loop(A)\nA2 = shift_using_slices(A)\n\nprint(L)\nprint(L1)","id":31,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"@showtime\ndef shift_using_loop(vec):\n    V = vec.copy()             \n    n = len(V)\n    for i in range(n-1, 0, -1): \n        V[i] = V[i-1]\n    return V\n\n@showtime\ndef shift_using_slices(vec):\n    V = vec.copy()\n    V[1:] = V[:-1]\n    return V\n\nn = 1000000\n\nL = list(range(n))\nL1 = shift_using_loop(L)\nL2 = shift_using_slices(L)\n\nA = array(list(range(n)))\nA1 = shift_using_loop(A)\nA2 = shift_using_slices(A)","id":32,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"from functools import wraps\ndef gettime(func):\n    @wraps(func)\n    def wrapper(*args, **kwargs):\n        start = time.time()\n        val = func(*args, **kwargs)\n        end = time.time()\n        wrapper.time = end - start\n        return val\n    return wrapper\n\n@gettime\ndef using_loop(vec):\n    V = vec.copy()             \n    n = len(V)\n    for i in range(n-1, 0, -1): \n        V[i] = V[i-1]\n    return V\n\n@gettime\ndef using_slices(vec):\n    V = vec.copy()\n    V[1:] = V[:-1]\n    return V\n\nusing_slices(list(range(10)))\nprint(using_slices.time)       # the attribute is used on the function, not the function call","id":33,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"from matplotlib.pyplot import *\n\nn = 1000\nx = list(range(1, n))\ny1 = []\ny2 = []\n\nfor i in range(1, n):\n    L = list(range(i))\n    using_loop(L)\n    y1.append(using_loop.time)\n    using_slices(L)\n    y2.append(using_slices.time)\n    \nplot(x, y1, label=\"loop\")\nplot(x, y2, label=\"slicing\")\nlegend()","id":34,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"L = np.arange(100)\n%timeit using_loop(L)\n%timeit using_slices(L)","id":35,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}}];
+
+
+</script>
+<script type="module">
+// Declare startupMessageqpyodide globally
+globalThis.qpyodideStartupMessage = document.createElement("p");
+
+// Function to set the button text
+globalThis.qpyodideSetInteractiveButtonState = function(buttonText, enableCodeButton = true) {
+  document.querySelectorAll(".qpyodide-button-run").forEach((btn) => {
+    btn.innerHTML = buttonText;
+    btn.disabled = !enableCodeButton;
+  });
+}
+
+// Function to update the status message in non-interactive cells
+globalThis.qpyodideUpdateStatusMessage = function(message) {
+  document.querySelectorAll(".qpyodide-status-text.qpyodide-cell-needs-evaluation").forEach((elem) => {
+    elem.innerText = message;
+  });
+}
+
+// Function to update the status message
+globalThis.qpyodideUpdateStatusHeader = function(message) {
+
+  if (!qpyodideShowStartupMessage) return;
+
+  qpyodideStartupMessage.innerHTML = message;
+}
+
+// Status header update with customized spinner message
+globalThis.qpyodideUpdateStatusHeaderSpinner = function(message) {
+
+  qpyodideUpdateStatusHeader(`
+    <i class="fa-solid fa-spinner fa-spin qpyodide-icon-status-spinner"></i>
+    <span>${message}</span>
+  `);
+}
+
+
+// Function that attaches the document status message
+function qpyodideDisplayStartupMessage(showStartupMessage) {
+  if (!showStartupMessage) {
+    return;
+  }
+
+  // Get references to header elements
+  const headerHTML = document.getElementById("title-block-header");
+  const headerRevealJS = document.getElementById("title-slide");
+
+  // Create the outermost div element for metadata
+  const quartoTitleMeta = document.createElement("div");
+  quartoTitleMeta.classList.add("quarto-title-meta");
+
+  // Create the first inner div element
+  const firstInnerDiv = document.createElement("div");
+  firstInnerDiv.setAttribute("id", "qpyodide-status-message-area");
+
+  // Create the second inner div element for "Pyodide Status" heading and contents
+  const secondInnerDiv = document.createElement("div");
+  secondInnerDiv.setAttribute("id", "qpyodide-status-message-title");
+  secondInnerDiv.classList.add("quarto-title-meta-heading");
+  secondInnerDiv.innerText = "Pyodide Status";
+
+  // Create another inner div for contents
+  const secondInnerDivContents = document.createElement("div");
+  secondInnerDivContents.setAttribute("id", "qpyodide-status-message-body");
+  secondInnerDivContents.classList.add("quarto-title-meta-contents");
+
+  // Describe the Pyodide state
+  qpyodideStartupMessage.innerText = "🟡 Loading...";
+  qpyodideStartupMessage.setAttribute("id", "qpyodide-status-message-text");
+  // Add `aria-live` to auto-announce the startup status to screen readers
+  qpyodideStartupMessage.setAttribute("aria-live", "assertive");
+
+  // Append the startup message to the contents
+  secondInnerDivContents.appendChild(qpyodideStartupMessage);
+
+  // Combine the inner divs and contents
+  firstInnerDiv.appendChild(secondInnerDiv);
+  firstInnerDiv.appendChild(secondInnerDivContents);
+  quartoTitleMeta.appendChild(firstInnerDiv);
+
+  // Determine where to insert the quartoTitleMeta element
+  if (headerHTML || headerRevealJS) {
+    // Append to the existing "title-block-header" element or "title-slide" div
+    (headerHTML || headerRevealJS).appendChild(quartoTitleMeta);
+  } else {
+    // If neither headerHTML nor headerRevealJS is found, insert after "Pyodide-monaco-editor-init" script
+    const monacoScript = document.getElementById("qpyodide-monaco-editor-init");
+    const header = document.createElement("header");
+    header.setAttribute("id", "title-block-header");
+    header.appendChild(quartoTitleMeta);
+    monacoScript.after(header);
+  }
+}
+
+qpyodideDisplayStartupMessage(qpyodideShowStartupMessage);
+</script>
+<script type="module">
+// Create a logging setup
+globalThis.qpyodideMessageArray = []
+
+// Add messages to array
+globalThis.qpyodideAddToOutputArray = function(message, type) {
+  qpyodideMessageArray.push({ message, type });
+}
+
+// Function to reset the output array
+globalThis.qpyodideResetOutputArray = function() {
+  qpyodideMessageArray = [];
+}
+
+globalThis.qpyodideRetrieveOutput = function() {
+  return qpyodideMessageArray.map(entry => entry.message).join('\n');
+}
+
+// Start a timer
+const initializePyodideTimerStart = performance.now();
+
+// Encase with a dynamic import statement
+globalThis.qpyodideInstance = await import(
+  qpyodideCustomizedPyodideOptions.indexURL + "pyodide.mjs").then(
+   async({ loadPyodide }) => {
+
+    console.log("Start loading Pyodide");
+    
+    // Populate Pyodide options with defaults or new values based on `pyodide`` meta
+    let mainPyodide = await loadPyodide(
+      qpyodideCustomizedPyodideOptions
+    );
+    
+    // Setup a namespace for global scoping
+    // await loadedPyodide.runPythonAsync("globalScope = {}"); 
+    
+    // Update status to reflect the next stage of the procedure
+    qpyodideUpdateStatusHeaderSpinner("Initializing Python Packages");
+
+    // Load the `micropip` package to allow installation of packages.
+    await mainPyodide.loadPackage("micropip");
+    await mainPyodide.runPythonAsync(`import micropip`);
+
+    // Load the `pyodide_http` package to shim uses of `requests` and `urllib3`.
+    // This allows for `pd.read_csv(url)` to work flawlessly.
+    // Details: https://github.com/coatless-quarto/pyodide/issues/9
+    await mainPyodide.loadPackage("pyodide_http");
+    await mainPyodide.runPythonAsync(`
+    import pyodide_http
+    pyodide_http.patch_all()  # Patch all libraries
+    `);
+
+    // Load the `matplotlib` package with necessary environment hook
+    await mainPyodide.loadPackage("matplotlib");
+
+    // Set the backend for matplotlib to be interactive.
+    await mainPyodide.runPythonAsync(`
+    import matplotlib
+    matplotlib.use("module://matplotlib_pyodide.html5_canvas_backend")
+    from matplotlib import pyplot as plt
+    `);
+
+    // Unlock interactive buttons
+    qpyodideSetInteractiveButtonState(
+      `<i class="fa-solid fa-play qpyodide-icon-run-code"></i> <span>Run Code</span>`, 
+      true
+    );
+
+    // Set document status to viable
+    qpyodideUpdateStatusHeader(
+      "🟢 Ready!"
+    );
+
+    // Assign Pyodide into the global environment
+    globalThis.mainPyodide = mainPyodide;
+
+    console.log("Completed loading Pyodide");
+    return mainPyodide;
+  }
+);
+
+// Stop timer
+const initializePyodideTimerEnd = performance.now();
+
+// Create a function to retrieve the promise object.
+globalThis._qpyodideGetInstance = function() {
+    return qpyodideInstance;
+}
+
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Python Crashcourse</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-crashcourse" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Crashcourse</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-crashcourse">    
+        <li>
+    <a class="dropdown-item" href="../appendix/appendix_a1.html">
+ <span class="dropdown-text">A.1 Introduction</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../appendix/appendix_a2.html">
+ <span class="dropdown-text">A.2 Sequences and Sums</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../appendix/appendix_a3.html">
+ <span class="dropdown-text">A.3 Control Statements</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../appendix/appendix_a4.html">
+ <span class="dropdown-text">A.4 Functions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../appendix/appendix_a5.html">
+ <span class="dropdown-text">A.5 Number Representation</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../appendix/appendix_a6.html">
+ <span class="dropdown-text">A.6 Answers</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../appendix/appendix_all.html">
+ <span class="dropdown-text">A.All Combined</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-lecture-slides" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Lecture Slides</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-lecture-slides">    
+        <li>
+    <a class="dropdown-item" href="../slides/lecture01.html">
+ <span class="dropdown-text">Lecture 1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture02_summer.html">
+ <span class="dropdown-text">Lecture 2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture03_summer.html">
+ <span class="dropdown-text">Lecture 3</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture04.html">
+ <span class="dropdown-text">Lecture 4</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture05.html">
+ <span class="dropdown-text">Lecture 5</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture06.html">
+ <span class="dropdown-text">Lecture 6</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture07.html">
+ <span class="dropdown-text">Lecture 7</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture08.html">
+ <span class="dropdown-text">Lecture 8</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture09.html">
+ <span class="dropdown-text">Lecture 9</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture10.html">
+ <span class="dropdown-text">Lecture 10</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture11.html">
+ <span class="dropdown-text">Lecture 11</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture12.html">
+ <span class="dropdown-text">Lecture 12</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture13.html">
+ <span class="dropdown-text">Lecture 13</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture14.html">
+ <span class="dropdown-text">Lecture 14</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-exercises" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Exercises</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-exercises">    
+        <li>
+    <a class="dropdown-item" href="../exercises/sheet_2.html">
+ <span class="dropdown-text">Sheet 2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../exercises/sheet_3.html">
+ <span class="dropdown-text">Sheet 3</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../exercises/sheet_4.html">
+ <span class="dropdown-text">Sheet 4</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../exercises/sheet_5.html">
+ <span class="dropdown-text">Sheet 5</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../exercises/sheet_6.html">
+ <span class="dropdown-text">Sheet 6</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../exercises/sheet_7.html">
+ <span class="dropdown-text">Sheet 7</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../exercises/sheet_8.html">
+ <span class="dropdown-text">Sheet 8</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../exercises/sheet_9.html">
+ <span class="dropdown-text">Sheet 9</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../exercises/sheet_11.html">
+ <span class="dropdown-text">Sheet 11</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../exercises/sheet_12.html">
+ <span class="dropdown-text">Sheet 12</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../exercises/sheet_13.html">
+ <span class="dropdown-text">Sheet 13</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#lecture-13-time-complexity-testing-and-decorators" id="toc-lecture-13-time-complexity-testing-and-decorators" class="nav-link active" data-scroll-target="#lecture-13-time-complexity-testing-and-decorators">Lecture 13: Time complexity, testing and decorators</a>
+  <ul class="collapse">
+  <li><a href="#center-for-mathematical-sciences-lund-university" id="toc-center-for-mathematical-sciences-lund-university" class="nav-link" data-scroll-target="#center-for-mathematical-sciences-lund-university">Center for Mathematical Sciences, Lund University</a></li>
+  </ul></li>
+  <li><a href="#this-lecture" id="toc-this-lecture" class="nav-link" data-scroll-target="#this-lecture">This lecture</a></li>
+  <li><a href="#testing" id="toc-testing" class="nav-link" data-scroll-target="#testing">Testing</a>
+  <ul class="collapse">
+  <li><a href="#why-write-tests" id="toc-why-write-tests" class="nav-link" data-scroll-target="#why-write-tests">Why write tests?</a></li>
+  <li><a href="#automated-tests" id="toc-automated-tests" class="nav-link" data-scroll-target="#automated-tests">Automated tests</a></li>
+  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example</a>
+  <ul class="collapse">
+  <li><a href="#what-expectations-should-a-user-have" id="toc-what-expectations-should-a-user-have" class="nav-link" data-scroll-target="#what-expectations-should-a-user-have">What <em>expectations</em> should a user have?</a></li>
+  </ul></li>
+  <li><a href="#example-cont." id="toc-example-cont." class="nav-link" data-scroll-target="#example-cont.">Example (Cont.)</a></li>
+  <li><a href="#example-cont.-1" id="toc-example-cont.-1" class="nav-link" data-scroll-target="#example-cont.-1">Example (Cont.)</a></li>
+  <li><a href="#unittest-test-cases" id="toc-unittest-test-cases" class="nav-link" data-scroll-target="#unittest-test-cases">Unittest test cases</a></li>
+  <li><a href="#test-results" id="toc-test-results" class="nav-link" data-scroll-target="#test-results">Test results</a></li>
+  <li><a href="#unittest-grouping-tests-together" id="toc-unittest-grouping-tests-together" class="nav-link" data-scroll-target="#unittest-grouping-tests-together">Unittest: Grouping tests together</a></li>
+  <li><a href="#unittest.testcase.assertraises" id="toc-unittest.testcase.assertraises" class="nav-link" data-scroll-target="#unittest.testcase.assertraises">unittest.TestCase.assertRaises</a></li>
+  <li><a href="#pytest-tests-as-collection-of-functions-in-a-file-called-test_py" id="toc-pytest-tests-as-collection-of-functions-in-a-file-called-test_py" class="nav-link" data-scroll-target="#pytest-tests-as-collection-of-functions-in-a-file-called-test_py">pytest: tests as collection of functions in a file called test_…py</a></li>
+  </ul></li>
+  <li><a href="#time-complexity" id="toc-time-complexity" class="nav-link" data-scroll-target="#time-complexity">Time complexity</a>
+  <ul class="collapse">
+  <li><a href="#example-estimating-the-time" id="toc-example-estimating-the-time" class="nav-link" data-scroll-target="#example-estimating-the-time">Example: estimating the time</a></li>
+  <li><a href="#asymptotic-notation" id="toc-asymptotic-notation" class="nav-link" data-scroll-target="#asymptotic-notation">Asymptotic notation</a></li>
+  <li><a href="#using-asymptotic-notation" id="toc-using-asymptotic-notation" class="nav-link" data-scroll-target="#using-asymptotic-notation">Using asymptotic notation</a></li>
+  <li><a href="#using-asymptotic-notation-cont" id="toc-using-asymptotic-notation-cont" class="nav-link" data-scroll-target="#using-asymptotic-notation-cont">Using asymptotic notation (cont)</a></li>
+  <li><a href="#nested-loops" id="toc-nested-loops" class="nav-link" data-scroll-target="#nested-loops">Nested loops</a></li>
+  <li><a href="#example-square-matrix-multiplication" id="toc-example-square-matrix-multiplication" class="nav-link" data-scroll-target="#example-square-matrix-multiplication">Example: square matrix multiplication</a></li>
+  <li><a href="#divide-and-conquer-algorithms" id="toc-divide-and-conquer-algorithms" class="nav-link" data-scroll-target="#divide-and-conquer-algorithms">Divide and conquer algorithms</a></li>
+  <li><a href="#a-bad-implementation-of-the-fibonacci-sequence" id="toc-a-bad-implementation-of-the-fibonacci-sequence" class="nav-link" data-scroll-target="#a-bad-implementation-of-the-fibonacci-sequence">A bad implementation of the Fibonacci sequence</a></li>
+  <li><a href="#a-good-implementation-of-the-fibonacci-sequence" id="toc-a-good-implementation-of-the-fibonacci-sequence" class="nav-link" data-scroll-target="#a-good-implementation-of-the-fibonacci-sequence">A good implementation of the Fibonacci sequence</a></li>
+  <li><a href="#complexity-of-container-access" id="toc-complexity-of-container-access" class="nav-link" data-scroll-target="#complexity-of-container-access">Complexity of container access</a></li>
+  </ul></li>
+  <li><a href="#timing-and-profiling" id="toc-timing-and-profiling" class="nav-link" data-scroll-target="#timing-and-profiling">Timing and profiling</a>
+  <ul class="collapse">
+  <li><a href="#slow-code" id="toc-slow-code" class="nav-link" data-scroll-target="#slow-code">Slow code</a></li>
+  <li><a href="#the-zen-of-python" id="toc-the-zen-of-python" class="nav-link" data-scroll-target="#the-zen-of-python">The Zen of Python</a></li>
+  <li><a href="#finding-the-slow-parts" id="toc-finding-the-slow-parts" class="nav-link" data-scroll-target="#finding-the-slow-parts">Finding the slow parts</a>
+  <ul class="collapse">
+  <li><a href="#measuring-execution-time" id="toc-measuring-execution-time" class="nav-link" data-scroll-target="#measuring-execution-time">Measuring execution time</a></li>
+  <li><a href="#problems" id="toc-problems" class="nav-link" data-scroll-target="#problems">Problems</a></li>
+  <li><a href="#better---use-the-timeit-module" id="toc-better---use-the-timeit-module" class="nav-link" data-scroll-target="#better---use-the-timeit-module">Better - use the <code>timeit</code> module</a></li>
+  <li><a href="#even-better---use-the-timeit-ipython-magic" id="toc-even-better---use-the-timeit-ipython-magic" class="nav-link" data-scroll-target="#even-better---use-the-timeit-ipython-magic">Even better - use the <code>%timeit</code> IPython magic</a></li>
+  <li><a href="#example---moving-average" id="toc-example---moving-average" class="nav-link" data-scroll-target="#example---moving-average">Example - moving average</a></li>
+  <li><a href="#takeaway-numpy-vector-operations-vs.-for-loop" id="toc-takeaway-numpy-vector-operations-vs.-for-loop" class="nav-link" data-scroll-target="#takeaway-numpy-vector-operations-vs.-for-loop">Takeaway: Numpy vector operations vs.&nbsp;for loop</a></li>
+  <li><a href="#example---pow-vs.-mul" id="toc-example---pow-vs.-mul" class="nav-link" data-scroll-target="#example---pow-vs.-mul">Example - pow vs.&nbsp;mul</a></li>
+  <li><a href="#example---common-mistake" id="toc-example---common-mistake" class="nav-link" data-scroll-target="#example---common-mistake">Example - common mistake!</a></li>
+  </ul></li>
+  <li><a href="#how-to-profile-larger-programs" id="toc-how-to-profile-larger-programs" class="nav-link" data-scroll-target="#how-to-profile-larger-programs">How to profile larger programs?</a></li>
+  <li><a href="#golden-rules" id="toc-golden-rules" class="nav-link" data-scroll-target="#golden-rules">Golden rules</a>
+  <ul class="collapse">
+  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a></li>
+  <li><a href="#using-lprun" id="toc-using-lprun" class="nav-link" data-scroll-target="#using-lprun">Using <code>%lprun</code></a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#decorators" id="toc-decorators" class="nav-link" data-scroll-target="#decorators">Decorators</a>
+  <ul class="collapse">
+  <li><a href="#decorators-1" id="toc-decorators-1" class="nav-link" data-scroll-target="#decorators-1">Decorators</a></li>
+  <li><a href="#use-the-decorator-function-as-a-decorator" id="toc-use-the-decorator-function-as-a-decorator" class="nav-link" data-scroll-target="#use-the-decorator-function-as-a-decorator">Use the decorator function as a “decorator”</a></li>
+  <li><a href="#functions-are-objects" id="toc-functions-are-objects" class="nav-link" data-scroll-target="#functions-are-objects">Functions are objects</a></li>
+  <li><a href="#the-name-and-docstring-using-a-decorator" id="toc-the-name-and-docstring-using-a-decorator" class="nav-link" data-scroll-target="#the-name-and-docstring-using-a-decorator">The name and docstring using a decorator</a></li>
+  <li><a href="#the-name-and-docstring-using-a-decorator-cont" id="toc-the-name-and-docstring-using-a-decorator-cont" class="nav-link" data-scroll-target="#the-name-and-docstring-using-a-decorator-cont">The name and docstring using a decorator (cont)</a></li>
+  <li><a href="#example-3" id="toc-example-3" class="nav-link" data-scroll-target="#example-3">Example</a></li>
+  <li><a href="#example-cont" id="toc-example-cont" class="nav-link" data-scroll-target="#example-cont">Example (cont)</a></li>
+  <li><a href="#example-cont-1" id="toc-example-cont-1" class="nav-link" data-scroll-target="#example-cont-1">Example (cont)</a></li>
+  <li><a href="#example-cont-2" id="toc-example-cont-2" class="nav-link" data-scroll-target="#example-cont-2">Example (cont)</a></li>
+  <li><a href="#example-cont-3" id="toc-example-cont-3" class="nav-link" data-scroll-target="#example-cont-3">Example (cont)</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+<script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.46.0/min/vs/loader.js"></script>
+<script type="module" id="qpyodide-monaco-editor-init">
+
+  // Configure the Monaco Editor's loader
+  require.config({
+    paths: {
+      'vs': 'https://cdn.jsdelivr.net/npm/monaco-editor@0.46.0/min/vs'
+    }
+  });
+</script>
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Computational Programming with Python</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="lecture-13-time-complexity-testing-and-decorators" class="level2">
+<h2 class="anchored" data-anchor-id="lecture-13-time-complexity-testing-and-decorators">Lecture 13: Time complexity, testing and decorators</h2>
+<section id="center-for-mathematical-sciences-lund-university" class="level3">
+<h3 class="anchored" data-anchor-id="center-for-mathematical-sciences-lund-university">Center for Mathematical Sciences, Lund University</h3>
+<p>Lecturer: Malin Christersson, <code>Robert Klöfkorn</code></p>
+</section>
+</section>
+<section id="this-lecture" class="level1">
+<h1>This lecture</h1>
+<ul>
+<li>Testing
+<ul>
+<li><code>unittest</code> framework</li>
+</ul></li>
+<li>Time complexity
+<ul>
+<li>“Big O notation”</li>
+</ul></li>
+<li>Timing and profiling
+<ul>
+<li>The <code>timeit</code> module</li>
+</ul></li>
+<li>Decorators</li>
+</ul>
+</section>
+<section id="testing" class="level1">
+<h1>Testing</h1>
+<section id="why-write-tests" class="level3">
+<h3 class="anchored" data-anchor-id="why-write-tests">Why write tests?</h3>
+<ul>
+<li>Because you do them <em>anyway</em></li>
+<li>They keep your code <em>alive</em></li>
+<li>Prevents introducing bugs</li>
+</ul>
+</section>
+<section id="automated-tests" class="level3">
+<h3 class="anchored" data-anchor-id="automated-tests">Automated tests</h3>
+<ul>
+<li>ensure a constant (high) quality standard of your code</li>
+<li>serve as a documentation of the use of your code</li>
+</ul>
+</section>
+<section id="example" class="level2">
+<h2 class="anchored" data-anchor-id="example">Example</h2>
+<p>Let’s assume we want to test an implementation of the bisection algorithm:</p>
+<div id="qpyodide-insertion-location-1"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<section id="what-expectations-should-a-user-have" class="level3">
+<h3 class="anchored" data-anchor-id="what-expectations-should-a-user-have">What <em>expectations</em> should a user have?</h3>
+<p>We should test those expectations: * Returned value is a root of the function (within tolerance). * If the initial interval is <strong>“bad”</strong>, an exeption should be raised. * If no root is found, an exeption should be raised. * If the interval is reversed… the function should still work as expected.</p>
+</section>
+</section>
+<section id="example-cont." class="level2">
+<h2 class="anchored" data-anchor-id="example-cont.">Example (Cont.)</h2>
+<p>We check a problem with a known solution. Does the code find a zero of <span class="math inline">\(f(x) = x\)</span>?</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># test_bisection.py</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> numpy <span class="im">import</span> allclose</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_identity():</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    expected <span class="op">=</span> <span class="fl">0.</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> bisect(<span class="kw">lambda</span> x: x, <span class="op">-</span><span class="fl">1.</span>, <span class="fl">1.</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> allclose(result, expected), <span class="st">'expected zero not found'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Note the command <code>allclose</code>.</p>
+</section>
+<section id="example-cont.-1" class="level2">
+<h2 class="anchored" data-anchor-id="example-cont.-1">Example (Cont.)</h2>
+<p>Does the code handle wrong input correctly?</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># test_bisection.py</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_badinput():</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        bisect(<span class="kw">lambda</span> x: x, <span class="fl">0.5</span>, <span class="dv">1</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">ValueError</span>:</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">pass</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">AssertionError</span>(<span class="st">"does not raise exeption despite bad input"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="unittest-test-cases" class="level2">
+<h2 class="anchored" data-anchor-id="unittest-test-cases">Unittest test cases</h2>
+<p>You will want to <em>put your test together</em> and automatize them:</p>
+<div id="qpyodide-insertion-location-2"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>Run with <code>python -m unittest</code> in the folder where the test files are located.</p>
+</section>
+<section id="test-results" class="level2">
+<h2 class="anchored" data-anchor-id="test-results">Test results</h2>
+<p>Here are the results with two different tolerance parameters:</p>
+<pre><code>on test_bisection.py 
+.
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+OK</code></pre>
+<p>…and here with a loose tolerance</p>
+<pre><code>F
+======================================================================
+FAIL: test_identity (__main__.TestIdentity)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "test_bisection.py", line 9, in test_identity
+    self.assertAlmostEqual(result, expected)
+AssertionError: -3.0517578125e-05 != 0.0 within 7 places (3.0517578125e-05 difference)
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (failures=1)</code></pre>
+</section>
+<section id="unittest-grouping-tests-together" class="level2">
+<h2 class="anchored" data-anchor-id="unittest-grouping-tests-together">Unittest: Grouping tests together</h2>
+<p>We recommend to group tests</p>
+<div id="qpyodide-insertion-location-3"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="unittest.testcase.assertraises" class="level2">
+<h2 class="anchored" data-anchor-id="unittest.testcase.assertraises">unittest.TestCase.assertRaises</h2>
+<p>Note the method <code>assertRaises</code>:</p>
+<ul>
+<li><code>Exception</code>: the expected exception type</li>
+<li><code>bisect</code>: the function to be called</li>
+<li><code>self.identity_fcn, -1.2, 1., tol</code>: the parameters of this function</li>
+</ul>
+<p><code>unittest</code> is a built-in Python testing framework. <code>pytest</code> is another framework for testing in Python.</p>
+</section>
+<section id="pytest-tests-as-collection-of-functions-in-a-file-called-test_py" class="level2">
+<h2 class="anchored" data-anchor-id="pytest-tests-as-collection-of-functions-in-a-file-called-test_py">pytest: tests as collection of functions in a file called test_…py</h2>
+<p>Group your tests in a separate file.</p>
+<ul>
+<li>The filename should start with <code>test</code>.</li>
+<li>All functions executing tests should start with <code>test</code>.</li>
+</ul>
+<p>Run with <code>pytest</code> in the folder where the test files are located.</p>
+<div id="qpyodide-insertion-location-4"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+</section>
+<section id="time-complexity" class="level1">
+<h1>Time complexity</h1>
+<p>The estimated time of an algorithm should be independent of</p>
+<ul>
+<li>the programming language used to implement the algorithm</li>
+<li>the computer/OS used when implementing the algorithm</li>
+</ul>
+<section id="example-estimating-the-time" class="level2">
+<h2 class="anchored" data-anchor-id="example-estimating-the-time">Example: estimating the time</h2>
+<p>Consider this program:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> numpy <span class="im">import</span> sqrt   <span class="co"># c1</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> func(x, n):      </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> x <span class="op">+</span> <span class="dv">10</span>           <span class="co"># c2</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> <span class="fl">2.5</span> <span class="op">*</span> y          <span class="co"># c3</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        y <span class="op">=</span> sqrt(y <span class="op">+</span> <span class="dv">1</span>)  <span class="co"># c4</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> y</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> func(<span class="fl">3.5</span>, <span class="dv">100</span>)       <span class="co"># c5</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Assume that all single operations take constant time <span class="math inline">\(c_i\)</span>, then the total runtime</p>
+<p><span class="math display">\[T(n) = c_1 + c_5 + c_2 + c_3 + n\cdot c_4 = a + b\cdot n \]</span></p>
+<p>is a function depending on <span class="math inline">\(n\)</span>.</p>
+<div id="qpyodide-insertion-location-5"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="asymptotic-notation" class="level2">
+<h2 class="anchored" data-anchor-id="asymptotic-notation">Asymptotic notation</h2>
+<p>We can measure the <strong>asymptotic</strong> growth of a function <span class="math inline">\(f\)</span>, thus not having to use constants.</p>
+<section id="definition" class="level4">
+<h4 class="anchored" data-anchor-id="definition">Definition</h4>
+<p>An asymptotic upper bound of <span class="math inline">\(f\)</span> is given by <span class="math inline">\(O(g(n))\)</span>, i.e.&nbsp;</p>
+<p><span class="math inline">\(f(n) = O(g(n))\)</span> if there exist positive constants <span class="math inline">\(c\)</span> and <span class="math inline">\(n_0\)</span> such that</p>
+<p><span class="math display">\[0 \le |f(n)| \le c \, g(n) \text{ for all } n \ge n_0.\]</span></p>
+<p>This means: if <span class="math inline">\(g(n) \in \mathcal{O}(f(n))\)</span> then <span class="math inline">\(g\)</span> grows at most as fast as <span class="math inline">\(f\)</span> in the asymptote.</p>
+</section>
+<section id="example-1" class="level4">
+<h4 class="anchored" data-anchor-id="example-1">Example 1</h4>
+<p>Let <span class="math inline">\(T(n) = a+b\cdot n\)</span> where <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> are positive constants, then <span class="math inline">\(T(n)\)</span> is <span class="math inline">\(O(n)\)</span>.</p>
+<p>If <span class="math inline">\(n\ge 1\)</span> then <span class="math display">\[T(n) = a+b\cdot n \le a\cdot n+b \cdot n = (a+b)\cdot n\]</span></p>
+<p>hence, we can use <span class="math inline">\(n_0 = 1\)</span> and <span class="math inline">\(c = a+b\)</span> in the definition.</p>
+</section>
+<section id="example-2" class="level4">
+<h4 class="anchored" data-anchor-id="example-2">Example 2</h4>
+<p>Let <span class="math inline">\(T(n) = a + bn^2\)</span> where <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> are positive constants, then <span class="math inline">\(T(n)\)</span> is <strong>not</strong> in <span class="math inline">\(O(n)\)</span>.</p>
+<p>Because for <strong>any</strong> <span class="math inline">\(c\)</span>, if <span class="math inline">\(n &gt; c/b\)</span>, then</p>
+<p><span class="math display">\[T(n) = a + bn^2 &gt; c n.\]</span></p>
+<p>Instead, <span class="math inline">\(T(n)\)</span> is <span class="math inline">\(O(n^2)\)</span> because if <span class="math inline">\(n \ge \sqrt{a}\)</span> then</p>
+<p><span class="math display">\[ T(n) = a + bn^2 \le n^2 + bn^2 = (b + 1) n^2\]</span></p>
+<p>hence, we can use <span class="math inline">\(n_0 \ge \sqrt{a}\)</span> and <span class="math inline">\(c = b+1\)</span> in the definition.</p>
+</section>
+</section>
+<section id="using-asymptotic-notation" class="level2">
+<h2 class="anchored" data-anchor-id="using-asymptotic-notation">Using asymptotic notation</h2>
+<p>When using asymptotic notation for estimating time complexity, we can single out an operation as a <strong>characteristic operation</strong>, the operation that is performed the most number of times for large values of <span class="math inline">\(n\)</span>.</p>
+<p>Instead of estimating the time a <strong>program</strong> takes, we let <span class="math inline">\(T(n)\)</span> be the number of characteristic operations of an <strong>algorithm</strong>, given an input of size <span class="math inline">\(n\)</span>.</p>
+</section>
+<section id="using-asymptotic-notation-cont" class="level2">
+<h2 class="anchored" data-anchor-id="using-asymptotic-notation-cont">Using asymptotic notation (cont)</h2>
+<p>In the function <code>func</code></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> numpy <span class="im">import</span> sqrt     </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> func(x, n):      </span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> x <span class="op">+</span> <span class="dv">10</span>           </span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> <span class="fl">2.5</span> <span class="op">*</span> y            </span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>        y <span class="op">=</span>  sqrt(y <span class="op">+</span> <span class="dv">1</span>)   </span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> y</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> func(<span class="fl">3.5</span>, <span class="dv">100</span>)       </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>y = sqrt(y + 1)</code> is the characteristic operation, let <span class="math inline">\(T(n)\)</span> be the number of times this operation is performed, then <span class="math inline">\(T(n) = n\)</span> and the time complexity of the program is <span class="math inline">\(O(n)\)</span>.</p>
+<p><span class="math display">\[ \begin{cases}
+y_0 &amp;= \bar{y}_0 \\
+y_i &amp;= \sqrt{y_{i-1}+1}, \quad i = 1, 2, \ldots n
+\end{cases}\]</span></p>
+</section>
+<section id="nested-loops" class="level2">
+<h2 class="anchored" data-anchor-id="nested-loops">Nested loops</h2>
+<p>The three loops</p>
+<div id="qpyodide-insertion-location-6"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>have time complexities <span class="math inline">\(O(n), O(n^2)\)</span>, and <span class="math inline">\(O(n^3)\)</span> respectively.</p>
+</section>
+<section id="example-square-matrix-multiplication" class="level2">
+<h2 class="anchored" data-anchor-id="example-square-matrix-multiplication">Example: square matrix multiplication</h2>
+<p>Analyse the time complexity of this algorithm for matrix multiplication.</p>
+<ul>
+<li>What is <code>n</code> (the problem size) in this example?</li>
+<li>What is the charateristic operation?</li>
+<li>What is the time complexity of this algorithm?</li>
+</ul>
+<div id="qpyodide-insertion-location-7"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p><strong>2min discussion! Let’s go</strong></p>
+</section>
+<section id="divide-and-conquer-algorithms" class="level2">
+<h2 class="anchored" data-anchor-id="divide-and-conquer-algorithms">Divide and conquer algorithms</h2>
+<p>Divide and conquer algorithms, such as the bisection method, has a logarithmic time complexity, e.g.&nbsp;<span class="math inline">\(O(\log n)\)</span> or <span class="math inline">\(O(n\log n)\)</span>.</p>
+<section id="example-1-1" class="level4">
+<h4 class="anchored" data-anchor-id="example-1-1">Example 1</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> solve_problem(....)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    divide the problem into two parts,</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    then solve only one of them.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>If the input is a problem of size <span class="math inline">\(n\)</span>, the worst case scenario is that we have to divide <span class="math inline">\(n\)</span> by <span class="math inline">\(2\)</span> until we get some singleton. We can do that <span class="math inline">\(O(\log_2 n)\)</span> times.</p>
+</section>
+<section id="example-2-1" class="level4">
+<h4 class="anchored" data-anchor-id="example-2-1">Example 2</h4>
+<p>For the bisection method the <code>problem size</code> <span class="math inline">\(n\)</span> is the length of the interval <span class="math inline">\([a, b]\)</span> divided by the tolerance <span class="math inline">\(TOL\)</span></p>
+<p><span class="math display">\[n \approx \frac{b - a}{TOL}.\]</span> To solve the problem, have to <strong>split the interval into two</strong> <span class="math inline">\(T(n)\)</span> times (this is our characteristic operation).</p>
+<p>We stop <strong>before</strong> we get an interval of length <span class="math inline">\(TOL / 2\)</span></p>
+<p><span class="math display">\[\frac{b - a}{2^{T(n)}} \ge \frac{TOL}{2} \]</span></p>
+<p>then</p>
+<p><span class="math display">\[ 2 \frac{b - a}{TOL} \ge 2^{T(n)} \implies 1+\log_2{n} \ge {T(n)} \]</span></p>
+<p>and <span class="math inline">\(T(n) \in O(\log_2 n)\)</span>.</p>
+<p>The base of the logarithm doesn’t matter when considering asymptotic growth,</p>
+<p><span class="math display">\[\log_2(x) = \frac{\log_a(x)}{\log_a(2)} = constant \cdot \log_a(x) \]</span></p>
+<p>hence $O(_2 n) = O(_a n) = O(n) $.</p>
+<p><strong>Therefore, we use only</strong> <span class="math inline">\(O(\log n)\)</span>.</p>
+</section>
+</section>
+<section id="a-bad-implementation-of-the-fibonacci-sequence" class="level2">
+<h2 class="anchored" data-anchor-id="a-bad-implementation-of-the-fibonacci-sequence">A bad implementation of the Fibonacci sequence</h2>
+<p>$ $ <span class="math display">\[
+\begin{cases}
+F_0 = 0 \\
+F_1 = 1 \\
+F_n = F_{n-1}+F_{n-2}
+\end{cases}
+\]</span></p>
+<p>What is the time complexity of of this sequence?</p>
+<ul>
+<li>Implement the Fibonacci sequence <code>fibonacci(n)</code> the returns the n’th sequence member</li>
+<li>Write a function that takes a <code>n</code> and calls <code>fibonacci(n)</code> but returns the execution time.</li>
+<li>Measure the time with <code>time.time()</code> before and after. The execution time is the difference.</li>
+<li>Plot execution time vs.&nbsp;n (number of sequence members) for <span class="math inline">\(n=0,...15\)</span>.</li>
+</ul>
+<p><strong>5min, let’s go!</strong></p>
+<div id="qpyodide-insertion-location-8"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div id="qpyodide-insertion-location-9"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>Let <span class="math inline">\(T(0)=T(1)=1\in \mathcal{O}(1)\)</span>. We have that</p>
+<p><span class="math display">\[
+T(n) \approx T(n - 1) + T(n - 2) &gt; 2 T(n - 2) \ge 2^k T(n - 2k), \quad 1 \le k \le n/2.
+\]</span></p>
+<p>Select <span class="math inline">\(k = n/2\)</span> for even <span class="math inline">\(n\)</span> and <span class="math inline">\(k = (n-1)/2\)</span> for odd <span class="math inline">\(n\)</span>. In either case, <span class="math display">\[T(n) \ge 2^{k} \ge \sqrt{2}^{n-1}. \]</span></p>
+<p>Thus <span class="math inline">\(T(n) \in O(2^n)\)</span> but not in <span class="math inline">\(O(n^m)\)</span> for any <span class="math inline">\(m\)</span>.</p>
+<p><em>This algorithm</em> to compute the Fibonacci sequence has <em>exponential</em> time complexity.</p>
+<p><strong>Question</strong></p>
+<p>Is there a better algorithm? <strong>(2min discussion, let’s go)</strong></p>
+</section>
+<section id="a-good-implementation-of-the-fibonacci-sequence" class="level2">
+<h2 class="anchored" data-anchor-id="a-good-implementation-of-the-fibonacci-sequence">A good implementation of the Fibonacci sequence</h2>
+<div id="qpyodide-insertion-location-10"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="complexity-of-container-access" class="level2">
+<h2 class="anchored" data-anchor-id="complexity-of-container-access">Complexity of container access</h2>
+<p>See <a href="https://wiki.python.org/moin/TimeComplexity">Time Complexity</a> for the different complexities when dealing with Python containers such as <code>list</code>, <code>dict</code> and <code>set</code>.</p>
+</section>
+</section>
+<section id="timing-and-profiling" class="level1">
+<h1>Timing and profiling</h1>
+<section id="slow-code" class="level2">
+<h2 class="anchored" data-anchor-id="slow-code">Slow code</h2>
+<p>The code is slow. Why?</p>
+<p>Three possible reasons:</p>
+<ul>
+<li><p>The problem is big (large <span class="math inline">\(n\)</span>) - <em>Not much to do about this</em></p></li>
+<li><p>The algorithm is slow (perhaps <span class="math inline">\(O(n^k)\)</span> with <span class="math inline">\(k\)</span> large) - <em>Nor this</em></p></li>
+<li><p>The implementation is bad (recursive, etc.) - <em>We can fix this!</em></p></li>
+</ul>
+</section>
+<section id="the-zen-of-python" class="level2">
+<h2 class="anchored" data-anchor-id="the-zen-of-python">The Zen of Python</h2>
+<div id="qpyodide-insertion-location-11"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="finding-the-slow-parts" class="level2">
+<h2 class="anchored" data-anchor-id="finding-the-slow-parts">Finding the slow parts</h2>
+<p>Different parts of the code are differently fast.</p>
+<p><em>Profiling</em> means that we run the program and measure how much time is spent in each function.</p>
+<p>A good way to do this is to use the <code>cProfile</code> module.</p>
+<p>Another option is to use a <em>line profiler</em> - we will look at this later.</p>
+<section id="measuring-execution-time" class="level3">
+<h3 class="anchored" data-anchor-id="measuring-execution-time">Measuring execution time</h3>
+<p>Simplest way - using the <code>time</code> module</p>
+<div id="qpyodide-insertion-location-12"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="problems" class="level3">
+<h3 class="anchored" data-anchor-id="problems">Problems</h3>
+<ul>
+<li>execution time varies</li>
+<li>lots of noise, especially if the operation you are measuring is fast</li>
+</ul>
+</section>
+<section id="better---use-the-timeit-module" class="level3">
+<h3 class="anchored" data-anchor-id="better---use-the-timeit-module">Better - use the <code>timeit</code> module</h3>
+<p>The <code>timeit.timeit</code> method gives you more reliable measurements.</p>
+<p>It has several keyword arguments.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>timeit.timeit(stmt<span class="op">=</span><span class="st">'pass'</span>, setup<span class="op">=</span><span class="st">'pass'</span>, number<span class="op">=</span><span class="dv">1000000</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li><code>setup</code> is executed before the <code>stmt</code> that is timed,</li>
+<li><code>number</code> is the number of repetitions.</li>
+</ul>
+<section id="for-other-timeit-methods-consult-the-course-book." class="level6">
+<h6 class="anchored" data-anchor-id="for-other-timeit-methods-consult-the-course-book.">For other <code>timeit</code> methods, consult the course book.</h6>
+<div id="qpyodide-insertion-location-13"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+</section>
+<section id="even-better---use-the-timeit-ipython-magic" class="level3">
+<h3 class="anchored" data-anchor-id="even-better---use-the-timeit-ipython-magic">Even better - use the <code>%timeit</code> IPython magic</h3>
+<ul>
+<li><strong>Automatically determines number of repetitions neccessary to get statistically significant results</strong></li>
+<li>The <code>%timeit</code> magic is ideal for measuring execution time of short statements</li>
+<li>Only avaliable in the IPython console!</li>
+</ul>
+<p>From the IPython console</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>In [<span class="dv">1</span>]: <span class="op">%</span>timeit np.<span class="bu">sum</span>(np.arange(<span class="dv">1000_000</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><em>Or</em> from the terminal</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> python <span class="at">-m</span> timeit <span class="at">--setup</span> <span class="st">"import numpy as np"</span> <span class="st">"np.sum(np.arange(1000_000))"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Note that in the above a <code>--setup</code> argument is passed to import <code>numpy</code> before running the measurement.</p>
+<div id="qpyodide-insertion-location-14"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>Note that this last measurement is lower than the two previous… why is that?</p>
+</section>
+<section id="example---moving-average" class="level3">
+<h3 class="anchored" data-anchor-id="example---moving-average">Example - moving average</h3>
+<p>Consider a sequence <span class="math inline">\(a_i\)</span> for <span class="math inline">\(i=0..N-1\)</span>.</p>
+<p>The moving average of the last 3 values is <span class="math inline">\(m_j(a) = \frac{1}{3}\sum_{i=j}^{j+2} a_i\)</span>, for <span class="math inline">\(j=1..N-2\)</span>.</p>
+<div id="qpyodide-insertion-location-15"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div id="qpyodide-insertion-location-16"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>Can we do better?</p>
+<p>Try using a list comprehension:</p>
+<div id="qpyodide-insertion-location-17"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>Can we do better?</p>
+<p>Remember that <strong>vectorized operations</strong> on Numpy arrays are fast!</p>
+<div id="qpyodide-insertion-location-18"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="takeaway-numpy-vector-operations-vs.-for-loop" class="level3">
+<h3 class="anchored" data-anchor-id="takeaway-numpy-vector-operations-vs.-for-loop">Takeaway: Numpy vector operations vs.&nbsp;for loop</h3>
+<p>Numpy arrays are optimized for storing numbers and doing calculations.</p>
+<p>Python lists are optimized to be flexible storage for any kinds of objects.</p>
+<ul>
+<li>Use <em>vectorized</em> operations when you can.</li>
+<li>But don’t use them if they make the code more complicated.
+<ul>
+<li>“First make it work - then make it fast” priciple.</li>
+</ul></li>
+</ul>
+</section>
+<section id="example---pow-vs.-mul" class="level3">
+<h3 class="anchored" data-anchor-id="example---pow-vs.-mul">Example - pow vs.&nbsp;mul</h3>
+<p>Is there a difference in performance between multiplication and squaring?</p>
+<div id="qpyodide-insertion-location-19"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="example---common-mistake" class="level3">
+<h3 class="anchored" data-anchor-id="example---common-mistake">Example - common mistake!</h3>
+<p>The built-in Python <code>sum</code> function is <strong>not aware</strong> of the difference between Python iterables (list, tuple, etc.) and Numpy arrays.</p>
+<div id="qpyodide-insertion-location-20"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+</section>
+<section id="how-to-profile-larger-programs" class="level2">
+<h2 class="anchored" data-anchor-id="how-to-profile-larger-programs">How to profile larger programs?</h2>
+<p>Execution time of a single function can be checked using <code>timeit</code>. But in some cases it is more useful to get an overview of where time is spent.</p>
+<p>One tool to get this overview is <em>line-profiling</em>. <strong>This is advanced, but you might find it useful in your projects.</strong></p>
+</section>
+<section id="golden-rules" class="level2">
+<h2 class="anchored" data-anchor-id="golden-rules">Golden rules</h2>
+<p><em>Avoid premature optimization.</em><br>
+<em>Measure. Then optimize.</em></p>
+<section id="setup" class="level3">
+<h3 class="anchored" data-anchor-id="setup">Setup</h3>
+<p>Run in the IPython console</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install line_profiler</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>load_ext line_profiler</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="see-here-for-more-great-profiling-tools-httpsjakevdp.github.iopythondatasciencehandbook01.07-timing-and-profiling.html" class="level6">
+<h6 class="anchored" data-anchor-id="see-here-for-more-great-profiling-tools-httpsjakevdp.github.iopythondatasciencehandbook01.07-timing-and-profiling.html">See here for more great profiling tools https://jakevdp.github.io/PythonDataScienceHandbook/01.07-timing-and-profiling.html</h6>
+<div id="qpyodide-insertion-location-21"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+</section>
+<section id="using-lprun" class="level3">
+<h3 class="anchored" data-anchor-id="using-lprun">Using <code>%lprun</code></h3>
+<p>The line profiler is used to measure how much time is spent on each line of function.</p>
+<p>Particularly useful for detecting unexpected expensive operations.</p>
+<ul>
+<li>The <code>-f</code> argument selects which function to investigate</li>
+<li>The last argument is the statement to be executed</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>In [<span class="dv">1</span>]: <span class="op">%</span>lprun <span class="op">-</span>f name_of_function run_program()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="qpyodide-insertion-location-22"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div id="qpyodide-insertion-location-23"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+</section>
+</section>
+<section id="decorators" class="level1">
+<h1>Decorators</h1>
+<p>In Python, functions are objects. They can be passed to other functions as arguments.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> say_hi_before_running_the_function(func, <span class="op">*</span>args, <span class="op">**</span>kwargs):</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Hi!"</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># The argument is a function</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># we can run it and return its return value.</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> func(<span class="op">*</span>args, <span class="op">**</span>kwargs)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>*args, **kwargs</code> is Python syntax for forward arguments (and <em>keyword arguments</em>) to another function call.</p>
+<div id="qpyodide-insertion-location-24"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<section id="decorators-1" class="level2">
+<h2 class="anchored" data-anchor-id="decorators-1">Decorators</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> decorator(func):</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> wrapper(<span class="op">*</span>args, <span class="op">**</span>kwargs):</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Before calling function."</span>)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>        val <span class="op">=</span> func(<span class="op">*</span>args, <span class="op">**</span>kwargs)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"After calling function."</span>)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> val</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Return a new function with extended functionality.</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> wrapper</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>A <strong>decorator</strong> is a function that extends the functionality of another function.</p>
+<div id="qpyodide-insertion-location-25"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="use-the-decorator-function-as-a-decorator" class="level2">
+<h2 class="anchored" data-anchor-id="use-the-decorator-function-as-a-decorator">Use the decorator function as a “decorator”</h2>
+<p>Instead of making the assignment:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> decorator(f)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>we can use a <em>decoration</em> above the definition of <code>f</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="at">@decorator</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x):</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    ...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>these two ways are <strong>equivalent</strong>.</p>
+<p>But the <em>intent</em> is clearer using the dedicated decoration syntax.</p>
+<div id="qpyodide-insertion-location-26"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="functions-are-objects" class="level2">
+<h2 class="anchored" data-anchor-id="functions-are-objects">Functions are objects</h2>
+<p>Given a function <code>f</code>, you can use <code>dir(f)</code> to see the attributes.</p>
+<p>You can add attributes to a function.</p>
+<div id="qpyodide-insertion-location-27"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="the-name-and-docstring-using-a-decorator" class="level2">
+<h2 class="anchored" data-anchor-id="the-name-and-docstring-using-a-decorator">The name and docstring using a decorator</h2>
+<div id="qpyodide-insertion-location-28"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="the-name-and-docstring-using-a-decorator-cont" class="level2">
+<h2 class="anchored" data-anchor-id="the-name-and-docstring-using-a-decorator-cont">The name and docstring using a decorator (cont)</h2>
+<div id="qpyodide-insertion-location-29"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="example-3" class="level2">
+<h2 class="anchored" data-anchor-id="example-3">Example</h2>
+<p>We can make a decorator that measures the execution time:</p>
+<div id="qpyodide-insertion-location-30"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="example-cont" class="level2">
+<h2 class="anchored" data-anchor-id="example-cont">Example (cont)</h2>
+<p>Consider the two functions:</p>
+<div id="qpyodide-insertion-location-31"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>Given a list or a vector, the elements are shifted one step to the right. (Compare with shift-operators <code>&gt;&gt;</code> and <code>&lt;&lt;</code> on integers)</p>
+</section>
+<section id="example-cont-1" class="level2">
+<h2 class="anchored" data-anchor-id="example-cont-1">Example (cont)</h2>
+<p>We can decorate the two functions.</p>
+<div id="qpyodide-insertion-location-32"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="example-cont-2" class="level2">
+<h2 class="anchored" data-anchor-id="example-cont-2">Example (cont)</h2>
+<p>Instead of printing the time, we can return the value of the time as an attribute to the function.</p>
+<div id="qpyodide-insertion-location-33"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="example-cont-3" class="level2">
+<h2 class="anchored" data-anchor-id="example-cont-3">Example (cont)</h2>
+<p>Using the attribute <code>time</code>, we can make a plot for comparison.</p>
+<div id="qpyodide-insertion-location-34"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div id="qpyodide-insertion-location-35"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<nav class="bottom-page-nav" aria-label="Page navigation">
+<a class="page-nav-link prev" href="lecture12.html">Previous: Lecture 12</a> <a class="page-nav-link next" href="lecture14.html">Next: Lecture 14</a>
+</nav>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<script type="module">
+/**
+ * Factory function to create different types of cells based on options.
+ * @param {Object} cellData - JSON object containing code, id, and options.
+ * @returns {BaseCell} Instance of the appropriate cell class.
+ */
+globalThis.qpyodideCreateCell = function(cellData) {
+    switch (cellData.options.context) {
+        case 'interactive':
+            return new InteractiveCell(cellData);
+        case 'output':
+            return new OutputCell(cellData);
+        case 'setup':
+            return new SetupCell(cellData);
+        default:
+            return new InteractiveCell(cellData);
+            // throw new Error('Invalid cell type specified in options.');
+    }
+}  
+
+/**
+ * CellContainer class for managing a collection of cells.
+ * @class
+ */
+class CellContainer {
+    /**
+     * Constructor for CellContainer.
+     * Initializes an empty array to store cells.
+     * @constructor
+     */
+    constructor() {
+        this.cells = [];
+    }
+
+    /**
+     * Add a cell to the container.
+     * @param {BaseCell} cell - Instance of a cell (BaseCell or its subclasses).
+     */
+    addCell(cell) {
+        this.cells.push(cell);
+    }
+
+    /**
+     * Execute all cells in the container.
+     */
+    async executeAllCells() {
+        for (const cell of this.cells) {
+            await cell.executeCode();
+        }
+    }
+
+    /**
+     * Execute all cells in the container.
+     */
+    async autoRunExecuteAllCells() {
+        for (const cell of this.cells) {
+            await cell.autoRunExecuteCode();
+        }
+    }
+}
+  
+
+/**
+ * BaseCell class for handling code execution using Pyodide.
+ * @class
+ */
+class BaseCell {
+    /**
+     * Constructor for BaseCell.
+     * @constructor
+     * @param {Object} cellData - JSON object containing code, id, and options.
+     */
+    constructor(cellData) {
+        this.code = cellData.code;
+        this.id = cellData.id;
+        this.options = cellData.options;
+        this.insertionLocation = document.getElementById(`qpyodide-insertion-location-${this.id}`);
+        this.executionLock = false;
+    }
+
+    cellOptions() {
+        // Subclass this? 
+        console.log(this.options);
+        return this.options;
+    }
+
+    /**
+     * Execute the Python code using Pyodide.
+     * @returns {*} Result of the code execution.
+     */
+    async executeCode() {
+        // Execute code using Pyodide
+        const result = getPyodide().runPython(this.code);
+        return result;
+    }
+};
+
+/**
+ * InteractiveCell class for creating editable code editor with Monaco Editor.
+ * @class
+ * @extends BaseCell
+ */
+class InteractiveCell extends BaseCell {
+
+    /**
+     * Constructor for InteractiveCell.
+     * @constructor
+     * @param {Object} cellData - JSON object containing code, id, and options.
+     */
+    constructor(cellData) {
+        super(cellData);
+        this.editor = null;
+        this.setupElement();
+        this.setupMonacoEditor();
+    }
+
+    /**
+     * Set up the interactive cell elements
+     */
+    setupElement() {
+
+        // Create main div element
+        var mainDiv = document.createElement('div');
+        mainDiv.id = `qpyodide-interactive-area-${this.id}`;
+        mainDiv.className = `qpyodide-interactive-area`;
+        if (this.options.classes) {
+            mainDiv.className += " " + this.options.classes
+        }
+
+        // Add a unique cell identifier that users can customize
+        if (this.options.label) {
+            mainDiv.setAttribute('data-id', this.options.label);
+        }
+
+        // Create toolbar div
+        var toolbarDiv = document.createElement('div');
+        toolbarDiv.className = 'qpyodide-editor-toolbar';
+        toolbarDiv.id = `qpyodide-editor-toolbar-${this.id}`;
+
+        // Create a div to hold the left buttons
+        var leftButtonsDiv = document.createElement('div');
+        leftButtonsDiv.className = 'qpyodide-editor-toolbar-left-buttons';
+
+        // Create a div to hold the right buttons
+        var rightButtonsDiv = document.createElement('div');
+        rightButtonsDiv.className = 'qpyodide-editor-toolbar-right-buttons';
+
+        // Create Run Code button
+        var runCodeButton = document.createElement('button');
+        runCodeButton.className = 'btn btn-default qpyodide-button qpyodide-button-run';
+        runCodeButton.disabled = true;
+        runCodeButton.type = 'button';
+        runCodeButton.id = `qpyodide-button-run-${this.id}`;
+        runCodeButton.textContent = '🟡 Loading Pyodide...';
+        runCodeButton.title = `Run code (Shift + Enter)`;
+
+        // Append buttons to the leftButtonsDiv
+        leftButtonsDiv.appendChild(runCodeButton);
+
+        // Create Reset button
+        var resetButton = document.createElement('button');
+        resetButton.className = 'btn btn-light btn-xs qpyodide-button qpyodide-button-reset';
+        resetButton.type = 'button';
+        resetButton.id = `qpyodide-button-reset-${this.id}`;
+        resetButton.title = 'Start over';
+        resetButton.innerHTML = '<i class="fa-solid fa-arrows-rotate"></i>';
+
+        // Create Copy button
+        var copyButton = document.createElement('button');
+        copyButton.className = 'btn btn-light btn-xs qpyodide-button qpyodide-button-copy';
+        copyButton.type = 'button';
+        copyButton.id = `qpyodide-button-copy-${this.id}`;
+        copyButton.title = 'Copy code';
+        copyButton.innerHTML = '<i class="fa-regular fa-copy"></i>';
+
+        // Append buttons to the rightButtonsDiv
+        rightButtonsDiv.appendChild(resetButton);
+        rightButtonsDiv.appendChild(copyButton);
+
+        // Create console area div
+        var consoleAreaDiv = document.createElement('div');
+        consoleAreaDiv.id = `qpyodide-console-area-${this.id}`;
+        consoleAreaDiv.className = 'qpyodide-console-area';
+
+        // Create editor div
+        var editorDiv = document.createElement('div');
+        editorDiv.id = `qpyodide-editor-${this.id}`;
+        editorDiv.className = 'qpyodide-editor';
+
+        // Create output code area div
+        var outputCodeAreaDiv = document.createElement('div');
+        outputCodeAreaDiv.id = `qpyodide-output-code-area-${this.id}`;
+        outputCodeAreaDiv.className = 'qpyodide-output-code-area';
+        outputCodeAreaDiv.setAttribute('aria-live', 'assertive');
+
+        // Create pre element inside output code area
+        var preElement = document.createElement('pre');
+        preElement.style.visibility = 'hidden';
+        outputCodeAreaDiv.appendChild(preElement);
+
+        // Create output graph area div
+        var outputGraphAreaDiv = document.createElement('div');
+        outputGraphAreaDiv.id = `qpyodide-output-graph-area-${this.id}`;
+        outputGraphAreaDiv.className = 'qpyodide-output-graph-area';
+
+        // Append buttons to the toolbar
+        toolbarDiv.appendChild(leftButtonsDiv);
+        toolbarDiv.appendChild(rightButtonsDiv);
+
+        // Append all elements to the main div
+        mainDiv.appendChild(toolbarDiv);
+        consoleAreaDiv.appendChild(editorDiv);
+        consoleAreaDiv.appendChild(outputCodeAreaDiv);
+        mainDiv.appendChild(consoleAreaDiv);
+        mainDiv.appendChild(outputGraphAreaDiv);
+
+        // Insert the dynamically generated object at the document location.
+        this.insertionLocation.appendChild(mainDiv);
+    }
+
+    /**
+     * Set up Monaco Editor for code editing.
+     */
+    setupMonacoEditor() {
+
+        // Retrieve the previously created document elements
+        this.runButton = document.getElementById(`qpyodide-button-run-${this.id}`);
+        this.resetButton = document.getElementById(`qpyodide-button-reset-${this.id}`);
+        this.copyButton = document.getElementById(`qpyodide-button-copy-${this.id}`);
+        this.editorDiv = document.getElementById(`qpyodide-editor-${this.id}`);
+        this.outputCodeDiv = document.getElementById(`qpyodide-output-code-area-${this.id}`);
+        this.outputGraphDiv = document.getElementById(`qpyodide-output-graph-area-${this.id}`);
+        
+        // Store reference to the object
+        var thiz = this;
+
+        // Load the Monaco Editor and create an instance
+        require(['vs/editor/editor.main'], function () {
+            thiz.editor = monaco.editor.create(
+                thiz.editorDiv, {
+                    value: thiz.code,
+                    language: 'python',
+                    theme: 'vs-light',
+                    automaticLayout: true,           // Works wonderfully with RevealJS
+                    scrollBeyondLastLine: false,
+                    minimap: {
+                        enabled: false
+                    },
+                    fontSize: '17.5pt',              // Bootstrap is 1 rem
+                    renderLineHighlight: "none",     // Disable current line highlighting
+                    hideCursorInOverviewRuler: true,  // Remove cursor indictor in right hand side scroll bar
+                    readOnly: thiz.options['read-only'] ?? false
+                }
+            );
+        
+            // Store the official counter ID to be used in keyboard shortcuts
+            thiz.editor.__qpyodideCounter = thiz.id;
+        
+            // Store the official div container ID
+            thiz.editor.__qpyodideEditorId = `qpyodide-editor-${thiz.id}`;
+        
+            // Store the initial code value and options
+            thiz.editor.__qpyodideinitialCode = thiz.code;
+            thiz.editor.__qpyodideOptions = thiz.options;
+        
+            // Set at the model level the preferred end of line (EOL) character to LF.
+            // This prevent `\r\n` from being given to the Pyodide engine if the user is on Windows.
+            // See details in: https://github.com/coatless/quarto-Pyodide/issues/94
+            // Associated error text: 
+            // Error: <text>:1:7 unexpected input
+        
+            // Retrieve the underlying model
+            const model = thiz.editor.getModel();
+            // Set EOL for the model
+            model.setEOL(monaco.editor.EndOfLineSequence.LF);
+        
+            // Dynamically modify the height of the editor window if new lines are added.
+            let ignoreEvent = false;
+            const updateHeight = () => {
+            const contentHeight = thiz.editor.getContentHeight();
+            // We're avoiding a width change
+            //editorDiv.style.width = `${width}px`;
+            thiz.editorDiv.style.height = `${contentHeight}px`;
+                try {
+                    ignoreEvent = true;
+            
+                    // The key to resizing is this call
+                    thiz.editor.layout();
+                } finally {
+                    ignoreEvent = false;
+                }
+            };
+        
+            // Helper function to check if selected text is empty
+            function isEmptyCodeText(selectedCodeText) {
+                return (selectedCodeText === null || selectedCodeText === undefined || selectedCodeText === "");
+            }
+        
+            // Registry of keyboard shortcuts that should be re-added to each editor window
+            // when focus changes.
+            const addPyodideKeyboardShortCutCommands = () => {
+            // Add a keydown event listener for Shift+Enter to run all code in cell
+            thiz.editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, () => {
+                // Retrieve all text inside the editor
+                thiz.runCode(thiz.editor.getValue());
+            });
+        
+            // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
+            thiz.editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+                    // Get the selected text from the editor
+                    const selectedText = thiz.editor.getModel().getValueInRange(thiz.editor.getSelection());
+                    // Check if no code is selected
+                    if (isEmptyCodeText(selectedText)) {
+                        // Obtain the current cursor position
+                        let currentPosition = thiz.editor.getPosition();
+                        // Retrieve the current line content
+                        let currentLine = thiz.editor.getModel().getLineContent(currentPosition.lineNumber);
+                
+                        // Propose a new position to move the cursor to
+                        let newPosition = new monaco.Position(currentPosition.lineNumber + 1, 1);
+                
+                        // Check if the new position is beyond the last line of the editor
+                        if (newPosition.lineNumber > thiz.editor.getModel().getLineCount()) {
+                            // Add a new line at the end of the editor
+                            thiz.editor.executeEdits("addNewLine", [{
+                            range: new monaco.Range(newPosition.lineNumber, 1, newPosition.lineNumber, 1),
+                            text: "\n", 
+                            forceMoveMarkers: true,
+                            }]);
+                        }
+                        
+                        // Run the entire line of code.
+                        thiz.runCode(currentLine);
+                
+                        // Move cursor to new position
+                        thiz.editor.setPosition(newPosition);
+                    } else {
+                        // Code to run when Ctrl+Enter is pressed with selected code
+                        thiz.runCode(selectedText);
+                    }
+                });
+            }
+        
+            // Register an on focus event handler for when a code cell is selected to update
+            // what keyboard shortcut commands should work.
+            // This is a workaround to fix a regression that happened with multiple
+            // editor windows since Monaco 0.32.0 
+            // https://github.com/microsoft/monaco-editor/issues/2947
+            thiz.editor.onDidFocusEditorText(addPyodideKeyboardShortCutCommands);
+        
+            // Register an on change event for when new code is added to the editor window
+            thiz.editor.onDidContentSizeChange(updateHeight);
+        
+            // Manually re-update height to account for the content we inserted into the call
+            updateHeight();
+                
+        });
+
+        
+        // Add a click event listener to the run button
+        thiz.runButton.onclick = function () {
+            thiz.runCode(
+                thiz.editor.getValue()
+            );
+        };
+        
+        // Add a click event listener to the reset button
+        thiz.copyButton.onclick = function () {
+            // Retrieve current code data
+            const data = thiz.editor.getValue();
+            
+            // Write code data onto the clipboard.
+            navigator.clipboard.writeText(data || "");
+        };
+        
+        // Add a click event listener to the copy button
+        thiz.resetButton.onclick = function () {
+            thiz.editor.setValue(thiz.editor.__qpyodideinitialCode);
+        };
+    }
+
+    disableInteractiveCells() {
+        // Enable locking of execution for the cell
+        this.executionLock = true;
+
+        // Disallowing execution of other code cells
+        document.querySelectorAll(".qpyodide-button-run").forEach((btn) => {
+            btn.disabled = true;
+        });
+    }
+
+    enableInteractiveCells() {
+        // Remove locking of execution for the cell
+        this.executionLock = false;
+
+        // All execution of other code cells
+        document.querySelectorAll(".qpyodide-button-run").forEach((btn) => {
+            btn.disabled = false;
+        });
+    }
+
+    /**
+     * Execute the Python code inside the editor.
+     */
+    async runCode(code) {
+        
+        // Check if we have an execution lock
+        if (this.executeLock) return; 
+        
+        this.disableInteractiveCells();
+
+        // Force wait procedure
+        await mainPyodide;
+
+        // Clear the output stock
+        qpyodideResetOutputArray();
+
+        // Generate a new canvas element, avoid attaching until the end
+        let graphFigure = document.createElement("figure");
+        document.pyodideMplTarget = graphFigure;
+
+        console.log("Running code!");
+        // Obtain results from the base class
+        try {
+            // Always check to see if the user adds new packages
+            await mainPyodide.loadPackagesFromImports(code);
+
+            // Process result
+            const output = await mainPyodide.runPythonAsync(code);
+
+            // Add output
+            qpyodideAddToOutputArray(output, "stdout");
+        } catch (err) {
+            // Add error message
+            qpyodideAddToOutputArray(err, "stderr");
+            // TODO: There has to be a way to remove the Pyodide portion of the errors... 
+        }
+
+        const result = qpyodideRetrieveOutput();
+
+        // Nullify the output area of content
+        this.outputCodeDiv.innerHTML = "";
+        this.outputGraphDiv.innerHTML = "";        
+
+        // Design an output object for messages
+        const pre = document.createElement("pre");
+        if (/\S/.test(result)) {
+            // Display results as HTML elements to retain output styling
+            const div = document.createElement("div");
+            div.innerHTML = result;
+            pre.appendChild(div);
+        } else {
+            // If nothing is present, hide the element.
+            pre.style.visibility = "hidden";
+        }
+
+        // Add output under interactive div
+        this.outputCodeDiv.appendChild(pre);
+
+        // Place the graphics onto the page
+        if (graphFigure) {
+
+            if (this.options['fig-cap']) {
+                // Create figcaption element
+                const figcaptionElement = document.createElement('figcaption');
+                figcaptionElement.innerText = this.options['fig-cap'];
+                // Append figcaption to figure
+                graphFigure.appendChild(figcaptionElement);    
+            }
+
+            this.outputGraphDiv.appendChild(graphFigure);
+        }
+
+        // Re-enable execution
+        this.enableInteractiveCells();
+    }
+};
+
+/**
+ * OutputCell class for customizing and displaying output.
+ * @class
+ * @extends BaseCell
+ */
+class OutputCell extends BaseCell {
+    /**
+     * Constructor for OutputCell.
+     * @constructor
+     * @param {Object} cellData - JSON object containing code, id, and options.
+     */
+    constructor(cellData) {
+      super(cellData);
+    }
+  
+    /**
+     * Display customized output on the page.
+     * @param {*} output - Result to be displayed.
+     */
+    displayOutput(output) {
+        const results = this.executeCode();
+        return results;
+    }
+  }
+
+/**
+ * SetupCell class for suppressed output.
+ * @class
+ * @extends BaseCell
+ */
+class SetupCell extends BaseCell {
+    /**
+     * Constructor for SetupCell.
+     * @constructor
+     * @param {Object} cellData - JSON object containing code, id, and options.
+     */
+    constructor(cellData) {
+        super(cellData);
+    }
+
+    /**
+     * Execute the Python code without displaying the results.
+     */
+    runSetupCode() {
+        // Execute code without displaying output
+        this.executeCode();
+    }
+};
+</script>
+<script type="module">
+// Handle cell initialization initialization
+qpyodideCellDetails.map(
+    (entry) => {
+      // Handle the creation of the element
+      qpyodideCreateCell(entry);
+    }
+  );
+</script>
+
+
+
+
+</body></html>

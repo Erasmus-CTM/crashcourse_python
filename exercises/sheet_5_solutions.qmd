@@ -150,3 +150,8 @@ ax.set_ylabel("Positive root")
 ax.set_title("Positive roots of a x^2 + x - 3")
 plt.show()
 ```
+
+<nav class="bottom-page-nav" aria-label="Page navigation">
+  <a class="page-nav-link prev" href="sheet_4_solutions.html">Previous: Sheet 4 Solutions</a>
+  <a class="page-nav-link next" href="sheet_6_solutions.html">Next: Sheet 6 Solutions</a>
+</nav>

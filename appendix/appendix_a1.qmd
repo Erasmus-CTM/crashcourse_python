@@ -440,3 +440,8 @@ The code is more or less explained by the comments, but we note:
 2. Writing `a[3] = 10` changes an entry in the list.
 3. `len`, `sum`, `max`, and `min` work only if the list contains numbers.
 4. Lists are easy to modify with `append`, `pop`, concatenation, and slicing.
+
+<nav class="bottom-page-nav" aria-label="Page navigation">
+  <span class="page-nav-link prev is-disabled">Previous</span>
+  <a class="page-nav-link next" href="appendix_a2.html">Next: A.2 Sequences and Sums</a>
+</nav>

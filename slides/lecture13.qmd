@@ -1,0 +1,1109 @@
+---
+title: "Computational Programming with Python"
+format: html
+filters:
+  - pyodide
+---
+
+## Lecture 13: Time complexity, testing and decorators
+
+### Center for Mathematical Sciences, Lund University
+Lecturer: Malin Christersson, `Robert Klöfkorn`
+
+# This lecture
+
+- Testing
+  - `unittest` framework
+- Time complexity
+  - "Big O notation"
+- Timing and profiling
+  - The `timeit` module
+- Decorators
+
+# Testing
+
+### Why write tests?
+
+* Because you do them *anyway*
+* They keep your code *alive*
+* Prevents introducing bugs
+
+### Automated tests
+
+* ensure a constant (high) quality standard of your code
+* serve as a documentation of the use of your code
+
+## Example
+
+Let’s assume we want to test an implementation of the bisection
+algorithm:
+
+```{pyodide-python}
+def bisect(f, a, b, tol=1.e-8):
+    if f(a) * f(b) > 0:
+        raise ValueError("Incorrect initial [a , b ]")
+    for i in range(1000):
+        c = (a + b) / 2.
+        if f(a) * f(c) <= 0:
+            b = c
+        else:
+            a = c
+        if abs(a - b) < tol:
+            return (a + b) / 2
+    raise Exception("No root found")
+```
+
+### What *expectations* should a user have?
+We should test those expectations:
+* Returned value is a root of the function (within tolerance).
+* If the initial interval is **"bad"**, an exeption should be raised.
+* If no root is found, an exeption should be raised.
+* If the interval is reversed... the function should still work as expected.
+
+## Example (Cont.)
+
+We check a problem with a known solution.
+Does the code find a zero of $f(x) = x$?
+
+```python
+# test_bisection.py
+
+from numpy import allclose
+
+def test_identity():
+    expected = 0.
+    result = bisect(lambda x: x, -1., 1.)
+    assert allclose(result, expected), 'expected zero not found'
+```
+Note the command `allclose`.
+
+## Example (Cont.)
+
+Does the code handle wrong input correctly?
+
+```python
+# test_bisection.py
+
+def test_badinput():
+    try:
+        bisect(lambda x: x, 0.5, 1)
+    except ValueError:
+        pass
+    else:
+        raise AssertionError("does not raise exeption despite bad input")
+```
+
+## Unittest test cases
+
+You will want to *put your test together* and automatize them:
+
+```{pyodide-python}
+import unittest
+# from bisection import bisect
+
+class TestIdentity(unittest.TestCase):
+    def test_identity(self):
+        tol = 1e-4
+        result = bisect(lambda x: x, -1., 1., tol=tol)
+        #print(result)
+        assert isinstance(result, float)
+        expected = 0.
+        self.assertAlmostEqual(result , expected, delta=tol)
+
+if __name__ == '__main__':
+    #unittest.main()
+    unittest.main(argv=[''], verbosity=2, exit=False)
+```
+
+Run with `python -m unittest` in the folder where the test files are located.
+
+## Test results
+
+Here are the results with two different tolerance parameters:
+```
+on test_bisection.py 
+.
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+OK
+```
+
+...and here with a loose tolerance
+```
+F
+======================================================================
+FAIL: test_identity (__main__.TestIdentity)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "test_bisection.py", line 9, in test_identity
+    self.assertAlmostEqual(result, expected)
+AssertionError: -3.0517578125e-05 != 0.0 within 7 places (3.0517578125e-05 difference)
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (failures=1)
+```
+
+## Unittest: Grouping tests together
+
+We recommend to group tests
+
+```{pyodide-python}
+import unittest
+class TestIdentity(unittest.TestCase):
+    expected = 0. # solution
+    def identity_fcn(self, x):
+        return x
+    def test_functionality(self):
+        result = bisect(self.identity_fcn, -1.2, 1., tol=1.e-8)
+        self.assertAlmostEqual(result, self.expected)
+    def test_reverse_boundaries(self):
+        result = bisect(self.identity_fcn, 1., -1.)
+        self.assertAlmostEqual(result, self.expected)
+    def test_exceeded_tolerance(self):
+        tol = 1.e-4
+        self.assertRaises(
+            Exception, bisect, self.identity_fcn,
+            -1.2, 1., tol
+        )
+        
+if __name__ == '__main__':
+    #unittest.main()
+    unittest.main(argv=[''], verbosity=2, exit=False)
+```
+
+## unittest.TestCase.assertRaises
+
+Note the method `assertRaises`:
+
+- `Exception`: the expected exception type
+- `bisect`: the function to be called
+- `self.identity_fcn, -1.2, 1., tol`: the parameters of this function
+
+
+`unittest` is a built-in Python testing framework.
+`pytest` is another framework for testing in Python.
+
+## pytest: tests as collection of functions in a file called test_...py 
+
+Group your tests in a separate file. 
+
+- The filename should start with `test`.
+- All functions executing tests should start with `test`. 
+
+Run with `pytest` in the folder where the test files are located.
+
+```{pyodide-python}
+import pytest # import the pytest module use with the below tests
+import numpy as np # modules that need to be installed should be listed in requirements.txt
+from bisection import bisect
+
+def test_root():
+    tol = 1.e-8
+    interval, root = bisect(lambda x: x, -1.2, 1.,tol=tol)
+    assert abs(root) <= tol
+def root_param(a, b, maxit):
+    interval, root = bisect(lambda x: x, a, b,tol=1e-8, maxit=maxit)
+    return root
+# use parameterize decorators to test different parameter sets
+@pytest.mark.parametrize("inpt, exptd", [((-1.2, 1, 100), 0),
+                                          ((-1.2, 1, 10),  0),
+                                          ((-2, -1, 100), np.inf)])
+def test(inpt, exptd):
+    root = root_param(*inpt)
+    assert abs(root - exptd) < 1e-8
+```
+
+# Time complexity
+
+The estimated time of an algorithm should be independent of
+
+- the programming language used to implement the algorithm
+- the computer/OS used when implementing the algorithm
+
+## Example: estimating the time
+
+Consider this program:
+
+```python
+from numpy import sqrt   # c1
+
+def func(x, n):      
+    y = x + 10           # c2
+    y = 2.5 * y          # c3
+    for i in range(n):
+        y = sqrt(y + 1)  # c4
+    return y
+
+a = func(3.5, 100)       # c5
+```
+
+Assume that all single operations take constant time $c_i$, then the total runtime
+
+$$T(n) = c_1 + c_5 + c_2 + c_3 + n\cdot c_4 = a + b\cdot n $$
+
+is a function depending on $n$.
+
+```{pyodide-python}
+from matplotlib.pyplot import * # c1.1
+import time              # c1.2
+from numpy import sqrt   # c1.3
+def func(x, n):      
+    y = x + 10           # c2
+    y = 2.5 * y          # c3
+    for i in range(n):
+        y = sqrt(y + 1)  # c4
+    return y
+def timed_func(x, n):
+    start = time.time()
+    res = func(x, n)
+    return time.time() - start
+x = range(0,150)
+y = [timed_func(3.5, n) for n in x]
+
+plot(x,y, label='runtime')
+xlabel('n')
+legend(); show()
+```
+
+## Asymptotic notation
+
+We can measure the **asymptotic** growth of a function $f$, thus not having to use constants.
+
+#### Definition
+An asymptotic upper bound of $f$ is given by $O(g(n))$, i.e. 
+
+$f(n) = O(g(n))$ if there exist positive constants $c$ and $n_0$ such that 
+
+$$0 \le |f(n)| \le c \, g(n) \text{ for all } n \ge n_0.$$
+
+This means: if $g(n) \in \mathcal{O}(f(n))$ then $g$ grows at most as fast as $f$ in the asymptote.
+
+
+#### Example 1
+
+Let $T(n) = a+b\cdot n$ where $a$ and $b$ are positive constants, then $T(n)$ is $O(n)$.
+
+If $n\ge 1$ then 
+$$T(n) = a+b\cdot n \le a\cdot n+b \cdot n = (a+b)\cdot n$$
+
+hence, we can use $n_0 = 1$ and $c = a+b$ in the definition.
+
+
+#### Example 2
+
+Let $T(n) = a + bn^2$ where $a$ and $b$ are positive constants, then $T(n)$ is **not** in $O(n)$.
+
+Because for **any** $c$, if $n > c/b$, then
+
+$$T(n) = a + bn^2 > c n.$$
+
+
+Instead, $T(n)$  is $O(n^2)$ because if $n \ge \sqrt{a}$ then
+
+$$ T(n) = a + bn^2 \le n^2 + bn^2 = (b + 1) n^2$$
+
+hence, we can use $n_0 \ge \sqrt{a}$ and $c = b+1$ in the definition.
+
+## Using asymptotic notation
+
+When using asymptotic notation for estimating time complexity, we can single out an operation as a **characteristic operation**, the operation that is performed the most number of times for large values of $n$.
+
+
+Instead of estimating the time a **program** takes, we let $T(n)$ be the number of characteristic operations of an **algorithm**, given an input of size $n$.
+
+## Using asymptotic notation (cont)
+
+In the function `func`
+
+```python
+from numpy import sqrt     
+
+def func(x, n):      
+    y = x + 10           
+    y = 2.5 * y            
+    for i in range(n):
+        y =  sqrt(y + 1)   
+    return y
+
+a = func(3.5, 100)       
+```
+
+`y = sqrt(y + 1)` is the characteristic operation, let $T(n)$ be the number of times this operation is performed, then $T(n) = n$ and the time complexity of the program is $O(n)$.
+
+$$ \begin{cases}
+y_0 &= \bar{y}_0 \\
+y_i &= \sqrt{y_{i-1}+1}, \quad i = 1, 2, \ldots n
+\end{cases}$$
+
+## Nested loops
+
+The three loops
+
+```{pyodide-python}
+n = 10
+for i in range(n): # vector operation
+    ...
+    # characteristic operation performed n times
+    
+for i in range(n): # matrix-vector multiplcation
+    for j in range(n):
+        ...
+        # characteristic operation performed n^2 times
+        
+for i in range(n): # matrix-matrix muliplication
+    for j in range(n):
+        for k in range(n):
+            ...
+            # characteristic operation performed n^3 times
+```
+
+have time complexities $O(n), O(n^2)$, and $O(n^3)$ respectively.
+
+## Example: square matrix multiplication
+
+Analyse the time complexity of this algorithm for matrix multiplication.
+
+* What is `n` (the problem size) in this example? 
+* What is the charateristic operation?
+* What is the time complexity of this algorithm?
+
+```{pyodide-python}
+def matmul(A, b):
+    ''' Computes the square matrix multiplication `Ab=c` '''
+    rows = len(A)
+    c = np.zeros(rows)
+    for i in range(rows):
+        for j in range(rows):
+            c[i] += A[i, j] * b[j]
+    return c
+```
+
+**2min discussion! Let's go**
+
+## Divide and conquer algorithms
+
+Divide and conquer algorithms, such as the bisection method, has a logarithmic time complexity, e.g. $O(\log n)$ or $O(n\log n)$.
+
+
+#### Example 1
+
+```python
+def solve_problem(....)
+    divide the problem into two parts,
+    then solve only one of them.
+```
+
+If the input is a problem of size $n$, the worst case scenario is that we have to divide $n$ by $2$ until we get some singleton. We can do that $O(\log_2 n)$ times.
+
+
+#### Example 2
+
+For the bisection method the `problem size` $n$ is the length of the interval $[a, b]$ divided by the tolerance $TOL$
+
+$$n \approx \frac{b - a}{TOL}.$$
+To solve the problem, have to **split the interval into two** $T(n)$ times (this is our characteristic operation).
+
+We stop **before** we get an interval of length $TOL / 2$
+
+$$\frac{b - a}{2^{T(n)}} \ge \frac{TOL}{2} $$
+
+then 
+
+$$ 2 \frac{b - a}{TOL} \ge 2^{T(n)} \implies 1+\log_2{n} \ge {T(n)} $$
+
+and $T(n) \in O(\log_2 n)$.
+
+The base of the logarithm doesn't matter when considering asymptotic growth, 
+
+$$\log_2(x) = \frac{\log_a(x)}{\log_a(2)} = constant \cdot \log_a(x) $$
+
+hence $O(\log_2 n) = O(\log_a n) = O(\log n) $.
+
+**Therefore, we use only** $O(\log n)$.
+
+## A bad implementation of the Fibonacci sequence
+$ $
+$$
+\begin{cases}
+F_0 = 0 \\
+F_1 = 1 \\
+F_n = F_{n-1}+F_{n-2}
+\end{cases}
+$$
+
+What is the time complexity of of this sequence? 
+
+- Implement the Fibonacci sequence `fibonacci(n)` the returns the n'th sequence member 
+- Write a function that takes a `n` and calls `fibonacci(n)` but returns the execution time. 
+- Measure the time with `time.time()` before and after. The execution time is the difference. 
+- Plot execution time vs. n (number of sequence members) for $n=0,...15$.
+
+**5min, let's go!**
+
+```{pyodide-python}
+from matplotlib.pyplot import *
+import time
+def fibonacci(n):
+    if n == 0:
+        return 0
+    elif n == 1:
+        return 1
+    else:
+        return fibonacci(n - 1) + fibonacci(n - 2)
+    
+def f_time(n):
+    start = time.time()
+    f_n = fibonacci(n)
+    return time.time() - start 
+
+ns = list(range(0,40))
+times = [f_time(n) for n in ns]
+plot(ns, times)
+```
+
+```{pyodide-python}
+from matplotlib.pyplot import *
+def fibonacci(n):
+    if n == 0:
+        return 0
+    elif n == 1:
+        return 1
+    else:
+        return fibonacci(n - 1) + fibonacci(n - 2)
+def timed_fibonacci(n):
+    start = time.time()
+    fib = fibonacci(n)
+    return time.time()-start
+
+x = range(0,35) # 35 to showcase
+y = [timed_fibonacci(n) for n in x]
+
+plot(x,y, label='runtime')
+xlabel('n')
+legend(); show()
+```
+
+Let $T(0)=T(1)=1\in \mathcal{O}(1)$.
+We have that
+
+$$
+T(n) \approx T(n - 1) + T(n - 2) > 2 T(n - 2) \ge 2^k T(n - 2k), \quad 1 \le k \le n/2.
+$$
+
+Select $k = n/2$ for even $n$ and $k = (n-1)/2$ for odd $n$. In either case,
+$$T(n) \ge 2^{k} \ge \sqrt{2}^{n-1}. $$
+
+Thus $T(n) \in O(2^n)$ but not in $O(n^m)$ for any $m$.
+
+*This algorithm* to compute the Fibonacci sequence has *exponential* time complexity.
+
+**Question**
+
+Is there a better algorithm? **(2min discussion, let's go)**
+
+## A good implementation of the Fibonacci sequence
+
+```{pyodide-python}
+from matplotlib.pyplot import *
+
+def fibonacci(n):
+    fib = [0, 1] + [0]*(n-1)
+    for i in range(2,n+1):
+        fib[i] = fib[i-1] + fib[i-2]
+    return fib
+
+def timed_fibonacci(n):
+    start = time.time()
+    fib = fibonacci(n)
+    return time.time()-start
+    
+y_fast = [timed_fibonacci(n) for n in x]
+
+#plot(x,y, label='runtime')
+plot(x,y_fast, label='runtime')
+xlabel('n')
+legend(); show()
+```
+
+## Complexity of container access 
+
+See [Time Complexity](https://wiki.python.org/moin/TimeComplexity) for the different complexities when dealing with Python containers such as `list`, `dict` and `set`.
+
+# Timing and profiling
+
+## Slow code
+
+
+The code is slow. Why?
+
+Three possible reasons:
+
+- The problem is big (large $n$) - *Not much to do about this*
+
+- The algorithm is slow (perhaps $O(n^k)$ with $k$ large) - *Nor this*
+
+- The implementation is bad (recursive, etc.) - *We can fix this!*
+
+## The Zen of Python
+
+```{pyodide-python}
+import this
+```
+
+## Finding the slow parts
+
+Different parts of the code are differently fast.
+
+*Profiling* means that we run the program and measure how much time is spent in each function.
+
+A good way to do this is to use the `cProfile` module.
+
+Another option is to use a *line profiler* - we will look at this later.
+
+### Measuring execution time
+
+Simplest way - using the `time` module
+
+```{pyodide-python}
+import time
+
+start = time.time()
+
+# Do some work
+import numpy as np
+
+s = np.sum(np.arange(1000_000))
+print("The sum is ", s)
+
+end = time.time()
+print(f"Calculating the sum took {end - start:.4f} seconds")
+```
+
+### Problems
+
+- execution time varies
+- lots of noise, especially if the operation you are measuring is fast
+
+### Better - use the `timeit` module
+
+The `timeit.timeit` method gives you more reliable measurements.
+
+It has several keyword arguments.
+
+```python
+timeit.timeit(stmt='pass', setup='pass', number=1000000)
+```
+
+* `setup` is executed before the `stmt` that is timed,
+* `number` is the number of repetitions.
+
+###### For other `timeit` methods, consult the course book.
+
+```{pyodide-python}
+import numpy as np
+import timeit
+
+repetitions = 1000
+
+total_execution_time = timeit.timeit(
+    "sum(arange(1_000_000))",
+    number=repetitions,
+    setup="from numpy import sum, arange"
+)
+
+print(f"Calculating the sum took {total_execution_time / repetitions:.6f} seconds on average")
+```
+
+### Even better - use the `%timeit` IPython magic
+
+* **Automatically determines number of repetitions neccessary to get statistically significant results**
+* The `%timeit` magic is ideal for measuring execution time of short statements
+* Only avaliable in the IPython console!
+
+From the IPython console
+
+```python
+In [1]: %timeit np.sum(np.arange(1000_000))
+```
+
+*Or* from the terminal
+
+```bash
+$ python -m timeit --setup "import numpy as np" "np.sum(np.arange(1000_000))"
+```
+
+Note that in the above a `--setup` argument is passed to import `numpy` before running the measurement.
+
+```{pyodide-python}
+%timeit np.sum(np.arange(1000_000))
+```
+
+Note that this last measurement is lower than the two previous... why is that?
+
+### Example - moving average
+
+Consider a sequence $a_i$ for $i=0..N-1$.
+
+The moving average of the last 3 values is $m_j(a) = \frac{1}{3}\sum_{i=j}^{j+2} a_i$, for $j=1..N-2$.
+
+```{pyodide-python}
+def moving_average(a):
+    N = len(a)
+    m = np.zeros(N-2)
+    for j in range(len(m)):
+        m[j] = (a[j] + a[j+1] + a[j+2]) / 3
+    return m
+
+a = [1, 0, 0, 1, 0]
+moving_average(a)
+```
+
+```{pyodide-python}
+# Use a big array when timing.
+a = np.random.randn(10000)
+%timeit moving_average(a)
+```
+
+Can we do better?
+
+Try using a list comprehension:
+
+```{pyodide-python}
+def moving_average_comp(a):
+    N = len(a)
+    return np.array([(a[j] + a[j+1] + a[j+2]) / 3
+                     for j in range(N-2)])
+
+%timeit moving_average_comp(a)
+print(a)
+```
+
+Can we do better?
+
+Remember that **vectorized operations** on Numpy arrays are fast!
+
+```{pyodide-python}
+def moving_average_vec(a):
+    return (a[:-2] + a[1:-1] + a[2:]) / 3
+
+%timeit moving_average_vec(a)
+print(a)
+```
+
+### Takeaway: Numpy vector operations vs. for loop
+
+Numpy arrays are optimized for storing numbers and doing calculations.  
+
+Python lists are optimized to be flexible storage for any kinds of objects.
+
+* Use *vectorized* operations when you can.
+* But don't use them if they make the code more complicated.
+  * "First make it work - then make it fast" priciple.
+
+### Example - pow vs. mul
+
+Is there a difference in performance between multiplication and squaring?
+
+```{pyodide-python}
+a = np.random.rand(10000)
+%timeit a * a
+%timeit a**2
+%timeit a**2.0
+%timeit a**2.1
+```
+
+### Example - common mistake!
+
+The built-in Python `sum` function is **not aware** of the difference between Python iterables (list, tuple, etc.) and Numpy arrays.
+
+```{pyodide-python}
+# from numpy import *
+import numpy as np
+b = np.random.randn(10000)
+%timeit np.sum(b)
+%timeit sum(b)
+```
+
+## How to profile larger programs?
+
+Execution time of a single function can be checked using `timeit`. But in some cases it is more useful to get an overview of where time is spent.
+
+One tool to get this overview is *line-profiling*.
+**This is advanced, but you might find it useful in your projects.**
+
+## Golden rules
+*Avoid premature optimization.*  
+*Measure. Then optimize.*
+
+
+### Setup
+
+Run in the IPython console
+
+```python
+!pip install line_profiler
+%load_ext line_profiler
+```
+
+###### See here for more great profiling tools https://jakevdp.github.io/PythonDataScienceHandbook/01.07-timing-and-profiling.html
+
+```{pyodide-python}
+!pip install line_profiler
+%load_ext line_profiler
+```
+
+### Using `%lprun`
+
+The line profiler is used to measure how much time is spent on each line of function.
+
+Particularly useful for detecting unexpected expensive operations.
+
+* The `-f` argument selects which function to investigate
+* The last argument is the statement to be executed
+
+```python
+In [1]: %lprun -f name_of_function run_program()
+```
+
+```{pyodide-python}
+import numpy as np
+def bisect(f, a, b, tol=1.e-8):
+    if f(a) * f(b) > 0:
+        raise ValueError("Incorrect initial [a , b ]")
+    for i in range(100):
+        c = (a + b) / 2.
+        if f(a) * f(c) <= 0:
+            b = c
+        else:
+            a = c
+        if abs(a - b) < tol:
+            return (a + b) / 2
+    raise Exception("No root found")
+    
+def main():
+    bisect(lambda x: (x + 1) * x, -1, 1)
+    bisect(lambda x: np.exp(x) - 1, -1, 1)
+    bisect(lambda x: 4 - x, 2, 6)
+```
+
+```{pyodide-python}
+%load_ext line_profiler
+%lprun -f bisect main()
+```
+
+# Decorators
+
+In Python, functions are objects. They can be passed to other functions as arguments.
+
+```python
+def say_hi_before_running_the_function(func, *args, **kwargs):
+    print("Hi!")
+    # The argument is a function
+    # we can run it and return its return value.
+    return func(*args, **kwargs)
+``` 
+
+`*args, **kwargs` is Python syntax for forward arguments (and *keyword arguments*) to another function call.
+
+```{pyodide-python}
+def say_hi_before_running_the_function(func, *args, **kwargs):
+    print("Hi!")
+    # The argument `func` is a function,
+    # we can run it and return its return value.
+    return func(*args, **kwargs)
+
+say_hi_before_running_the_function(sum, range(10))
+```
+
+## Decorators
+
+```python
+def decorator(func):
+    def wrapper(*args, **kwargs):
+        print("Before calling function.")
+        val = func(*args, **kwargs)
+        print("After calling function.")
+        return val
+    # Return a new function with extended functionality.
+    return wrapper
+``` 
+
+A **decorator** is a function that extends the functionality of another function.
+
+```{pyodide-python}
+def decorator(func):
+    def wrapper(*args, **kwargs):
+        print("Before calling function.")
+        val = func(*args, **kwargs)
+        print("After calling function.")
+        return val
+    return wrapper
+
+def f(x):
+    print("Greetings from f(x)!")
+    return x + 3
+
+# Overwrite f with new function
+f = decorator(f)
+print(f)
+
+a = f(1)
+print(a)
+```
+
+## Use the decorator function as a "decorator"
+
+Instead of making the assignment:
+
+```python
+f = decorator(f)
+```
+
+we can use a *decoration* above the definition of `f`:
+
+```python
+@decorator
+def f(x):
+    ...
+```
+
+these two ways are **equivalent**.  
+
+But the *intent* is clearer using the dedicated decoration syntax.
+
+```{pyodide-python}
+def decorator(func):
+    def wrapper(*args, **kwargs):
+        print("Before calling function.")
+        val = func(*args, **kwargs)
+        print("After calling function.")
+        return val
+    return wrapper
+
+@decorator           # the same as: f = decorator(f)
+def f(x):
+    print("Greetings from f(x)!")
+    return x + 3
+
+a = f(1)
+print(a)
+```
+
+## Functions are objects
+
+Given a function `f`, you can use `dir(f)` to see the attributes. 
+
+You can add attributes to a function.
+
+```{pyodide-python}
+def f(x, y, z):
+    '''Docstring of f(x, y, z)'''
+    pass
+
+f.message = 'Hello!'  # adding an attribute
+
+print(f.message)
+print(f.__name__)
+print(f.__doc__)
+print(45 * '-')
+help(f)
+```
+
+## The name and docstring using a decorator
+
+```{pyodide-python}
+@decorator
+def f(x):
+    '''The docstring of f(x)'''
+    pass
+
+def g(x):
+    '''The docstring of g(x)'''
+    pass
+
+# we lost the __name__ and __doc__ of the decorated function
+print(f.__name__)
+print(f.__doc__)
+print(45 * '-')
+print(g.__name__)
+print(g.__doc__)
+```
+
+## The name and docstring using a decorator (cont)
+
+```{pyodide-python}
+from functools import wraps
+
+def decorator(func):
+    @wraps(func)  # Transfers important information from func to wrapper
+    def wrapper(*args, **kwargs):
+        print("Before calling function.")
+        val = func(*args, **kwargs)
+        print("After calling function.")
+        return val
+    return wrapper
+
+@decorator
+def f(x):
+    '''The docstring of f(x)'''
+    pass
+
+print(f.__name__)
+print(f.__doc__)
+```
+
+## Example
+
+We can make a decorator that measures the execution time:
+
+```{pyodide-python}
+import time
+from numpy import *
+
+def showtime(func):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        start = time.time()
+        val = func(*args, **kwargs)
+        end = time.time()
+        print(f"{func.__name__} took {end - start:.2E} seconds.")
+        return val
+    return wrapper
+```
+
+## Example (cont)
+
+Consider the two functions:
+
+```{pyodide-python}
+from numpy import array 
+def shift_using_loop(vec):
+    V = vec.copy()  # make a copy to keep vec intact
+    n = len(V)
+    for i in range(n-1, 0, -1):  # we must do this in reverse order
+        V[i] = V[i-1]
+    return V
+
+def shift_using_slices(vec):
+    V = vec.copy()
+    V[1:] = V[:-1]
+    return V
+
+n = 10
+
+L = list(range(n))
+L1 = shift_using_loop(L)
+L2 = shift_using_slices(L)
+
+A = array(list(range(n)))
+A1 = shift_using_loop(A)
+A2 = shift_using_slices(A)
+
+print(L)
+print(L1)
+```
+
+Given a list or a vector, the elements are shifted one step to the right. (Compare with shift-operators `>>` and `<<` on integers)
+
+## Example (cont)
+
+
+We can decorate the two functions.
+
+```{pyodide-python}
+@showtime
+def shift_using_loop(vec):
+    V = vec.copy()             
+    n = len(V)
+    for i in range(n-1, 0, -1): 
+        V[i] = V[i-1]
+    return V
+
+@showtime
+def shift_using_slices(vec):
+    V = vec.copy()
+    V[1:] = V[:-1]
+    return V
+
+n = 1000000
+
+L = list(range(n))
+L1 = shift_using_loop(L)
+L2 = shift_using_slices(L)
+
+A = array(list(range(n)))
+A1 = shift_using_loop(A)
+A2 = shift_using_slices(A)
+```
+
+## Example (cont)
+
+Instead of printing the time, we can return the value of the time as an attribute to the function.
+
+```{pyodide-python}
+from functools import wraps
+def gettime(func):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        start = time.time()
+        val = func(*args, **kwargs)
+        end = time.time()
+        wrapper.time = end - start
+        return val
+    return wrapper
+
+@gettime
+def using_loop(vec):
+    V = vec.copy()             
+    n = len(V)
+    for i in range(n-1, 0, -1): 
+        V[i] = V[i-1]
+    return V
+
+@gettime
+def using_slices(vec):
+    V = vec.copy()
+    V[1:] = V[:-1]
+    return V
+
+using_slices(list(range(10)))
+print(using_slices.time)       # the attribute is used on the function, not the function call
+```
+
+## Example (cont)
+
+Using the attribute `time`, we can make a plot for comparison.
+
+```{pyodide-python}
+from matplotlib.pyplot import *
+
+n = 1000
+x = list(range(1, n))
+y1 = []
+y2 = []
+
+for i in range(1, n):
+    L = list(range(i))
+    using_loop(L)
+    y1.append(using_loop.time)
+    using_slices(L)
+    y2.append(using_slices.time)
+    
+plot(x, y1, label="loop")
+plot(x, y2, label="slicing")
+legend()
+```
+
+```{pyodide-python}
+L = np.arange(100)
+%timeit using_loop(L)
+%timeit using_slices(L)
+```
+
+<nav class="bottom-page-nav" aria-label="Page navigation">
+  <a class="page-nav-link prev" href="lecture12.html">Previous: Lecture 12</a>
+  <a class="page-nav-link next" href="lecture14.html">Next: Lecture 14</a>
+</nav>

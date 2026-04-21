@@ -1,0 +1,604 @@
+---
+title: "Computational Programming with Python"
+format: html
+filters:
+  - pyodide
+---
+
+## Lecture 11: More about plotting
+
+
+### Center for Mathematical Sciences, Lund University
+Lecturer: Malin Christersson, `Robert Klöfkorn`
+
+# This lecture
+
+- Revision about unpacking
+- More about plotting
+
+# Unpacking lists and tuples
+
+### Examples
+
+```{pyodide-python}
+lst1 = [1, 2, 3, 4, 5]
+a, b, c, d, e = lst1
+print(b)
+```
+
+If we're only interested in the first two elements, we can use an asterisk.
+
+```{pyodide-python}
+a, b, *the_rest = lst1
+print(a)
+print(b)
+print(the_rest)
+```
+
+## Packing and unpacking in assignments
+
+The numbers 1 and 2 are packed into a tuple.
+
+The tuple is unpacked in the assignment.
+
+```{pyodide-python}
+a, b = 1, 2
+print(a)
+print(b)
+```
+
+This is useful for making swaps
+
+```{pyodide-python}
+a, b = b, a
+print(a)
+print(b)
+```
+
+## Unpacking a list of one single element
+
+We will need this later.
+
+```{pyodide-python}
+lst2 = [15]
+
+a, = lst2
+print(a)
+```
+
+The comma indicates that this is an `unpacking`.
+
+## Packing using asterisk operators (* and **)
+
+### Asterisks in a function definition
+The words args and kwargs are often used but the parameters may have any valid names.
+
+```{pyodide-python}
+def myfunc(*args, **kwargs):
+    print("Printing arguments.")
+    print(type(args))
+    for arg in args:
+        print(arg)
+        
+    print("Printing keyword arguments.")
+    print(type(kwargs))
+    for key, value in kwargs.items():
+        print(f" {key} : {value} ")
+        
+myfunc(1, 2, 3, nr1 = 4, nr2 = 5)
+```
+
+## Unpacking using asterisk operators (* and **)
+
+### Asterisks when calling a function
+
+```{pyodide-python}
+def myfunc(*args, **kwargs):
+    print("Printing arguments.")
+    for arg in args:
+        print(arg)
+        
+    print("Printing keyword arguments.")
+    for key, value in kwargs.items():
+        print(f" {key} : {value} ")
+        
+        
+lst = [1, 2, 3]
+print(lst[1])
+d = {"nr1": 4, "nr2": 5}
+print(d["nr1"])
+
+myfunc(*lst, **d)  # what would happen if all asterisks were removed?
+```
+
+## Asterisk operators to handle a variable number of arguments
+
+### Example using the function len
+
+```{pyodide-python}
+def myfunc(*numbers):
+    '''
+    This function should be called with one or two arguments that are numbers.
+    '''
+    if len(numbers) == 1:
+        print("Called with one argument.")
+    else:
+        print("Called with more than one arguments.")
+        
+myfunc(5, 7, 8)
+```
+
+## Example: Asterisks to unpack inside a list or a tuple
+
+**5min, let's go!**
+
+```{pyodide-python}
+sublist = [2, 3]
+
+# TODO: Create a list [1,2,3,4] using unpacking 
+L = [1, *sublist ,4]
+print(L)
+# TODO: Create a sublist containing [3,4] using packing/unpacking
+
+a,b, *L1 = L
+print(L1)
+```
+
+```{pyodide-python}
+subtuple = (2, 3)
+
+# TODO: Repeat the task with tuples 
+T = (1, *subtuple, 4)
+print(T)
+# TODO: Create a subtuple containing (3,4) using packing/unpacking
+a,b, T1 = T
+print(T1)
+```
+
+```{pyodide-python}
+sublist = [2, 3]
+
+# TODO: Create a list [1,2,3,4] using unpacking 
+lst = [1, *sublist, 4]
+print(lst)
+
+# TODO: Create a sublist containing [3,4] using packing/unpacking
+c,d, *rest = lst
+print(rest)
+```
+
+```{pyodide-python}
+subtuple = (2, 3)
+
+# TODO: Repeat the task with tuples 
+t = (1,*subtuple, 4)
+print(t)
+
+# TODO: Create a subtuple containing (3,4) using packing/unpacking
+_,_, *s = t 
+S1 = tuple(s)
+print(S1)
+print(s)
+```
+
+# More about plotting
+
+## State machine or object-oriented programming (OOP)
+
+`matplotlib.pyplot` can be used with command-like functions.
+
+* Various states are preserved.
+* A state holds information about `current figure` and `current axes`.
+* Under the hood, OOP is used.
+
+`matplotlib.pyplot` can be also be used for OOP.
+* Instead of functions, methods of objects are used.
+
+For event driven programs, OOP **should** be used.
+
+
+### First some imports
+
+```{pyodide-python}
+from matplotlib.pyplot import *
+from numpy import *
+%matplotlib inline     
+# this is a magic command for static plots, we will do interactive plots later
+```
+
+## State machine - two figures
+The function call `plot` can be viewed as a command. The same command results in different outcomes depending on the state.
+
+```{pyodide-python}
+x1 = linspace(-2*pi, 2*pi, 100)
+x2 = linspace(0, 2, 10)
+
+plot(x1, sin(x1), 'r', label='sin(x)') # a figure is created
+plot(x1, cos(x1), 'b--', label='cos(x)')
+xlabel('x')
+legend()
+title('My first figure')
+ 
+figure() # a new figure is created 
+
+plot(x2, sqrt(x2), 'go')
+plot(x2, x2**2, 'y^')
+title('My second figure')
+show()  # show is needed in editors that don't have an interactive console
+```
+
+## State machine - two subplots in one figure
+The plots are made in a subplot of the <span class=alert>current axes</span> in the <span class=alert>current figure</span>.
+
+```{pyodide-python}
+x1 = linspace(-2*pi, 2*pi, 100)
+x2 = linspace(0, 2, 10)
+
+subplot(211) # the first subplot using a 2 rows and 1 column grid
+#abtight_layout()
+plot(x1, sin(x1), 'r')
+plot(x1, cos(x1), 'b--')
+title('My first subplot')
+ 
+subplot(212) # the second subplot using a 2 rows and 1 column grid
+plot(x2, sqrt(x2), 'go')
+plot(x2, x2**2, 'y^') 
+subplots_adjust(left=None, bottom=None, right=None, top=None, wspace=0.2, hspace=0.5)
+
+title('My second subplot') 
+show()
+```
+
+## matplotlib as an object-oriented interface
+
+For event driven programs you will need references to objects.
+
+![figAndAx](http://cmc.education/slides/notebookImages/figAndAx.png)
+
+## OOP - getting references to objects
+
+#### Use return values
+
+```python
+fig = figure()
+ax = subplot(111)
+```
+
+#### Get current figure/axes
+
+```python
+fig = gcf() # short for get current figure
+ax = gca()  # short for get current axes
+```
+
+## OOP - getting references to objects (cont)
+
+#### Use `subplots`
+
+Only one axes object:
+
+```python
+fig, ax = subplots()
+``` 
+
+An array of axes objects:
+```python
+fig, (ax1, ax2) = subplots(nrows = 1, ncols = 2)
+``` 
+
+Another array of axes objects:
+```python
+fig, ((ax1, ax2), (ax3, ax4)) = subplots(nrows = 2, ncols = 2)
+```
+
+## OOP - getting references to objects (cont)
+
+#### Use `subplots_adjust` to adjust spaces between subplots
+
+
+
+```python
+subplots_adjust(left=0.2,   # the left side of the subplots of the figure
+                right=0.5,  # the right side of the subplots of the figure
+                bottom=None,# the bottom of the subplots of the figure
+                top=None,   # the top of the subplots of the figure
+                wspace=0.2, # the amount of space in horizontal direction for blank space between subplots
+                hspace=0.5) # the amount of space in vertical direction for blank space between subplots
+```
+
+## Comparison of basic plotting
+
+### State machine - using functions
+
+```{pyodide-python}
+x = linspace(-2*pi, 2*pi, 100)
+
+plot(x, sin(x/2), label = 'sin(x)')
+plot(x, cos(x/2), label = '$cos(x)$')
+legend(loc = 'lower center', fontsize = 'small')
+show()
+```
+
+### OOP - using methods
+
+```{pyodide-python}
+x = linspace(-2*pi, 2*pi, 100)
+
+fig, ax = subplots()
+ax.plot(x, sin(x/2), label = 'sine')
+ax.plot(x, cos(x/2), label = '$cos(x)$')
+ax.set_xlabel('x')
+ax.legend(loc = 'lower center', fontsize = 'small')
+# fig.set_title('oop plot')
+show()
+```
+
+## OOP - the Figure class
+
+Top level container for all plot elements.
+
+Given 
+
+```python
+fig, ax = subplots()
+# plotting code
+```
+
+the figure can be saved to a file:
+
+```python
+fig.figsave("my_figure.png")
+# fig.canvas.get_supported_filetypes()
+```
+
+## OOP - the Axes class
+
+<span style = "font-size: 80%">(Image from https://matplotlib.org/stable/gallery/showcase/anatomy.html) </span>
+
+<img src="https://matplotlib.org/_images/sphx_glr_anatomy_001.png" title="anatomy" style="border:2px solid #ccc; border-radius: 5px; max-width: 100%; height: auto; display: block; margin: 0.5rem auto;" />
+
+## Axes objects &hyphen; Coordinate axes
+
+We can set the limits and add labels.
+
+```{pyodide-python}
+fig, ax = subplots(figsize=(8, 3))  # setting figsize in inches
+x =linspace(-2*pi, 2*pi, 100)
+ax.plot(x, sin(x))
+
+ax.set_xlim(-3*pi, 3*pi)
+ax.set_ylim(-1.5, 1.5)
+ax.set_xlabel('x')
+ax.set_ylabel('sin(x)')
+```
+
+## Axes objects &hyphen; Ticks and ticklabels
+
+```{pyodide-python}
+fig, ax = subplots(figsize=(8, 3))
+x =linspace(-2*pi, 2*pi, 100)
+ax.plot(x, sin(x))
+
+ax.set_xticks([-pi, 0, pi])
+ax.set_xticklabels(['$-\pi$', '$0$', '$\pi$'], fontsize = 16)  # using LaTeX
+
+# set minor ticks
+ax.set_xticks([-pi*1.5, -pi*0.5, pi*0.5, pi*1.5], minor = True)
+
+# use empty array to hide ticks
+ax.set_yticks([])
+```
+
+## Axes objects &hyphen; Spines
+
+By default four **spines** are rendered at the boundary of a plot. We can change the position of spines, and hide them.
+
+```{pyodide-python}
+fig, ax = subplots(figsize=(8, 3))
+x =linspace(-2*pi, 2*pi, 100)
+ax.plot(x, sin(x))
+
+ax.spines['left'].set_position('zero')
+ax.spines['right'].set_color('none')      # hide
+ax.spines['bottom'].set_position('zero')
+ax.spines['top'].set_color('none')        # hide
+```
+
+## Line plots
+
+The line plots are stored in the list `ax.lines`.
+
+```{pyodide-python}
+fig, ax = subplots(figsize = (8, 3))
+x =linspace(-2*pi, 2*pi, 100)
+
+ax.plot(x, sin(x), 'r--', label = "sine")
+ax.plot(x, cos(x), 'bo-', label = "cosine")
+
+ax.lines[0].set_linewidth(2)
+ax.lines[1].set_linewidth(2)
+       
+print("The number of line plots is", len(ax.lines))
+print("Each line plot is of the type", type(ax.lines[0]))
+```
+
+## Line plots (cont)
+
+We can use getter methods.
+
+```{pyodide-python}
+print("The linestyle of the first line plot is", ax.lines[0].get_linestyle())
+print("The color of the last line plot is", ax.lines[-1].get_color())
+```
+
+We can use setter methods.
+
+```{pyodide-python}
+ax.lines[0].set_linewidth(5)
+```
+
+We can get and set the `xdata` and `ydata` of a line plot.
+
+```{pyodide-python}
+print("The first y-value of the first plot is ", ax.lines[0].get_ydata()[0])
+```
+
+## Line plots - getting a reference to a line plot
+
+Rather than referencing a line plot as `ax.lines[0]`, we can make variables.
+
+The plot method returns a list of line plots. In many cases that list has only one element.
+
+```python
+#unpacking a list of one element
+li_sin, = ax.plot(x, sin(x))
+li_cos, = ax.plot(x, cos(x))
+``` 
+
+We can make several line plots at once:
+
+```python
+#unpacking a list of two elements
+li_sin, li_cos = ax.plot(x, sin(x), x, cos(x))
+```
+
+## Some setter methods for line plots
+
+Fix this plot such that: 
+ - each plot has a label 
+ - the x-axis has a label
+ - one plot is `green` the other one is `red` 
+ - the plots have different line tickness
+ - the plots differ in line style, i.e. one plot has line style `--`
+ 
+ Use: `set_linewidth`, `set_linestyle`, `set_color`
+ **5min, let's go!**
+
+```{pyodide-python}
+
+```
+
+```{pyodide-python}
+x = linspace(-2*pi, 2*pi, 100)
+fig, ax = subplots(figsize=(8, 4))
+li_sin, li_cos = ax.plot(x, sin(x), x, cos(x))
+li_sin.set_label('sin(x)')
+li_cos.set_label('cos(x)')
+li_sin.set_linewidth(4)
+li_sin.set_color('green')
+li_cos.set_linestyle('-.')
+#ax.lines[0].set_linewidth(4)
+ax.legend()
+```
+
+## Some setter methods for line plots
+
+```{pyodide-python}
+x = linspace(-2*pi, 2*pi, 100)
+fig, ax = subplots(figsize=(8, 4))
+li_sin, li_cos = ax.plot(x, sin(x), x, cos(x))
+
+li_sin.set_label('sin(x)')
+li_sin.set_linewidth(5)
+
+li_cos.set_label('cos(x)')
+li_cos.set_color('red')
+li_cos.set_linestyle('-.')
+ax.set_xlabel('x')
+ax.legend()   # we use legend as an axis method, not as a command
+```
+
+## Annotation
+
+The arrow is given properties using a dictionary. (See the textbook for more examples)
+
+```{pyodide-python}
+fig, ax = subplots(figsize = (8, 3))
+x =linspace(-2*pi, 2*pi, 100)
+ax.plot(x, sin(x))
+
+# we need space above the curve
+ax.set_ylim([-1.2, 2])
+
+ax.annotate("local max", xy = (pi/2, 1), xytext = (pi, 1.8),
+            arrowprops = {'facecolor': 'green', 'shrink': 0.1, 'width': 3})
+```
+
+## Fill the area between curves
+
+```{pyodide-python}
+fig, (ax1, ax2) = subplots(nrows = 1, ncols = 2, figsize = (15, 3))
+x =linspace(-2*pi, 2*pi, 100)
+
+y1 = sin(x)
+y2 = cos(x)
+
+ax1.plot(x, y1, 'r')
+ax1.plot(x, y2, 'b')
+ax1.fill_between(x, y1, y2, color = 'green', alpha = 0.9)
+
+# specify fill condition using where
+ax2.plot(x, y1, 'r')
+ax2.plot(x, y2, 'b')
+ax2.fill_between(x, y1, y2, where = y1 > y2, color = 'red', alpha = 0.3)
+```
+
+## RTFM 
+
+Please take a look at the matplotlib gallery. There are a lot of examples to start from: 
+
+[https://matplotlib.org/stable/gallery/](https://matplotlib.org/stable/gallery/)
+
+```{pyodide-python}
+import matplotlib.pyplot as plt
+import numpy as np
+
+
+def koch_snowflake(order, scale=10):
+    """
+    Return two lists x, y of point coordinates of the Koch snowflake.
+
+    Parameters
+    ----------
+    order : int
+        The recursion depth.
+    scale : float
+        The extent of the snowflake (edge length of the base triangle).
+    """
+    def _koch_snowflake_complex(order):
+        if order == 0:
+            # initial triangle
+            angles = np.array([0, 120, 240]) + 90
+            return scale / np.sqrt(3) * np.exp(np.deg2rad(angles) * 1j)
+        else:
+            ZR = 0.5 - 0.5j * np.sqrt(3) / 3
+
+            p1 = _koch_snowflake_complex(order - 1)  # start points
+            p2 = np.roll(p1, shift=-1)  # end points
+            dp = p2 - p1  # connection vectors
+
+            new_points = np.empty(len(p1) * 4, dtype=np.complex128)
+            new_points[::4] = p1
+            new_points[1::4] = p1 + dp / 3
+            new_points[2::4] = p1 + dp * ZR
+            new_points[3::4] = p1 + dp / 3 * 2
+            return new_points
+
+    points = _koch_snowflake_complex(order)
+    x, y = points.real, points.imag
+    return x, y
+```
+
+```{pyodide-python}
+x, y = koch_snowflake(order=5)
+
+plt.figure(figsize=(8, 8))
+plt.axis('equal')
+plt.fill(x, y)
+plt.show()
+```
+
+<nav class="bottom-page-nav" aria-label="Page navigation">
+  <a class="page-nav-link prev" href="lecture10.html">Previous: Lecture 10</a>
+  <a class="page-nav-link next" href="lecture12.html">Next: Lecture 12</a>
+</nav>

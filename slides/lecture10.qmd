@@ -1,0 +1,676 @@
+---
+title: "Computational Programming with Python"
+format: html
+filters:
+  - pyodide
+resources:
+  - datafile.txt
+  - datafile.npy
+  - mydata.dat
+  - mydata.txt
+  - names.txt
+  - file1.dat
+  - file2.dat
+  - file3.dat
+  - file4.dat
+  - file5.dat
+  - mynames.txt
+---
+## Lecture 10: File handling and iterators
+
+
+### Center for Mathematical Sciences, Lund University
+Lecturer: Malin Christersson, `Robert Klöfkorn`
+
+# This lecture
+
+- More about `Exception`
+- `split` and `join`
+- File handling
+- More about plotting
+
+## Creating errors
+
+Creating an error is called `raising an exception`. You may raise an
+exception like this:
+
+```Python
+raise Exception(" Something went wrong ")
+```
+
+Typical exceptions are
+- `TypeError`
+- `ValueError`
+- `IndexError`
+
+You already know `SyntaxError` and `ZeroDivisionError`.
+
+## Review the alarms
+
+You may review the errors using `try` and `except`:
+
+```{pyodide-python}
+def some_code():
+    pass
+try:
+    some_code() # some code that may raise and exception
+except ValueError:
+    print(' Oops , a ValueError occurred ')
+except TypeError:
+    print(' We got a TypeError but not a ValueError ')
+except Exception:
+    print(' Some other kind of exception occurred . ')
+finally:
+    print(' Everything good !')
+```
+
+#### Flow Control
+
+An exception stops the flow and looks for the closest enclosing try
+block. If it is not caught it continues searching for the next try
+block.
+
+## Error messages (cont)
+
+__Golden rule__: 
+Never print error message, raise an exception instead. 
+Define your own Exceptions if it is necessary. Everything but the name is inherited from the base class.
+
+```{pyodide-python}
+class NoConvergenceException(Exception):
+    pass
+
+def fixedPointIter(f, x0, maxit = 100, tol = 1e-6):
+    oldx = x0
+    for i in range(maxit):
+        x = f(oldx)
+        if abs(x - oldx) < tol:
+            break
+        oldx = x
+    else:
+        raise NoConvergenceException(f"It didn't converge in {maxit} iterations.")
+    return x, i
+
+for it in [1, 5, 10, 20, 50]:
+    try:
+        x , numit = fixedPointIter(lambda x: 1/(1+x) , 1, maxit = it)
+    except NoConvergenceException:
+        print (f"No convergence in { it } iterations!")
+    else :
+        print(f"Converged to { x } in { numit } iterations ")
+        break
+```
+
+# `split` and `join`
+
+The methods `split` and `join` can be used on instances of `str`.
+
+```python
+separation.join(some_list)    # returns a string
+
+some_string.split(separation) # returns a list
+```
+
+In both cases, `separation` is a string.
+
+## Examples using `join`
+
+Using different separators:
+
+```{pyodide-python}
+town_list = ["Stockholm", "Paris", "London"]
+towns1 = ",".join(town_list)
+towns2 = "\t".join(town_list)  # tab
+towns3 = '"'.join(town_list) 
+print(towns1)
+print(towns2)
+print(towns3)
+```
+
+When the list elements are not strings, they must be cast to `str`.
+
+```{pyodide-python}
+nr_list = [3, 7.4, 1e-4, 3+7j]
+#nr_list.sort()
+numbers = " and ".join(str(nr) for nr in nr_list)
+print(numbers)
+```
+
+## Examples using `split`
+
+If no argument is given, blank is used as separator:
+
+```{pyodide-python}
+msg ="Let no one ignorant of geometry enter!"
+L1 = msg.split()
+print(L1)
+
+L2 = msg.split("of geometry")
+print(L2)
+```
+
+```{pyodide-python}
+filename = "test.min.js"
+L3 = filename.split(".")
+print("The file extension is", L3[-1])
+```
+
+## Using `split` and `input`
+
+We could use `split` after letting the user enter a number of numbers:
+
+```{pyodide-python}
+answer = input("Enter numbers separated by comma: ")
+strings = answer.split(',')
+print(strings)
+floats = [float(element) for element in strings]
+print("The sum is", sum(floats))
+```
+
+# File handling
+
+## File I/O
+File I/O (input and output) is essential when
+- working with measured or scanned data
+- interacting with other programs
+- saving information for comparisons or other postprocessing needs
+- ...
+
+## File objects
+
+A file is a Python object with associated methods:
+```python
+myfile = open('mydata.txt', 'w') # create a file for writing
+```
+If the file `mydata.txt` already exists (in the current working directory), it will be overwritten. If not, it will be created.
+
+To write some data to the file:
+```python
+myfile.write('some data')
+myfile.write('some other data')
+```
+
+When you're done, close the file:
+```python
+myfile.close()
+```
+
+## Example &hyphen; Writing to a file
+
+```{pyodide-python}
+names = ["Emma", "Hugo", "Erik", "Josefin", "Mia", "Lukas", "Tim", "Bo"]
+myfile = open('mynames.txt', "w")
+myfile.write(', '.join(names))
+myfile.close()
+```
+
+- Run the code and check out the file that has been created.
+- Comment out the last row so `myfile` is never closed. Then check out names.txt.
+- Concatenate each name with a blank `' '` when writing to the file. Then check out `names.txt`.
+- Concatenate each name with a `'\n'` (new line) when writing to the file. Then check out `names.txt`.
+
+**5min, let's go!**
+
+```{pyodide-python}
+
+```
+
+```{pyodide-python}
+names = ["Emma", "Hugo", "Erik", "Josefin", "Mia", "Lukas", "Tim", "Bo"]
+
+myfile = open('names.txt', 'w')
+myfile.write(" ".join(names))
+myfile.close()
+```
+
+## Reading from a file
+
+> Note: The code below is only necessary in the browser/Pyodide environment, where the local file must already be available in the page filesystem. In a normal Python interpreter you can use the same code when the file exists locally.
+
+```python
+myfile = open('mydata.txt', 'r') # create a file for reading
+```
+
+Normal Python reference:
+
+```python
+with open('mydata.txt', 'r') as myfile:
+    s = myfile.read()
+```
+
+The file `mydata.txt` must exist (in the current working directory).
+
+The whole file can be read and stored in a string by
+
+```python
+s = myfile.read()
+```
+
+You can also read one line at a time by
+
+```python
+myfile.readline()
+```
+
+You can read all lines and make a list by using:
+
+```python
+L = myfile.readlines()
+```
+
+or use it like:
+```python
+for line in myfile.readlines():
+    print(line)
+```
+
+## Files as generators
+A file object is a **generator**. We will talk more about generators later.
+
+A generator is like a list, except the values need not exist until asked for.
+
+A main feature of generators is that they are disposable. When you read a line from a file, it is removed from the file object (not from the file itself). The following code will print three different things:
+
+```python
+print(myfile.readline()) # Line 1
+print(myfile.readline()) # Line 2
+print(myfile.readline()) # Line 3
+
+```
+
+## File close method
+
+A file has to be closed before it can be reread.
+
+```python
+myfile.close() # closes the file object
+``` 
+
+It is automatically closed when
+- the program ends
+- the enclosing program unit (e.g. function) is left
+
+Before a file closes, you won't see any changes in an external editor.
+
+## Example &hyphen; Reading from a file
+
+Assuming that the names in `names.txt` has been written as one name per row, we can make a list of names, and then **shuffle** them:
+
+```{pyodide-python}
+from random import shuffle
+# open the file names.txt
+
+# read all lines at once (file.readlines())
+
+# close the file 
+
+# create a list where trailing white space and other characters are removed
+
+# shuffle the list by using the function `shuffle`
+```
+
+- The string method `strip()` removes leading and trailing blanks. See the result when not using `strip()`!
+- Change the code that writes `names.txt` so that the names are separated by a blank. Then use `split` to make a list when reading the file.
+
+**5min let's go!**
+
+## Example &hyphen; Reading from a file
+
+Assuming that the names in names.txt has been written as one name per row, we can make a list of names, and then "shuffle" them:
+
+```{pyodide-python}
+from random import shuffle
+
+myfile = open('mynames.txt', 'r')
+L = myfile.readlines()
+myfile.close()
+
+print(L)
+L = [element.strip() for element in L]
+
+shuffle(L)
+print(L)
+```
+
+## What you could do - Random groups
+
+Define a function that takes a filename and a maximum group size as arguments. The function can read the names from the file and then print random groups using the maximum group size. 
+
+```python
+def print_groups(filename, max_size):
+   ...          
+print_groups("names.txt", 3)
+```
+The output could look like this:
+```
+There are 8 names.
+Maximum group size is 3
+Group 1
+    Lukas
+    Mia
+    Hugo
+Group 2
+    Bo
+    Erik
+    Josefin
+Group 3
+    Emma
+    Tim
+```
+
+## Reading tabular data from a file
+
+When reading tabular data, you can use `readline()` or `readlines()`, and then use `split()` for each line.
+
+### Creating tabular data from a spreadsheet
+
+When using a spreadsheet (e.g. LibreOffice Calc), you can save the file as a CSV file. In a a CSV file, data on one row is separated by a comma or a semicolon.
+
+![csvFile](http://cmc.education/slides/notebookImages/csvFile.png)
+
+## The `with` statement
+
+If you forget to close a file, problems can occur. Also, an error
+might prevent you from closing the file. Consider
+
+```python
+myfile = open(filename, 'w')
+myfile.write('some data')
+a = 5/0
+myfile.write('some other data')  
+myfile.close()
+```
+
+The `with` statement helps with this:
+```python
+with open(filename, 'w') as myfile:
+    myfile.write('some data')
+    a = 5/0 # sample code for creating an exception
+    myfile.write('some other data') 
+```
+
+With this construction, the file is **always closed** even if an **exception occurs**. It is a shorthand for a clever `try-except` block.
+
+## File modes (read, write, etc.)
+
+```python
+file1 = open('file1.dat', 'r')  # read only
+file2 = open('file2.dat', 'r+') # read/write
+file3 = open('file3.dat', 'a')  # append
+file4 = open('file4.dat', 'w')  # (over-) write
+file5 = open('file5.dat', 'wb') # writing to binary file
+file6 = open('file5.dat', 'rb') # reading fron binary file
+```
+
+The modes `'r'`, `'r+'`, `rb`, and `'a'` require that the file exists.
+
+#### File append example
+
+```python
+file3 = open('file3.dat', 'a')
+file3.write('something new\n')  # note the '\n'
+```
+
+## Saving numpy arrays
+
+The `read` and write `methods` convert data to strings.
+Complex data types (like arrays) cannot be written this way. Numpy provides its own methods for storing arrays.
+
+```{pyodide-python}
+import numpy
+from numpy import array
+a = array ( [ 10 , 20 , 30 ] )
+with open ( "datafile.txt" , "w" ) as myfile:
+    numpy.savetxt( myfile, a ) # Saves a in datafile.txt
+    
+with open ( "datafile" , "wb" ) as myfile: # note "wb" for writing binary
+    numpy.save ( myfile, a ) # Saves a in outfile () binary
+```
+
+```{pyodide-python}
+# or simply create the file like this (but with statement is better)
+
+a = array([10, 20, 30])
+numpy.savetxt('datafile.txt', a) # numpy function for saving a to text file
+```
+
+You can also just give the name of the file and store it as a binary file
+
+```{pyodide-python}
+a = array([10, 20, 30])
+numpy.save('datafile', a) # saves b in datafile.npy
+```
+
+By using `numpy.savez`, one can save several arrays in one file.
+
+## Reading numpy arrays
+
+Reading arrays is done similarly.
+
+> Note: The code below is only necessary in the browser/Pyodide environment, where the local data files must already be available in the page filesystem. In a normal Python interpreter you can use the same code when the file exists locally.
+
+```{pyodide-python}
+with open ( "datafile.txt" , "r" ) as myfile:
+    a = numpy.loadtxt( myfile )
+    print(f"Read a: {a}")
+        
+with open( "datafile.npy" , "rb" ) as myfile:
+    a = numpy.load( myfile )
+    print(f"Read a: {a}")
+```
+
+Normal Python reference:
+
+```python
+a = numpy.loadtxt('datafile.txt')
+print(f"Read a: {a}")
+
+b = numpy.load('datafile.npy')
+print(f"Read b: {b}")
+```
+
+There are several more options, see the documentation.
+
+## The module `pickle`
+
+We can use the module `pickle` to write to, and read from, binary files. You can pickle (almost) any Python object.
+
+#### Pickle `dump` example
+
+We open the file for writing, in binary mode, by using `'wb'`.
+
+```{pyodide-python}
+import pickle
+arr = array([1, 2, 3])
+number = 367
+with open('mydata.dat', 'wb') as myfile:
+    pickle.dump(arr, myfile)
+    pickle.dump(number, myfile)
+```
+
+#### Pickle `load` example
+
+We open the file for reading, in binary mode, by using `'rb'`.
+
+```{pyodide-python}
+with open('mydata.dat', 'rb') as myfile:
+    arr = pickle.load(myfile)
+    number = pickle.load(myfile)
+print(f"arr = {arr}, number = {number}")
+```
+
+You must read (`load`) the data in the same order as you wrote (`dump`) it.
+
+# Iterable objects (advanced)
+
+**Definition:** An iterable object has a special method `__iter__` which is called
+in for loops.
+
+Example: A typical iterator is `range` in Python 3.x.
+
+```{pyodide-python}
+for i in range ( 10000000 ):
+    if i > 10:
+        print(f"i = {i}")
+        break
+```
+
+Is the same as
+
+```{pyodide-python}
+for i in range ( 10000000 ).__iter__():
+    if i > 10:
+        print(f"i = {i}")
+        break
+```
+
+`range(10000).__iter__()` creates an **iterator**.
+
+## Iterators 
+
+**Definition:** An iterator has a special method `__next__`.
+
+Example:
+
+```{pyodide-python}
+rg = range( 3 ) # iterable object
+print(type(rg))
+rgi = rg.__iter__() # an iterator
+rgi.__next__() # returns 0
+rgi.__next__() # returns 1
+rgi.__next__() # returns 2
+rgi.__next__() # returns StopIteration exception
+```
+
+Iterators can be **exhausted**. They exist as objects but are of no use
+any more in your program.
+
+## Create your own iterators 
+
+Creation of iterators is possible with the keyword `yield`:
+
+```{pyodide-python}
+def odd_numbers( n ):
+    " generator for odd numbers less than n "
+    for k in range( n ):
+        if k % 2 == 1:
+            yield k
+```
+
+Then you call it as:
+
+```{pyodide-python}
+g = odd_numbers( 10 )
+print(g)
+
+for k in g:
+    print(k) # do something with k
+```
+
+## Iterator Tools
+
+`enumerate` is used to enumerate an iterable:
+
+```{pyodide-python}
+A = ["a", "b", "c"]
+
+for i,x in enumerate( A ):
+    print (i , x) # result : 0 a 1 b 2 c
+    
+for i in range(len(A)):
+    print(i, A[i])
+```
+
+`reversed` creates an iterator from a `list` by going backwards:
+
+```{pyodide-python}
+A = [0 , 1 , 2 ]
+for elt in reversed( A ):
+    print( elt ) # result : 2 1 0
+print(A)
+```
+
+## Infinite Iterators
+
+Iterators can be infinite:
+
+```{pyodide-python}
+def odd_numbers():
+    " generator for odd numbers "
+    k=0
+    while True:
+        k+=1
+        if k % 2 == 1:
+            yield k
+            
+# Find the first odd_number greater than 68:
+odd = odd_numbers()
+for no in odd:
+    if no > 68:
+        print( no )
+        break
+```
+
+## Arithmetic Geometric Mean
+
+With $a_0 = 1$ and $b_0 = \sqrt{ 1 - k^2 }$, the iteration
+
+$$ a_{i+1} = \frac{a_i + b_i}{2}$$ 
+
+$$ b_{i+1} = \sqrt{a_i b_i } $$  
+
+converges to 
+
+$$ F(k, \frac{\pi}{2}) = \frac{\pi}{2} \lim_{i \to \infty} a_i = \int_0^{\frac{\pi}{2}} \frac{1}{\sqrt{1 - k^2 \sin^2(\theta)}} d\theta$$
+
+This is called a *complete elliptic integral of first kind*. See also *Legendre form of elliptic integrals of first, second and third kinds*.
+
+```{pyodide-python}
+from numpy import sqrt, pi
+def arithmetic_geometric_mean(a , b):
+    """
+    Generator for the arithmetic and geometric mean
+    a , b initial values
+    """
+    while True: # infinite loop
+        a,b = (a + b)/2, sqrt( a*b )
+        yield a,b
+```
+
+```{pyodide-python}
+# k is in (0,1)
+def elliptic_integral(k, tolerance=1e-5 ):
+    """
+    Compute an elliptic integral of the first kind .
+    """
+    a_0 , b_0 = 1., sqrt(1 - k**2 )
+    for a,b in arithmetic_geometric_mean( a_0, b_0 ):
+        if abs( a - b ) < tolerance:
+            return pi/( 2*a )
+        
+print(elliptic_integral(0.1))
+```
+
+# Generator expressions
+
+
+Just as we had `list` comprehensions, there is also `generator` comprehension:
+
+```{pyodide-python}
+g = (n for n in range(1000) if not n % 100)
+# a generator that generates 0 , 100 , 200 ,
+
+print(g)
+
+for i in g:
+    print(i)
+    
+print("Try again")    
+for i in g:
+    print(i)
+```
+
+<nav class="bottom-page-nav" aria-label="Page navigation">
+  <a class="page-nav-link prev" href="lecture09.html">Previous: Lecture 9</a>
+  <a class="page-nav-link next" href="lecture11.html">Next: Lecture 11</a>
+</nav>

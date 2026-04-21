@@ -296,3 +296,8 @@ print(y)
 There are other packages with even more functions, such as `math` and `scipy`. In
 particular, `numpy` makes the `math` package mostly obsolete when working with
 numpy arrays.
+
+<nav class="bottom-page-nav" aria-label="Page navigation">
+  <a class="page-nav-link prev" href="appendix_a3.html">Previous: A.3 Control Statements</a>
+  <a class="page-nav-link next" href="appendix_a5.html">Next: A.5 Number Representation</a>
+</nav>

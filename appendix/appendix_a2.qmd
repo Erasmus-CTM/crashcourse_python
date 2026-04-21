@@ -339,3 +339,8 @@ print(S)
 Python is useful but fairly slow. Built-in commands are usually implemented in
 faster languages (such as C++), so if speed is important, use built-in functions
 as much as possible.
+
+<nav class="bottom-page-nav" aria-label="Page navigation">
+  <a class="page-nav-link prev" href="appendix_a1.html">Previous: A.1 Introduction</a>
+  <a class="page-nav-link next" href="appendix_a3.html">Next: A.3 Control Statements</a>
+</nav>

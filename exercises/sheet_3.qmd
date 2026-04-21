@@ -185,7 +185,7 @@ for idx, current in enumerate(sets_to_test, start=1):
     print(f"Test {idx}: empty set subset of {current}? {result}")
 ```
 
-### Task 7 & 8
+### Task 8
 
 **Bisection Method.**  
 A continuous function that changes sign in an interval \([a, b]\) has at least one root
@@ -242,3 +242,8 @@ print("Roots for atan in [-1.5, -0.4]:", root2)
 print("Roots for 3x^2 - 5 in [-0.5, 0.6]:", root3)
 print("Roots for 3x^2 - 5 in [-1.5, -0.4]:", root4)
 ```
+
+<nav class="bottom-page-nav" aria-label="Page navigation">
+  <a class="page-nav-link prev" href="sheet_2.html">Previous: Sheet 2</a>
+  <a class="page-nav-link next" href="sheet_4.html">Next: Sheet 4</a>
+</nav>

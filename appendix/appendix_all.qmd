@@ -1605,3 +1605,8 @@ replaced by $(0.\epsilon)_2$ when $\alpha = -1024$, we obtain the rough descript
 
 Exactly the fractions $a / 2^n$, where $a$ is an integer and $n$ is a natural number.
 These are the numbers with finite binary expansions.
+
+<nav class="bottom-page-nav" aria-label="Page navigation">
+  <a class="page-nav-link prev" href="appendix_a6.html">Previous: A.6 Answers</a>
+  <span class="page-nav-link next is-disabled">Next</span>
+</nav>

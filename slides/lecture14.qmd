@@ -1,0 +1,371 @@
+---
+title: "Computational Programming with Python"
+format: html
+filters:
+  - pyodide
+resources:
+  - solarWatts.dat
+  - price.dat
+  - rates.dat
+---
+## Lecture 14: Brief Introduction to Pandas
+
+### Center for Mathematical Sciences, Lund University
+Lecturer: `Robert Klöfkorn`
+
+# This lecture
+
+This content is to be found in the book, chapter 10.
+
+- Working with Pandas dataframes
+  - Reading    
+  - Using 
+  - Merging 
+  - Plotting
+
+# A Guiding Example 
+
+This lecture unit needs an example data source to demonstrate Pandas:
+
+Solar cells in Södra Sandby
+
+### solarWatts.dat
+
+### price.dat
+
+### rates.dat
+
+## Typical questions? 
+
+* When was the highest power production?
+* Which day delivered the most energy?
+* Which was the economical outcome in Euro per month?
+* Was there a day where the solar cells were out of work?
+
+### The tool to use is Pandas dataframe
+
+## Pandas Dataframe vs Numpy Array
+
+Let’s start by just looking at an example:
+
+```{pyodide-python}
+from numpy import *
+A = array([[1.,2.,3.],
+          [4.,5.,6.]])
+print(A)
+```
+
+Using a pandas dataframe:
+
+```{pyodide-python}
+import pandas as pd
+AF = pd.DataFrame(A)
+print(AF)
+```
+
+We see that a Pandas dataframe has extra labels of the `rows` and `columns` - called `index` and `columns`. 
+These are `metadata` of a dataframe. Here they coincide with NumPy’s indexing.
+
+## Dataframe: Index and Column Metadata
+
+Index and Column Metadata gives a Pandas dataframe the
+possibility to label the data as known from classical tabel design
+
+```{pyodide-python}
+AF.columns = ['C1','C2','C3']
+AF.index   = ['R1','R2']
+print(AF)
+```
+
+... and allows indexing to construct subframes:
+
+```{pyodide-python}
+AF.loc[['R1'],['C2']]
+```
+
+## Dataframe: Indexing
+
+Indexing by `row` and `column` labels loc-method:
+
+```{pyodide-python}
+AF.loc['R1','C2']
+```
+
+while
+
+```{pyodide-python}
+AF.loc[['R1'],['C2']]
+```
+
+## Indexing by row and column indexes iloc-method
+
+Use the method `iloc` for index based access:
+
+```{pyodide-python}
+AF.iloc[0 ,1]
+```
+
+... while
+
+```{pyodide-python}
+AF.iloc[[0],[1]]
+```
+
+## Pandas Dataseries
+
+The label of a column can be used as an attribute which refers to the entire column
+
+```{pyodide-python}
+print(AF.C1)
+print(type(AF.C1))
+```
+
+This is a new Pandas object – a `series object`.
+
+**Note:** A Pandas series has no column label. It is just a single
+column corresponding to a single type of measured data.
+
+## Dataframes: Subframes, Slices and Elements
+
+Note, if `loc` (or `iloc`) is called with list arguments or slices the result is a dataframe.
+
+```{pyodide-python}
+AF1 = AF.loc['R1':,'C1':] # or equivalently
+print(AF1)
+
+AF2 = AF.loc[['R1','R2'],['C2','C3']]
+print(AF2)
+```
+
+while calling with a pair of single labels just give an element of the dataframe
+
+```{pyodide-python}
+print(AF.loc['R1','C2'])
+```
+
+# Datetime objects as indices
+
+It is very common that the index contains information about the
+date and the time of a given measurement as a string.
+In Sweden we use a format `yy-mm-dd hh:mm:ss` to report the time of a measurement as a string.
+### Example: Temperature meassurements
+
+```{pyodide-python}
+date_index = ['2020-01-19 11:45', '2020-01-20 02:14']
+AF.index = date_index
+print(AF)
+# print(AF.index[1]-AF.index[0]) # does not work!
+```
+
+## Datetime objects as indices (cont.)
+
+We often want to make simple arithmetic with date and time
+information for this end the list of strings has to be converted in a
+list of so-called datetime objects first
+
+```{pyodide-python}
+date_index = pd.to_datetime(['2020-01-19 11:45','2020-01-20 02:14'])
+AF.index = date_index
+print(AF)
+```
+
+This way we can easlily find out how much time passed between
+the measurements `AF.index[1]-AF.index[0]`. The result is a timedelta object displayed here as 
+`Timedelta(’0 days 14:29:00’)`
+
+```{pyodide-python}
+print(AF.index[1]-AF.index[0])
+print(type(AF.index[1]-AF.index[0]))
+```
+
+## Creating a dataframe from imported data
+
+Let's look at `solarWatts.dat`
+
+> Note: The code below is only necessary in the browser/Pyodide environment, where the local filesystem may not already contain the data files. In a normal Python interpreter you can read the files directly.
+
+Code for local filesystem:
+
+```python
+solarWatts = pd.read_csv(
+    "solarWatts.dat",
+    sep=';',
+    index_col='Date',
+    parse_dates=[0]
+)
+```
+
+```{pyodide-python}
+import os
+import io
+from js import fetch
+import pandas as pd
+
+async def read_dat(path, **kwargs):
+    print(f"Trying to load {path}...")
+    if os.path.exists(path):
+        df = pd.read_csv(path, **kwargs)
+        print(f"Loaded {path} from local filesystem")
+        return df
+    response = await fetch(path)
+    text = await response.text()
+    df = pd.read_csv(io.StringIO(text), **kwargs)
+    print(f"Loaded {path}")
+    return df
+
+solarWatts = await read_dat(
+    "solarWatts.dat",
+    sep=';',
+    index_col='Date',
+    parse_dates=[0]
+)
+```
+
+
+
+What do these arguments tell? 
+
+- The data is semicolon seperated,
+- Which column defines the index, which column contains dates,
+- should dates converted from string to timestamp and how.
+
+```{pyodide-python}
+print(solarWatts.iloc[100])
+```
+
+```{pyodide-python}
+print(solarWatts.iloc[-1])
+```
+
+## Merging Dataframes
+
+Here we merge production data with electricity prices:
+
+```{pyodide-python}
+# Creating
+prices = await read_dat(
+    "price.dat",
+    sep=';',
+    index_col='Date',
+    parse_dates=[0]
+)
+rates = await read_dat(
+    "rates.dat",
+    sep=';',
+    index_col='Date',
+    parse_dates=[0]
+)
+
+# and merging them into one dataframe
+solar_all = pd.merge(solarWatts, prices, how='outer', sort=True, on='Date')
+solar_all = pd.merge(solar_all, rates, how='outer', sort=True, on='Date')
+```
+
+Let's inspect the result:
+
+```{pyodide-python}
+print(solar_all.iloc[-1])
+```
+
+`outer` tells that the union of the index is taken as a new index.
+
+## Missing data (1/2)
+
+In the example `power` is updated every minute, `price` is updated every hour, `rate` is updated every day.
+
+```{pyodide-python}
+solar_all.iloc[range(12520,12527)]
+```
+
+What can be done?
+
+Use frame methods like: `dropna`, `ffill`, `bfill` or `interpolate`.
+
+## Missing data (2/2)
+
+Let's use `ffill` and `bfill` to `pad` missing values. 
+
+- `ffill`: Fill NA/NaN values by propagating the last valid observation to next valid.
+- `bfill`: Fill NA/NaN values by using the next valid observation to fill the gap.
+
+```{pyodide-python}
+# this method call creates a new object which can be costly (both in terms of memory and runtime)
+solar_all = solar_all.ffill(axis=0)
+print(solar_all)
+```
+
+```{pyodide-python}
+# use inplace=True to directly alter the object at hand
+solar_all.bfill(inplace=True, axis=0)
+print(solar_all)
+```
+
+## Plotting dataframes
+
+We demonstrate this by plotting all data for one day or the price variation along one day.
+
+```{pyodide-python}
+import matplotlib.pyplot as plt
+solar_all.loc['2020-05-14'].plot()
+plt.show()
+```
+
+```{pyodide-python}
+import matplotlib.pyplot as plt
+solar_all.loc['2020-05-14'].plot(y='SEK')
+plt.show()
+```
+
+## Use slicing to visualize a time period 
+
+Use `df.loc[datetime:datetime]` to access a time period.
+
+```{pyodide-python}
+import matplotlib.pyplot as plt
+solar_all.loc['2020-05-14':'2020-06-20'].plot(y='Euro_SEK')
+plt.show()
+```
+
+## Saving a dataframe to a csv file for later use
+
+After the data has been cleaned one might want to save for later use. We use, for example, `to_csv` and provide a filename.
+
+```{pyodide-python}
+solar_all.to_csv('solar_all.csv', sep=';')
+```
+
+## And finally: Answering some questions 
+
+How much was earned in the month of May 2020?
+
+```{pyodide-python}
+import time
+may = solar_all.loc['2020-05-01':'2020-05-31']
+
+solar_hour = solar_all.agg({'Watt':"sum"})
+print(may)
+
+income = 0.
+start = time.time()
+for i in range(len(may)):
+    income += may.Watt.iloc[i]/(1000.*60) * may.SEK.iloc[i] / may.Euro_SEK.iloc[i]
+print(f"Income in Euro for May is {income:.2f}")    
+print(f"Computation took {time.time()-start:2.4f}sec.")
+```
+
+```{pyodide-python}
+import time
+may = solar_all.loc['2020-05-01':'2020-05-31']
+print(may)
+
+income = sum(may.Watt[:]/(1000.*60.) * may.SEK[:] / may.Euro_SEK[:])
+
+start = time.time()
+print(f"\nThe income in month May was {income:.2f} Euros!")
+print(f"Computation took {time.time()-start:2.4f}sec.")
+```
+
+<nav class="bottom-page-nav" aria-label="Page navigation">
+  <a class="page-nav-link prev" href="lecture13.html">Previous: Lecture 13</a>
+  <span class="page-nav-link next is-disabled">Next</span>
+</nav>

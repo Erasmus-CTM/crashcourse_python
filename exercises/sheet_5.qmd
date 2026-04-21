@@ -124,3 +124,8 @@ Do the zeros depend linearly on $a$?
 #| read-only: false
 # TODO: compute and plot positive roots versus a in [1, 5].
 ```
+
+<nav class="bottom-page-nav" aria-label="Page navigation">
+  <a class="page-nav-link prev" href="sheet_4.html">Previous: Sheet 4</a>
+  <a class="page-nav-link next" href="sheet_6.html">Next: Sheet 6</a>
+</nav>

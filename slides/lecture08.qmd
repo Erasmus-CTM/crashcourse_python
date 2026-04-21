@@ -1,0 +1,829 @@
+---
+title: "Computational Programming with Python"
+format: html
+filters:
+  - pyodide
+---
+
+## Lecture 8: Exceptions and Introduction to OOP
+
+
+### Center for Mathematical Sciences, Lund University
+Lecturer: Malin Christersson, `Robert Klöfkorn`
+
+## This lecture
+
+- Catching exceptions
+- Raising exceptions
+- Introduction to object oriented programming (OOP)
+- Example - Making a class for rational numbers
+- Numpy array operations vs. for loops (if time allows)
+
+# Catching exceptions
+
+When using data that a user provides, or reading data from files, execution errors (so called **exceptions**) can occur. 
+
+Many programming languages have some kind of **exception handling**.
+
+We will read data from files later, here is an example of using user data:
+
+```{pyodide-python}
+name = input("Enter your name:")
+print(f"Hello {name}!")
+```
+
+## Example &hyphen; Reciprocal
+
+What could go wrong?
+
+```{pyodide-python}
+answer = input("Enter a non-zero float:")
+nr = float(answer)
+print(f"1/{nr} = {1/nr}")
+```
+
+## Reciprocal &hyphen; catching the errors
+
+First catch possible `ValueError`. If no `ValueError`, catch `ZeroDivisionError`:
+
+```{pyodide-python}
+answer = input("Enter a non-zero float:")
+try:
+    nr = float(answer)
+    print(f"1/{nr} = {1/nr}")
+except ValueError:
+    print("That wasn't a FLOAT!")
+except ZeroDivisionError:    
+    print("That wasn't NON ZERO!")
+```
+
+## Reciprocal - keep trying
+
+An example using `try-except-else`:
+
+```{pyodide-python}
+# an infinite loop
+while True:
+    try:
+        answer = input("Enter a non-zero float:")
+        nr = float(answer)
+        result = 1/nr          # we could also break here
+    except ValueError:
+        print("That wasn't a FLOAT!")
+    except ZeroDivisionError:
+        print("That wasn't NON ZERO!")
+    else:
+        print("It worked!")
+        break
+        # no exceptions were raised
+
+print(f"1/{nr} = {1/nr}")
+```
+
+## Exceptions are propagated
+
+```{pyodide-python}
+def reciprocal(nr):
+    return 1/nr        # ZeroDivisionError may be raised here
+
+def get_input():
+    nr = float(input("Enter a non-zero float:"))
+    result = reciprocal(nr)  
+    print(result)
+
+try:
+    get_input()
+except Exception:    # Most exceptions are caught here  
+    print("Something went wrong.")
+```
+
+### Flow control
+An exception stops the flow and looks for the closest enclosing `try` block. If it is not caught it continues searching for the next try block.
+
+## Catching multiple exceptions
+
+We can catch most exceptions by using `Exception`:
+    
+```python
+try:
+    get_input()
+except Exception:     
+    print("Something went wrong.")
+```
+
+We can also specify multiple exceptions to be handled with the same code:
+
+```python
+try:
+    get_input()
+except (ValueError, ZeroDivisionError):     
+    print("Wrong value or division by zero.")
+except TypeError:
+    print("Wrong type.")
+```
+
+## Clean-up code using `finally`
+
+Code after `finally` is always executed.
+
+```python
+try:
+    get_input()
+except ValueError:
+    print("Wrong value.")
+except ...: 
+    ...
+else:
+    print("No exceptions occurred.")
+finally:
+    print("Good bye!)  
+```
+
+# Raising exceptions
+
+We can raise an exception (or throw an exception in other programming languages) by using the keyword `raise`.
+
+#### Example  using `Exception`
+```python
+def handle_positive_int(n):
+    if n > 0:
+        # do something
+    else:
+        raise Exception(f"{n} isn't positive!")
+``` 
+
+#### Example using `TypeError`
+
+```python
+def handle_int(n):
+    if isinstance(n, int):
+        # do something
+    else:
+        raise TypeError(f"{n} isn't an integer!")
+```
+
+## Error messages
+
+### Golden rule
+Never print error message, **raise an exception** instead.
+
+**Don't do this:**
+
+```{pyodide-python}
+def fixpoint_iter(f, x0, maxit = 100, tol = 1e-6):
+    x = x0
+    for i in range(maxit):
+        fx = f(x)
+        if abs(x - fx) < tol:
+            break
+        x = fx
+    else:
+        print(f"It didn't converge in {maxit} iterations.")
+    return x, i # here x and i will not be meaningful 
+
+fp, numit = fixpoint_iter(lambda x: 1/(1+x) , 1, maxit = 10) 
+print(fp) # not the correct fixpoint within given tolerance
+```
+
+## Error messages (cont)
+
+### Golden rule
+Never print error message, raise an exception instead.
+
+Do this:
+
+```{pyodide-python}
+def fixpoint_iter(f, x0, maxit = 100, tol = 1e-6):
+    oldx = x0
+    for i in range(maxit):
+        x = f(oldx)
+        if abs(x - oldx) < tol:
+            break
+        oldx = x
+    else:
+        raise Exception(f"It didn't converge in {maxit} iterations.")
+    return x, i
+
+fp, numit = fixpoint_iter(lambda x: 1/(1+x) , 1, maxit = 10) 
+print(fp) # not the correct fixpoint within given tolerance
+```
+
+## Error messages (cont)
+
+With the last construction we can do things like this:
+
+```{pyodide-python}
+for it in [10, 100, 1000, 10000 ]:
+    try:
+        fp, numit = fixpoint_iter(lambda x: 1/(1+x) , 1, maxit = it) 
+    except Exception:
+        print(f"{it} iterations were not enough.")
+    else:
+        print(f"Converged to {fp} in {numit} iterations.")
+        break
+```
+
+## The bisection method revisited
+
+Finding a root of $f(x) = 0$ where $f(x) = 3x^2 -5$.
+
+```{pyodide-python}
+from numpy import *
+from matplotlib.pyplot import *
+%matplotlib inline
+
+x = linspace(-5, 5, )
+plot(x, (lambda x: 3*x**2-5)(x))  #an anonymous function as argument 
+grid()
+```
+
+## An implementation of the bisection method
+
+```{pyodide-python}
+def bisect(f, a, b, tol = 1e-8):
+    for i in range(100):
+        mid = (a+b)/2
+        if abs(b-a) < tol:
+            return [a, b], mid
+        if f(a)*f(mid) < 0:
+            b = mid
+        else:
+            a = mid
+        
+
+i, m = bisect(lambda x: 3*x**2-5, -2, 0)
+print(m)  # not a root
+res = 3*m**2 -5 
+print(res)
+```
+
+## Bisection that raises exceptions
+
+```{pyodide-python}
+def bisect(f, a, b, tol = 1e-8):
+    if f(a)*f(b) >= 0:
+        raise ValueError("Incorrect interval.")
+    for i in range(100):
+        mid = (a+b)/2
+        if abs(b-a) < tol:
+            return [a, b], mid
+        if f(a)*f(mid) < 0:
+            b = mid
+        else:
+            a = mid
+    raise Exception("No root found.")
+```
+
+Iterating over a `try-except` block we could try to find an appropriate interval.
+
+# Introduction to object oriented programming (OOP)
+
+Everything in Python is an object. We use objects all the time.
+
+An object can have attributes that are **data attributes** or **method attributes**.
+
+```{pyodide-python}
+A = array([[1, 2, 3], [4, 5, 6]])
+print(type(A))
+
+init_shape = A.shape     # data
+print(f"initial shape: {init_shape}")
+
+A = A.reshape( (2,3) )    # method called with argument
+print(A)
+
+A = A.flatten()          # method called without argument
+print(A)
+```
+
+## Datatypes and classes
+
+A datatype, e.g. a `list` binds data and related methods together:
+
+```{pyodide-python}
+my_list = [1 ,2 ,3 ,4 , - 1 ]
+# my_list.
+# my_list.<tab> # show a list of all related methods ( in ipython only )
+
+my_list.sort () # is such a method
+print(my_list)
+my_list.reverse () # .. another method
+print(my_list)
+# my_list.
+```
+
+In this unit we show how own dataypes and related methods can
+be created. For example:
+- polynomials
+- triangles
+- special problems (find a zero)
+- etc.
+
+## Datatypes and classes (cont)
+
+You can create your own datatype using the keyword `class`.
+
+A minimalistic example:
+
+```{pyodide-python}
+class Nix:
+    pass
+
+a = Nix()
+
+if isinstance(a, Nix):
+    print("Indeed it belongs to the new class Nix.")
+```
+
+The object `a` is an **instance** of `Nix`.
+
+## Inheritance and class hierarchies
+
+*Child classes* can *inherit* data and methods from *parent classes*.
+
+Example: Hierarchy of **some** built-in exceptions classes:
+
+![exceptions](exceptions.png)
+
+## Naming conventions
+
+See [PEP 8 &hyphen; Style Guide for Python Code](https://www.python.org/dev/peps/pep-0008/) for details.
+Function and variable names should be lowercase, words separated by underscore.
+
+```python
+my_special_variable = 1
+def my_special_function():
+    ...
+```
+
+Or *CapitalizedWords* with initial lowercase character
+
+```python
+mySpecialVariable = 1
+def mySpecialFunction():
+    ...
+```
+Class names should use *CamelCase*.
+```python
+class MySpecialClass:
+    ...
+```
+
+```{pyodide-python}
+from numpy import *
+from matplotlib.pyplot import *
+
+x = linspace(-2.*pi, 2*pi, 200)
+#plot(x, sin(x))
+```
+
+```{pyodide-python}
+import numpy as np 
+import matplotlib.pyplot as plt
+
+x = np.linspace(-2.*np.pi, 2.*np.pi, 200)
+# plt.plot(x, np.sin(x))
+```
+
+```{pyodide-python}
+from numpy import sin, linspace, pi
+from matplotlib.pyplot import plot
+
+x = linspace(-2.*pi, 2*pi, 200)
+plot(x, sin(x))
+```
+
+# Example - Making a class for rational numbers
+
+When a class is instantiated, a function `__init__` is called. (Two double underscores in `__init__`)
+
+We can define what `__init__` should do:
+
+```{pyodide-python}
+class RationalNumber:
+    def __init__(self, numerator, denominator):  # Three parameters!
+        self.numerator = numerator
+        self.denominator = denominator
+        
+q = RationalNumber(5, 2)                         # Two arguments!
+
+print(type(q))
+print(q.numerator)
+print(q.denominator)
+```
+
+## `__init__` and `self`
+
+What happens when
+
+```python
+q = RationalNumber(5, 2)
+```
+
+is executed?
+
+- a new object with name `q` is created
+- the command `q.__init__(5, 2)` is executed
+
+`self` is a placeholder for the name of the newly created instance (here: `q`)
+
+## Raising exceptions
+
+```{pyodide-python}
+# %%script python --no-raise-error
+class RationalNumber:
+    def __init__(self, numerator, denominator):
+        if not isinstance(numerator, int) or not isinstance(denominator, int):
+            raise TypeError("numerator and denominator must be integers.")
+        self.numerator = numerator
+        self.denominator = denominator
+        
+q = RationalNumber(5, 2)  # Raises a TypeError
+```
+
+##  Adding methods
+
+Methods are functions bound to an instance of the class:
+
+```{pyodide-python}
+class RationalNumber:
+    def __init__(self, numerator, denominator):  # assuming correct type
+        self.numerator = numerator
+        self.denominator = denominator
+    
+    def convert2float(self):    # One parameter
+        return float(self.numerator)/float(self.denominator)
+    
+
+q = RationalNumber(5, 2)  # Two arguments
+a = q.convert2float()     # Zero arguments
+print(a)
+```
+
+Note again the special role of `self`.
+
+## Adding methods (cont)
+
+Note:
+__Both commands are equivalent!__
+
+```{pyodide-python}
+float1 = q.convert2float() 
+float2 = RationalNumber.convert2float(q) # q is self here, the instance
+
+print(RationalNumber.convert2float)
+print(q.convert2float)
+
+print(float1)
+print(float2)
+```
+
+## Adding methods (cont)
+
+```{pyodide-python}
+class RationalNumber:
+    def __init__(self, numerator, denominator): 
+        self.numerator = numerator
+        self.denominator = denominator
+    
+    def convert2float(self):
+        return self.numerator/self.denominator
+    
+    def add(self, other):
+        p1, q1 = self.numerator, self.denominator
+        if isinstance(other, RationalNumber):
+            p2, q2 = other.numerator, other.denominator
+        elif isinstance(other, int):
+            p2, q2 = other, 1
+        else:
+            raise TypeError("Wrong type!")
+        return RationalNumber(p1*q2 + p2*q1, q1*q2)
+        
+p = RationalNumber(1, 2)
+q = RationalNumber(1, 3)
+
+# Calling add takes this form
+p_plus_q = p.add(q)    # addition using dot notation 
+print(f"{p_plus_q.numerator}/{p_plus_q.denominator}")
+```
+
+## Special methods: Operators
+
+We would like to add RationalNumbers number instances just by
+
+`p+q` 
+
+Renaming the method 
+
+`RationalNumber.add` 
+
+to 
+
+`RationalNumber.__add__`
+
+makes this possible.
+
+### Using `__add__`
+
+```{pyodide-python}
+class RationalNumber:
+    def __init__(self, numerator, denominator): 
+        self.numerator = numerator
+        self.denominator = denominator
+    
+    def convert2float(self):
+        return self.numerator/self.denominator
+    
+    def __add__(self, other):  # assuming other is a RationalNumber
+        p1, q1 = self.numerator, self.denominator
+        p2, q2 = other.numerator, other.denominator
+        return RationalNumber(p1*q2 + p2*q1, q1*q2)
+    
+p = RationalNumber(1, 2)
+q = RationalNumber(1, 3)
+z = RationalNumber(3, 7)
+
+#p_plus_q = p + q           # Here we add by using +
+p_plus_q = p + q + z
+print(f"{p_plus_q.numerator}/{p_plus_q.denominator}")
+```
+
+## Special methods: Operators (cont)
+
+Some special methods:
+
+| Operator | Method | Operator | Method |
+| :---: | :--- | :---: | :--- |
+| +  | `__add__` | += | `__iadd__` |
+| -  | `__sub__` | -= | `__isub__` |
+| *  | `__mul__` | *= | `__imul__` |
+| /  | `__truediv__` | /= | `__idiv__` |
+| ** | `__pow__` |  |  |
+|    |      |  |  |
+| == | `__eq__` | != | `__ne__` |
+| <= | `__le__` |  < | `__lt__` |
+| >= | `__ge__` |  > | `__gt__` |
+| () | `__call__` | [] | `__getitem__` |
+
+## Special methods: Representation
+
+Instead of using:
+
+```python
+p = RationalNumber(5, 2)
+print(f"{p.numerator}/{p.denominator}")
+```
+
+we should be able to just use:
+
+```python
+print(p)
+```
+
+## Special methods: Representation (cont)
+
+`__str__` defines how the object is represented, when just typing its name.
+
+```{pyodide-python}
+class RationalNumber:
+    def __init__(self, numerator, denominator): 
+        self.numerator = numerator
+        self.denominator = denominator
+    
+    def __add__(self, other):  # assuming other is a RationalNumber
+        p1, q1 = self.numerator, self.denominator
+        p2, q2 = other.numerator, other.denominator
+        return RationalNumber(p1*q2 + p2*q1, q1*q2)
+    
+    #def __repr__(self):
+    #    return f"{self.numerator}/{self.denominator}"
+    def __str__(self):
+        return f"{self.numerator}/{self.denominator}"
+    
+p = RationalNumber(5, 2)
+print(p)
+```
+
+## Reverse operations
+
+Using
+
+```{pyodide-python}
+class RationalNumber:
+    def __init__(self, numerator, denominator): 
+        self.numerator = numerator
+        self.denominator = denominator
+        
+    def __add__(self, other):
+        p1, q1 = self.numerator, self.denominator
+        if isinstance(other, RationalNumber):
+            p2, q2 = other.numerator, other.denominator
+        elif isinstance(other, int):
+            p2, q2 = other, 1
+        else:
+            raise TypeError('Wrong type!')
+        return RationalNumber(p1*q2 + p2*q1, q1*q2)
+```
+
+we can do the operations `1/5 + 5/6` or `1/5 + 2`
+but 
+
+__$$2 + 1/5$$__ 
+requires that the integer's method `__add__` knows about `RationalNumber`.
+Instead of extending the methods of `int` we use the reverse operation `__radd__`.
+
+## Reverse operations (cont)
+
+```{pyodide-python}
+class RationalNumber:
+    def __init__(self, numerator, denominator): 
+        self.numerator = numerator
+        self.denominator = denominator
+    
+    def __add__(self, other):
+        p1, q1 = self.numerator, self.denominator
+        if isinstance(other, RationalNumber):
+            p2, q2 = other.numerator, other.denominator
+        elif isinstance(other, int):
+            p2, q2 = other, 1
+        else:
+            raise TypeError("Wrong type!")
+        return RationalNumber(p1*q2 + p2*q1, q1*q2)
+    
+    def __radd__(self, other): # other + self
+        return self + other
+    
+    def __repr__(self):
+        return f"{self.numerator}/{self.denominator}"
+    
+rational = RationalNumber(2, 5)
+integer = 2
+
+print(rational + integer)  # rational.__add__(integer) is called
+print(integer  + rational) # integer.__add__(rational) is first attempted, 
+# then rational.__radd__(integer) is called
+```
+
+## Inplace Operations
+
+This is an example of an inplace modification of the object.
+
+```{pyodide-python}
+class RationalNumber :
+    def __init__(self, numerator, denominator): 
+        self.numerator = numerator
+        self.denominator = denominator     
+    def _gcd(self, a, b ):
+        # Computes the greatest common divisor
+        if b == 0:
+            return a
+        else:
+            return self._gcd (b , a % b ) 
+    def shorten ( self ) :                  
+        factor = self._gcd ( self.numerator, self.denominator )
+        self.numerator = self.numerator // factor
+        self.denominator = self.denominator // factor
+        
+    def __repr__(self):
+        return f"{self.numerator}/{self.denominator}"
+    
+q =  RationalNumber(10, 20)
+                           
+print(q)
+q.shorten()
+
+print(q)
+```
+
+# Numpy array operations vs. for loops
+
+Last lecture, changing the red pixels using slices:
+
+```{pyodide-python}
+from numpy import *
+from matplotlib.pyplot import *
+import scipy.misc
+%matplotlib inline
+
+M = scipy.datasets.face().copy()  # must make a copy to change it
+M[:, :, 0] = 255  # maximize red for each pixel
+
+imshow(M)
+```
+
+## Maximize red using for loops
+
+Instead of using slices we could use for loops:
+
+```{pyodide-python}
+import scipy
+
+M = scipy.datasets.face().copy()
+
+rows, columns, channels = M.shape
+
+# print(f"rows = {rows}, cols={columns}")
+for row in range(rows):
+    # print(f"Working on row {row}")
+    for col in range(columns):
+        # print(f"Working on row,col {row},{col}")
+        M[row, col, 0] = 255
+        
+#M[:, :, 0] = 255      
+print(f"The red-color-assignment is made {rows*columns} times.")
+
+imshow(M)
+```
+
+## The `time` module
+
+Using the module `time`, we can get the number of seconds since the **epoch**.
+
+```{pyodide-python}
+import time
+
+print(f"The epoch is: {time.gmtime(0)}")
+
+start = time.time()
+print(f"It has been {time.time()} seconds since the epoch.")
+
+a = 3
+
+print(f"It has been {time.time() - start} seconds since the epoch.")
+```
+
+## Measuring time
+
+Load the image and change the red component to `255`, i.e. 
+set $M_{ij0} = 255, \forall \ i,j$. 
+
+**Let's go, 5 min.**
+
+```{pyodide-python}
+import scipy 
+import time
+
+M = scipy.datasets.face().copy()
+
+rows, columns, channels = M.shape 
+
+
+print(f"Time elapsed: {time.time() - start}")
+
+imshow(M)
+```
+
+```{pyodide-python}
+import time
+import scipy
+M = scipy.datasets.face().copy()
+
+starttime = time.time() # store time at start point   
+# TODO:  set red component to 255 
+M[:, :, 0] = 255
+print(f"(Slicing) Time used: {time.time()-starttime} seconds.")
+
+starttime = time.time() # store time at start point 
+for i in range(M.shape[0]):
+    for k in range(M.shape[1]):
+        M[i, k, 0] = 255
+print(f"(For loop) Time used: {time.time()-starttime} seconds.")    
+
+starttime = time.time() # store time at start point 
+for i in range(M.shape[0]):
+    for k in range(M.shape[1]):
+        M[i][k][0] = 255
+print(f"(For loop, wrong access) Time used: {time.time()-starttime} seconds.")
+```
+
+## Measuring time
+
+```{pyodide-python}
+import time
+import scipy.misc
+M = scipy.datasets.face().copy()
+
+starttime = time.time() # store time at start point   
+
+# TODO:  
+M[:, :, 0] = 255
+print(f"Using slices took {time.time()-starttime} seconds.")
+
+rows, columns, channels = M.shape
+
+starttime = time.time()
+for row in range(rows):
+    for col in range(columns):
+        M[row, col, 0] = 255
+        # Don't do this M[row][col][0] = 255
+print(f"Using for loops took {time.time()-starttime} seconds.")
+```
+
+We will later use the `timeit` module to measure time.
+
+Program in the `pythonic` way, i.e. write code as simple as possible (some more about that later).
+
+<nav class="bottom-page-nav" aria-label="Page navigation">
+  <a class="page-nav-link prev" href="lecture07.html">Previous: Lecture 7</a>
+  <a class="page-nav-link next" href="lecture09.html">Next: Lecture 9</a>
+</nav>

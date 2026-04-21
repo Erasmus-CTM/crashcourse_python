@@ -67,3 +67,8 @@ theorem.
 #| read-only: false
 # TODO: build a GUI to vary x0 and omega interactively.
 ```
+
+<nav class="bottom-page-nav" aria-label="Page navigation">
+  <a class="page-nav-link prev" href="sheet_11.html">Previous: Sheet 11</a>
+  <a class="page-nav-link next" href="sheet_13.html">Next: Sheet 13</a>
+</nav>

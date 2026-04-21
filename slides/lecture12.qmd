@@ -1,0 +1,581 @@
+---
+title: "GUI using matplotlib"
+format: html
+filters:
+  - pyodide
+---
+
+# Lecture 12: GUI using matplotlib
+
+### Center for Mathematical Sciences, Lund University
+Lecturer: Malin Christersson, `Robert Klöfkorn`
+
+# This lecture
+
+- Last lecture - More about plotting
+- Widgets and events
+- Sliders and buttons
+- Example 1 &hyphen; One slider
+- Example 2 &hyphen; A slider and a button
+- Example 3 &hyphen; Two sliders in a list
+- Events
+- Example 4 &hyphen; Click to make points and a spline
+- Summary
+
+# Last lecture
+
+
+## Revision: Interactive plots
+
+### Jupyter Notebook
+
+Use
+
+`%matplotlib notebook`
+
+### Spyder
+
+In `Tools` select `Preferences` and then in the `IPython console` section on the right side click on the `Graphics` tab select `Automatic` as backend.
+
+## Revision: References to figure and axes objects
+
+We can use
+
+```python
+fig, ax = subplots()
+```
+
+or 
+
+```python
+fig = figure()
+ax = subplot(111)
+```
+In some cases we will use the `axes` function to make an axes object.
+
+## Revision: References to line plot objects
+
+We can use
+
+```python
+# unpack a list with one element
+line, = ax.plot(xvalues, yvalues) 
+``` 
+
+Last lecture we used setter methods to change the visual appearance.
+
+Now we will update a line plot by setting new  𝑥 - and  𝑦 -values.
+
+```python
+line.set_xdata(new_xvalues)
+line.set_ydata(new_yvalues)
+```
+
+# Widgets and events
+
+1. Using `matplotlib.widgets` we will make sliders and buttons. 
+2. In any plot (without using widgets) you can handle mouse events such as `mouse pressed`. We will make such an example.
+
+## Making a widget
+
+1. Import classes `Slider`and `Button` from `matplotlib.widgets`.
+2. Make an axes object by specifying a rectangular part of the figure.
+3. Create the widget using the axes object as first argument.
+4. Define a `callback` function and use it as argument to an event handler of the widget.
+
+A slider has a `on_changed` event handler.
+
+A button has a `on_clicked` event handler.
+
+## Making an axes object for a widget
+
+Use the `axes` function:
+```python
+widget_ax = axes([left, bottom, width, height])
+```
+The rectangular region is specified using a relative coordinate system.
+![axesRectangle](http://cmc.education/slides/notebookImages/axesRectangle.svg)
+
+## The `show()` command
+
+If running a Python program from an editor that doesn't have an IPython console, or if running it in a terminal:
+
+`python example1.py`
+
+you must show a plot by using the matplotlib function
+
+```python
+show()
+```
+
+## Example 1 - One slider
+
+The graph of $f(x) = A\sin(x)$.
+
+We will use a slider for the value of the amplitude $A$.
+
+Import the Slider class (and for later, the Button class).
+
+```python
+from matplotlib.widgets import Slider, Button
+```
+
+Make a figure object and the axes objects for the slider and the plot:
+```python
+fig = figure()
+
+# layout
+sld_ax = axes([0.2, 0.9, 0.6, 0.05])  # axes for slider
+ax = axes([0.1, 0.15, 0.8, 0.7])      # axes for the plot
+```
+Make the slider.
+```python
+sld = Slider(sld_ax, 'amp', 0., 5.)
+```
+You can also use keyword arguments.
+```python
+sld = Slider(sld_ax, 'amp', 0., 5., 
+             valinit=1, valstep=0.1, valfmt="%1.1f")
+```
+The value of the slider will be stored in `sld.val`.
+
+Make $x$-values and format the plot.
+```python
+x = linspace(-2*pi, 2*pi, 200)
+ax.set_ylim(-5.5, 5.5)  # why is this needed in this case
+```
+Make the plot and get a reference to the line plot object.
+```python
+lines, = ax.plot(x, sld.val*sin(x))
+```
+
+Define a callback function and use it as argument for the event handler.
+
+```python
+def update_amplitude(val):
+    lines.set_ydata(val*sin(x))
+    
+sld.on_changed(update_amplitude)
+```
+
+The parameter `val` holds the value of the slider. You could also use `sld.val` when setting the ydata.
+
+1. Note that your callback function only can have one single parameter.
+
+2. Note that your callback function changes a global variable. This can be avoided by enclosing the code in a class.
+
+## Example 1: The full program
+Make sure all imports have been made:
+
+```{pyodide-python}
+from numpy import *
+from matplotlib.pyplot import *
+from matplotlib.widgets import Slider, Button
+%matplotlib notebook
+```
+
+```{pyodide-python}
+fig = figure(figsize = (8,3))
+ax = axes([0.1, 0.15, 0.8, 0.7])     # axes for the plot
+ax.set_ylim(-5.5, 5.5)
+
+sld_ax = axes([0.2, 0.9, 0.6, 0.05]) # axes for slider
+sld = Slider(sld_ax, 'amp', 0., 5.)
+
+x = linspace(-2*pi, 2*pi, 200)
+lines, = ax.plot(x, sld.val*sin(x))
+
+def update_amplitude( A ):
+    lines.set_ydata(A*sin(x))
+    
+sld.on_changed(update_amplitude);  # ; to suppress Out[xx]
+```
+
+## Example 2 - A button and a slider
+
+We will again use
+
+$$f(x) = A\sin(x).$$
+
+- A slider has a `on_changed` event handler.
+- A button has a `on_clicked` event handler.
+
+Let the slider hold the value of the amplitude of a sine-curve. Let the button, not the slider, show the updated curve. 
+
+In this case the button is meaningless. For cases where lengthy calculations are performed when sliders change values, it's better not to use the `on_changed` event to update plots.
+
+## Example 2: The full program
+
+```{pyodide-python}
+fig = figure(figsize = (8, 3))      
+sld_ax = axes([0.2, 0.9, 0.6, 0.05])  # axes for slider
+btn_ax = axes([0.7, 0.8, 0.2, 0.07])  # axes for button
+ax = axes([0.1, 0.15, 0.8, 0.6])      # axes for the plot
+sld = Slider(sld_ax, 'amp', 0., 5.)
+btn = Button(btn_ax, 'Show curve')    
+x = linspace(-2*pi, 2*pi, 200)
+ax.set_ylim(-5.5, 5.5)
+lines, = ax.plot(x, sld.val*sin(x))
+
+def show_curve(event):
+    lines.set_ydata(sld.val*sin(x))  # the amplitude is given by the slider value
+    
+btn.on_clicked(show_curve);
+show()
+```
+
+## Example 3 - Two sliders in a list
+
+For the damped Lissajous curve defined by
+
+$$
+\begin{cases}
+		x(t) &= \cos(at)e^{-dt} \\
+		y(t) &= \sin(t)e^{-dt}
+	\end{cases}
+	, 0\leq t \lt 14\pi
+$$
+
+use one slider for the angular frequency $a$ and one for the damping factor $d$.
+
+### Two sliders in a list
+
+Two sliders are fairly easy to handle. If many sliders are needed, the code will be shorter if the layout is made
+in some loop.
+
+To make a slider, we use:
+
+```python
+sld = Slider(sld_ax, label, valmin, valmax)
+``` 
+
+For our two values, $a\in[0, 2]$ and $d\in[0, 0.1]$
+
+Our two values will have different labels and different valmax values.
+
+### A function for making sliders in a list
+
+```python
+def make_sliders(labels, valmaxs):
+    sliders = []
+    for i in range(2):
+        sld_ax = axes([0.05, 0.4+0.1*i, 0.28, 0.03])
+        sld = Slider(sld_ax, labels[i], 0, valmaxs[i])
+        sliders.append(sld)
+    return sliders
+```
+
+It is easy to afterwards change the layout of all sliders.
+
+To make the list of sliders, we use:
+```python
+sld = make_sliders(['a', 'd'], [2, 0.1])
+```
+
+### The callback function
+
+We use the same callback function for both sliders
+
+```python
+def update_curve(val):
+    a, d = sld[0].val, sld[1].val
+    line.set_xdata(cos(a*t)*exp(-d*t))
+    line.set_ydata(sin(t)*exp(-d*t))
+for s in sld:
+    s.on_changed(update_curve)
+```
+
+If we had many sliders in a list and a callback function depending on the index of a list element, we could use a closure to make a function with only **one** parameter.
+
+```python
+def outer(i):
+    def inner(val):
+        # code using i and val
+    return inner
+for i in range(len(sld)):
+    s.on_changed(outer(i))
+```
+
+### Make the axes for the initial plot
+
+```python
+ax = axes([0.5, 0.1, 0.5, 0.8])
+ax.set_xlim([-1, 1])
+ax.set_ylim([-1, 1])
+ax.set_aspect(1.0)  # the aspect ratio should be 1 in this case
+
+a, d = sld[0].val, sld[1].val
+line, = ax.plot(cos(a*t)*exp(-d*t), sin(t)*exp(-d*t))
+```
+
+## Example 3: The full program
+
+Assuming all imports have been made. The two functions:
+
+```{pyodide-python}
+def make_sliders(labels, valmaxs):
+    sliders = []
+    for i in range(2):
+        sld_ax = axes([0.05, 0.4+0.1*i, 0.28, 0.03])
+        sld = Slider(sld_ax, labels[i], 0, valmaxs[i])
+        sliders.append(sld)
+    return sliders
+
+
+def update_curve(val):
+    a, d = sld[0].val, sld[1].val
+    line.set_xdata(cos(a*t)*exp(-d*t))
+    line.set_ydata(sin(t)*exp(-d*t))
+```
+
+```{pyodide-python}
+fig = figure(figsize=(8, 3))
+sld = make_sliders(['a', 'd'], [2, 0.1])
+for s in sld: s.on_changed(update_curve)
+ax = axes([0.48, 0.1, 0.5, 0.8])
+ax.set_xlim([-1, 1])
+ax.set_ylim([-1, 1])
+ax.set_aspect(1.0)
+t = linspace(0, 14*pi, 500)
+a, d = sld[0].val, sld[1].val
+line, = ax.plot(cos(a*t)*exp(-d*t), sin(t)*exp(-d*t))
+```
+
+## Events
+
+Matplotlib has an event manager that can handle mouse events (and some other events).
+
+To handle an event:
+
+1. Write a callback function
+2. Connect the callback function to the event manager.
+
+If your callback function updates a plot, you must use
+
+```python
+fig.canvas.draw_idle()  # redraws the canvas
+```
+
+## The callback function
+
+Assuming there is a figure object `fig`:
+
+```python
+def my_callback(event):
+    # code
+    
+cid = fig.canvas.mpl_connect('button_press_event', my_callback)
+``` 
+
+`cid` stands for **connection id**. If you want to disconnect your callback use:
+
+```python
+fig.canvas.mpl_disconnect(cid)
+```
+
+You could also use other mouse events: `'button_released_event'`, `'motion_notify_event'`, `'scroll_event'`.
+
+## The callback function (cont)
+
+```python
+def my_callback(event):
+    # code
+    
+cid = fig.canvas.mpl_connect('button_press_event', my_callback)
+```
+The parameter `event` has attributes that you can use in your callback function.
+
+* `event.xdata` &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; the $x$-coordinate of the mouse in data coordinates
+* `event.ydata` &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; the $y$-coordinate of the mouse in data coordinates
+* `event.inaxes` &nbsp;&nbsp;&nbsp; the axes object where the event occurred
+* `event.button` &nbsp;&nbsp;&nbsp; 1 = left click, 2 = middle click, 3 = right click
+
+## A simple example
+
+This code works in Spyder (but not in a notebook):
+
+```{pyodide-python}
+fig, ax = subplots()
+
+def my_callback(event):
+    if event.inaxes == ax:
+        x = event.xdata
+        y = event.ydata
+        print(f"x={x:0.2f}, y={y:0.2f}")
+
+cid = fig.canvas.mpl_connect('button_press_event', my_callback)
+```
+
+## Example 4 - Click to make points and a spline
+
+As long as the user left clicks in the plotting area, a new point will be made.
+
+The points will be in a line plot that is **an empty line plot** when the program starts.
+
+When all points have been made, a **spline** will be created from the points.
+
+![spline](http://cmc.education/slides/notebookImages/spline.png)
+<span style = "font-size: 80%">(Image of spline from Wikipedia: https://en.wikipedia.org/wiki/Flat_spline) </span>
+
+### Make two empty line plots and lists for storing coordinates
+
+```python
+fig, ax = subplots()
+
+points, = ax.plot([], [], 'or')  # line plot of red points
+lines, = ax.plot([], [], '-b')   # line plot for a blue spline
+xlist, ylist = [], []            # lists for storing coordinates
+```
+
+### Make a callback function using global variables
+
+```python
+def onclick(event):
+    if event.inaxes == ax:
+        if event.button == 1:
+            xlist.append(event.xdata)
+            ylist.append(event.ydata)
+            points.set_xdata(xlist)
+            points.set_ydata(ylist)
+        else:
+            fig.canvas.mpl_disconnect(cid)
+        fig.canvas.draw_idle()
+
+cid = fig.canvas.mpl_connect('button_press_event', onclick)
+```
+
+To avoid having to use global variables, make a class.
+
+### Example 4: Click to make points
+
+```{pyodide-python}
+fig, ax = subplots(figsize=(8, 2))
+points, = ax.plot([], [], 'or')  # line plot of red points
+lines, = ax.plot([], [], '-b')   # line plot for the blue spline
+xlist, ylist = [], []            # lists for storing coordinates
+def onclick(event):
+    if event.inaxes == ax:
+        if event.button == 1:
+            xlist.append(event.xdata)
+            ylist.append(event.ydata)
+            points.set_xdata(xlist)
+            points.set_ydata(ylist)
+        else:
+            fig.canvas.mpl_disconnect(cid)
+        fig.canvas.draw_idle()
+cid = fig.canvas.mpl_connect('button_press_event', onclick)
+```
+
+### Making a spline
+
+The scipy package `interpolate` has several functions and classes for making splines.
+
+```{pyodide-python}
+from scipy.interpolate import splprep, splev
+```
+
+To make a B-spline (basic spline) as a parametric curve:
+- get a representation of the spline using `splprep`
+- use the representation of the spline to evaluate the spline using `splev`
+
+This procedure resembles the procedure to fit a polynomial to data: use numpy `polyfit` to get coefficients, use `polyval` with the coefficients to make the polynomial.
+
+### Making a spline (cont)
+
+#### Using `splprep` 
+
+```python
+tck, u = interpolate.splprep([x, y], s=0)
+```
+
+where
+
+- `tck` is a tuple containing the vector of knots, the B-spline coefficients, and the degree of the spline.
+- `u` is an array of parameter values (for the parametric curve).
+
+If the keyword argument `s=0`(s stand for *smoothness*) is given, the spline will go through the points. It is possible to make a closed curve by providing the keyword argument `per=1`. In that case, the first list element should be the same as the last list element for the lists `x` and `y` (use `append`).
+
+
+#### Using `splev`  
+```python
+xvalues, yvalues = splev(linspace(0, 1, 100), tck)
+```
+`xvalues` and `yvalues` can be used for making a plot. The first argument is an array of parameter values. If `u` (from `splprep`) is used as first argument, line segments will be drawn between the points.
+
+### Example 4: The full program
+
+```{pyodide-python}
+fig, ax = subplots(figsize=(8, 2))
+points, = ax.plot([], [], 'or')
+lines, = ax.plot([], [], '-b')
+xlist, ylist = [], []
+def onclick(event):
+    if event.inaxes == ax:
+        if event.button == 1:
+            xlist.append(event.xdata)
+            ylist.append(event.ydata)
+            points.set_xdata(xlist)
+            points.set_ydata(ylist)
+        else:
+            tck, u = splprep([xlist, ylist], s=0)
+            xi, yi = splev(linspace(0, 1, 100), tck)
+            lines.set_xdata(xi)
+            lines.set_ydata(yi)
+            fig.canvas.mpl_disconnect(cid)
+        fig.canvas.draw_idle()
+cid = fig.canvas.mpl_connect('button_press_event', onclick)
+```
+
+## Summary - Widgets
+
+```python
+from matplotlib.widgets import Slider, Button
+
+sld_ax = axes([left1, bottom1, width1, height1])
+btn_ax = axes([left2, bottom2, width2, height2])
+ax = axes([left3, bottom3, width3, height3])  # for the plot
+
+# code to make plot
+
+sld = Slider(sld_ax, 'label text', valmin, valmax)
+btn = Button(btn_ax, 'button text')
+
+lines, = ax.plot(xvalues, yvalues)  # get a reference to the line plot
+
+# define sld_callback and btn_callback
+
+sld.on_changed(sld_callback)  # slider method using sld_callback(val)
+sld.val                       # slider data attribute
+
+btn.on_clicked(btn_callback)  # button method using btn_callback(event)
+```
+
+## Summary - Events
+
+```{pyodide-python}
+# you may need an empty line plot
+lines, = ax.plot([], [])  # can be formatted
+
+def my_callback(event):
+    # you can use:
+    # event.inaxes
+    # event.button
+    # event.xdata , event.ydata
+    fig.canvas.draw_idle()
+    
+cid = fig.canvas.mpl_connect('button_press_event', my_callback)
+
+# to disconnect, use
+fig.canvas.mpl_disconnect(cid)
+```
+
+## RTFM 
+
+Please take a look at the matplotlib gallery. There are a lot of examples to start from: 
+
+[https://matplotlib.org/stable/gallery/](https://matplotlib.org/stable/gallery/)
+
+<nav class="bottom-page-nav" aria-label="Page navigation">
+  <a class="page-nav-link prev" href="lecture11.html">Previous: Lecture 11</a>
+  <a class="page-nav-link next" href="lecture13.html">Next: Lecture 13</a>
+</nav>

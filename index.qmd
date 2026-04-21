@@ -2,10 +2,16 @@
 title: "Python Crashcourse"
 ---
 
-## Table of Contents
+This material is a collection of resources for learning Python programming. **No previous experience is required!** 
+
+You can pick the material depending on your interests and goals. The crashcourse is a collection of tools aimed at mathematicians or math students to help them get started with Python programming as a tool to understand and solve mathematical problems. The lecture slides and exercises are from a course on computational programming with Python given at Lund University, and they cover a wide range of topics from basic programming concepts to more advanced topics like linear algebra, object-oriented programming, and data analysis with Pandas.
+
+
+
+## Materials offered: 
 
 ### Crashcourse
-Crashcourse in python based on the Jan-Fredrik Olsen's book "Don't Panic".
+Crashcourse in python based on the **Jan-Fredrik Olsen**'s book "Don't Panic".
 
 - [A.1 Introduction](appendix/appendix_a1.qmd)
 - [A.2 Sequences and Sums](appendix/appendix_a2.qmd)
@@ -16,15 +22,28 @@ Crashcourse in python based on the Jan-Fredrik Olsen's book "Don't Panic".
 - [A.All Combined](appendix/appendix_all.qmd)
 
 ### Lecture Slides
-Lecture slides used in the course Computational **Programming with Python** given by **Dr. Robert Klöfkorn** at Lund University. 
+Lecture slides used in the course **Computational Programming with Python** given by **Dr. Robert Klöfkorn** at Lund University. 
 
 
 
 - [Lecture 1: First steps - A bit of everything](slides/lecture01.qmd)
+- [Lecture 2: Lists and elementary plotting](slides/lecture02_summer.qmd)
+- [Lecture 3: String Formatting, other Container Types and Floating Point Numbers](slides/lecture03_summer.qmd)
+- [Lecture 4: Functions](slides/lecture04.qmd)
+- [Lecture 5: Functions and Lists Revisited](slides/lecture05.qmd)
+- [Lecture 6: Linear Algebra](slides/lecture06.qmd)
+- [Lecture 7: More on arrays, more on functions](slides/lecture07.qmd)
+- [Lecture 8: Exceptions and Introduction to OOP](slides/lecture08.qmd)
+- [Lecture 9: Object oriented programming](slides/lecture09.qmd)
+- [Lecture 10: File handling and iterators](slides/lecture10.qmd)
+- [Lecture 11: More about plotting](slides/lecture11.qmd)
+- [Lecture 12: Revision: Interactive plots](slides/lecture12.qmd)
+- [Lecture 13: Time complexity, testing and decorators](slides/lecture13.qmd)
+- [Lecture 14: Brief Introduction to Pandas](slides/lecture14.qmd)
 
 
 ### Exercises
-Exercise sheets used in the course Computational **Programming with Python** given by **Dr. Robert Klöfkorn** at Lund University. 
+Exercise sheets used in the course **Computational Programming with Python** given by **Dr. Robert Klöfkorn** at Lund University. 
 
 - [Sheet 2](exercises/sheet_2.qmd)
 - [Sheet 3](exercises/sheet_3.qmd)

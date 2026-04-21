@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>A.6 Answers – Python Crashcourse</title>
+<title>Computational Programming with Python – Python Crashcourse</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,27 +20,62 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-5b4ad623e5705c0698d39aec6f10cf02.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-5b4ad623e5705c0698d39aec6f10cf02.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -230,7 +265,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"code":"total = 0\nk = 0\nwhile abs(total - 2) >= 1 / 10000:\n    total = total + 1 / 2**k\n    k = k + 1  # In a while-loop, we must update k manually.\n\nprint(k - 1)","id":1,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"my_list = [n / (1 + n**2) for n in range(0, 10**6)]\nk = 0\nfor x in my_list:\n    if x < 1e-4:\n        break\n    k = k + 1\n\nprint(k)","id":2,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"my_list = [n / (1 + n**2) for n in range(0, 10**6)]\nk = 0\nwhile my_list[k] > 1e-4:\n    k = k + 1\n\nprint(k)","id":3,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"def absolute1(x):\n    if x >= 0:\n        return x\n    return -x\n\ndef absolute2(x):\n    return (x**2) ** 0.5","id":4,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"def product(x):\n    temp_prod = 1\n    for a in x:\n        temp_prod = temp_prod * a\n    return temp_prod","id":5,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import matplotlib.pyplot as plt\n\n# Insert code for absolute1\n\nX = [k / 10 for k in range(-20, 21)]\nY = [absolute1(x) for x in X]\nplt.plot(X, Y)\nplt.show()","id":6,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import matplotlib.pyplot as plt\nimport numpy as np\n\n# Insert code for absolute2\n\nX = np.linspace(-2, 2, 40)\nY = absolute2(X)\nplt.plot(X, Y)\nplt.show()","id":7,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}}];
+globalThis.qpyodideCellDetails = [{"code":"L1 = [1, 2]\nprint(L1[0])\nprint(L1[1])\nprint(type(L1))\n# print(L1[2]) # raises IndexError\n#print(L1[2])","id":1,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"L2 = ['a', 1, [3, 4]] \nprint(L2[0])\nprint(L2[2])\nprint(L2[2][0])","id":2,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"L2 = ['a', 1, [3, 4]] \nprint(L2[-1]) # last element\nprint(L2[-2]) # second last element\n# print(L2[-4])","id":3,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"L3 = list(range(5)) # numbers 0,1,2,3,4\n# L4 = [range(5)]\nprint(L3)\n# print(L4)","id":4,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"L4 = [\"Stockholm\", \"Paris\", \"Berlin\"]\nL5 = [[3,4], [10, 100, 1000, 10000]]\n\nprint(len(L4))\nprint(len(L5))\nprint(len(L5[-1]))\nprint(L5[-1])\n\nprint(len(['a', 'b', 'c', 'd', 'e']))\nprint(L5[0][0])\n# print(len(L5[0][0]))\n# a = 5 \n# len(a)","id":5,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"L6 = ['a', 'b', 'c']\n# L6 = []\nprint(L6[-1])\nprint(len(L6))\n# L7 = ['d'] + L6 \nprint(L7)\nL6.append('d')\nprint(L6[-1])\nprint(len(L6))","id":6,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"L1 = [2, 3, 10, 1, 5]\nL2 = [x*2 for x in L1]\n# L4 = L1 * 2\n# print(L4)\nL3 = [x*2 for x in L1 if 4 < x <= 10]\n\nprint(L1)\nprint(L2)\nprint(L3)","id":7,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"L1 = [1, 2]\nL2 = [3, 4]\nL3 = L1 + L2\nprint(L3)","id":8,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"L = [1, 2]\nL2 = 3*L\nprint(L2)","id":9,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"L = [4, 9, -1, 2]\nprint(\"The sum is\", sum(L))\nprint(\"The minimum value is\", min(L))\nprint(\"The maximum value is\",max(L))","id":10,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"L = ['!adbg', 'Berlin', 'Berl']\nprint(min(L))\nprint(max(L))\n\nprint(len(L))","id":11,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"L = [4, 9, -1, 2]\nprint(\"L =\", L)\nL.reverse()\nprint(\"L =\", L)\nL.sort()\nprint(\"L =\", L)\nL.sort(reverse=True)\nprint(\"L =\", L)","id":12,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"s = 0\nn = 5\nfor i in range(n+1):\n    s += i \nprint(s)","id":13,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"L1 = list(range(n+1))\nprint(sum(L1))\n\nL2 = [i for i in range(n+1)]\nprint(sum(L2))\n\nprint(sum(range(n+1)))","id":14,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"L = ['C', 'l', 'o', 'u', 'd']\n#i = 0\n#for l in L: \n#    print(f\"The {i}-th element of L is '{l}'\")\n#    i += 1   \n    \n#for i in range(len(L)):\n#    print(f\"The {i}-th element of L is '{L[i]}'\")\n    \nfor i, l in enumerate(L):\n    print(f\"The {i}-th element of L is '{l}'\")","id":15,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"L = ['C', 'l', 'o', 'u', 'd']\nprint(L[0])\nprint(L[-1])","id":16,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"L = ['C', 'l', 'o', 'u', 'd']\nprint(L[1:4])","id":17,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"L = ['C', 'l', 'o', 'u', 'd']\nprint(\"L[1:] =\", L[1:])     # to the end\nprint(\"L[:3] =\", L[:3])     # from the start\nprint(\"L[-2:] =\", L[-2:])   # negative index\nprint(\"L[:-2] =\", L[0:-2])","id":18,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"L = list(range(10))\nprint(L)\n\n# a)\nprint(L[2:-1])\n\n# b)\nprint(L[3:])\n\n# c) \nprint(L[:-2])\n\n# d ) \nprint(L[-3:-1])","id":19,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"L = [1, 2, 10] \nfor s in L:\n    print(s * 2)\n    print(\"Hello\", s)\n    \nprint(\"Loop finished\")","id":20,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"def do_something(i):\n    print(i)\n    \nn = 10 \nfor i in range(n):\n    do_something(i) # this gets executed n times","id":21,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"x_values=[0,2,3,4,5]\nthreshold=3.5\nfor x in x_values:\n    if x > threshold:\n        break\n    print(x)","id":22,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"threshold=6\nfor x in x_values:\n    if x > threshold:\n        break\n    #else:\n    #    print(\"all the x are below the threshold\")   \n    print(x)  \nelse:\n    print(\"all the x are below the threshold\")","id":23,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"from numpy import *\nfrom matplotlib.pyplot import *","id":24,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"x_list = list(range(100))\ny_list = [sqrt(x) for x in x_list]","id":25,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"# from above\nfrom matplotlib.pyplot import *\nfrom numpy import *\nx_list = list(range(100))\ny_list = [sqrt(x) for x in x_list]\n# plotting commands \nplot(x_list, y_list, '-')\ntitle('My first plot')\nxlabel('x')\nylabel('Square root of x')\nshow() # not always needed","id":26,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"from numpy import *\nfrom matplotlib.pyplot import *\nx_vals = [.2*n for n in range(20)] \ny1 = [sin(.3*x) for x in x_vals] \ny2 = [sin(2*x) for x in x_vals] \nplot(x_vals ,y1, label='sin(0.3*x)') \nplot(x_vals, y2, label='sin(2*x)')\nxlabel('x')\nylabel('sin...')\nlegend()\nshow() # not always needed, but does not hurt to put it here","id":27,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"plot(x_vals, y2, \n     color='green',\n     linestyle='dashed', \n     marker='o', \n     markerfacecolor='blue', \n     markersize=12,\n     linewidth=6)","id":28,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"a = c              # some initial value c\nn = 100            # for some n\nfor i in range(n): \n    a = f(a)       # where f is some function","id":29,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"from numpy import *\nfrom matplotlib.pyplot import *\n\n# use a magic function for rendering matplotlib plots\n%matplotlib inline  \nx = linspace(0, 4*pi, 100)\ny = sin(x)","id":30,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"plot(x, y, label='sin(x)')\nxlabel('x')\nlegend()","id":31,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}}];
 
 
 </script>
@@ -451,7 +486,7 @@ window.Quarto = {
 };
 </script>
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-fixed quarto-light">
@@ -461,7 +496,7 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Python Crashcourse</span>
     </a>
   </div>
@@ -472,39 +507,160 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./appendix_a1.html"> 
-<span class="menu-text">A.1 Introduction</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-crashcourse" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Crashcourse</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-crashcourse">    
+        <li>
+    <a class="dropdown-item" href="../appendix/appendix_a1.html">
+ <span class="dropdown-text">A.1 Introduction</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./appendix_a2.html"> 
-<span class="menu-text">A.2 Sequences and Sums</span></a>
+        <li>
+    <a class="dropdown-item" href="../appendix/appendix_a2.html">
+ <span class="dropdown-text">A.2 Sequences and Sums</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./appendix_a3.html"> 
-<span class="menu-text">A.3 Control Statements</span></a>
+        <li>
+    <a class="dropdown-item" href="../appendix/appendix_a3.html">
+ <span class="dropdown-text">A.3 Control Statements</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./appendix_a4.html"> 
-<span class="menu-text">A.4 Functions</span></a>
+        <li>
+    <a class="dropdown-item" href="../appendix/appendix_a4.html">
+ <span class="dropdown-text">A.4 Functions</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./appendix_a5.html"> 
-<span class="menu-text">A.5 Number Representation</span></a>
+        <li>
+    <a class="dropdown-item" href="../appendix/appendix_a5.html">
+ <span class="dropdown-text">A.5 Number Representation</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link active" href="./appendix_a6.html" aria-current="page"> 
-<span class="menu-text">A.6 Answers</span></a>
+        <li>
+    <a class="dropdown-item" href="../appendix/appendix_a6.html">
+ <span class="dropdown-text">A.6 Answers</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./appendix_all.html"> 
-<span class="menu-text">A.All Combined</span></a>
+        <li>
+    <a class="dropdown-item" href="../appendix/appendix_all.html">
+ <span class="dropdown-text">A.All Combined</span></a>
   </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-lecture-slides" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Lecture Slides</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-lecture-slides">    
+        <li>
+    <a class="dropdown-item" href="../slides/lecture01.html">
+ <span class="dropdown-text">Lecture 1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture02_summer.html">
+ <span class="dropdown-text">Lecture 2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture03_summer.html">
+ <span class="dropdown-text">Lecture 3</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture04.html">
+ <span class="dropdown-text">Lecture 4</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture05.html">
+ <span class="dropdown-text">Lecture 5</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture06.html">
+ <span class="dropdown-text">Lecture 6</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture07.html">
+ <span class="dropdown-text">Lecture 7</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture08.html">
+ <span class="dropdown-text">Lecture 8</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture09.html">
+ <span class="dropdown-text">Lecture 9</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture10.html">
+ <span class="dropdown-text">Lecture 10</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture11.html">
+ <span class="dropdown-text">Lecture 11</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture12.html">
+ <span class="dropdown-text">Lecture 12</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture13.html">
+ <span class="dropdown-text">Lecture 13</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture14.html">
+ <span class="dropdown-text">Lecture 14</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-exercises" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Exercises</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-exercises">    
+        <li>
+    <a class="dropdown-item" href="../exercises/sheet_2.html">
+ <span class="dropdown-text">Sheet 2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../exercises/sheet_3.html">
+ <span class="dropdown-text">Sheet 3</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../exercises/sheet_4.html">
+ <span class="dropdown-text">Sheet 4</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../exercises/sheet_5.html">
+ <span class="dropdown-text">Sheet 5</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../exercises/sheet_6.html">
+ <span class="dropdown-text">Sheet 6</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../exercises/sheet_7.html">
+ <span class="dropdown-text">Sheet 7</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../exercises/sheet_8.html">
+ <span class="dropdown-text">Sheet 8</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../exercises/sheet_9.html">
+ <span class="dropdown-text">Sheet 9</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../exercises/sheet_11.html">
+ <span class="dropdown-text">Sheet 11</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../exercises/sheet_12.html">
+ <span class="dropdown-text">Sheet 12</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../exercises/sheet_13.html">
+ <span class="dropdown-text">Sheet 13</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -523,7 +679,59 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#answers-to-selected-exercises" id="toc-answers-to-selected-exercises" class="nav-link active" data-scroll-target="#answers-to-selected-exercises">Answers to selected exercises</a></li>
+  <li><a href="#lecture-2-lists-and-elementary-plotting" id="toc-lecture-2-lists-and-elementary-plotting" class="nav-link active" data-scroll-target="#lecture-2-lists-and-elementary-plotting">Lecture 2: Lists and elementary plotting</a>
+  <ul class="collapse">
+  <li><a href="#center-for-mathematical-sciences-lund-university" id="toc-center-for-mathematical-sciences-lund-university" class="nav-link" data-scroll-target="#center-for-mathematical-sciences-lund-university">Center for Mathematical Sciences, Lund University</a></li>
+  </ul></li>
+  <li><a href="#this-lecture" id="toc-this-lecture" class="nav-link" data-scroll-target="#this-lecture">This lecture</a></li>
+  <li><a href="#lists" id="toc-lists" class="nav-link" data-scroll-target="#lists">Lists</a>
+  <ul class="collapse">
+  <li><a href="#list-examples" id="toc-list-examples" class="nav-link" data-scroll-target="#list-examples">List examples</a></li>
+  <li><a href="#negative-indices" id="toc-negative-indices" class="nav-link" data-scroll-target="#negative-indices">Negative indices</a></li>
+  <li><a href="#list-utilities-range" id="toc-list-utilities-range" class="nav-link" data-scroll-target="#list-utilities-range">List utilities ‐ <code>range</code></a></li>
+  <li><a href="#list-utilities-len" id="toc-list-utilities-len" class="nav-link" data-scroll-target="#list-utilities-len">List utilities ‐ <code>len</code></a></li>
+  <li><a href="#list-utilities-append" id="toc-list-utilities-append" class="nav-link" data-scroll-target="#list-utilities-append">List utilities ‐ <code>append</code></a></li>
+  <li><a href="#list-comprehension" id="toc-list-comprehension" class="nav-link" data-scroll-target="#list-comprehension">List comprehension</a></li>
+  <li><a href="#list-comprehension-in-mathematics" id="toc-list-comprehension-in-mathematics" class="nav-link" data-scroll-target="#list-comprehension-in-mathematics">List comprehension in mathematics</a></li>
+  <li><a href="#operations-on-lists" id="toc-operations-on-lists" class="nav-link" data-scroll-target="#operations-on-lists">Operations on lists</a></li>
+  <li><a href="#more-operations-on-lists" id="toc-more-operations-on-lists" class="nav-link" data-scroll-target="#more-operations-on-lists">More operations on lists</a></li>
+  </ul></li>
+  <li><a href="#some-more-functions" id="toc-some-more-functions" class="nav-link" data-scroll-target="#some-more-functions">Some more functions</a></li>
+  <li><a href="#min-and-max-for-strings" id="toc-min-and-max-for-strings" class="nav-link" data-scroll-target="#min-and-max-for-strings">Min and max for strings</a></li>
+  <li><a href="#some-more-methods" id="toc-some-more-methods" class="nav-link" data-scroll-target="#some-more-methods">Some more methods</a></li>
+  <li><a href="#programming-example" id="toc-programming-example" class="nav-link" data-scroll-target="#programming-example">Programming example</a></li>
+  <li><a href="#slicing-and-other-list-tools" id="toc-slicing-and-other-list-tools" class="nav-link" data-scroll-target="#slicing-and-other-list-tools">Slicing and other list tools</a>
+  <ul class="collapse">
+  <li><a href="#enumerating-lists" id="toc-enumerating-lists" class="nav-link" data-scroll-target="#enumerating-lists">Enumerating lists</a></li>
+  <li><a href="#list-access-repeat" id="toc-list-access-repeat" class="nav-link" data-scroll-target="#list-access-repeat">List access (repeat)</a></li>
+  <li><a href="#creating-sublists---slicing" id="toc-creating-sublists---slicing" class="nav-link" data-scroll-target="#creating-sublists---slicing">Creating sublists - Slicing</a></li>
+  <li><a href="#partial-slicing" id="toc-partial-slicing" class="nav-link" data-scroll-target="#partial-slicing">Partial slicing</a>
+  <ul class="collapse">
+  <li><a href="#mathematical-analogy" id="toc-mathematical-analogy" class="nav-link" data-scroll-target="#mathematical-analogy">Mathematical analogy</a></li>
+  </ul></li>
+  <li><a href="#to-sum-it-up" id="toc-to-sum-it-up" class="nav-link" data-scroll-target="#to-sum-it-up">To sum it up</a></li>
+  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a></li>
+  <li><a href="#for-loops-revisited" id="toc-for-loops-revisited" class="nav-link" data-scroll-target="#for-loops-revisited">for loops (revisited)</a>
+  <ul class="collapse">
+  <li><a href="#repeating-a-task" id="toc-repeating-a-task" class="nav-link" data-scroll-target="#repeating-a-task">Repeating a task</a></li>
+  <li><a href="#indentation" id="toc-indentation" class="nav-link" data-scroll-target="#indentation">Indentation</a></li>
+  </ul></li>
+  <li><a href="#the-full-for-statement-break" id="toc-the-full-for-statement-break" class="nav-link" data-scroll-target="#the-full-for-statement-break">The full <code>for</code> statement ‐ <code>break</code></a></li>
+  <li><a href="#the-full-for-statement-else" id="toc-the-full-for-statement-else" class="nav-link" data-scroll-target="#the-full-for-statement-else">The full <code>for</code> statement ‐ <code>else</code></a></li>
+  <li><a href="#elementary-plotting" id="toc-elementary-plotting" class="nav-link" data-scroll-target="#elementary-plotting">Elementary plotting</a></li>
+  <li><a href="#more-about-plots" id="toc-more-about-plots" class="nav-link" data-scroll-target="#more-about-plots">More about plots</a></li>
+  <li><a href="#a-plot-with-more-key-words" id="toc-a-plot-with-more-key-words" class="nav-link" data-scroll-target="#a-plot-with-more-key-words">A plot with more key words</a></li>
+  <li><a href="#fixed-point-iterations" id="toc-fixed-point-iterations" class="nav-link" data-scroll-target="#fixed-point-iterations">Fixed point iterations</a></li>
+  <li><a href="#fixed-point" id="toc-fixed-point" class="nav-link" data-scroll-target="#fixed-point">Fixed point</a></li>
+  <li><a href="#jupyter-notebooks-optional" id="toc-jupyter-notebooks-optional" class="nav-link" data-scroll-target="#jupyter-notebooks-optional">Jupyter Notebooks (optional)</a></li>
+  <li><a href="#notebooks-basics" id="toc-notebooks-basics" class="nav-link" data-scroll-target="#notebooks-basics">Notebooks basics</a></li>
+  <li><a href="#notebooks-code" id="toc-notebooks-code" class="nav-link" data-scroll-target="#notebooks-code">Notebooks ‐ code</a></li>
+  <li><a href="#notebooks-code-cont" id="toc-notebooks-code-cont" class="nav-link" data-scroll-target="#notebooks-code-cont">Notebooks ‐ code (cont)</a></li>
+  <li><a href="#notebooks-text" id="toc-notebooks-text" class="nav-link" data-scroll-target="#notebooks-text">Notebooks ‐ text</a></li>
+  <li><a href="#basic-markdown-syntax" id="toc-basic-markdown-syntax" class="nav-link" data-scroll-target="#basic-markdown-syntax">Basic markdown syntax</a></li>
+  <li><a href="#latex-formulas" id="toc-latex-formulas" class="nav-link" data-scroll-target="#latex-formulas">LaTeX formulas</a></li>
+  <li><a href="#interactive-slideshows-like-this-one" id="toc-interactive-slideshows-like-this-one" class="nav-link" data-scroll-target="#interactive-slideshows-like-this-one">Interactive slideshows (like this one)</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -542,7 +750,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">A.6 Answers</h1>
+<h1 class="title">Computational Programming with Python</h1>
 </div>
 
 
@@ -559,216 +767,339 @@ window.Quarto = {
 </header>
 
 
-<section id="answers-to-selected-exercises" class="level2">
-<h2 class="anchored" data-anchor-id="answers-to-selected-exercises">Answers to selected exercises</h2>
-<p><strong>E.4</strong></p>
+<section id="lecture-2-lists-and-elementary-plotting" class="level2">
+<h2 class="anchored" data-anchor-id="lecture-2-lists-and-elementary-plotting">Lecture 2: Lists and elementary plotting</h2>
+<section id="center-for-mathematical-sciences-lund-university" class="level3">
+<h3 class="anchored" data-anchor-id="center-for-mathematical-sciences-lund-university">Center for Mathematical Sciences, Lund University</h3>
+<p>Lecturer: Malin Christersson, <code>Robert Klöfkorn</code></p>
+</section>
+</section>
+<section id="this-lecture" class="level2">
+<h2 class="anchored" data-anchor-id="this-lecture">This lecture</h2>
 <ul>
-<li><ol type="a">
-<li>addition</li>
-</ol></li>
-<li><ol start="2" type="a">
-<li>subtraction</li>
-</ol></li>
-<li><ol start="3" type="a">
-<li>multiplication</li>
-</ol></li>
-<li><ol start="4" type="a">
-<li>power</li>
-</ol></li>
-<li><ol start="5" type="a">
-<li>division</li>
-</ol></li>
-<li><ol start="6" type="a">
-<li>floor division (division rounded down)</li>
-</ol></li>
-<li><ol start="7" type="a">
-<li>modulo (remainder)</li>
-</ol></li>
+<li>Lists</li>
+<li>Training exercises</li>
+<li>More about for loops</li>
+<li>Elementary plotting</li>
 </ul>
-<p><strong>E.8</strong></p>
-<p>Codes (a), (d), and (f) will not run.</p>
-<p><strong>E.9</strong></p>
-<ul>
-<li><ol type="a">
-<li><span class="math inline">\(1 + 1/2 + 1/4 + 1/8 + 1/16\)</span></li>
-</ol></li>
-<li><ol start="2" type="a">
-<li><span class="math inline">\(1/(1 + 1/(1 + 1/(1 + 1/(1 + 1))))\)</span></li>
-</ol></li>
-</ul>
-<p><strong>E.11</strong></p>
-<p>The code in (a) will run.</p>
-<p><strong>E.36</strong></p>
-<p>The code computes the partial sum <span class="math inline">\(S_{99999}\)</span> of the harmonic series. The speed of the computations will depend on your processor.</p>
-<p><strong>E.40</strong></p>
-<p>Here is one solution:</p>
+</section>
+<section id="lists" class="level2">
+<h2 class="anchored" data-anchor-id="lists">Lists</h2>
+<p>A Python list is an ordered list of objects, enclosed in square brackets.</p>
+<p>One accesses elements of a list using <strong>zero-based</strong> indices inside square brackets.</p>
+<p>Note: <code>list</code> is the most commonly used container in Python.</p>
+<section id="list-examples" class="level3">
+<h3 class="anchored" data-anchor-id="list-examples">List examples</h3>
 <div id="qpyodide-insertion-location-1"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p><strong>E.46</strong></p>
-<p><strong>(a)</strong> Using a for-loop and break:</p>
 <div id="qpyodide-insertion-location-2"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p><strong>(b)</strong> Using a while-loop:</p>
+</section>
+<section id="negative-indices" class="level3">
+<h3 class="anchored" data-anchor-id="negative-indices">Negative indices</h3>
 <div id="qpyodide-insertion-location-3"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p><strong>E.48</strong></p>
+</section>
+<section id="list-utilities-range" class="level3">
+<h3 class="anchored" data-anchor-id="list-utilities-range">List utilities ‐ <code>range</code></h3>
+<p><code>range(n)</code>can be used to fill a list with <span class="math inline">\(n\)</span> elements starting with zero.</p>
 <div id="qpyodide-insertion-location-4"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p><strong>E.49</strong></p>
+</section>
+<section id="list-utilities-len" class="level3">
+<h3 class="anchored" data-anchor-id="list-utilities-len">List utilities ‐ <code>len</code></h3>
+<p>The function <code>len(L)</code> gives the the length of a list:</p>
 <div id="qpyodide-insertion-location-5"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p><strong>E.54</strong></p>
+</section>
+<section id="list-utilities-append" class="level3">
+<h3 class="anchored" data-anchor-id="list-utilities-append">List utilities ‐ <code>append</code></h3>
+<p>Use the method <code>append</code> to append an element at the end of the list.</p>
 <div id="qpyodide-insertion-location-6"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p><strong>E.58</strong></p>
-<p><code>absolute1</code> does not work for numpy arrays because the if-statement does not make sense for arrays. For <code>absolute2</code>, the following code works:</p>
+</section>
+<section id="list-comprehension" class="level3">
+<h3 class="anchored" data-anchor-id="list-comprehension">List comprehension</h3>
+<p>A convenient way to build up lists is to use the <em>list comprehension</em> construct, possibly with a conditional inside.</p>
+<section id="definition" class="level4">
+<h4 class="anchored" data-anchor-id="definition">Definition</h4>
+<p>The syntax of a list comprehension is</p>
+<p><code>[&lt;expr&gt; for &lt;variable&gt; in &lt;list&gt;]</code></p>
+<p>Example:</p>
 <div id="qpyodide-insertion-location-7"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p><strong>E.63</strong></p>
-<p>Python crashes with a <code>ZeroDivisionError</code>. In other words, Python really believes that <span class="math inline">\(S_{100} = 2\)</span>.</p>
-<p><strong>E.66</strong></p>
-<p>The first 21 numbers in both binary and decimal notation:</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th style="text-align: right;">Decimal</th>
-<th style="text-align: left;">Binary</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: right;">0</td>
-<td style="text-align: left;">0</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">1</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2</td>
-<td style="text-align: left;">10</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">3</td>
-<td style="text-align: left;">11</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">4</td>
-<td style="text-align: left;">100</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">5</td>
-<td style="text-align: left;">101</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">6</td>
-<td style="text-align: left;">110</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">7</td>
-<td style="text-align: left;">111</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">8</td>
-<td style="text-align: left;">1000</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">9</td>
-<td style="text-align: left;">1001</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">10</td>
-<td style="text-align: left;">1010</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">11</td>
-<td style="text-align: left;">1011</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">12</td>
-<td style="text-align: left;">1100</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">13</td>
-<td style="text-align: left;">1101</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">14</td>
-<td style="text-align: left;">1110</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">15</td>
-<td style="text-align: left;">1111</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">16</td>
-<td style="text-align: left;">10000</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">17</td>
-<td style="text-align: left;">10001</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">18</td>
-<td style="text-align: left;">10010</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">19</td>
-<td style="text-align: left;">10011</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">20</td>
-<td style="text-align: left;">10100</td>
-</tr>
-</tbody>
-</table>
-<p><strong>E.68</strong></p>
+</section>
+</section>
+<section id="list-comprehension-in-mathematics" class="level3">
+<h3 class="anchored" data-anchor-id="list-comprehension-in-mathematics">List comprehension in mathematics</h3>
+<section id="mathematical-notation" class="level4">
+<h4 class="anchored" data-anchor-id="mathematical-notation">Mathematical notation</h4>
+<p>This is very close to the mathematical notation for sets. Compare:</p>
+<p><span class="math display">\[ L_2 = \{2x;\ x\in L_1\} \]</span></p>
+<p>with</p>
+<p><code>L2 = [2*x for x in L1]</code></p>
+</section>
+</section>
+<section id="operations-on-lists" class="level3">
+<h3 class="anchored" data-anchor-id="operations-on-lists">Operations on lists</h3>
+<p>Adding two lists <em>concatenates</em> (sammanfogar) them:</p>
+<div id="qpyodide-insertion-location-8"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="more-operations-on-lists" class="level3">
+<h3 class="anchored" data-anchor-id="more-operations-on-lists">More operations on lists</h3>
+<p>Logically, multiplying a list with an integer concatenates the list with itself several times: <code>n*L</code> is equivalent to</p>
+<p><span class="math inline">\(\underbrace{L+L+\cdots+L}_{n \text{ times}}\)</span></p>
+<div id="qpyodide-insertion-location-9"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+</section>
+<section id="some-more-functions" class="level2">
+<h2 class="anchored" data-anchor-id="some-more-functions">Some more functions</h2>
+<p>Given a list <code>lst</code>:</p>
 <ul>
-<li><ol type="a">
-<li><span class="math inline">\(2^7 - 1 = 127\)</span></li>
-</ol></li>
-<li><ol start="2" type="a">
-<li><span class="math inline">\(2^{63} - 1\)</span></li>
-</ol></li>
+<li><code>sum(lst)</code></li>
+<li><code>max(lst)</code></li>
+<li><code>min(lst)</code></li>
 </ul>
-<p><strong>E.72</strong></p>
+<div id="qpyodide-insertion-location-10"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="min-and-max-for-strings" class="level2">
+<h2 class="anchored" data-anchor-id="min-and-max-for-strings">Min and max for strings</h2>
+<p>When comparing strings with the <code>&gt;</code> or <code>&lt;</code> operation then first the leading character is compared, which follows the ordering in the <a href="https://en.wikipedia.org/wiki/UTF-8">UTF-8</a>.</p>
+<div id="qpyodide-insertion-location-11"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="some-more-methods" class="level2">
+<h2 class="anchored" data-anchor-id="some-more-methods">Some more methods</h2>
+<p>Given a list <code>lst</code>:</p>
 <ul>
-<li><ol type="a">
-<li>Roughly <span class="math inline">\(10^{-16}\)</span></li>
-</ol></li>
-<li><ol start="2" type="a">
-<li>Roughly <span class="math inline">\(10^{-340}\)</span></li>
-</ol></li>
+<li><code>lst.reverse()</code></li>
+<li><code>lst.sort()</code></li>
+<li><code>lst.sort(reverse=True|False, key=myFunc)</code></li>
 </ul>
-<p><strong>E.73</strong></p>
-<p>According to the sloppy description, <span class="math inline">\(a + b\)</span> is stored as <span class="math inline">\(3256600000000325 \cdot 10^{17}\)</span>. When printing <code>100*(a+b)</code>, <code>1000*(a+b)</code> and <code>10000*(a+b)</code>, the 17th digit keeps changing due to round-off errors.</p>
-<p><strong>E.74</strong></p>
+<div id="qpyodide-insertion-location-12"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="programming-example" class="level2">
+<h2 class="anchored" data-anchor-id="programming-example">Programming example</h2>
+<p>How do we calculate</p>
+<p><span class="math display">\[ \sum_{i=0}^{n}i\]</span></p>
+<p>using a for loop? using a list? <strong>5min, let’s go!</strong></p>
+<div id="qpyodide-insertion-location-13"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div id="qpyodide-insertion-location-14"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="slicing-and-other-list-tools" class="level1">
+<h1>Slicing and other list tools</h1>
+<section id="enumerating-lists" class="level2">
+<h2 class="anchored" data-anchor-id="enumerating-lists">Enumerating lists</h2>
+<p>Sometimes it is helpful to enumerate while iterating over elements of a list.</p>
+<div id="qpyodide-insertion-location-15"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="list-access-repeat" class="level2">
+<h2 class="anchored" data-anchor-id="list-access-repeat">List access (repeat)</h2>
+<p>We can access elements of a list by using square brackets.</p>
+<div id="qpyodide-insertion-location-16"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>In a similar way we can access sublists.</p>
+</section>
+<section id="creating-sublists---slicing" class="level2">
+<h2 class="anchored" data-anchor-id="creating-sublists---slicing">Creating sublists - Slicing</h2>
+<p><strong>Slicing</strong> a list between index <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> is forming a new list by taking elements starting at <span class="math inline">\(i\)</span> and ending <em>just before</em> <span class="math inline">\(j\)</span>.</p>
+<section id="example" class="level4">
+<h4 class="anchored" data-anchor-id="example">Example</h4>
+<div id="qpyodide-insertion-location-17"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>Compare with <code>range</code>.</p>
+</section>
+</section>
+<section id="partial-slicing" class="level2">
+<h2 class="anchored" data-anchor-id="partial-slicing">Partial slicing</h2>
+<p>One may omit the first or the last bound of the slicing:</p>
+<div id="qpyodide-insertion-location-18"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<section id="mathematical-analogy" class="level3">
+<h3 class="anchored" data-anchor-id="mathematical-analogy">Mathematical analogy</h3>
+<p>The interval <span class="math inline">\([-\infty, a)\)</span> means: take all numbers strictly lower than <span class="math inline">\(a\)</span>, cf.&nbsp;syntax of <code>L[:j]</code>.</p>
+</section>
+</section>
+<section id="to-sum-it-up" class="level2">
+<h2 class="anchored" data-anchor-id="to-sum-it-up">To sum it up</h2>
 <ul>
-<li><ol type="a">
-<li><span class="math inline">\(N = 53\)</span></li>
-</ol></li>
-<li><ol start="2" type="a">
-<li><span class="math inline">\(N = 1075\)</span></li>
-</ol></li>
+<li><code>L[i:]</code> take all elements <em>except</em> the <span class="math inline">\(i\)</span> first ones</li>
+<li><code>L[:i]</code> take the first <span class="math inline">\(i\)</span> elements</li>
+<li><code>L[-i:]</code> take the last <span class="math inline">\(i\)</span> elements</li>
+<li><code>L[:-i]</code> take all elements <em>except</em> the <span class="math inline">\(i\)</span> last ones</li>
 </ul>
-<p><strong>E.76</strong></p>
+</section>
+<section id="examples" class="level2">
+<h2 class="anchored" data-anchor-id="examples">Examples</h2>
+<p>From a list <code>L</code>, create the red sublists. <strong>5 min, let’s go!</strong></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="http://cmc.education/slides/notebookImages/lists.svg" class="img-fluid figure-img"></p>
+<figcaption>lists</figcaption>
+</figure>
+</div>
+<div id="qpyodide-insertion-location-19"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="for-loops-revisited" class="level2">
+<h2 class="anchored" data-anchor-id="for-loops-revisited">for loops (revisited)</h2>
+<p>A <code>for</code> loop allows to loop through a list using an index variable. This variable takes succesively the values of the elements in the list.</p>
+<p>Example:</p>
+<div id="qpyodide-insertion-location-20"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<section id="repeating-a-task" class="level3">
+<h3 class="anchored" data-anchor-id="repeating-a-task">Repeating a task</h3>
+<p>One typical use of the for loop is to repeat a certain task a fixed number of times:</p>
+<div id="qpyodide-insertion-location-21"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="indentation" class="level3">
+<h3 class="anchored" data-anchor-id="indentation">Indentation</h3>
+<p>The part to be repeated in the for loop has to be properly <em>indented</em>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> elt <span class="kw">in</span> my_list:</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    do_something()</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    something_else()</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    etc</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"loop finished"</span>) <span class="co"># outside of the for loop</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>In contrast to other programming languages, the indentation in Python is <strong>mandatory</strong>.</p>
+<p>Many other kinds of Python structures also have to be indented and this will be covered when introduced.</p>
+</section>
+</section>
+<section id="the-full-for-statement-break" class="level2">
+<h2 class="anchored" data-anchor-id="the-full-for-statement-break">The full <code>for</code> statement ‐ <code>break</code></h2>
+<p><code>break</code> gets out of the for loop before all elements of the list are used.</p>
+<p>In the following example we possibly don’t use all values of the list <code>x_values</code>.</p>
+<div id="qpyodide-insertion-location-22"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>Not all entries were visited. <strong>We say, the list was not exhausted.</strong></p>
+</section>
+<section id="the-full-for-statement-else" class="level2">
+<h2 class="anchored" data-anchor-id="the-full-for-statement-else">The full <code>for</code> statement ‐ <code>else</code></h2>
+<p><code>else</code> checks if the loop was not <em>broken</em> by the <code>break</code> keyword.</p>
+<div id="qpyodide-insertion-location-23"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>If we did not break, the else-block is executed.</p>
+</section>
+<section id="elementary-plotting" class="level2">
+<h2 class="anchored" data-anchor-id="elementary-plotting">Elementary plotting</h2>
+<p>We must first make the central visualization tool in Python available:</p>
+<div id="qpyodide-insertion-location-24"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>Then we generate two lists:</p>
+<div id="qpyodide-insertion-location-25"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>Then making a graph is simple:</p>
+<div id="qpyodide-insertion-location-26"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="more-about-plots" class="level2">
+<h2 class="anchored" data-anchor-id="more-about-plots">More about plots</h2>
 <ul>
-<li><ol type="a">
-<li><span class="math inline">\((10101)_2 = 21\)</span></li>
-</ol></li>
-<li><ol start="2" type="a">
-<li><span class="math inline">\((1010.1)_2 = 10.5\)</span></li>
-</ol></li>
-<li><ol start="3" type="a">
-<li><span class="math inline">\((10.101)_2 = 2.625\)</span></li>
-</ol></li>
+<li>You have already used the command <code>plot</code>. It needs a list of <span class="math inline">\(x\)</span> values and a list of <span class="math inline">\(y\)</span> values. If a single list, <span class="math inline">\(y\)</span> is given, the list <code>list(range(len(y)))</code> is assumed as <span class="math inline">\(x\)</span> values.</li>
+<li>You may use the keyword argument <code>label</code> to give your curves a name, and then show them using <code>legend</code>.</li>
 </ul>
-<p><strong>E.79</strong></p>
-<p>The exponent <span class="math inline">\(\alpha\)</span> is between <span class="math inline">\(-1024\)</span> and <span class="math inline">\(1023\)</span> (counting two’s complement). This means that <span class="math inline">\(2^\alpha\)</span> is between <span class="math inline">\(10^{-308}\)</span> and <span class="math inline">\(10^{308}\)</span>, roughly. Taking into account that <span class="math inline">\(\epsilon\)</span> is between <span class="math inline">\(1\)</span> and <span class="math inline">\(10^{16}\)</span>, and that <span class="math inline">\((1.\epsilon)_2\)</span> is replaced by <span class="math inline">\((0.\epsilon)_2\)</span> when <span class="math inline">\(\alpha = -1024\)</span>, we obtain the rough description.</p>
-<p><strong>E.80</strong></p>
-<p>Exactly the fractions <span class="math inline">\(a / 2^n\)</span>, where <span class="math inline">\(a\)</span> is an integer and <span class="math inline">\(n\)</span> is a natural number. These are the numbers with finite binary expansions.</p>
+<div id="qpyodide-insertion-location-27"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="a-plot-with-more-key-words" class="level2">
+<h2 class="anchored" data-anchor-id="a-plot-with-more-key-words">A plot with more key words</h2>
+<p>Here is an example with more keywords:</p>
+<div id="qpyodide-insertion-location-28"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="fixed-point-iterations" class="level2">
+<h2 class="anchored" data-anchor-id="fixed-point-iterations">Fixed point iterations</h2>
+<p>A recursive equation can be written as</p>
+<span class="math display">\[\begin{cases}
+a_0 &amp;= c \\
+a_{n+1} &amp;= f(a_n), n \ge 0
+\end{cases}\]</span>
+<div id="qpyodide-insertion-location-29"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="fixed-point" class="level2">
+<h2 class="anchored" data-anchor-id="fixed-point">Fixed point</h2>
+<p>A number <span class="math inline">\(x_0\)</span> such that <span class="math inline">\(f(x_0)=x_0\)</span> is called a <em>fixed point</em>.</p>
+<p>The sequence will converge to that fixed point if <span class="math inline">\(f\)</span> is a contraction (<span class="math inline">\(|f(x) - f(y)| &lt; \alpha |x - y| \ \forall x,y\)</span> and <span class="math inline">\(\alpha \in [0,1)\)</span>) and a self map onto a closed set (see Banach’s fixed point theorem).</p>
+<p>An example is visualised using a <strong>cob web diagram</strong>, see <a href="https://www.geogebra.org/m/za7tarfg">www.geogebra.org/m/za7tarfg</a>. Here you see that a fixed point can be <strong>repelling</strong> or <strong>attracting</strong>. If the initial value <span class="math inline">\(c\)</span> is "close to" an attracting fixed point (<span class="math inline">\(f\)</span> is a contraction), the sequence will converge to that fixed point.</p>
+</section>
+<section id="jupyter-notebooks-optional" class="level2">
+<h2 class="anchored" data-anchor-id="jupyter-notebooks-optional">Jupyter Notebooks (optional)</h2>
+<p>A Jupyter notebook combines text and code.</p>
+<p>You can make notebooks using Anaconda.</p>
+<p>For collaborative writing (online) you can use <a href="https://colab.research.google.com/notebooks/welcome.ipynb">Google colab</a>.</p>
+<p>Other options are: - github.com or gitlab.com - dropbox - …</p>
+</section>
+<section id="notebooks-basics" class="level2">
+<h2 class="anchored" data-anchor-id="notebooks-basics">Notebooks basics</h2>
+<p>From Anaconda launch Jupyter Notebook (a server is started).</p>
+<p>Choose a directory and click on <code>New -&gt; Python 3</code>.</p>
+<p>Rename the Notebook at the top. Write some code. Click on <kbd>shift</kbd> + <kbd>enter</kbd> to execute.</p>
+<p><img src="http://cmc.education/slides/notebookImages/notebook1.png" alt="notebook1" align="center" style="border:2px solid #ccc; border-radius: 5px; max-width: 100%; height: auto; display: block; margin: 0 auto;"></p>
+</section>
+<section id="notebooks-code" class="level2">
+<h2 class="anchored" data-anchor-id="notebooks-code">Notebooks ‐ code</h2>
+<p>Imports, variables, functions, etc. that you make in cell, are available in succeeding cells (if the cell has been executed)</p>
+<div id="qpyodide-insertion-location-30"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div id="qpyodide-insertion-location-31"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="notebooks-code-cont" class="level2">
+<h2 class="anchored" data-anchor-id="notebooks-code-cont">Notebooks ‐ code (cont)</h2>
+<p>Under the menu <code>Kernel</code> you can <code>Restart &amp; Clear Output</code> or <code>Restart &amp; Run All</code>.</p>
+<p>Using the tools in the toolbar, you can move cells up or down.</p>
+<p>To delete a cell use the scissors tool.</p>
+<p><img src="http://cmc.education/slides/notebookImages/notebook2.png" alt="notebook2" align="center" style="border:2px solid #ccc; border-radius: 5px; max-width: 100%; height: auto; display: block; margin: 0 auto;"></p>
+</section>
+<section id="notebooks-text" class="level2">
+<h2 class="anchored" data-anchor-id="notebooks-text">Notebooks ‐ text</h2>
+<p>By default a cell is made for code. To write text, change the cell to <code>Markdown</code>.</p>
+<p>The text is formatted using markdown syntax.</p>
+<p>The text in a cell is formatted when pressing <kbd>shift</kbd>+<kbd>enter</kbd>.</p>
+</section>
+<section id="basic-markdown-syntax" class="level2">
+<h2 class="anchored" data-anchor-id="basic-markdown-syntax">Basic markdown syntax</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Main heading</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">## Smaller heading</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">### Even smaller</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>**bold text**</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>*text in italics*</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="an">An unnumbered list:</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>item 1</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>item 2</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>A numbered list:</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>item 1</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>item 2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="latex-formulas" class="level2">
+<h2 class="anchored" data-anchor-id="latex-formulas">LaTeX formulas</h2>
+<p>You make an inline formula, like <span class="math inline">\(f(x) = x^2\)</span>, by enclosing LaTeX-code between single dollar signs.</p>
+<p>You make a display style formula by enclosing the code between double dollar signs:</p>
+<p><span class="math display">\[\int_0^\pi\!\sin(2x)\,dx\]</span></p>
+</section>
+<section id="interactive-slideshows-like-this-one" class="level2">
+<h2 class="anchored" data-anchor-id="interactive-slideshows-like-this-one">Interactive slideshows (like this one)</h2>
+<p>To make interactive slideshows, you must install RISE (or jupyterlab-rise).</p>
+<p>For more information see <a href="anaconda.org/conda-forge/rise">anaconda.org/conda-forge/rise</a></p>
+<nav class="bottom-page-nav" aria-label="Page navigation">
+<a class="page-nav-link prev" href="lecture01.html">Previous: Lecture 1</a> <a class="page-nav-link next" href="lecture03_summer.html">Next: Lecture 3</a>
+</nav>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

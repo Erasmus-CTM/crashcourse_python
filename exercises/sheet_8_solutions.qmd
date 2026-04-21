@@ -194,3 +194,8 @@ print("built-in a * b =", ca * cb)
 print("built-in a / b =", ca / cb)
 print("built-in a ** 2 =", ca ** 2)
 ```
+
+<nav class="bottom-page-nav" aria-label="Page navigation">
+  <a class="page-nav-link prev" href="sheet_7_solutions.html">Previous: Sheet 7 Solutions</a>
+  <a class="page-nav-link next" href="sheet_9_solutions.html">Next: Sheet 9 Solutions</a>
+</nav>

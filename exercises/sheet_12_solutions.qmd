@@ -132,3 +132,8 @@ slider_omega.on_changed(update)
 
 plt.show()
 ```
+
+<nav class="bottom-page-nav" aria-label="Page navigation">
+  <a class="page-nav-link prev" href="sheet_11_solutions.html">Previous: Sheet 11 Solutions</a>
+  <a class="page-nav-link next" href="sheet_13_solutions.html">Next: Sheet 13 Solutions</a>
+</nav>

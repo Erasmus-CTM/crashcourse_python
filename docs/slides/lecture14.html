@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>A.4 Functions – Python Crashcourse</title>
+<title>Computational Programming with Python – Python Crashcourse</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,27 +20,62 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-5b4ad623e5705c0698d39aec6f10cf02.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-5b4ad623e5705c0698d39aec6f10cf02.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -230,7 +265,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"code":"def f(x):\n    y = x**2 - 5 * x + 4\n    return y\n\nz = f(3)\nprint(z)","id":1,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"# TODO: implement absolute value with if.","id":2,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"# TODO: implement absolute value without if.","id":3,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"# TODO: implement a product function.","id":4,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"x = 3\n\ndef f(x):\n    y = x**2 - 5 * x + 4\n    return y\n\nprint(y)","id":5,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"x = 3\n\ndef f(x):\n    y = x**2 - 5 * x + 4\n    return y\n\nf(x)\nprint(y)","id":6,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"a = [1, 2, 3]\nb = [4, 5, 6]\nc = sum(a)\nprint(b)","id":7,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import matplotlib.pyplot as plt\n\ndef f(x):\n    y = x**2 + 2 * x + 3\n    return y\n\nX = [n / 10 for n in range(0, 11)]\nY = [f(x) for x in X]\n\nplt.plot(X, Y)\nplt.show()","id":8,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"# TODO: plot your absolute value functions on [1/2, 2].","id":9,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import matplotlib.pyplot as plt\n\nN = 10**4\n\ndef a(k):\n    return 1 / 2**k\n\ndef S(a_func, n):\n    return sum([a_func(k) for k in range(0, n)])\n\nn_values = [n for n in range(0, N)]\nY = [S(a, n) for n in n_values]\n\nplt.plot(n_values, Y, \"bo\")","id":10,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import numpy as np\n\ndef f(x):\n    return x**2\n\na = [1, 2, 3, 4]\nb = [1, 2, 5, 3]\n\nA = np.array(a)\nB = np.array(b)\n\nC = A - B\nD = A + B\nE = A / B\n\nF = np.zeros(3)\nG = np.ones(4)\nH = np.arange(4)\nI = np.linspace(0, 1, 5)\n\nJ = I.tolist()\nK = f(A)\n\nprint(\"A =\", A)\nprint(\"B =\", B)\nprint(\"C =\", C)\nprint(\"D =\", D)\nprint(\"E =\", E)\nprint(\"F =\", F)\nprint(\"G =\", G)\nprint(\"H =\", H)\nprint(\"I =\", I)\nprint(\"J =\", J)\nprint(\"K =\", K)","id":11,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import matplotlib.pyplot as plt\nimport numpy as np\n\ndef f(x):\n    y = x**2 + 2 * x + 3\n    return y\n\nX = np.linspace(0, 1, 11)\nY = f(X)\n\nplt.plot(X, Y)\nplt.show()","id":12,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import numpy as np\n\ny = np.sin(np.pi)\nprint(y)","id":13,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}}];
+globalThis.qpyodideCellDetails = [{"code":"from numpy import *\nA = array([[1.,2.,3.],\n          [4.,5.,6.]])\nprint(A)","id":1,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import pandas as pd\nAF = pd.DataFrame(A)\nprint(AF)","id":2,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"AF.columns = ['C1','C2','C3']\nAF.index   = ['R1','R2']\nprint(AF)","id":3,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"AF.loc[['R1'],['C2']]","id":4,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"AF.loc['R1','C2']","id":5,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"AF.loc[['R1'],['C2']]","id":6,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"AF.iloc[0 ,1]","id":7,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"AF.iloc[[0],[1]]","id":8,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"print(AF.C1)\nprint(type(AF.C1))","id":9,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"AF1 = AF.loc['R1':,'C1':] # or equivalently\nprint(AF1)\n\nAF2 = AF.loc[['R1','R2'],['C2','C3']]\nprint(AF2)","id":10,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"print(AF.loc['R1','C2'])","id":11,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"date_index = ['2020-01-19 11:45', '2020-01-20 02:14']\nAF.index = date_index\nprint(AF)\n# print(AF.index[1]-AF.index[0]) # does not work!","id":12,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"date_index = pd.to_datetime(['2020-01-19 11:45','2020-01-20 02:14'])\nAF.index = date_index\nprint(AF)","id":13,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"print(AF.index[1]-AF.index[0])\nprint(type(AF.index[1]-AF.index[0]))","id":14,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import os\nimport io\nfrom js import fetch\nimport pandas as pd\n\nasync def read_dat(path, **kwargs):\n    print(f\"Trying to load {path}...\")\n    if os.path.exists(path):\n        df = pd.read_csv(path, **kwargs)\n        print(f\"Loaded {path} from local filesystem\")\n        return df\n    response = await fetch(path)\n    text = await response.text()\n    df = pd.read_csv(io.StringIO(text), **kwargs)\n    print(f\"Loaded {path}\")\n    return df\n\nsolarWatts = await read_dat(\n    \"solarWatts.dat\",\n    sep=';',\n    index_col='Date',\n    parse_dates=[0]\n)","id":15,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"print(solarWatts.iloc[100])","id":16,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"print(solarWatts.iloc[-1])","id":17,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"# Creating\nprices = await read_dat(\n    \"price.dat\",\n    sep=';',\n    index_col='Date',\n    parse_dates=[0]\n)\nrates = await read_dat(\n    \"rates.dat\",\n    sep=';',\n    index_col='Date',\n    parse_dates=[0]\n)\n\n# and merging them into one dataframe\nsolar_all = pd.merge(solarWatts, prices, how='outer', sort=True, on='Date')\nsolar_all = pd.merge(solar_all, rates, how='outer', sort=True, on='Date')","id":18,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"print(solar_all.iloc[-1])","id":19,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"solar_all.iloc[range(12520,12527)]","id":20,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"# this method call creates a new object which can be costly (both in terms of memory and runtime)\nsolar_all = solar_all.ffill(axis=0)\nprint(solar_all)","id":21,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"# use inplace=True to directly alter the object at hand\nsolar_all.bfill(inplace=True, axis=0)\nprint(solar_all)","id":22,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import matplotlib.pyplot as plt\nsolar_all.loc['2020-05-14'].plot()\nplt.show()","id":23,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import matplotlib.pyplot as plt\nsolar_all.loc['2020-05-14'].plot(y='SEK')\nplt.show()","id":24,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import matplotlib.pyplot as plt\nsolar_all.loc['2020-05-14':'2020-06-20'].plot(y='Euro_SEK')\nplt.show()","id":25,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"solar_all.to_csv('solar_all.csv', sep=';')","id":26,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import time\nmay = solar_all.loc['2020-05-01':'2020-05-31']\n\nsolar_hour = solar_all.agg({'Watt':\"sum\"})\nprint(may)\n\nincome = 0.\nstart = time.time()\nfor i in range(len(may)):\n    income += may.Watt.iloc[i]/(1000.*60) * may.SEK.iloc[i] / may.Euro_SEK.iloc[i]\nprint(f\"Income in Euro for May is {income:.2f}\")    \nprint(f\"Computation took {time.time()-start:2.4f}sec.\")","id":27,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import time\nmay = solar_all.loc['2020-05-01':'2020-05-31']\nprint(may)\n\nincome = sum(may.Watt[:]/(1000.*60.) * may.SEK[:] / may.Euro_SEK[:])\n\nstart = time.time()\nprint(f\"\\nThe income in month May was {income:.2f} Euros!\")\nprint(f\"Computation took {time.time()-start:2.4f}sec.\")","id":28,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}}];
 
 
 </script>
@@ -421,37 +456,8 @@ globalThis._qpyodideGetInstance = function() {
 
 </script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-fixed quarto-light">
@@ -461,7 +467,7 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Python Crashcourse</span>
     </a>
   </div>
@@ -472,39 +478,160 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./appendix_a1.html"> 
-<span class="menu-text">A.1 Introduction</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-crashcourse" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Crashcourse</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-crashcourse">    
+        <li>
+    <a class="dropdown-item" href="../appendix/appendix_a1.html">
+ <span class="dropdown-text">A.1 Introduction</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./appendix_a2.html"> 
-<span class="menu-text">A.2 Sequences and Sums</span></a>
+        <li>
+    <a class="dropdown-item" href="../appendix/appendix_a2.html">
+ <span class="dropdown-text">A.2 Sequences and Sums</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./appendix_a3.html"> 
-<span class="menu-text">A.3 Control Statements</span></a>
+        <li>
+    <a class="dropdown-item" href="../appendix/appendix_a3.html">
+ <span class="dropdown-text">A.3 Control Statements</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link active" href="./appendix_a4.html" aria-current="page"> 
-<span class="menu-text">A.4 Functions</span></a>
+        <li>
+    <a class="dropdown-item" href="../appendix/appendix_a4.html">
+ <span class="dropdown-text">A.4 Functions</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./appendix_a5.html"> 
-<span class="menu-text">A.5 Number Representation</span></a>
+        <li>
+    <a class="dropdown-item" href="../appendix/appendix_a5.html">
+ <span class="dropdown-text">A.5 Number Representation</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./appendix_a6.html"> 
-<span class="menu-text">A.6 Answers</span></a>
+        <li>
+    <a class="dropdown-item" href="../appendix/appendix_a6.html">
+ <span class="dropdown-text">A.6 Answers</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./appendix_all.html"> 
-<span class="menu-text">A.All Combined</span></a>
+        <li>
+    <a class="dropdown-item" href="../appendix/appendix_all.html">
+ <span class="dropdown-text">A.All Combined</span></a>
   </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-lecture-slides" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Lecture Slides</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-lecture-slides">    
+        <li>
+    <a class="dropdown-item" href="../slides/lecture01.html">
+ <span class="dropdown-text">Lecture 1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture02_summer.html">
+ <span class="dropdown-text">Lecture 2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture03_summer.html">
+ <span class="dropdown-text">Lecture 3</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture04.html">
+ <span class="dropdown-text">Lecture 4</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture05.html">
+ <span class="dropdown-text">Lecture 5</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture06.html">
+ <span class="dropdown-text">Lecture 6</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture07.html">
+ <span class="dropdown-text">Lecture 7</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture08.html">
+ <span class="dropdown-text">Lecture 8</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture09.html">
+ <span class="dropdown-text">Lecture 9</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture10.html">
+ <span class="dropdown-text">Lecture 10</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture11.html">
+ <span class="dropdown-text">Lecture 11</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture12.html">
+ <span class="dropdown-text">Lecture 12</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture13.html">
+ <span class="dropdown-text">Lecture 13</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture14.html">
+ <span class="dropdown-text">Lecture 14</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-exercises" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Exercises</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-exercises">    
+        <li>
+    <a class="dropdown-item" href="../exercises/sheet_2.html">
+ <span class="dropdown-text">Sheet 2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../exercises/sheet_3.html">
+ <span class="dropdown-text">Sheet 3</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../exercises/sheet_4.html">
+ <span class="dropdown-text">Sheet 4</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../exercises/sheet_5.html">
+ <span class="dropdown-text">Sheet 5</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../exercises/sheet_6.html">
+ <span class="dropdown-text">Sheet 6</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../exercises/sheet_7.html">
+ <span class="dropdown-text">Sheet 7</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../exercises/sheet_8.html">
+ <span class="dropdown-text">Sheet 8</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../exercises/sheet_9.html">
+ <span class="dropdown-text">Sheet 9</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../exercises/sheet_11.html">
+ <span class="dropdown-text">Sheet 11</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../exercises/sheet_12.html">
+ <span class="dropdown-text">Sheet 12</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../exercises/sheet_13.html">
+ <span class="dropdown-text">Sheet 13</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -523,13 +650,38 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#functions-in-python" id="toc-functions-in-python" class="nav-link active" data-scroll-target="#functions-in-python">Functions in Python</a>
+  <li><a href="#lecture-14-brief-introduction-to-pandas" id="toc-lecture-14-brief-introduction-to-pandas" class="nav-link active" data-scroll-target="#lecture-14-brief-introduction-to-pandas">Lecture 14: Brief Introduction to Pandas</a>
   <ul class="collapse">
-  <li><a href="#how-to-define-a-function-in-python" id="toc-how-to-define-a-function-in-python" class="nav-link" data-scroll-target="#how-to-define-a-function-in-python">How to define a function in Python</a></li>
-  <li><a href="#warning-the-importance-of-local-namespaces" id="toc-warning-the-importance-of-local-namespaces" class="nav-link" data-scroll-target="#warning-the-importance-of-local-namespaces">Warning: the importance of local namespaces</a></li>
-  <li><a href="#how-to-plot-functions-in-python-using-lists" id="toc-how-to-plot-functions-in-python-using-lists" class="nav-link" data-scroll-target="#how-to-plot-functions-in-python-using-lists">How to plot functions in Python using lists</a></li>
-  <li><a href="#plotting-functions-using-numpy-arrays" id="toc-plotting-functions-using-numpy-arrays" class="nav-link" data-scroll-target="#plotting-functions-using-numpy-arrays">Plotting functions using numpy arrays</a></li>
-  <li><a href="#predefined-functions-in-python" id="toc-predefined-functions-in-python" class="nav-link" data-scroll-target="#predefined-functions-in-python">Predefined functions in Python</a></li>
+  <li><a href="#center-for-mathematical-sciences-lund-university" id="toc-center-for-mathematical-sciences-lund-university" class="nav-link" data-scroll-target="#center-for-mathematical-sciences-lund-university">Center for Mathematical Sciences, Lund University</a></li>
+  </ul></li>
+  <li><a href="#this-lecture" id="toc-this-lecture" class="nav-link" data-scroll-target="#this-lecture">This lecture</a></li>
+  <li><a href="#a-guiding-example" id="toc-a-guiding-example" class="nav-link" data-scroll-target="#a-guiding-example">A Guiding Example</a>
+  <ul class="collapse">
+  <li><a href="#solarwatts.dat" id="toc-solarwatts.dat" class="nav-link" data-scroll-target="#solarwatts.dat">solarWatts.dat</a></li>
+  <li><a href="#price.dat" id="toc-price.dat" class="nav-link" data-scroll-target="#price.dat">price.dat</a></li>
+  <li><a href="#rates.dat" id="toc-rates.dat" class="nav-link" data-scroll-target="#rates.dat">rates.dat</a></li>
+  <li><a href="#typical-questions" id="toc-typical-questions" class="nav-link" data-scroll-target="#typical-questions">Typical questions?</a>
+  <ul class="collapse">
+  <li><a href="#the-tool-to-use-is-pandas-dataframe" id="toc-the-tool-to-use-is-pandas-dataframe" class="nav-link" data-scroll-target="#the-tool-to-use-is-pandas-dataframe">The tool to use is Pandas dataframe</a></li>
+  </ul></li>
+  <li><a href="#pandas-dataframe-vs-numpy-array" id="toc-pandas-dataframe-vs-numpy-array" class="nav-link" data-scroll-target="#pandas-dataframe-vs-numpy-array">Pandas Dataframe vs Numpy Array</a></li>
+  <li><a href="#dataframe-index-and-column-metadata" id="toc-dataframe-index-and-column-metadata" class="nav-link" data-scroll-target="#dataframe-index-and-column-metadata">Dataframe: Index and Column Metadata</a></li>
+  <li><a href="#dataframe-indexing" id="toc-dataframe-indexing" class="nav-link" data-scroll-target="#dataframe-indexing">Dataframe: Indexing</a></li>
+  <li><a href="#indexing-by-row-and-column-indexes-iloc-method" id="toc-indexing-by-row-and-column-indexes-iloc-method" class="nav-link" data-scroll-target="#indexing-by-row-and-column-indexes-iloc-method">Indexing by row and column indexes iloc-method</a></li>
+  <li><a href="#pandas-dataseries" id="toc-pandas-dataseries" class="nav-link" data-scroll-target="#pandas-dataseries">Pandas Dataseries</a></li>
+  <li><a href="#dataframes-subframes-slices-and-elements" id="toc-dataframes-subframes-slices-and-elements" class="nav-link" data-scroll-target="#dataframes-subframes-slices-and-elements">Dataframes: Subframes, Slices and Elements</a></li>
+  </ul></li>
+  <li><a href="#datetime-objects-as-indices" id="toc-datetime-objects-as-indices" class="nav-link" data-scroll-target="#datetime-objects-as-indices">Datetime objects as indices</a>
+  <ul class="collapse">
+  <li><a href="#datetime-objects-as-indices-cont." id="toc-datetime-objects-as-indices-cont." class="nav-link" data-scroll-target="#datetime-objects-as-indices-cont.">Datetime objects as indices (cont.)</a></li>
+  <li><a href="#creating-a-dataframe-from-imported-data" id="toc-creating-a-dataframe-from-imported-data" class="nav-link" data-scroll-target="#creating-a-dataframe-from-imported-data">Creating a dataframe from imported data</a></li>
+  <li><a href="#merging-dataframes" id="toc-merging-dataframes" class="nav-link" data-scroll-target="#merging-dataframes">Merging Dataframes</a></li>
+  <li><a href="#missing-data-12" id="toc-missing-data-12" class="nav-link" data-scroll-target="#missing-data-12">Missing data (1/2)</a></li>
+  <li><a href="#missing-data-22" id="toc-missing-data-22" class="nav-link" data-scroll-target="#missing-data-22">Missing data (2/2)</a></li>
+  <li><a href="#plotting-dataframes" id="toc-plotting-dataframes" class="nav-link" data-scroll-target="#plotting-dataframes">Plotting dataframes</a></li>
+  <li><a href="#use-slicing-to-visualize-a-time-period" id="toc-use-slicing-to-visualize-a-time-period" class="nav-link" data-scroll-target="#use-slicing-to-visualize-a-time-period">Use slicing to visualize a time period</a></li>
+  <li><a href="#saving-a-dataframe-to-a-csv-file-for-later-use" id="toc-saving-a-dataframe-to-a-csv-file-for-later-use" class="nav-link" data-scroll-target="#saving-a-dataframe-to-a-csv-file-for-later-use">Saving a dataframe to a csv file for later use</a></li>
+  <li><a href="#and-finally-answering-some-questions" id="toc-and-finally-answering-some-questions" class="nav-link" data-scroll-target="#and-finally-answering-some-questions">And finally: Answering some questions</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -549,7 +701,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">A.4 Functions</h1>
+<h1 class="title">Computational Programming with Python</h1>
 </div>
 
 
@@ -566,137 +718,207 @@ window.Quarto = {
 </header>
 
 
-<section id="functions-in-python" class="level2">
-<h2 class="anchored" data-anchor-id="functions-in-python">Functions in Python</h2>
-<section id="how-to-define-a-function-in-python" class="level3">
-<h3 class="anchored" data-anchor-id="how-to-define-a-function-in-python">How to define a function in Python</h3>
-<p><strong>Example E.47 (Defining functions in Python)</strong><br>
-In the following code we define <span class="math inline">\(f(x) = x^2 - 5x + 4\)</span> in Python and compute <span class="math inline">\(f(3)\)</span>.</p>
+<section id="lecture-14-brief-introduction-to-pandas" class="level2">
+<h2 class="anchored" data-anchor-id="lecture-14-brief-introduction-to-pandas">Lecture 14: Brief Introduction to Pandas</h2>
+<section id="center-for-mathematical-sciences-lund-university" class="level3">
+<h3 class="anchored" data-anchor-id="center-for-mathematical-sciences-lund-university">Center for Mathematical Sciences, Lund University</h3>
+<p>Lecturer: <code>Robert Klöfkorn</code></p>
+</section>
+</section>
+<section id="this-lecture" class="level1">
+<h1>This lecture</h1>
+<p>This content is to be found in the book, chapter 10.</p>
+<ul>
+<li>Working with Pandas dataframes
+<ul>
+<li>Reading<br>
+</li>
+<li>Using</li>
+<li>Merging</li>
+<li>Plotting</li>
+</ul></li>
+</ul>
+</section>
+<section id="a-guiding-example" class="level1">
+<h1>A Guiding Example</h1>
+<p>This lecture unit needs an example data source to demonstrate Pandas:</p>
+<p>Solar cells in Södra Sandby</p>
+<section id="solarwatts.dat" class="level3">
+<h3 class="anchored" data-anchor-id="solarwatts.dat">solarWatts.dat</h3>
+</section>
+<section id="price.dat" class="level3">
+<h3 class="anchored" data-anchor-id="price.dat">price.dat</h3>
+</section>
+<section id="rates.dat" class="level3">
+<h3 class="anchored" data-anchor-id="rates.dat">rates.dat</h3>
+</section>
+<section id="typical-questions" class="level2">
+<h2 class="anchored" data-anchor-id="typical-questions">Typical questions?</h2>
+<ul>
+<li>When was the highest power production?</li>
+<li>Which day delivered the most energy?</li>
+<li>Which was the economical outcome in Euro per month?</li>
+<li>Was there a day where the solar cells were out of work?</li>
+</ul>
+<section id="the-tool-to-use-is-pandas-dataframe" class="level3">
+<h3 class="anchored" data-anchor-id="the-tool-to-use-is-pandas-dataframe">The tool to use is Pandas dataframe</h3>
+</section>
+</section>
+<section id="pandas-dataframe-vs-numpy-array" class="level2">
+<h2 class="anchored" data-anchor-id="pandas-dataframe-vs-numpy-array">Pandas Dataframe vs Numpy Array</h2>
+<p>Let’s start by just looking at an example:</p>
 <div id="qpyodide-insertion-location-1"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p>Explanation:</p>
-<ol type="1">
-<li><code>def f(x):</code> tells Python that a function named <code>f</code> is being defined.</li>
-<li>The <code>return</code> value is the output of the function.</li>
-<li>When we write <code>f(3)</code>, the function code is run with <code>x = 3</code>.</li>
-</ol>
-<p><strong>Exercise E.48</strong></p>
-<ol type="1">
-<li>Use the if-control statement to implement the absolute value function. Use it on a few values to check that it works.</li>
-<li>Implement the absolute value function without using the if-control statement.</li>
-</ol>
-<p>Remark: It is not really necessary to program the absolute value function by hand since it already exists in Python as <code>abs(x)</code>.</p>
+<p>Using a pandas dataframe:</p>
 <div id="qpyodide-insertion-location-2"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>We see that a Pandas dataframe has extra labels of the <code>rows</code> and <code>columns</code> - called <code>index</code> and <code>columns</code>. These are <code>metadata</code> of a dataframe. Here they coincide with NumPy’s indexing.</p>
+</section>
+<section id="dataframe-index-and-column-metadata" class="level2">
+<h2 class="anchored" data-anchor-id="dataframe-index-and-column-metadata">Dataframe: Index and Column Metadata</h2>
+<p>Index and Column Metadata gives a Pandas dataframe the possibility to label the data as known from classical tabel design</p>
 <div id="qpyodide-insertion-location-3"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p><strong>Exercise E.49</strong></p>
-<p>Write the code for a function that will take a list of numbers as input and return their product as output. This is analogous to the built-in function <code>sum()</code> which returns the sum.</p>
+<p>… and allows indexing to construct subframes:</p>
 <div id="qpyodide-insertion-location-4"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
-<section id="warning-the-importance-of-local-namespaces" class="level3">
-<h3 class="anchored" data-anchor-id="warning-the-importance-of-local-namespaces">Warning: the importance of local namespaces</h3>
-<p>Variables created inside a function are local and cannot be accessed outside the function. This is a common source of bugs.</p>
-<p><strong>Example E.50</strong><br>
-The following code makes no sense and will crash.</p>
+<section id="dataframe-indexing" class="level2">
+<h2 class="anchored" data-anchor-id="dataframe-indexing">Dataframe: Indexing</h2>
+<p>Indexing by <code>row</code> and <code>column</code> labels loc-method:</p>
 <div id="qpyodide-insertion-location-5"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p><strong>Example E.51</strong><br>
-The following code also crashes.</p>
+<p>while</p>
 <div id="qpyodide-insertion-location-6"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p>The variable <code>y</code> only exists inside the function definition. After the function returns, local variables are deleted.</p>
-<p><strong>Example E.52</strong><br>
-Thanks to local namespaces, we can be sure that the following code works:</p>
+</section>
+<section id="indexing-by-row-and-column-indexes-iloc-method" class="level2">
+<h2 class="anchored" data-anchor-id="indexing-by-row-and-column-indexes-iloc-method">Indexing by row and column indexes iloc-method</h2>
+<p>Use the method <code>iloc</code> for index based access:</p>
 <div id="qpyodide-insertion-location-7"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-</section>
-<section id="how-to-plot-functions-in-python-using-lists" class="level3">
-<h3 class="anchored" data-anchor-id="how-to-plot-functions-in-python-using-lists">How to plot functions in Python using lists</h3>
-<p><strong>Example E.53 (Plotting with datatype list)</strong><br>
-The following code plots <span class="math inline">\(f(x) = x^2 + 2x + 3\)</span> over the interval <span class="math inline">\([0, 1]\)</span>.</p>
+<p>… while</p>
 <div id="qpyodide-insertion-location-8"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p>The command <code>plt.plot(X, Y)</code> connects the points with straight line segments. If you use <code>plt.plot(X, Y, "bo")</code> you will get blue dots instead of a line.</p>
-<p><strong>Exercise E.54</strong></p>
-<p>Plot the functions you implemented in Exercise E.48 on <span class="math inline">\([1/2, 2]\)</span>.</p>
+</section>
+<section id="pandas-dataseries" class="level2">
+<h2 class="anchored" data-anchor-id="pandas-dataseries">Pandas Dataseries</h2>
+<p>The label of a column can be used as an attribute which refers to the entire column</p>
 <div id="qpyodide-insertion-location-9"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p><strong>Exercise E.55</strong></p>
-<p>Consider the following code:</p>
+<p>This is a new Pandas object – a <code>series object</code>.</p>
+<p><strong>Note:</strong> A Pandas series has no column label. It is just a single column corresponding to a single type of measured data.</p>
+</section>
+<section id="dataframes-subframes-slices-and-elements" class="level2">
+<h2 class="anchored" data-anchor-id="dataframes-subframes-slices-and-elements">Dataframes: Subframes, Slices and Elements</h2>
+<p>Note, if <code>loc</code> (or <code>iloc</code>) is called with list arguments or slices the result is a dataframe.</p>
 <div id="qpyodide-insertion-location-10"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<ol type="1">
-<li>Explain in mathematical terms what this code does.</li>
-<li>The symbol <code>a</code> takes more than one role in the above code. Explain what roles these are.</li>
-<li>Make the code easier to read by giving <code>a</code> different names where possible.</li>
-</ol>
-</section>
-<section id="plotting-functions-using-numpy-arrays" class="level3">
-<h3 class="anchored" data-anchor-id="plotting-functions-using-numpy-arrays">Plotting functions using numpy arrays</h3>
-<p>Numpy arrays are like lists, but restricted to numeric entries. This makes it possible to do fast, element-wise operations.</p>
-<p><strong>Example E.56 (Features of numpy arrays)</strong></p>
+<p>while calling with a pair of single labels just give an element of the dataframe</p>
 <div id="qpyodide-insertion-location-11"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p>Notes:</p>
-<ul>
-<li><code>np.linspace(a, b, N)</code> creates <code>N</code> equally spaced points in <code>[a, b]</code>.</li>
-<li>Applying a function to an array is done element-wise.</li>
-</ul>
-<p><strong>Example E.57</strong><br>
-The following code gives exactly the same output as Example E.53.</p>
+</section>
+</section>
+<section id="datetime-objects-as-indices" class="level1">
+<h1>Datetime objects as indices</h1>
+<p>It is very common that the index contains information about the date and the time of a given measurement as a string. In Sweden we use a format <code>yy-mm-dd hh:mm:ss</code> to report the time of a measurement as a string. ### Example: Temperature meassurements</p>
 <div id="qpyodide-insertion-location-12"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p><strong>Exercise E.58</strong></p>
-<p>Try to use numpy arrays to plot the functions from Exercise E.48. For one of them, the code will not work. Can you imagine why?</p>
-</section>
-<section id="predefined-functions-in-python" class="level3">
-<h3 class="anchored" data-anchor-id="predefined-functions-in-python">Predefined functions in Python</h3>
-<p><strong>Remark R.59 (Built-in functions in Python)</strong><br>
-Here is a list of some functions that are built into Python:</p>
-<ul>
-<li><code>abs(x)</code> computes the absolute value of <code>x</code>.</li>
-<li><code>complex(a, b)</code> returns the complex number <code>a + ib</code>.</li>
-<li><code>float(x)</code> converts an integer to a float.</li>
-<li><code>int(x)</code> converts a float to an integer (rounds down).</li>
-<li><code>round(a, n)</code> rounds the floating point number <code>a</code> to <code>n</code> digits.</li>
-<li><code>type(x)</code> returns the datatype of the variable <code>x</code>.</li>
-</ul>
-<p>For a full list, see <a href="https://docs.python.org/3/library/functions.html" class="uri">https://docs.python.org/3/library/functions.html</a>.</p>
-<p><strong>Remark R.60 (Functions in the numpy package)</strong><br>
-To use these functions, start your code with <code>import numpy as np</code>.</p>
-<ul>
-<li><code>np.exp(x)</code> exponential function</li>
-<li><code>np.log(x)</code> natural log</li>
-<li><code>np.log2(x)</code> log base 2</li>
-<li><code>np.log10(x)</code> log base 10</li>
-<li><code>np.sin(x)</code> sine (radians)</li>
-<li><code>np.cos(x)</code> cosine (radians)</li>
-<li><code>np.tan(x)</code> tangent (radians)</li>
-<li><code>np.arcsin(x)</code> arcsine</li>
-<li><code>np.arccos(x)</code> arccosine</li>
-<li><code>np.arctan(x)</code> arctangent</li>
-<li><code>np.absolute(x)</code> absolute value</li>
-<li><code>np.deg2rad(x)</code> degrees to radians</li>
-<li><code>np.rad2deg(x)</code> radians to degrees</li>
-<li><code>np.sum(x)</code> sum of elements</li>
-<li><code>np.prod(x)</code> product of elements</li>
-<li><code>np.imag(z)</code> imaginary part</li>
-<li><code>np.real(z)</code> real part</li>
-<li><code>np.angle(z)</code> angle of a complex number (radians)</li>
-<li><code>np.conj(z)</code> complex conjugate</li>
-</ul>
-<p>Some constants:</p>
-<ul>
-<li><code>np.pi</code></li>
-<li><code>np.e</code></li>
-</ul>
-<p>More info: <a href="https://docs.scipy.org/doc/numpy-1.13.0/reference/routines.math.html" class="uri">https://docs.scipy.org/doc/numpy-1.13.0/reference/routines.math.html</a></p>
-<p><strong>Example E.61</strong></p>
+<section id="datetime-objects-as-indices-cont." class="level2">
+<h2 class="anchored" data-anchor-id="datetime-objects-as-indices-cont.">Datetime objects as indices (cont.)</h2>
+<p>We often want to make simple arithmetic with date and time information for this end the list of strings has to be converted in a list of so-called datetime objects first</p>
 <div id="qpyodide-insertion-location-13"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p>There are other packages with even more functions, such as <code>math</code> and <code>scipy</code>. In particular, <code>numpy</code> makes the <code>math</code> package mostly obsolete when working with numpy arrays.</p>
+<p>This way we can easlily find out how much time passed between the measurements <code>AF.index[1]-AF.index[0]</code>. The result is a timedelta object displayed here as <code>Timedelta(’0 days 14:29:00’)</code></p>
+<div id="qpyodide-insertion-location-14"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="creating-a-dataframe-from-imported-data" class="level2">
+<h2 class="anchored" data-anchor-id="creating-a-dataframe-from-imported-data">Creating a dataframe from imported data</h2>
+<p>Let’s look at <code>solarWatts.dat</code></p>
+<blockquote class="blockquote">
+<p>Note: The code below is only necessary in the browser/Pyodide environment, where the local filesystem may not already contain the data files. In a normal Python interpreter you can read the files directly.</p>
+</blockquote>
+<p>Code for local filesystem:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>solarWatts <span class="op">=</span> pd.read_csv(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"solarWatts.dat"</span>,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    sep<span class="op">=</span><span class="st">';'</span>,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    index_col<span class="op">=</span><span class="st">'Date'</span>,</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    parse_dates<span class="op">=</span>[<span class="dv">0</span>]</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="qpyodide-insertion-location-15"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>What do these arguments tell?</p>
+<ul>
+<li>The data is semicolon seperated,</li>
+<li>Which column defines the index, which column contains dates,</li>
+<li>should dates converted from string to timestamp and how.</li>
+</ul>
+<div id="qpyodide-insertion-location-16"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div id="qpyodide-insertion-location-17"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="merging-dataframes" class="level2">
+<h2 class="anchored" data-anchor-id="merging-dataframes">Merging Dataframes</h2>
+<p>Here we merge production data with electricity prices:</p>
+<div id="qpyodide-insertion-location-18"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>Let’s inspect the result:</p>
+<div id="qpyodide-insertion-location-19"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p><code>outer</code> tells that the union of the index is taken as a new index.</p>
+</section>
+<section id="missing-data-12" class="level2">
+<h2 class="anchored" data-anchor-id="missing-data-12">Missing data (1/2)</h2>
+<p>In the example <code>power</code> is updated every minute, <code>price</code> is updated every hour, <code>rate</code> is updated every day.</p>
+<div id="qpyodide-insertion-location-20"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>What can be done?</p>
+<p>Use frame methods like: <code>dropna</code>, <code>ffill</code>, <code>bfill</code> or <code>interpolate</code>.</p>
+</section>
+<section id="missing-data-22" class="level2">
+<h2 class="anchored" data-anchor-id="missing-data-22">Missing data (2/2)</h2>
+<p>Let’s use <code>ffill</code> and <code>bfill</code> to <code>pad</code> missing values.</p>
+<ul>
+<li><code>ffill</code>: Fill NA/NaN values by propagating the last valid observation to next valid.</li>
+<li><code>bfill</code>: Fill NA/NaN values by using the next valid observation to fill the gap.</li>
+</ul>
+<div id="qpyodide-insertion-location-21"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div id="qpyodide-insertion-location-22"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="plotting-dataframes" class="level2">
+<h2 class="anchored" data-anchor-id="plotting-dataframes">Plotting dataframes</h2>
+<p>We demonstrate this by plotting all data for one day or the price variation along one day.</p>
+<div id="qpyodide-insertion-location-23"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div id="qpyodide-insertion-location-24"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="use-slicing-to-visualize-a-time-period" class="level2">
+<h2 class="anchored" data-anchor-id="use-slicing-to-visualize-a-time-period">Use slicing to visualize a time period</h2>
+<p>Use <code>df.loc[datetime:datetime]</code> to access a time period.</p>
+<div id="qpyodide-insertion-location-25"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="saving-a-dataframe-to-a-csv-file-for-later-use" class="level2">
+<h2 class="anchored" data-anchor-id="saving-a-dataframe-to-a-csv-file-for-later-use">Saving a dataframe to a csv file for later use</h2>
+<p>After the data has been cleaned one might want to save for later use. We use, for example, <code>to_csv</code> and provide a filename.</p>
+<div id="qpyodide-insertion-location-26"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="and-finally-answering-some-questions" class="level2">
+<h2 class="anchored" data-anchor-id="and-finally-answering-some-questions">And finally: Answering some questions</h2>
+<p>How much was earned in the month of May 2020?</p>
+<div id="qpyodide-insertion-location-27"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div id="qpyodide-insertion-location-28"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<nav class="bottom-page-nav" aria-label="Page navigation">
+<a class="page-nav-link prev" href="lecture13.html">Previous: Lecture 13</a> <span class="page-nav-link next is-disabled">Next</span>
+</nav>
 
 
 </section>

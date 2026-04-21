@@ -88,3 +88,8 @@ ax.set_ylabel("sin(D) * 1")
 ax.set_title("Result of sin(D) times ones vector")
 plt.show()
 ```
+
+<nav class="bottom-page-nav" aria-label="Page navigation">
+  <a class="page-nav-link prev" href="sheet_6_solutions.html">Previous: Sheet 6 Solutions</a>
+  <a class="page-nav-link next" href="sheet_8_solutions.html">Next: Sheet 8 Solutions</a>
+</nav>

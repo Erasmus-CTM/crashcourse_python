@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>A.2 Sequences and Sums – Python Crashcourse</title>
+<title>Computational Programming with Python – Python Crashcourse</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,24 +23,24 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-5b4ad623e5705c0698d39aec6f10cf02.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-5b4ad623e5705c0698d39aec6f10cf02.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -230,7 +230,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"code":"print(1 / 2**0)\nprint(1 / 2**1)\nprint(1 / 2**2)","id":1,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"for k in range(0, 3):\n    print(1 / 2**k)","id":2,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"a = [1 / 2**0, 1 / 2**1, 1 / 2**2]\nprint(a)","id":3,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"a = [1 / 2**k for k in range(0, 3)]\nprint(a)","id":4,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"a = 0\nfor k in range(0, 3):\n    a = 1 / 2**k\n\n# TODO: print something useful here.","id":5,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"a = []\nfor k in range(0, 3):\n    a.append(1 / 2**k)\n\n# TODO: print something useful here.","id":6,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"a = 0\na = a + 1 / 2**0\na = a + 1 / 2**1\na = a + 1 / 2**2","id":7,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"a = 0\nfor k in range(0, 3):\n    a = a + 1 / 2**k","id":8,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"a = [1 / 2**0, 1 / 2**1, 1 / 2**2]\nb = sum(a)","id":9,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"a = [1 / 2**k for k in range(0, 3)]\nb = sum(a)","id":10,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"b = sum([1 / 2**k for k in range(0, 3)])","id":11,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"# TODO: compute a partial sum for a large N and print the result.\nN = 10**6\ns = 0.0\nfor k in range(0, N):\n    s += 1 / 2**k\n\n# TODO: print the result.","id":12,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import matplotlib.pyplot as plt\n\nfor k in range(0, 10):\n    plt.plot(k, 1 / 2**k, \"bo\")\n\nplt.show()","id":13,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import matplotlib.pyplot as plt\n\na = 0\nfor k in range(0, 3):\n    a = a + 1 / 2**k\n    plt.plot(k, a, \"bo\")\n\nplt.show()","id":14,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import matplotlib.pyplot as plt\n\nn_values = [n for n in range(0, 10)]\na = [1 / 2**n for n in n_values]\n\nplt.plot(n_values, a, \"bo\")\nplt.show()","id":15,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import matplotlib.pyplot as plt\n\nindices = [i for i in range(0, 20)]\na = [1 / 2**k for k in indices]\nS = [sum(a[0:n + 1]) for n in indices]\n\nplt.plot(indices, S, \"bo\")\nplt.show()","id":16,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"a = [1, 1]\n\nfor n in range(2, 20):\n    new_term = a[n - 1] + a[n - 2]\n    a.append(new_term)\n\nfor n in range(0, 20):\n    print(\"The\", n + 1, \"th Fibonacci number is\", a[n])","id":17,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"# TODO: build a list of partial sums for 1/2**k.","id":18,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import time\n\ntime_start = time.process_time()\n\n# Your code here\n\ntime_elapsed = time.process_time() - time_start\nprint(time_elapsed)","id":19,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"S = 0\nfor n in range(1, 100000):\n    S = S + 1 / n\n\nprint(S)","id":20,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}}];
+globalThis.qpyodideCellDetails = [{"code":"L1 = [1, 2]\nL2 = [3, 4]\nprint(\"L1 + L2 =\", L1 + L2)\nprint(\"3*L1 =\", 3*L1)","id":1,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"from numpy import array, dot, sqrt, inf\nfrom scipy.linalg import norm\n\nvec = array([3, -4]) # a vector in the plane\n\nprint(\"vec =\", vec)\nprint(\"2*vec =\", 2*vec)\nprint(\"vec*vec =\", vec*vec)\nprint(\"vec/2 =\", vec/2) \nprint(\"vec/vec =\", vec/vec) \n\n# TODO: explain norms \nprint(\"||vec|| =\", norm(vec, ord=2))\nprint(\"|vec| = \", sqrt(dot(vec,vec))) # same as norm(vec, ord=2)\n\n# TODO: explain\nprint(\"scalar product =\", dot(vec, vec))\nprint(\"scalar product =\", vec @ vec)","id":2,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"L1 = [1, 2, 3]\n\nv1 = array(L1)\n\nprint(\"L1 =\", L1)\nprint(\"v1 =\", v1)\nprint(type(L1))\nprint(type(v1))","id":3,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"v = array([1, 2, 3])\n\nprint(v[0])","id":4,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"print(len(v))","id":5,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"v = array([1, 2, 3])\nprint(v[:2])","id":6,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"v[:2] = [10, 20]\nprint(v)","id":7,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"L1 = [1, 2]\nL2 = L1\nL1[0] = 10\nprint(L2)\nL2[0] = 4\nprint(L1)","id":8,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"L1 = [1, 2] # compare with with numpy array (next silde)\nL2 = L1 \nL3 = L1.copy()\nL4 = L1[:]  # a slice of the entire list\nL1[0] = 10  # what happens here? \nprint(\"L2 =\", L2)\nprint(\"L3 =\", L3)\nprint(\"L4 =\", L4)","id":9,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"L1 = [1, 2, 3]\n\nv1 = array([1, 2, 3])\n\nL2 = L1[:2]\nL2[0] = 10\nprint(\"now L1 = \", L1)\n\nv3 = v1[:2]\n#v3[0] = 10\nprint(\"now v1 = \",v1)\n\nv2 = v1[:2]\nv2[0] = 10\nprint(\"now v1 = \", v1)\n\nv3 = v1.copy()[:2]\nv3[0] = 10\nprint(\"now v3 = \", v3)","id":10,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"\nv1 = array([1, 2., 3.]) # don't forget the dots!\nprint(v1)\nv2 = array([2, 0, 1])    # one dot is enough\n\nprint(v2)\n\nprint(v1*v2)  # what about v1/v2\n\nprint(3*v1 + 2*v2)\n\nprint(v2)\n\nprint(type(v1[0]))\nprint(type(v2[0]))","id":11,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"v1 = array([1., 2., 3.])\nv2 = array([2, 0, 1.]) \nprint(type(v2[0]))\n\n# s = v1[0]*v2[0] + v1[1]*v2[1] + v1[2] * v2[2]\nprint(\"scalar product:\", dot(v1, v2))\nprint(\"scalar product:\", v1 @ v2)\n\n# access\nv1[0] = 10\nprint(\"v1 =\", v1)\n\n# slices\nv1[:2] = [0, 1]\nprint(\"v1 =\", v1)\n# v1[0:2] = [1, 2, 3]  # error","id":12,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"from numpy import *\nxs = linspace(0, 10, 200) # 200 points between 0 and 10\nprint(type(xs[0]))\nprint(xs[0])   # the first point is 0\nprint(xs[-1])  # the last point is 10","id":13,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"from matplotlib.pyplot import *\n%matplotlib inline\nplot(xs, sin(xs))","id":14,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"v1 = zeros(5)\nprint(\"v1 =\", v1)\n\nv2 = ones(3)\nprint(\"v2 =\", v2)\n\nv3 = full(4, 3.14)  # fill it with the value 3.14\nprint(\"v3 =\", v3)\n\nv4 = full(5, 0.0)\nprint(\"v4 =\", v4)","id":15,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"v1 = zeros(5, dtype = complex)\nprint(\"v1 =\", v1)\n\nv2 = ones(3, dtype = int) \nprint(\"v2 =\", v2)\n\nv3 = full(4, \"hello\")\nprint(\"v3 =\", v3)\nprint(type(v3[0]))","id":16,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"v1 = random.random(5)\nprint(v1)","id":17,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"v2 = array([10, 20, 30, 40, 50, 60, 80])\nrandom.shuffle(v2)\nprint(v2)","id":18,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"v1 = [1, 2, 3]\nv2 = [4, 5]\nv3 = [6, 7, 8, 9]\n\nL = v1 + v2 + v3\nprint(L)\nv = hstack([array(v1), v2, v3])\n# w = vstack([v1, v2, v3])\nprint(v)","id":19,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"# TODO: distance between a and b","id":20,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"from numpy import array, sqrt\nfrom scipy.linalg import norm\na = array([1,0])\nb = array([0,1])\nd = a - b\n\nprint(norm(d, ord=1))\nprint(f\"|a-b| = {sqrt( d@d )}\")","id":21,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"def my_func(x, A, omega):\n    return A*sin(omega*x)/x\n\nx = linspace(-100, 100, 200) # using an even number of values to avoid zero\nA = [2 for i in range(200)] # full(100, 2)\ny = my_func(x, A, 0.5)\nplot(x, y)","id":22,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"def const(x):\n    return 1\n\nx = linspace(-100, 100, 50)\ny = const(x) \n\n# what is the value of y?\nprint(y)","id":23,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"# An identity matrix\nid_matrix = array([[1., 0.], [0., 1.]])\n\n# Python allows this:\nid_matrix = array([[1., 0],\n                   [0., 1.]])\n\n# Which is more readable?\n\nprint(id_matrix)","id":24,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"M = array([[1., 2.], [3., 4.]])\n\nprint(M[0, 0])  # first row, first column\n\nprint(M[-1, 0]) # last row, first column\n\n# Don't do this:\nprint(M[0][0])\nprint(M[0])","id":25,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"L = [[1., 2.], [3., 4.]]\n\nprint(L[0][0])\n\nprint(L[-1][0])","id":26,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"id_matrix = eye(100)\nM0 = zeros((2, 3))     # using a list [2, 3]\nM1 = full((2, 3), 7.)  # using a tuple (2, 3)\n\nprint(id_matrix)\nprint(M0, '\\n')\nprint(M1)","id":27,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"M1 = random.random((3, 4))\nprint(M1)","id":28,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"M = eye(3) \nprint(M.shape)\nV = array([1., 2., 1., 4.])\nprint(V.shape)               # tuple with one element","id":29,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"A = array([[1, 2, 3],\n           [4, 5, 6]])\nprint(\"A.shape =\", A.shape)\nprint(A[1,2])\n\nB = A.T  # A transpose\nprint(\"B.shape =\", B.shape, '\\n')\n\n#B[0,0] = 11\nprint(\"A =\")\nprint(A, '\\n')\nprint(\"B =\")\nprint(B)","id":30,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"from numpy import array \nv = array([1, 2, 3])\n\nMcol = array([[1], \n              [2], \n              [3]])\nMrow = array([[1, 2, 3]])\n\nprint(\"v.shape = \", v.shape)\nprint(\"Mcol.shape = \", Mcol.shape)\nprint(\"Mrow.shape = \", Mrow.shape)\n\nprint(Mcol)\nprint(Mrow)\nprint(Mrow.T)","id":31,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"from numpy import dot\nA = array([[1, 0, 0],        # n = 2, m = 3\n           [2, -1, 3]])\nB = array([[2, 1, 0, 4],     # m = 3, p = 4\n           [1, 1, -1, 0],\n           [0, 1, 2, 2]])\n\n  \n\nAB = dot(A, B)\nprint(AB)\n\n# same as \nAB = A @ B\nprint(AB)\n\n# BA = dot(B, A)  # error","id":32,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"A = array([[1, 0],\n           [4, -1]])\nv = array([1, 2])\n\nvA = dot(v, A)\nvA = v @ A\nAv = dot(A, v)\n\nprint(vA)\nprint(Av)\nprint(\"vA.shape =\", vA.shape, \" Av.shape = \", Av.shape)","id":33,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"from matplotlib.pyplot import *\nfrom numpy import *\n%matplotlib inline\nalpha = pi/2\nA = array([[cos(alpha), -sin(alpha)],\n           [sin(alpha), cos(alpha)]])\nx = 3\ny = 3\nP = array([x, y]) # a vector\nAP = dot(A, P)    # a vector\nAP = A @ P \nplot(x, y, 'bo')\nxlim(-5, 5)\nylim(-5, 5)\ngrid()\nplot(*AP, 'ro')  # unpack to get x and y","id":34,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"","id":35,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"alpha = pi/2\nA = array([[cos(alpha), -sin(alpha)],\n           [sin(alpha), cos(alpha)]])\nx = linspace(-10, 10, 200)\ny = sin(3*x)\nM = array([x, y]) # 2 times 200 matrix\nAM = dot(A, M)    # 2 times 200 matrix\nplot(x, y)\ngrid()\nplot(*AM)  # unpack to get a x-list and a y-list","id":36,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"","id":37,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}}];
 
 
 </script>
@@ -451,7 +451,7 @@ window.Quarto = {
 };
 </script>
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-fixed quarto-light">
@@ -461,7 +461,7 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Python Crashcourse</span>
     </a>
   </div>
@@ -472,39 +472,160 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./appendix_a1.html"> 
-<span class="menu-text">A.1 Introduction</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-crashcourse" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Crashcourse</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-crashcourse">    
+        <li>
+    <a class="dropdown-item" href="../appendix/appendix_a1.html">
+ <span class="dropdown-text">A.1 Introduction</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link active" href="./appendix_a2.html" aria-current="page"> 
-<span class="menu-text">A.2 Sequences and Sums</span></a>
+        <li>
+    <a class="dropdown-item" href="../appendix/appendix_a2.html">
+ <span class="dropdown-text">A.2 Sequences and Sums</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./appendix_a3.html"> 
-<span class="menu-text">A.3 Control Statements</span></a>
+        <li>
+    <a class="dropdown-item" href="../appendix/appendix_a3.html">
+ <span class="dropdown-text">A.3 Control Statements</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./appendix_a4.html"> 
-<span class="menu-text">A.4 Functions</span></a>
+        <li>
+    <a class="dropdown-item" href="../appendix/appendix_a4.html">
+ <span class="dropdown-text">A.4 Functions</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./appendix_a5.html"> 
-<span class="menu-text">A.5 Number Representation</span></a>
+        <li>
+    <a class="dropdown-item" href="../appendix/appendix_a5.html">
+ <span class="dropdown-text">A.5 Number Representation</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./appendix_a6.html"> 
-<span class="menu-text">A.6 Answers</span></a>
+        <li>
+    <a class="dropdown-item" href="../appendix/appendix_a6.html">
+ <span class="dropdown-text">A.6 Answers</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./appendix_all.html"> 
-<span class="menu-text">A.All Combined</span></a>
+        <li>
+    <a class="dropdown-item" href="../appendix/appendix_all.html">
+ <span class="dropdown-text">A.All Combined</span></a>
   </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-lecture-slides" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Lecture Slides</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-lecture-slides">    
+        <li>
+    <a class="dropdown-item" href="../slides/lecture01.html">
+ <span class="dropdown-text">Lecture 1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture02_summer.html">
+ <span class="dropdown-text">Lecture 2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture03_summer.html">
+ <span class="dropdown-text">Lecture 3</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture04.html">
+ <span class="dropdown-text">Lecture 4</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture05.html">
+ <span class="dropdown-text">Lecture 5</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture06.html">
+ <span class="dropdown-text">Lecture 6</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture07.html">
+ <span class="dropdown-text">Lecture 7</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture08.html">
+ <span class="dropdown-text">Lecture 8</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture09.html">
+ <span class="dropdown-text">Lecture 9</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture10.html">
+ <span class="dropdown-text">Lecture 10</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture11.html">
+ <span class="dropdown-text">Lecture 11</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture12.html">
+ <span class="dropdown-text">Lecture 12</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture13.html">
+ <span class="dropdown-text">Lecture 13</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture14.html">
+ <span class="dropdown-text">Lecture 14</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-exercises" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Exercises</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-exercises">    
+        <li>
+    <a class="dropdown-item" href="../exercises/sheet_2.html">
+ <span class="dropdown-text">Sheet 2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../exercises/sheet_3.html">
+ <span class="dropdown-text">Sheet 3</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../exercises/sheet_4.html">
+ <span class="dropdown-text">Sheet 4</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../exercises/sheet_5.html">
+ <span class="dropdown-text">Sheet 5</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../exercises/sheet_6.html">
+ <span class="dropdown-text">Sheet 6</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../exercises/sheet_7.html">
+ <span class="dropdown-text">Sheet 7</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../exercises/sheet_8.html">
+ <span class="dropdown-text">Sheet 8</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../exercises/sheet_9.html">
+ <span class="dropdown-text">Sheet 9</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../exercises/sheet_11.html">
+ <span class="dropdown-text">Sheet 11</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../exercises/sheet_12.html">
+ <span class="dropdown-text">Sheet 12</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../exercises/sheet_13.html">
+ <span class="dropdown-text">Sheet 13</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -523,13 +644,56 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#how-to-compute-and-visualize-sequences-and-sums" id="toc-how-to-compute-and-visualize-sequences-and-sums" class="nav-link active" data-scroll-target="#how-to-compute-and-visualize-sequences-and-sums">How to compute and visualize sequences and sums</a>
+  <li><a href="#lecture-6-linear-algebra" id="toc-lecture-6-linear-algebra" class="nav-link active" data-scroll-target="#lecture-6-linear-algebra">Lecture 6: Linear Algebra</a>
   <ul class="collapse">
-  <li><a href="#some-ways-to-compute-sequences-in-python" id="toc-some-ways-to-compute-sequences-in-python" class="nav-link" data-scroll-target="#some-ways-to-compute-sequences-in-python">Some ways to compute sequences in Python</a></li>
-  <li><a href="#some-ways-to-compute-partial-sums-of-infinite-series" id="toc-some-ways-to-compute-partial-sums-of-infinite-series" class="nav-link" data-scroll-target="#some-ways-to-compute-partial-sums-of-infinite-series">Some ways to compute partial sums of infinite series</a></li>
-  <li><a href="#how-to-visualize-sequences-and-partial-sums-using-for-loops" id="toc-how-to-visualize-sequences-and-partial-sums-using-for-loops" class="nav-link" data-scroll-target="#how-to-visualize-sequences-and-partial-sums-using-for-loops">How to visualize sequences and partial sums using for-loops</a></li>
-  <li><a href="#visualizing-sequences-and-partial-sums-stored-as-lists" id="toc-visualizing-sequences-and-partial-sums-stored-as-lists" class="nav-link" data-scroll-target="#visualizing-sequences-and-partial-sums-stored-as-lists">Visualizing sequences and partial sums stored as lists</a></li>
-  <li><a href="#a-slightly-more-advanced-example-the-fibonacci-sequence" id="toc-a-slightly-more-advanced-example-the-fibonacci-sequence" class="nav-link" data-scroll-target="#a-slightly-more-advanced-example-the-fibonacci-sequence">A slightly more advanced example: the Fibonacci sequence</a></li>
+  <li><a href="#center-for-mathematical-sciences-lund-university" id="toc-center-for-mathematical-sciences-lund-university" class="nav-link" data-scroll-target="#center-for-mathematical-sciences-lund-university">Center for Mathematical Sciences, Lund University</a></li>
+  </ul></li>
+  <li><a href="#this-lecture" id="toc-this-lecture" class="nav-link" data-scroll-target="#this-lecture">This lecture</a></li>
+  <li><a href="#motivation" id="toc-motivation" class="nav-link" data-scroll-target="#motivation">Motivation</a>
+  <ul class="collapse">
+  <li><a href="#numpy-arrays-vectors" id="toc-numpy-arrays-vectors" class="nav-link" data-scroll-target="#numpy-arrays-vectors">NumPy arrays ‐ vectors</a>
+  <ul class="collapse">
+  <li><a href="#the-array-type" id="toc-the-array-type" class="nav-link" data-scroll-target="#the-array-type">The array type</a></li>
+  </ul></li>
+  <li><a href="#vector-usage" id="toc-vector-usage" class="nav-link" data-scroll-target="#vector-usage">Vector usage</a></li>
+  <li><a href="#vectors-are-similar-to-lists" id="toc-vectors-are-similar-to-lists" class="nav-link" data-scroll-target="#vectors-are-similar-to-lists">Vectors are similar to lists</a></li>
+  <li><a href="#vectors-are-similar-to-lists-cont" id="toc-vectors-are-similar-to-lists-cont" class="nav-link" data-scroll-target="#vectors-are-similar-to-lists-cont">Vectors are similar to lists (cont)</a></li>
+  <li><a href="#vectors-are-similar-to-lists-cont-1" id="toc-vectors-are-similar-to-lists-cont-1" class="nav-link" data-scroll-target="#vectors-are-similar-to-lists-cont-1">Vectors are similar to lists (cont)</a></li>
+  <li><a href="#vectors-are-not-lists" id="toc-vectors-are-not-lists" class="nav-link" data-scroll-target="#vectors-are-not-lists">Vectors are not lists!</a></li>
+  <li><a href="#vectors-are-not-lists-cont" id="toc-vectors-are-not-lists-cont" class="nav-link" data-scroll-target="#vectors-are-not-lists-cont">Vectors are not lists! (cont)</a></li>
+  <li><a href="#vectors-are-not-lists-cont-1" id="toc-vectors-are-not-lists-cont-1" class="nav-link" data-scroll-target="#vectors-are-not-lists-cont-1">Vectors are not lists! (cont)</a></li>
+  <li><a href="#vectors-are-not-lists-cont-2" id="toc-vectors-are-not-lists-cont-2" class="nav-link" data-scroll-target="#vectors-are-not-lists-cont-2">Vectors are not lists! (cont)</a></li>
+  <li><a href="#more-examples" id="toc-more-examples" class="nav-link" data-scroll-target="#more-examples">More examples</a></li>
+  <li><a href="#creating-vectors-linspace" id="toc-creating-vectors-linspace" class="nav-link" data-scroll-target="#creating-vectors-linspace">Creating vectors ‐ <code>linspace</code></a></li>
+  <li><a href="#creating-vectors-zeros-ones-full" id="toc-creating-vectors-zeros-ones-full" class="nav-link" data-scroll-target="#creating-vectors-zeros-ones-full">Creating vectors ‐ <code>zeros</code>, <code>ones</code>, <code>full</code></a></li>
+  <li><a href="#creating-vectors-using-dtype" id="toc-creating-vectors-using-dtype" class="nav-link" data-scroll-target="#creating-vectors-using-dtype">Creating vectors using <code>dtype</code></a></li>
+  <li><a href="#creating-random-vectors" id="toc-creating-random-vectors" class="nav-link" data-scroll-target="#creating-random-vectors">Creating random vectors</a></li>
+  <li><a href="#concatenating-vectors" id="toc-concatenating-vectors" class="nav-link" data-scroll-target="#concatenating-vectors">Concatenating vectors</a></li>
+  </ul></li>
+  <li><a href="#example-1" id="toc-example-1" class="nav-link" data-scroll-target="#example-1">Example</a>
+  <ul class="collapse">
+  <li><a href="#functions-and-arrays" id="toc-functions-and-arrays" class="nav-link" data-scroll-target="#functions-and-arrays">Functions and arrays</a></li>
+  <li><a href="#vectorized-functions" id="toc-vectorized-functions" class="nav-link" data-scroll-target="#vectorized-functions">Vectorized functions</a></li>
+  <li><a href="#numpy-arrays-matrices" id="toc-numpy-arrays-matrices" class="nav-link" data-scroll-target="#numpy-arrays-matrices">NumPy arrays ‐ matrices</a></li>
+  <li><a href="#accessing-matrix-entries" id="toc-accessing-matrix-entries" class="nav-link" data-scroll-target="#accessing-matrix-entries">Accessing matrix entries</a></li>
+  <li><a href="#creating-matrices-eye-zeros-full" id="toc-creating-matrices-eye-zeros-full" class="nav-link" data-scroll-target="#creating-matrices-eye-zeros-full">Creating matrices ‐ <code>eye</code>, <code>zeros</code>, <code>full</code></a></li>
+  <li><a href="#creating-random-matrices" id="toc-creating-random-matrices" class="nav-link" data-scroll-target="#creating-random-matrices">Creating random matrices</a></li>
+  <li><a href="#shape" id="toc-shape" class="nav-link" data-scroll-target="#shape">Shape</a></li>
+  <li><a href="#transpose" id="toc-transpose" class="nav-link" data-scroll-target="#transpose">Transpose</a></li>
+  <li><a href="#d-vectors-and-2d-rowcolumn-matrices" id="toc-d-vectors-and-2d-rowcolumn-matrices" class="nav-link" data-scroll-target="#d-vectors-and-2d-rowcolumn-matrices">1D vectors and 2D row/column matrices</a></li>
+  <li><a href="#matrix-multiplication" id="toc-matrix-multiplication" class="nav-link" data-scroll-target="#matrix-multiplication">Matrix multiplication</a></li>
+  <li><a href="#matrix-vector-multiplication" id="toc-matrix-vector-multiplication" class="nav-link" data-scroll-target="#matrix-vector-multiplication">Matrix vector multiplication</a></li>
+  <li><a href="#dot-product-and-operator" id="toc-dot-product-and-operator" class="nav-link" data-scroll-target="#dot-product-and-operator">Dot product and <code>@</code> operator</a></li>
+  <li><a href="#linear-transformations-rotation-matrix-in-the-plane" id="toc-linear-transformations-rotation-matrix-in-the-plane" class="nav-link" data-scroll-target="#linear-transformations-rotation-matrix-in-the-plane">Linear transformations ‐ rotation matrix in the plane</a>
+  <ul class="collapse">
+  <li><a href="#definition-2" id="toc-definition-2" class="nav-link" data-scroll-target="#definition-2">Definition</a></li>
+  </ul></li>
+  <li><a href="#matrices-and-linear-transformations" id="toc-matrices-and-linear-transformations" class="nav-link" data-scroll-target="#matrices-and-linear-transformations">Matrices and linear transformations</a></li>
+  <li><a href="#finding-the-transformation-matrix-of-a-rotation-in-the-plane" id="toc-finding-the-transformation-matrix-of-a-rotation-in-the-plane" class="nav-link" data-scroll-target="#finding-the-transformation-matrix-of-a-rotation-in-the-plane">Finding the transformation matrix of a rotation in the plane</a>
+  <ul class="collapse">
+  <li><a href="#rotate-a-point" id="toc-rotate-a-point" class="nav-link" data-scroll-target="#rotate-a-point">Rotate a point</a></li>
+  <li><a href="#rotate-many-points" id="toc-rotate-many-points" class="nav-link" data-scroll-target="#rotate-many-points">Rotate many points</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -549,7 +713,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">A.2 Sequences and Sums</h1>
+<h1 class="title">Computational Programming with Python</h1>
 </div>
 
 
@@ -566,148 +730,427 @@ window.Quarto = {
 </header>
 
 
-<section id="how-to-compute-and-visualize-sequences-and-sums" class="level2">
-<h2 class="anchored" data-anchor-id="how-to-compute-and-visualize-sequences-and-sums">How to compute and visualize sequences and sums</h2>
-<section id="some-ways-to-compute-sequences-in-python" class="level3">
-<h3 class="anchored" data-anchor-id="some-ways-to-compute-sequences-in-python">Some ways to compute sequences in Python</h3>
-<p>Suppose we want to compute many entries of the sequence <span class="math display">\[\left(\frac{1}{2^k}\right)_{k=0}^\infty = \left(1, \frac{1}{2}, \frac{1}{4}, \dots \right).\]</span></p>
-<p><strong>Example E.17 (Computing sequences using a for-loop)</strong><br>
-The following two codes do exactly the same thing when run.</p>
+<section id="lecture-6-linear-algebra" class="level2">
+<h2 class="anchored" data-anchor-id="lecture-6-linear-algebra">Lecture 6: Linear Algebra</h2>
+<section id="center-for-mathematical-sciences-lund-university" class="level3">
+<h3 class="anchored" data-anchor-id="center-for-mathematical-sciences-lund-university">Center for Mathematical Sciences, Lund University</h3>
+<p>Lecturer: Malin Christersson, <code>Robert Klöfkorn</code></p>
+</section>
+</section>
+<section id="this-lecture" class="level2">
+<h2 class="anchored" data-anchor-id="this-lecture">This lecture</h2>
+<ul>
+<li>NumPy arrays ‐ <code>vectors</code></li>
+<li>NumPy arrays ‐ <code>matrices</code></li>
+<li>Linear transformations ‐ rotation matrix in the plane</li>
+</ul>
+</section>
+<section id="motivation" class="level1">
+<h1>Motivation</h1>
+<p>Many technical applications ultimately lead to problems of the following form. Given <span class="math inline">\(A \in \mathbb{R}^{n \times n}\)</span> and <span class="math inline">\(b \in \mathbb{R}^n\)</span>, <span class="math inline">\(n&gt;0\)</span>, <strong>find <span class="math inline">\(x \in \mathbb{R}^n\)</span> such that</strong></p>
+<p><span class="math display">\[
+A \, x = b.
+\]</span></p>
+<ul>
+<li>Weather forecast and renewable energies</li>
+<li>Numerical simulation in general (droplet simulation)</li>
+<li>Banking and financial applications</li>
+<li>Data Science</li>
+<li>and many more</li>
+</ul>
+<section id="numpy-arrays-vectors" class="level2">
+<h2 class="anchored" data-anchor-id="numpy-arrays-vectors">NumPy arrays ‐ vectors</h2>
+<section id="the-array-type" class="level3">
+<h3 class="anchored" data-anchor-id="the-array-type">The array type</h3>
+<p>Lists are almost like vectors but operations on lists are <strong>not</strong> linear algebra operations.</p>
 <div id="qpyodide-insertion-location-1"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<section id="definition" class="level4">
+<h4 class="anchored" data-anchor-id="definition">Definition</h4>
+<p>An <strong>array</strong> represents a vector or a matrix in linear algebra. It is often initialised from a list or another vector. Operations <code>+</code>, <code>*</code>, <code>/</code>, <code>-</code> are all <strong>elementwise</strong>. <code>dot</code> or the <code>@</code> operator are used for the scalar product.</p>
+</section>
+</section>
+</section>
+<section id="vector-usage" class="level2">
+<h2 class="anchored" data-anchor-id="vector-usage">Vector usage</h2>
+<section id="example" class="level4">
+<h4 class="anchored" data-anchor-id="example">Example</h4>
 <div id="qpyodide-insertion-location-2"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p>Another way of computing lists is to use a list comprehension. It has the benefit of both computing and storing a sequence of numbers in a single line of code.</p>
-<p><strong>Example E.18 (Computing sequences using a list)</strong><br>
-The following two codes do exactly the same thing when run.</p>
+</section>
+</section>
+<section id="vectors-are-similar-to-lists" class="level2">
+<h2 class="anchored" data-anchor-id="vectors-are-similar-to-lists">Vectors are similar to lists</h2>
 <div id="qpyodide-insertion-location-3"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="vectors-are-similar-to-lists-cont" class="level2">
+<h2 class="anchored" data-anchor-id="vectors-are-similar-to-lists-cont">Vectors are similar to lists (cont)</h2>
+<ul>
+<li>Acess vectors via their indices</li>
+</ul>
 <div id="qpyodide-insertion-location-4"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p><strong>Exercise E.19</strong></p>
-<p>Run and compare the output of the codes in the above examples.</p>
-<p><strong>Exercise E.20</strong></p>
-<p>A difference between the right-most codes in Examples E.17 and E.18 is that in the first, we do not store the values of the sequence anywhere. Here are two suggestions for how to fix this:</p>
+<ul>
+<li>The <em>length</em> of a vector is still obtained by the function <code>len</code></li>
+</ul>
 <div id="qpyodide-insertion-location-5"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="vectors-are-similar-to-lists-cont-1" class="level2">
+<h2 class="anchored" data-anchor-id="vectors-are-similar-to-lists-cont-1">Vectors are similar to lists (cont)</h2>
+<ul>
+<li>Parts of vectors using slices</li>
+</ul>
 <div id="qpyodide-insertion-location-6"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p>Explain what is going on in each code. What information is stored at the end of each program? Also, why do these not give any output? Can you fix this?</p>
-</section>
-<section id="some-ways-to-compute-partial-sums-of-infinite-series" class="level3">
-<h3 class="anchored" data-anchor-id="some-ways-to-compute-partial-sums-of-infinite-series">Some ways to compute partial sums of infinite series</h3>
-<p>On the previous page, we discussed how to compute and store values of a sequence. Let us now consider how to compute the sum of the first, say, million terms of the infinite series <span class="math display">\[\sum_{k=0}^{\infty} \frac{1}{2^k} = 1 + \frac{1}{2} + \frac{1}{4} + \cdots.\]</span></p>
-<p><strong>Example E.21 (Computing sums using a for-loop)</strong><br>
-The following two codes both compute the sum <span class="math inline">\(1 + 1/2 + 1/4 + 1/8\)</span>.</p>
+<ul>
+<li>Replace parts of vectors using slices</li>
+</ul>
 <div id="qpyodide-insertion-location-7"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="vectors-are-not-lists" class="level2">
+<h2 class="anchored" data-anchor-id="vectors-are-not-lists">Vectors are not lists!</h2>
+<p>Operations are not the same:</p>
+<ul>
+<li>Operations <code>+</code> and <code>*</code> are different</li>
+<li>More operations are defined: <code>-</code>, <code>/</code></li>
+<li>Numpy functions act elementwise on vectors: <code>sin</code>, <code>exp</code>, <code>sqrt</code>, etc.</li>
+<li>Scalar product with <code>dot</code> or <code>@</code></li>
+<li>Vectors have a <strong>fixed size</strong>: no <code>append</code> method!</li>
+</ul>
+</section>
+<section id="vectors-are-not-lists-cont" class="level2">
+<h2 class="anchored" data-anchor-id="vectors-are-not-lists-cont">Vectors are not lists! (cont)</h2>
+<p>Two names are bound to the same list:</p>
 <div id="qpyodide-insertion-location-8"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p><strong>Example E.22 (Computing a sum using lists)</strong><br>
-The following two codes do exactly the same thing when run.</p>
+<p>To make an actual copy, you can use the <code>copy</code> method, or make a slice.</p>
 <div id="qpyodide-insertion-location-9"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="vectors-are-not-lists-cont-1" class="level2">
+<h2 class="anchored" data-anchor-id="vectors-are-not-lists-cont-1">Vectors are not lists! (cont)</h2>
+<ul>
+<li>Vector slices, on the other hand, are <strong>views</strong>:</li>
+</ul>
 <div id="qpyodide-insertion-location-10"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p>Using this technique, we can compute the sum in just one line:</p>
+</section>
+<section id="vectors-are-not-lists-cont-2" class="level2">
+<h2 class="anchored" data-anchor-id="vectors-are-not-lists-cont-2">Vectors are not lists! (cont)</h2>
+<ul>
+<li>Only <strong>one type</strong> throughout the entire vector</li>
+</ul>
 <div id="qpyodide-insertion-location-11"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p><strong>Exercise E.23</strong></p>
-<ol type="1">
-<li>Run the codes from the examples on this page. Why do they not give any output? Fix this.</li>
-<li>Modify the code so that you can compute the sum of the first million terms or so. What result do you get?</li>
-</ol>
+</section>
+<section id="more-examples" class="level2">
+<h2 class="anchored" data-anchor-id="more-examples">More examples</h2>
 <div id="qpyodide-insertion-location-12"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
-<section id="how-to-visualize-sequences-and-partial-sums-using-for-loops" class="level3">
-<h3 class="anchored" data-anchor-id="how-to-visualize-sequences-and-partial-sums-using-for-loops">How to visualize sequences and partial sums using for-loops</h3>
-<p><strong>Example E.24</strong><br>
-The following code is perhaps the simplest way to visualize a sequence in Python. Here, we visualize the sequence <span class="math inline">\((1/2^k)_{k=0}^9\)</span>.</p>
+<section id="creating-vectors-linspace" class="level2">
+<h2 class="anchored" data-anchor-id="creating-vectors-linspace">Creating vectors ‐ <code>linspace</code></h2>
+<p>The <code>linspace</code> function is convenient for creating equally spaced arrays.</p>
 <div id="qpyodide-insertion-location-13"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p>Explanation:</p>
-<ul>
-<li><code>matplotlib.pyplot</code> provides plotting commands.</li>
-<li>The <code>for</code> loop plots a blue dot at <span class="math inline">\((k, 1/2^k)\)</span> for each <code>k</code>.</li>
-<li><code>plt.show()</code> displays the figure.</li>
-</ul>
-<p>Now modify the code so that we plot partial sums of the infinite series <span class="math display">\[\sum_{k=0}^\infty \frac{1}{2^k}.\]</span></p>
-<p><strong>Example E.25</strong><br>
-The following code computes and visualizes the partial sums.</p>
 <div id="qpyodide-insertion-location-14"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p><strong>Exercise E.26</strong></p>
-<p>Run this code, and verify by computing the first three partial sums by hand that the plot is correct. What happens when you increase <code>range(0, 3)</code> to, say, <code>range(0, 100)</code>?</p>
-<p><strong>Exercise E.27</strong></p>
-<p>Several commands can be used to change how the above figure looks. Try inserting the following into the code anywhere after the <code>import</code> and before <code>plt.plot</code>. What happens?</p>
-<ul>
-<li>Replace <code>"bo"</code> by <code>"rx"</code>.</li>
-<li><code>plt.xlim(-3, 15)</code></li>
-<li><code>plt.ylim(-5, 2)</code></li>
-<li><code>plt.xlabel("There was")</code></li>
-<li><code>plt.ylabel("a graph")</code></li>
-<li><code>plt.title("that had a title")</code></li>
-<li><code>plt.xticks([-2, 0, 3, 4, 6.5, 10])</code></li>
-<li><code>plt.yticks([0, 1, 1.5])</code></li>
-<li><code>plt.grid(True)</code></li>
-<li><code>plt.figure(figsize=(4, 3))</code></li>
-<li><code>plt.savefig("myfigure.jpg")</code></li>
-</ul>
-<p>Remark: Note that by choosing the extension <code>.jpg</code>, you tell Python to save your figure as a jpg file. Only a limited number of file formats are supported.</p>
 </section>
-<section id="visualizing-sequences-and-partial-sums-stored-as-lists" class="level3">
-<h3 class="anchored" data-anchor-id="visualizing-sequences-and-partial-sums-stored-as-lists">Visualizing sequences and partial sums stored as lists</h3>
-<p><strong>Example E.28</strong><br>
-We now use lists to create and plot the sequence <span class="math inline">\((1/2^n)_{n=0}^9\)</span>.</p>
+<section id="creating-vectors-zeros-ones-full" class="level2">
+<h2 class="anchored" data-anchor-id="creating-vectors-zeros-ones-full">Creating vectors ‐ <code>zeros</code>, <code>ones</code>, <code>full</code></h2>
+<p>Some handy functions to quickly create vectors:</p>
 <div id="qpyodide-insertion-location-15"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p>Explanation:</p>
-<ul>
-<li><code>n_values</code> gives the x-axis values.</li>
-<li><code>a</code> stores the sequence values.</li>
-<li><code>plt.plot(n_values, a, "bo")</code> plots the points.</li>
-</ul>
-<p><strong>Example E.29</strong><br>
-We now use lists to compute and plot partial sums of <span class="math display">\[\sum_{k=0}^\infty \frac{1}{2^k}.\]</span></p>
+</section>
+<section id="creating-vectors-using-dtype" class="level2">
+<h2 class="anchored" data-anchor-id="creating-vectors-using-dtype">Creating vectors using <code>dtype</code></h2>
 <div id="qpyodide-insertion-location-16"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p>The key line is the list comprehension: <code>S = [sum(a[0:n + 1]) for n in indices]</code>. Remember that <code>a[0:n + 1]</code> contains the entries <code>a[0], a[1], ..., a[n]</code>.</p>
-<p><strong>Exercise E.30</strong></p>
-<p>Implement the code in Example E.29. Verify that it gives the same output as Example E.25 when the range in the latter example is suitably adjusted.</p>
 </section>
-<section id="a-slightly-more-advanced-example-the-fibonacci-sequence" class="level3">
-<h3 class="anchored" data-anchor-id="a-slightly-more-advanced-example-the-fibonacci-sequence">A slightly more advanced example: the Fibonacci sequence</h3>
-<p>The Fibonacci numbers are <span class="math display">\[1, 1, 2, 3, 5, 8, 13, \dots\]</span> and satisfy <span class="math inline">\(a_n = a_{n-1} + a_{n-2}\)</span> for <span class="math inline">\(n \ge 2\)</span> when we set <span class="math inline">\(a_0 = 1\)</span> and <span class="math inline">\(a_1 = 1\)</span>.</p>
-<p><strong>Example E.31</strong><br>
-The following code can be used to compute Fibonacci numbers.</p>
+<section id="creating-random-vectors" class="level2">
+<h2 class="anchored" data-anchor-id="creating-random-vectors">Creating random vectors</h2>
+<p>Fill a vector with random numbers in the interval [0, 1).</p>
 <div id="qpyodide-insertion-location-17"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p><strong>Exercise E.32</strong></p>
-<p>Implement the code from the above example. Use a reference (for example, a list of Fibonacci numbers) to verify that it gives the correct output.</p>
-<p><strong>Exercise E.33</strong></p>
-<p>Use the method of the above examples to create a list containing a few partial sums of the infinite series <span class="math inline">\(\sum_{k=0}^\infty 1/2^k\)</span>.</p>
+<p>We can also <code>shuffle</code> the values in an array.</p>
 <div id="qpyodide-insertion-location-18"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p><strong>Remark R.34 (for-loops versus list comprehensions)</strong></p>
-<p>Pure for-loops are available in most programming languages, while list comprehensions are specific to Python. If you want to adapt to other languages, use list comprehensions sparingly.</p>
-<p><strong>Remark R.35 (how to time a computation)</strong></p>
-<p>You can measure how long it takes for a program to run. Here is how:</p>
+</section>
+<section id="concatenating-vectors" class="level2">
+<h2 class="anchored" data-anchor-id="concatenating-vectors">Concatenating vectors</h2>
+<p>Since the <code>+</code> operation is redefined, we need other means to concatenate vectors.</p>
+<p>The command <code>hstack([v1, v2, ..., vn])</code> concatenates the vectors <span class="math inline">\(v_1, v_2, \ldots, v_n\)</span>.</p>
 <div id="qpyodide-insertion-location-19"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p><strong>Exercise E.36</strong></p>
-<p>Consider the code:</p>
+</section>
+</section>
+<section id="example-1" class="level1">
+<h1>Example</h1>
+<p>Compute the distance between the unit vectors in <span class="math inline">\(\mathbb{R}^2\)</span>, i.e.&nbsp;<span class="math inline">\(a = (1,0)^T\)</span> and <span class="math inline">\(b = (0,1)^T\)</span>. Compute the distance between <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>. <strong>5 min, let’s go!</strong></p>
 <div id="qpyodide-insertion-location-20"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<ol type="1">
-<li>What does the code compute?</li>
-<li>Do the same as in (1), except by first creating a sequence <code>a</code> and then computing its sum using <code>sum(a)</code>.</li>
-<li>Use the timing code above to compare which method is fastest.</li>
-</ol>
-<p><strong>Remark R.37</strong></p>
-<p>Python is useful but fairly slow. Built-in commands are usually implemented in faster languages (such as C++), so if speed is important, use built-in functions as much as possible.</p>
+<div id="qpyodide-insertion-location-21"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<section id="functions-and-arrays" class="level2">
+<h2 class="anchored" data-anchor-id="functions-and-arrays">Functions and arrays</h2>
+<p>As long as <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code> and standard mathematical <code>numpy</code> functions are used, a function value can be calculated elementwise.</p>
+<div id="qpyodide-insertion-location-22"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="vectorized-functions" class="level2">
+<h2 class="anchored" data-anchor-id="vectorized-functions">Vectorized functions</h2>
+<p>Note that <strong>not all functions</strong> may be applied to vectors. For instance this one:</p>
+<div id="qpyodide-insertion-location-23"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>We will see later how to automatically <strong>vectorize</strong> a function so that it works on vectors.</p>
+</section>
+<section id="numpy-arrays-matrices" class="level2">
+<h2 class="anchored" data-anchor-id="numpy-arrays-matrices">NumPy arrays ‐ matrices</h2>
+<section id="definition-1" class="level4">
+<h4 class="anchored" data-anchor-id="definition-1">Definition</h4>
+<p>Matrices are represented by arrays of lists of <strong>rows</strong>, which are lists as well.</p>
+<div id="qpyodide-insertion-location-24"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+</section>
+<section id="accessing-matrix-entries" class="level2">
+<h2 class="anchored" data-anchor-id="accessing-matrix-entries">Accessing matrix entries</h2>
+<p>Matrix elements are accessed with <strong>two</strong> indices.</p>
+<div id="qpyodide-insertion-location-25"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>Compare this to accessing list elements.</p>
+<div id="qpyodide-insertion-location-26"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="creating-matrices-eye-zeros-full" class="level2">
+<h2 class="anchored" data-anchor-id="creating-matrices-eye-zeros-full">Creating matrices ‐ <code>eye</code>, <code>zeros</code>, <code>full</code></h2>
+<ul>
+<li><code>eye(n)</code> is the identity matrix of size <span class="math inline">\(n\)</span>.</li>
+<li><code>zeros([n, m])</code> fills an <span class="math inline">\(n\times m\)</span> matrix with zeroes</li>
+<li><code>full([n, m], value)</code>fills an <span class="math inline">\(n\times m\)</span> matrix with <code>value</code></li>
+</ul>
+<div id="qpyodide-insertion-location-27"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="creating-random-matrices" class="level2">
+<h2 class="anchored" data-anchor-id="creating-random-matrices">Creating random matrices</h2>
+<div id="qpyodide-insertion-location-28"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="shape" class="level2">
+<h2 class="anchored" data-anchor-id="shape">Shape</h2>
+<p>The <strong>shape</strong> of a matrix is the tuple of its dimensions. The shape of an <span class="math inline">\(n\times m\)</span> matrix is (n,m). It is given by the <em>attribute</em> <code>shape</code>:</p>
+<div id="qpyodide-insertion-location-29"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<section id="tip" class="level4">
+<h4 class="anchored" data-anchor-id="tip">Tip</h4>
+<p><code>zeros(A.shape)</code> returns a matrix with the same shape as A containing only zeros.</p>
+</section>
+</section>
+<section id="transpose" class="level2">
+<h2 class="anchored" data-anchor-id="transpose">Transpose</h2>
+<p>The transpose of a matrix <span class="math inline">\(A\)</span> is a matrix <span class="math inline">\(B\)</span> such that</p>
+<p><span class="math display">\[B_{ij} = A_{ji}.\]</span></p>
+<p>By transposing a matrix you switch the two shape elements.</p>
+<div id="qpyodide-insertion-location-30"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="d-vectors-and-2d-rowcolumn-matrices" class="level2">
+<h2 class="anchored" data-anchor-id="d-vectors-and-2d-rowcolumn-matrices">1D vectors and 2D row/column matrices</h2>
+<p>(here D stands for <em>tensor dimension</em>, i.e.&nbsp;the length of <code>shape</code>)</p>
+<div id="qpyodide-insertion-location-31"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>Transposing a 1D vector doesn’t change it</p>
+</section>
+<section id="matrix-multiplication" class="level2">
+<h2 class="anchored" data-anchor-id="matrix-multiplication">Matrix multiplication</h2>
+<p>We can use the <code>dot</code> function for matrix multiplication. We can also use the <code>@</code> operator.</p>
+<p>If <span class="math inline">\(A\)</span> is a <span class="math inline">\(n\times m\)</span> matrix and <span class="math inline">\(B\)</span> a <span class="math inline">\(m \times p\)</span> matrix, then <span class="math inline">\(AB\)</span> is a <span class="math inline">\(n\times p\)</span> matrix.</p>
+<div id="qpyodide-insertion-location-32"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="matrix-vector-multiplication" class="level2">
+<h2 class="anchored" data-anchor-id="matrix-vector-multiplication">Matrix vector multiplication</h2>
+<p>A matrix can be multipled with a vector using <code>dot</code> or the <code>@</code> operator. The multiplication is matrix multiplication, as if the vector was a column or row matrix. The result is a vector.</p>
+<p><span class="math display">\[
+\left(
+\begin{array}{rr}
+1 &amp; 2
+\end{array}
+\right)
+\left(
+\begin{array}{rr}
+1 &amp; 0 \\
+4 &amp; -1
+\end{array}
+\right)
+=
+\left(
+\begin{array}{rr}
+9 &amp; -2
+\end{array}
+\right)
+\]</span></p>
+<p><span class="math display">\[
+\left(
+\begin{array}{rr}
+1 &amp; 0 \\
+4 &amp; -1
+\end{array}
+\right)
+\left(
+\begin{array}{rr}
+1 \\
+2
+\end{array}
+\right)
+=
+\left(
+\begin{array}{rr}
+1 \\
+2
+\end{array}
+\right)
+\]</span></p>
+<div id="qpyodide-insertion-location-33"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="dot-product-and-operator" class="level2">
+<h2 class="anchored" data-anchor-id="dot-product-and-operator">Dot product and <code>@</code> operator</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">vector vector</th>
+<th style="text-align: left;"><span class="math inline">\(s = \sum_i x_i y_i\)</span></th>
+<th style="text-align: left;"><code>s = x @ y</code> or <code>s = dot(x,y)</code></th>
+<th style="text-align: left;">scalar product</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">matrix matrix</td>
+<td style="text-align: left;"><span class="math inline">\(C_{ij} = \sum_k A_{ik}B_{kj}\)</span></td>
+<td style="text-align: left;"><code>C = A @ B</code> or <code>C = dot(A, B)</code></td>
+<td style="text-align: left;">matrix multiplication</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">matrix vector</td>
+<td style="text-align: left;"><span class="math inline">\(y_i = \sum_j A_{ij}x_j\)</span></td>
+<td style="text-align: left;"><code>y = A @ x</code> or <code>y = dot(A, x)</code></td>
+<td style="text-align: left;">matrix multiplication, treating vector as column matrix</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">vector matrix</td>
+<td style="text-align: left;"><span class="math inline">\(y_j = \sum_i x_i A_{ij}\)</span></td>
+<td style="text-align: left;"><code>y = x @ A</code> or <code>y = dot(x, A)</code></td>
+<td style="text-align: left;">matrix multiplication, treating vector as row matrix</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="linear-transformations-rotation-matrix-in-the-plane" class="level2">
+<h2 class="anchored" data-anchor-id="linear-transformations-rotation-matrix-in-the-plane">Linear transformations ‐ rotation matrix in the plane</h2>
+<section id="definition-2" class="level3">
+<h3 class="anchored" data-anchor-id="definition-2">Definition</h3>
+<p>A <strong>linear transformation</strong> in the plane is a function <span class="math inline">\(f:\mathbb{R}^2 \mapsto \mathbb{R}^2\)</span> such that</p>
+<p><span class="math inline">\(f(a\mathbf{u} + b\mathbf{v}) = af
+(\mathbf{u}) + bf(\mathbf{v}) \text{ for all }a, b\in\mathbb{R} \text{ and } \mathbf{u}, \mathbf{v} \in \mathbb{R}^2\)</span></p>
+</section>
+</section>
+<section id="matrices-and-linear-transformations" class="level2">
+<h2 class="anchored" data-anchor-id="matrices-and-linear-transformations">Matrices and linear transformations</h2>
+<p>Let <span class="math inline">\(x= (x_1, x_2) \in \mathbb{R}^2\)</span> and <span class="math inline">\(y= (y_1, y_2) \in \mathbb{R}^2\)</span>. Let <span class="math inline">\(y = f(x)\)</span> be the function defined by</p>
+<p><span class="math display">\[
+\begin{cases}
+y_1 = ax_1 + bx_2 \\
+y_2 = cx_1 + dx_2
+\end{cases}
+\]</span></p>
+<p>for some numbers <span class="math inline">\(a, b, c, d\)</span>. Then matrix multiplication can be used to describe <span class="math inline">\(f\)</span>. Let</p>
+<p><span class="math display">\[A =
+\left(
+\begin{array}{rr}
+a &amp; b \\
+c &amp; d
+\end{array}
+\right),
+x =
+\left(
+\begin{array}{rr}
+x_1 \\
+x_2
+\end{array}
+\right),
+y =
+\left(
+\begin{array}{rr}
+y_1 \\
+y_2
+\end{array}
+\right).
+\text{ Then }
+y = Ax, \text{ i.e. }
+\left(
+\begin{array}{rr}
+y_1 \\
+y_2
+\end{array}
+\right)
+=
+\left(
+\begin{array}{rr}
+a &amp; b \\
+c &amp; d
+\end{array}
+\right)
+\left(
+\begin{array}{rr}
+x_1 \\
+x_2
+\end{array}
+\right)
+\]</span></p>
+<p><span class="math inline">\(A\)</span> is a <strong>transformation matrix</strong> of <span class="math inline">\(f\)</span>, <span class="math inline">\(y = f(x) = Ax\)</span></p>
+</section>
+<section id="finding-the-transformation-matrix-of-a-rotation-in-the-plane" class="level2">
+<h2 class="anchored" data-anchor-id="finding-the-transformation-matrix-of-a-rotation-in-the-plane">Finding the transformation matrix of a rotation in the plane</h2>
+<p>Let <span class="math inline">\(\mathbf{e_1}, \mathbf{e_2}\)</span> be two basis vectors and let <span class="math inline">\(A\)</span> be a transformation matrix that rotates a vector <span class="math inline">\(\mathbf{u} = x\mathbf{e_1} + y\mathbf{e_2}\)</span> by an angle $$. To find <span class="math inline">\(A\)</span> it suffices to consider the basis vectors.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="http://cmc.education/slides/notebookImages/rotatedBasis.svg" class="img-fluid figure-img"></p>
+<figcaption>rotated basis</figcaption>
+</figure>
+</div>
+<p>Now $ A = xA + yA = x’ + y’$</p>
+<section id="rotate-a-point" class="level3">
+<h3 class="anchored" data-anchor-id="rotate-a-point">Rotate a point</h3>
+<div id="qpyodide-insertion-location-34"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="rotate-many-points" class="level3">
+<h3 class="anchored" data-anchor-id="rotate-many-points">Rotate many points</h3>
+<p><strong>5min, let’s go!</strong></p>
+<div id="qpyodide-insertion-location-35"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<nav class="bottom-page-nav" aria-label="Page navigation">
+<a class="page-nav-link prev" href="lecture05.html">Previous: Lecture 5</a> <a class="page-nav-link next" href="lecture07.html">Next: Lecture 7</a>
+</nav>
+<div id="qpyodide-insertion-location-36"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div id="qpyodide-insertion-location-37"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 
 
+</section>
 </section>
 </section>
 

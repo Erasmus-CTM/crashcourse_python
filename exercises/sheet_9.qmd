@@ -59,3 +59,8 @@ and `False` otherwise.
 #| read-only: false
 # TODO: implement __contains__ for SpecialRectangle.
 ```
+
+<nav class="bottom-page-nav" aria-label="Page navigation">
+  <a class="page-nav-link prev" href="sheet_8.html">Previous: Sheet 8</a>
+  <a class="page-nav-link next" href="sheet_11.html">Next: Sheet 11</a>
+</nav>

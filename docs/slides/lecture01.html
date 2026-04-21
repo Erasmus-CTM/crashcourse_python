@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Lecture 1: First steps - A bit of everything – Python Crashcourse</title>
+<title>Computational Programming with Python – Python Crashcourse</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -230,7 +265,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"code":"from numpy import *\n# will be explained later\nprint(\"Hello\")","id":1,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"x = 3","id":2,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"y = 5","id":3,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"print(x + y)","id":4,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"from numpy import array\nfrom scipy.linalg import solve\nM = array([[1., 2.],\n           [3., 4.]])\nV = array([2., 1.])\nx = solve(M, V)\nprint(x)","id":5,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"from numpy import *\nprint(exp(1j * pi)) # should return -1","id":6,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"print(2**100)\n# x = 4","id":7,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"2**(2+2)","id":8,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"1j**2","id":9,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"my_int = 42\nk = 5\na = 6.5\nb = 4.5\nj = 3\nmy_float = 3.14\nmy_complex = 5+1j\nz = 5 + j\nprint(\"z = \",z)\nmy_sum = my_float+my_complex\nprint(my_sum)\nprint(type(my_sum))\nprint(type(k))\n\nmy_int2 = int(3.14)\nmy_int3 = int(3.76)\nprint(my_int2)\nprint(my_int3)","id":10,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"str3 = \"\"\"This \"Hello\" is\na long,\nlong string.\"\"\"\nprint(str3)","id":11,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"x = True\ny = False\nprint(type(x))\nprint(x)","id":12,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"a = True\nb = 0 < 3 < 6\nc = (3*15 == 10)\nprint(\"b =\", b)\nprint(\"c =\", c)\nprint(type(c))","id":13,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"print(not 3 > 5)\nprint(36 % 6 == 0 and 36 < 0)\nprint(36 % 6 == 0 or 36 < 0)","id":14,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"from numpy import ceil\nprint(\"Using integer division to divide 20 by 6:\")\nprint(\"the quotient is\", 20//6)\nprint(\"the remainder is\", 20%6)\nprint(\"the devision is \", 20/6)\nprint(\"the devision is \", int(20/6))\nprint(\"the devision is \", int(23/6))\nprint(\"the devision rounded up is \", int(ceil(23/6)))","id":15,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"3 < 4 == 1","id":16,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"a = False\n2 != 3 < 4 or a","id":17,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"print(not False or True and False)\n\nprint(False and (True or not False))","id":18,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"x = -5\nif x >= 0:\n    print(x)\nelse:\n    print(-x)","id":19,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"age = 19\nif age%2 == 0:\n    print(\"It's an even number\")","id":20,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"if age%2 == 0:\n    print(\"It's an even number\")\nelse:\n    print(\"It's an odd number\")","id":21,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"age = 6\nif age < 18:\n    print(\"You are a child.\")\nelif age < 68:\n    print(\"You are an adult.\")\nelse:\n    print(\"You may retire.\")","id":22,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"denom = 0\nnum = 3\n\nif not denom == 0:\n    frac = num/denom\nelse:\n    # later we learn how to do this right using Exceptions \n    print(\"Don't divide by zero!\")","id":23,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"while some_condition:\n    # code that is repeated","id":24,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"for some_variable in some_set_of_values:\n    # code that is repeated","id":25,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"i = 0 \nwhile i <= 10: # some_condition\n    # task that is repeated\n    print(i)\n    # i = i + 1 \n    i += 1 \n    \nprint(\"We obtain i =\",i)","id":26,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"i = 0\nx = 1 \n\n# compute 2**10 \nwhile i < 10: \n    x = x * 2\n    i = i + 1 # increment counter i \n    \nprint(\"We got     \", x) \nprint(\"We expected\",2**10)","id":27,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"# Careful with the condition statement here!\nwhile True:\n    # repeat task until forever\n    print(\"Hello\")","id":28,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"s = 0\nfor i in range(11): # note the number 11\n    s = s + 1\n    \nprint(\"We obtain s =\",s)","id":29,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"for elt in my_list:\n    do_something()\n    something_else()\n    etc\nprint(\"loop finished\") # outside of the for loop","id":30,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"for i in range(0, 100, 15):\n    print(i)","id":31,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import numpy\nprint(numpy.exp(1j*numpy.pi))","id":32,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import numpy as np\nprint(np.exp(1j*np.pi))","id":33,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"from numpy import exp, pi\n\nprint(exp(1j*pi))","id":34,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"from numpy import *\nprint(exp(1j*pi))","id":35,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}}];
+globalThis.qpyodideCellDetails = [{"code":"from numpy import *\n# will be explained later\nprint(\"Hello\")","id":1,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"x = 3","id":2,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"y = 5","id":3,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"print(x + y)","id":4,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"from numpy import array\nfrom scipy.linalg import solve\nM = array([[1., 2.],\n           [3., 4.]])\nV = array([2., 1.])\nx = solve(M, V)\nprint(x)","id":5,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"from numpy import *\nprint(exp(1j * pi)) # should return -1","id":6,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"print(2**100)\n# x = 4","id":7,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"2**(2+2)","id":8,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"1j**2","id":9,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"my_int = 42\nk = 5\na = 6.5\nb = 4.5\nj = 3\nmy_float = 3.14\nmy_complex = 5+1j\nz = 5 + j\nprint(\"z = \",z)\nmy_sum = my_float+my_complex\nprint(my_sum)\nprint(type(my_sum))\nprint(type(k))\n\nmy_int2 = int(3.14)\nmy_int3 = int(3.76)\nprint(my_int2)\nprint(my_int3)","id":10,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"str3 = \"\"\"This \"Hello\" is\na long,\nlong string.\"\"\"\nprint(str3)","id":11,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"x = True\ny = False\nprint(type(x))\nprint(x)","id":12,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"a = True\nb = 0 < 3 < 6\nc = (3*15 == 10)\nprint(\"b =\", b)\nprint(\"c =\", c)\nprint(type(c))","id":13,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"print(not 3 > 5)\nprint(36 % 6 == 0 and 36 < 0)\nprint(36 % 6 == 0 or 36 < 0)","id":14,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"from numpy import ceil\nprint(\"Using integer division to divide 20 by 6:\")\nprint(\"the quotient is\", 20//6)\nprint(\"the remainder is\", 20%6)\nprint(\"the devision is \", 20/6)\nprint(\"the devision is \", int(20/6))\nprint(\"the devision is \", int(23/6))\nprint(\"the devision rounded up is \", int(ceil(23/6)))","id":15,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"3 < 4 == 1","id":16,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"a = False\n2 != 3 < 4 or a","id":17,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"print(not False or True and False)\n\nprint(False and (True or not False))","id":18,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"x = -5\nif x >= 0:\n    print(x)\nelse:\n    print(-x)","id":19,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"age = 19\nif age%2 == 0:\n    print(\"It's an even number\")","id":20,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"if age%2 == 0:\n    print(\"It's an even number\")\nelse:\n    print(\"It's an odd number\")","id":21,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"age = 6\nif age < 18:\n    print(\"You are a child.\")\nelif age < 68:\n    print(\"You are an adult.\")\nelse:\n    print(\"You may retire.\")","id":22,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"denom = 0\nnum = 3\n\nif not denom == 0:\n    frac = num/denom\nelse:\n    # later we learn how to do this right using Exceptions \n    print(\"Don't divide by zero!\")","id":23,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"while some_condition:\n    # code that is repeated","id":24,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"for some_variable in some_set_of_values:\n    # code that is repeated","id":25,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"i = 0 \nwhile i <= 10: # some_condition\n    # task that is repeated\n    print(i)\n    # i = i + 1 \n    i += 1 \n    \nprint(\"We obtain i =\",i)","id":26,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"i = 0\nx = 1 \n\n# compute 2**10 \nwhile i < 10: \n    x = x * 2\n    i = i + 1 # increment counter i \n    \nprint(\"We got     \", x) \nprint(\"We expected\",2**10)","id":27,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"s = 0\nfor i in range(11): # note the number 11\n    s = s + 1\n    \nprint(\"We obtain s =\",s)","id":28,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"for i in range(0, 100, 15):\n    print(i)","id":29,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import numpy\nprint(numpy.exp(1j*numpy.pi))","id":30,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import numpy as np\nprint(np.exp(1j*np.pi))","id":31,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"from numpy import exp, pi\n\nprint(exp(1j*pi))","id":32,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"from numpy import *\nprint(exp(1j*pi))","id":33,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}}];
 
 
 </script>
@@ -519,6 +554,58 @@ window.Quarto = {
     <a class="dropdown-item" href="../slides/lecture01.html">
  <span class="dropdown-text">Lecture 1</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture02_summer.html">
+ <span class="dropdown-text">Lecture 2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture03_summer.html">
+ <span class="dropdown-text">Lecture 3</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture04.html">
+ <span class="dropdown-text">Lecture 4</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture05.html">
+ <span class="dropdown-text">Lecture 5</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture06.html">
+ <span class="dropdown-text">Lecture 6</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture07.html">
+ <span class="dropdown-text">Lecture 7</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture08.html">
+ <span class="dropdown-text">Lecture 8</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture09.html">
+ <span class="dropdown-text">Lecture 9</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture10.html">
+ <span class="dropdown-text">Lecture 10</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture11.html">
+ <span class="dropdown-text">Lecture 11</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture12.html">
+ <span class="dropdown-text">Lecture 12</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture13.html">
+ <span class="dropdown-text">Lecture 13</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/lecture14.html">
+ <span class="dropdown-text">Lecture 14</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -592,16 +679,13 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#computational-programming-with-python" id="toc-computational-programming-with-python" class="nav-link active" data-scroll-target="#computational-programming-with-python">Computational Programming with Python</a>
+  <li><a href="#lecture-1-first-steps---a-bit-of-everything" id="toc-lecture-1-first-steps---a-bit-of-everything" class="nav-link active" data-scroll-target="#lecture-1-first-steps---a-bit-of-everything">Lecture 1: First steps - A bit of everything</a>
   <ul class="collapse">
-  <li><a href="#lecture-1-first-steps---a-bit-of-everything" id="toc-lecture-1-first-steps---a-bit-of-everything" class="nav-link" data-scroll-target="#lecture-1-first-steps---a-bit-of-everything">Lecture 1: First steps - A bit of everything</a></li>
   <li><a href="#center-for-mathematical-sciences-lund-university" id="toc-center-for-mathematical-sciences-lund-university" class="nav-link" data-scroll-target="#center-for-mathematical-sciences-lund-university">Center for Mathematical Sciences, Lund University</a></li>
-  <li><a href="#this-lecture" id="toc-this-lecture" class="nav-link" data-scroll-target="#this-lecture">This lecture</a></li>
-  <li><a href="#about-this-course-12" id="toc-about-this-course-12" class="nav-link" data-scroll-target="#about-this-course-12">About this course 1/2</a></li>
-  <li><a href="#about-this-course-22" id="toc-about-this-course-22" class="nav-link" data-scroll-target="#about-this-course-22">About this course 2/2</a>
+  </ul></li>
+  <li><a href="#this-lecture" id="toc-this-lecture" class="nav-link" data-scroll-target="#this-lecture">This lecture</a>
   <ul class="collapse">
   <li><a href="#course-book" id="toc-course-book" class="nav-link" data-scroll-target="#course-book">Course Book</a></li>
-  <li><a href="#what-do-we-expect-from-you" id="toc-what-do-we-expect-from-you" class="nav-link" data-scroll-target="#what-do-we-expect-from-you">What do we expect from you?</a></li>
   </ul></li>
   <li><a href="#why-python" id="toc-why-python" class="nav-link" data-scroll-target="#why-python">Why Python?</a></li>
   <li><a href="#the-right-tool-for-the-right-problem" id="toc-the-right-tool-for-the-right-problem" class="nav-link" data-scroll-target="#the-right-tool-for-the-right-problem">The right tool for the right problem</a></li>
@@ -658,7 +742,6 @@ window.Quarto = {
   <li><a href="#configuration-of-spyder" id="toc-configuration-of-spyder" class="nav-link" data-scroll-target="#configuration-of-spyder">Configuration of Spyder</a></li>
   </ul></li>
   <li><a href="#how-to-run-a-piece-of-code" id="toc-how-to-run-a-piece-of-code" class="nav-link" data-scroll-target="#how-to-run-a-piece-of-code">How to run a piece of code</a></li>
-  </ul></li>
   </ul>
 </nav>
     </div>
@@ -677,7 +760,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Lecture 1: First steps - A bit of everything</h1>
+<h1 class="title">Computational Programming with Python</h1>
 </div>
 
 
@@ -694,14 +777,12 @@ window.Quarto = {
 </header>
 
 
-<section id="computational-programming-with-python" class="level1">
-<h1>Computational Programming with Python</h1>
-<section id="lecture-1-first-steps---a-bit-of-everything" class="level3">
-<h3 class="anchored" data-anchor-id="lecture-1-first-steps---a-bit-of-everything">Lecture 1: First steps - A bit of everything</h3>
-</section>
+<section id="lecture-1-first-steps---a-bit-of-everything" class="level2">
+<h2 class="anchored" data-anchor-id="lecture-1-first-steps---a-bit-of-everything">Lecture 1: First steps - A bit of everything</h2>
 <section id="center-for-mathematical-sciences-lund-university" class="level3">
 <h3 class="anchored" data-anchor-id="center-for-mathematical-sciences-lund-university">Center for Mathematical Sciences, Lund University</h3>
 <p>Lecturer: <code>Robert Klöfkorn</code> (Malin Christersson)</p>
+</section>
 </section>
 <section id="this-lecture" class="level2">
 <h2 class="anchored" data-anchor-id="this-lecture">This lecture</h2>
@@ -714,20 +795,6 @@ window.Quarto = {
 <li>Importing modules</li>
 <li>Presentation of teaching assistants</li>
 </ul>
-</section>
-<section id="about-this-course-12" class="level2">
-<h2 class="anchored" data-anchor-id="about-this-course-12">About this course 1/2</h2>
-<p>14 Lectures: - 5 basic lectures (basic data types, for loops, plotting, functions, etc.) - 2 lectures on matrix/vector and linear algebra - 2 lectures on object oriented programming<br>
-- 1 lecture on file handling (data I/O) - 2 lectures on advanced plotting including interactive plotting - 1 lecture debugging, timing, and time complexity - 1 lecture on data analysis with pandas</p>
-</section>
-<section id="about-this-course-22" class="level2">
-<h2 class="anchored" data-anchor-id="about-this-course-22">About this course 2/2</h2>
-<ul>
-<li>Lectures are followed by training exercises (<strong>hand-in possible</strong>)</li>
-<li>Homework 1 and 2 (oral presentation 15-20min)</li>
-<li>Final projects (oral presentation 20-40m)</li>
-</ul>
-<p>Need to pass HW1 &amp; HW2, the Quiz, and the Final Project to pass the course.</p>
 <section id="course-book" class="level3">
 <h3 class="anchored" data-anchor-id="course-book">Course Book</h3>
 <p>Scientific Computing with Python</p>
@@ -740,17 +807,6 @@ window.Quarto = {
 </div>
 <p><a href="https://www.packtpub.com">www.packtpub.com</a></p>
 <p>Available as <a href="https://ebookcentral.proquest.com/lib/lund/detail.action?docID=6703044"><strong>eBook</strong></a> in the LU library.</p>
-</section>
-<section id="what-do-we-expect-from-you" class="level3">
-<h3 class="anchored" data-anchor-id="what-do-we-expect-from-you">What do we expect from you?</h3>
-<ul>
-<li>Engagement in the course, i.e.&nbsp;attendance in lectures and training exercises</li>
-<li>Work with the material (only that will make you learn programming)</li>
-<li>Read the corresponding book chapter before the lecture</li>
-<li>If you cannot make it to the lecture (don’t email me) it is expected that you keep up with the learning material by yourself</li>
-</ul>
-<p><code>Comment from student:</code> <em>I would have appreciated it if the lectures took a bit more of a middle ground. I was very lucky that my class was so nice. Often some of my classmates who have programmed before would explain more thoroughly the stuff we went through in the lectures to me.</em></p>
-<p><strong>Questions?</strong></p>
 </section>
 </section>
 <section id="why-python" class="level2">
@@ -996,8 +1052,10 @@ window.Quarto = {
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <section id="note-infinite-loops" class="level3">
 <h3 class="anchored" data-anchor-id="note-infinite-loops">Note ‐ Infinite loops</h3>
-<div id="qpyodide-insertion-location-28"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Careful with the condition statement here!</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># repeat task until forever</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Hello"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="repeating-a-task" class="level3">
 <h3 class="anchored" data-anchor-id="repeating-a-task">Repeating a task</h3>
@@ -1006,14 +1064,17 @@ window.Quarto = {
 <section id="for-loops" class="level3">
 <h3 class="anchored" data-anchor-id="for-loops"><code>for</code> loops</h3>
 <p><strong>Example</strong>: Find <span class="math display">\[ \sum_{i = 0}^{10} {1}\]</span></p>
-<div id="qpyodide-insertion-location-29"></div>
+<div id="qpyodide-insertion-location-28"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
 <section id="indentation" class="level3">
 <h3 class="anchored" data-anchor-id="indentation">Indentation</h3>
 <p>The part to be repeated in the for loop has to be properly <em>indented</em>.</p>
-<div id="qpyodide-insertion-location-30"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> elt <span class="kw">in</span> my_list:</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    do_something()</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    something_else()</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    etc</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"loop finished"</span>) <span class="co"># outside of the for loop</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>In contrast to other programming languages, the indentation in Python is <strong>mandatory</strong>.</p>
 <p>Many other kinds of Python structures also have to be indented and this will be covered when introduced.</p>
 </section>
@@ -1024,7 +1085,7 @@ window.Quarto = {
 <p><code>range(start, stop)</code> a sequence of integers ≥ <code>start</code> and &lt; <code>stop</code></p>
 <p><code>range(start, stop, step)</code> a sequence of integers that starts with <code>start</code> and then increases by <code>step</code> as long as the number is &lt; <code>stop</code>.</p>
 <p><strong>Example</strong>: Show all non-negative multiples of 15 that are less than 100.</p>
-<div id="qpyodide-insertion-location-31"></div>
+<div id="qpyodide-insertion-location-29"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
 </section>
@@ -1034,19 +1095,19 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="importing-numpy">Importing Numpy</h3>
 <p>In order to use standard mathematical functions in Python, you must import some module. We will use <code>numpy</code> exclusively.</p>
 <p>You can import numpy and then use dot-notation after the name <code>numpy</code>:</p>
-<div id="qpyodide-insertion-location-32"></div>
+<div id="qpyodide-insertion-location-30"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <p>You can import numpy and give it a shorter name:</p>
-<div id="qpyodide-insertion-location-33"></div>
+<div id="qpyodide-insertion-location-31"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
 <section id="more-about-imports" class="level3">
 <h3 class="anchored" data-anchor-id="more-about-imports">More about imports</h3>
 <p>You can choose what you want to import to avoid dot-notation:</p>
-<div id="qpyodide-insertion-location-34"></div>
+<div id="qpyodide-insertion-location-32"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <p>You can make a <em>star import</em> to import everything from a module:</p>
-<div id="qpyodide-insertion-location-35"></div>
+<div id="qpyodide-insertion-location-33"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
 <section id="configuration-of-spyder" class="level3">
@@ -1064,9 +1125,11 @@ window.Quarto = {
 <p>Short snippets of code can be written directly in the interpreter and executed interactively. We use the interpreter <code>IPython</code> which has extra features.</p>
 <p>For writing a larger program, one generally uses a text editor which can highlight code in a good way.</p>
 <p>There are also development suites which bundle the interpreter, editor and other things into the same program.</p>
+<nav class="bottom-page-nav" aria-label="Page navigation">
+<span class="page-nav-link prev is-disabled">Previous</span> <a class="page-nav-link next" href="lecture02_summer.html">Next: Lecture 2</a>
+</nav>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

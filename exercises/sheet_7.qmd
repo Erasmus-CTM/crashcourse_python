@@ -70,3 +70,8 @@ with the one-vector (a vector filled with 1's) and plot the result versus $u$.
 #| read-only: false
 # TODO: compute sin(D) * ones and plot the result versus u.
 ```
+
+<nav class="bottom-page-nav" aria-label="Page navigation">
+  <a class="page-nav-link prev" href="sheet_6.html">Previous: Sheet 6</a>
+  <a class="page-nav-link next" href="sheet_8.html">Next: Sheet 8</a>
+</nav>

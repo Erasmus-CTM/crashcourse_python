@@ -122,3 +122,8 @@ Save it as a png file.
 #| read-only: false
 # TODO: save the figure as a PNG file.
 ```
+
+<nav class="bottom-page-nav" aria-label="Page navigation">
+  <a class="page-nav-link prev" href="sheet_9.html">Previous: Sheet 9</a>
+  <a class="page-nav-link next" href="sheet_12.html">Next: Sheet 12</a>
+</nav>

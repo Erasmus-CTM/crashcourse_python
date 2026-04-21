@@ -363,3 +363,8 @@ ax.annotate(
 fig.savefig("sheet_11_polynomial.png", dpi=150)
 plt.show()
 ```
+
+<nav class="bottom-page-nav" aria-label="Page navigation">
+  <a class="page-nav-link prev" href="sheet_9_solutions.html">Previous: Sheet 9 Solutions</a>
+  <a class="page-nav-link next" href="sheet_12_solutions.html">Next: Sheet 12 Solutions</a>
+</nav>

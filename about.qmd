@@ -2,4 +2,10 @@
 title: "About"
 ---
 
-This content is based on Jan-Fredrik Olssens lecture notes "Don't panic".
+The crashcourse material is based on the appendix of the book "Don't Panic" by [Jan-Fredrik Olsen](https://www.lunduniversity.lu.se/lucat/user/b9011d68278906636ba320a486af6d85).
+
+The lecture slides and exercises are from a course on computational programming with Python given at Lund University by [Dr. Robert Klöfkorn](https://www.lunduniversity.lu.se/lucat/user/af9e73815a73e9a86cd2dbc8ff789254). 
+
+This material was collected and transformed into this online format within the ["Erasmus Computational Thinking"](https://github.com/Erasmus-CTM) project by [Paul Arnold](https://github.com/P4ul-A).
+
+All sourcecode is available on GitHub: [https://github.com/Erasmus-CTM/crashcourse_python](https://github.com/Erasmus-CTM/crashcourse_python). 

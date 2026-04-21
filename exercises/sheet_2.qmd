@@ -377,3 +377,8 @@ plt.show()
 The mathematical background to this problem will be taught in later courses when you become familiar with differential equations.
 
 Good luck!
+
+<nav class="bottom-page-nav" aria-label="Page navigation">
+  <span class="page-nav-link prev is-disabled">Previous</span>
+  <a class="page-nav-link next" href="sheet_3.html">Next: Sheet 3</a>
+</nav>

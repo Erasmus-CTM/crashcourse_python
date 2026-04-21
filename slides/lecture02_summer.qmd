@@ -1,0 +1,597 @@
+---
+title: "Computational Programming with Python"
+format: html
+filters:
+  - pyodide
+---
+
+## Lecture 2: Lists and elementary plotting
+
+### Center for Mathematical Sciences, Lund University
+Lecturer: Malin Christersson, `Robert Klöfkorn`
+
+## This lecture
+
+- Lists
+- Training exercises
+- More about for loops
+- Elementary plotting
+
+
+## Lists
+
+A Python list is an ordered list of objects, enclosed in square brackets. 
+
+One accesses elements of a list using **zero-based** indices inside square brackets.
+
+Note: `list` is the most commonly used container in Python.
+
+### List examples
+
+```{pyodide-python}
+L1 = [1, 2]
+print(L1[0])
+print(L1[1])
+print(type(L1))
+# print(L1[2]) # raises IndexError
+#print(L1[2])
+```
+
+```{pyodide-python}
+L2 = ['a', 1, [3, 4]] 
+print(L2[0])
+print(L2[2])
+print(L2[2][0])
+```
+
+### Negative indices
+
+```{pyodide-python}
+L2 = ['a', 1, [3, 4]] 
+print(L2[-1]) # last element
+print(L2[-2]) # second last element
+# print(L2[-4])
+```
+
+### List utilities &hyphen;  `range`
+
+`range(n)`can be used to fill a list with $n$ elements starting with zero.
+
+```{pyodide-python}
+L3 = list(range(5)) # numbers 0,1,2,3,4
+# L4 = [range(5)]
+print(L3)
+# print(L4)
+```
+
+### List utilities &hyphen;  `len`
+
+The function `len(L)` gives the the length of a list:
+
+```{pyodide-python}
+L4 = ["Stockholm", "Paris", "Berlin"]
+L5 = [[3,4], [10, 100, 1000, 10000]]
+
+print(len(L4))
+print(len(L5))
+print(len(L5[-1]))
+print(L5[-1])
+
+print(len(['a', 'b', 'c', 'd', 'e']))
+print(L5[0][0])
+# print(len(L5[0][0]))
+# a = 5 
+# len(a)
+```
+
+### List utilities &hyphen;  `append`
+
+Use the method `append` to append an element at the end of the list.
+
+```{pyodide-python}
+L6 = ['a', 'b', 'c']
+# L6 = []
+print(L6[-1])
+print(len(L6))
+# L7 = ['d'] + L6 
+print(L7)
+L6.append('d')
+print(L6[-1])
+print(len(L6))
+```
+
+### List comprehension
+
+A convenient way to build up lists is to use the *list comprehension* construct, possibly with a conditional inside.
+
+#### Definition
+The syntax of  a list comprehension is
+
+`[<expr> for <variable> in <list>]`
+
+Example:
+
+```{pyodide-python}
+L1 = [2, 3, 10, 1, 5]
+L2 = [x*2 for x in L1]
+# L4 = L1 * 2
+# print(L4)
+L3 = [x*2 for x in L1 if 4 < x <= 10]
+
+print(L1)
+print(L2)
+print(L3)
+```
+
+### List comprehension in mathematics
+
+#### Mathematical notation
+This is very close to the mathematical notation for sets. Compare:
+
+$$ L_2 = \{2x;\ x\in L_1\} $$
+
+with
+
+`L2 = [2*x for x in L1]`
+
+### Operations on lists
+
+Adding two lists *concatenates* (sammanfogar) them:
+
+```{pyodide-python}
+L1 = [1, 2]
+L2 = [3, 4]
+L3 = L1 + L2
+print(L3)
+```
+
+### More operations on lists
+
+Logically, multiplying a list with an integer concatenates the
+list with itself several times: `n*L` is equivalent to
+
+$\underbrace{L+L+\cdots+L}_{n \text{ times}}$
+
+```{pyodide-python}
+L = [1, 2]
+L2 = 3*L
+print(L2)
+```
+
+## Some more functions
+
+Given a list `lst`:
+
+- `sum(lst)`
+- `max(lst)`
+- `min(lst)`
+
+```{pyodide-python}
+L = [4, 9, -1, 2]
+print("The sum is", sum(L))
+print("The minimum value is", min(L))
+print("The maximum value is",max(L))
+```
+
+## Min and max for strings
+
+When comparing strings with the `>` or `<` operation then first the leading character is compared, which follows the ordering in the [UTF-8](https://en.wikipedia.org/wiki/UTF-8).
+
+```{pyodide-python}
+L = ['!adbg', 'Berlin', 'Berl']
+print(min(L))
+print(max(L))
+
+print(len(L))
+```
+
+## Some more methods
+
+Given a list `lst`:
+
+- `lst.reverse()`
+- `lst.sort()`
+- `lst.sort(reverse=True|False, key=myFunc)`
+
+```{pyodide-python}
+L = [4, 9, -1, 2]
+print("L =", L)
+L.reverse()
+print("L =", L)
+L.sort()
+print("L =", L)
+L.sort(reverse=True)
+print("L =", L)
+```
+
+## Programming example
+
+How do we calculate 
+
+$$ \sum_{i=0}^{n}i$$
+
+using a for loop? using a list? **5min, let's go!**
+
+```{pyodide-python}
+s = 0
+n = 5
+for i in range(n+1):
+    s += i 
+print(s)
+```
+
+```{pyodide-python}
+L1 = list(range(n+1))
+print(sum(L1))
+
+L2 = [i for i in range(n+1)]
+print(sum(L2))
+
+print(sum(range(n+1)))
+```
+
+# Slicing and other list tools
+
+## Enumerating lists 
+
+Sometimes it is helpful to enumerate while iterating over elements of a list.
+
+```{pyodide-python}
+L = ['C', 'l', 'o', 'u', 'd']
+#i = 0
+#for l in L: 
+#    print(f"The {i}-th element of L is '{l}'")
+#    i += 1   
+    
+#for i in range(len(L)):
+#    print(f"The {i}-th element of L is '{L[i]}'")
+    
+for i, l in enumerate(L):
+    print(f"The {i}-th element of L is '{l}'")
+```
+
+## List access (repeat)
+
+We can access elements of a list by using square brackets.
+
+```{pyodide-python}
+L = ['C', 'l', 'o', 'u', 'd']
+print(L[0])
+print(L[-1])
+```
+
+In a similar way we can access sublists.
+
+## Creating sublists - Slicing
+
+**Slicing** a list between index $i$ and $j$ is forming a new list by taking elements starting at $i$ and ending *just before* $j$.
+
+#### Example
+
+```{pyodide-python}
+L = ['C', 'l', 'o', 'u', 'd']
+print(L[1:4])
+```
+
+Compare with `range`.
+
+## Partial slicing
+
+One may omit the first or the last bound of the slicing:
+
+```{pyodide-python}
+L = ['C', 'l', 'o', 'u', 'd']
+print("L[1:] =", L[1:])     # to the end
+print("L[:3] =", L[:3])     # from the start
+print("L[-2:] =", L[-2:])   # negative index
+print("L[:-2] =", L[0:-2])
+```
+
+### Mathematical analogy
+
+The interval $[-\infty, a)$ means: take all numbers strictly lower than $a$, cf. syntax of `L[:j]`.
+
+## To sum it up
+
+- `L[i:]` take all elements *except* the $i$ first ones
+- `L[:i]` take the first $i$ elements
+- `L[-i:]` take the last $i$ elements
+- `L[:-i]` take all elements *except* the $i$ last ones
+
+## Examples
+
+From a list `L`, create the red sublists. **5 min, let's go!**
+
+![lists](http://cmc.education/slides/notebookImages/lists.svg)
+
+```{pyodide-python}
+L = list(range(10))
+print(L)
+
+# a)
+print(L[2:-1])
+
+# b)
+print(L[3:])
+
+# c) 
+print(L[:-2])
+
+# d ) 
+print(L[-3:-1])
+```
+
+## for loops (revisited)
+
+A `for` loop allows to loop through a list using an index variable. This variable takes succesively the values of the elements in the list.
+
+Example:
+
+```{pyodide-python}
+L = [1, 2, 10] 
+for s in L:
+    print(s * 2)
+    print("Hello", s)
+    
+print("Loop finished")
+```
+
+### Repeating a task
+
+One typical use of the for loop is to repeat a certain task a fixed number of times:
+
+```{pyodide-python}
+def do_something(i):
+    print(i)
+    
+n = 10 
+for i in range(n):
+    do_something(i) # this gets executed n times
+```
+
+### Indentation
+
+The part to be repeated in the for loop has to be properly *indented*.
+
+```Python
+for elt in my_list:
+    do_something()
+    something_else()
+    etc
+print("loop finished") # outside of the for loop
+```
+
+In contrast to other programming languages, the indentation in Python is **mandatory**.
+
+Many other kinds of Python structures also have to be indented and this will be covered when introduced.
+
+## The full `for` statement &hyphen; `break`
+
+`break` gets out of the for loop before all elements of the list are used.
+
+In the following example we possibly don't use all values of the list `x_values`.
+
+```{pyodide-python}
+x_values=[0,2,3,4,5]
+threshold=3.5
+for x in x_values:
+    if x > threshold:
+        break
+    print(x)
+```
+
+Not all entries were visited. **We say, the list was not exhausted.**
+
+## The full `for` statement &hyphen; `else`
+
+`else` checks if the loop was not *broken* by the `break` keyword.
+
+```{pyodide-python}
+threshold=6
+for x in x_values:
+    if x > threshold:
+        break
+    #else:
+    #    print("all the x are below the threshold")   
+    print(x)  
+else:
+    print("all the x are below the threshold")
+```
+
+If we did not break, the else-block is executed.
+
+
+## Elementary plotting
+
+
+We must first make the central visualization tool in Python available:
+
+```{pyodide-python}
+from numpy import *
+from matplotlib.pyplot import *
+```
+
+Then we generate two lists:
+
+```{pyodide-python}
+x_list = list(range(100))
+y_list = [sqrt(x) for x in x_list]
+```
+
+Then making a graph is simple:
+
+```{pyodide-python}
+# from above
+from matplotlib.pyplot import *
+from numpy import *
+x_list = list(range(100))
+y_list = [sqrt(x) for x in x_list]
+# plotting commands 
+plot(x_list, y_list, '-')
+title('My first plot')
+xlabel('x')
+ylabel('Square root of x')
+show() # not always needed
+```
+
+## More about plots
+
+- You have already used the command `plot`. It needs a list of $x$ values and a list of $y$ values. If a single list, $y$ is given, the list `list(range(len(y)))` is assumed as $x$ values.
+- You may use the keyword argument `label` to give your curves a name, and then show them using `legend`.
+
+```{pyodide-python}
+from numpy import *
+from matplotlib.pyplot import *
+x_vals = [.2*n for n in range(20)] 
+y1 = [sin(.3*x) for x in x_vals] 
+y2 = [sin(2*x) for x in x_vals] 
+plot(x_vals ,y1, label='sin(0.3*x)') 
+plot(x_vals, y2, label='sin(2*x)')
+xlabel('x')
+ylabel('sin...')
+legend()
+show() # not always needed, but does not hurt to put it here
+```
+
+## A plot with more key words
+
+Here is an example with more keywords:
+
+```{pyodide-python}
+plot(x_vals, y2, 
+     color='green',
+     linestyle='dashed', 
+     marker='o', 
+     markerfacecolor='blue', 
+     markersize=12,
+     linewidth=6)
+```
+
+## Fixed point iterations
+
+A recursive equation can be written as 
+
+\begin{cases}
+a_0 &= c \\
+a_{n+1} &= f(a_n), n \ge 0
+\end{cases}
+
+```{pyodide-python}
+a = c              # some initial value c
+n = 100            # for some n
+for i in range(n): 
+    a = f(a)       # where f is some function
+```
+
+## Fixed point 
+
+A number $x_0$ such that $f(x_0)=x_0$ is called a *fixed point*. 
+
+The sequence will converge to that fixed point if $f$ is a contraction ($|f(x) - f(y)| < \alpha |x - y| \ \forall x,y$ and $\alpha \in [0,1)$) and a self map onto a closed set (see Banach's fixed point theorem). 
+
+An example is visualised using a **cob web diagram**, see [www.geogebra.org/m/za7tarfg](https://www.geogebra.org/m/za7tarfg).
+Here you see that a fixed point can be **repelling** or **attracting**. If the initial value $c$ is \"close to\" an attracting fixed point ($f$ is a contraction), the sequence will converge to that fixed point.
+
+## Jupyter Notebooks (optional)
+
+A Jupyter notebook combines text and code.
+
+You can make notebooks using Anaconda.
+
+For collaborative writing (online) you can use [Google colab](https://colab.research.google.com/notebooks/welcome.ipynb).
+
+Other options are:
+- github.com or gitlab.com
+- dropbox
+- ...
+
+## Notebooks basics
+
+From Anaconda launch Jupyter Notebook (a server is started).
+
+Choose a directory and click on `New -> Python 3`. 
+
+Rename the Notebook at the top. Write some code. Click on <kbd>shift</kbd> + <kbd>enter</kbd> to execute.
+
+<img src="http://cmc.education/slides/notebookImages/notebook1.png" alt="notebook1" align="center" style="border:2px solid #ccc; border-radius: 5px; max-width: 100%; height: auto; display: block; margin: 0 auto;"/>
+
+## Notebooks &hyphen; code
+
+Imports, variables, functions, etc. that you make in cell, are available in succeeding cells (if the cell has been executed)
+
+```{pyodide-python}
+from numpy import *
+from matplotlib.pyplot import *
+
+# use a magic function for rendering matplotlib plots
+%matplotlib inline  
+x = linspace(0, 4*pi, 100)
+y = sin(x)
+```
+
+```{pyodide-python}
+plot(x, y, label='sin(x)')
+xlabel('x')
+legend()
+```
+
+## Notebooks &hyphen; code (cont)
+
+Under the menu `Kernel` you can `Restart & Clear Output` or `Restart & Run All`.
+
+Using the tools in the toolbar, you can move cells up or down.
+
+To delete a cell use the scissors tool.
+
+<img src="http://cmc.education/slides/notebookImages/notebook2.png" alt="notebook2" align="center" style="border:2px solid #ccc; border-radius: 5px; max-width: 100%; height: auto; display: block; margin: 0 auto;"/>
+
+## Notebooks &hyphen; text
+
+By default a cell is made for code. To write text, change the cell to `Markdown`.
+
+The text is formatted using markdown syntax.
+
+The text in a cell is formatted when pressing <kbd>shift</kbd>+<kbd>enter</kbd>.
+
+## Basic markdown syntax
+
+```markdown
+# Main heading
+
+## Smaller heading
+
+### Even smaller
+
+**bold text**
+
+*text in italics*
+```
+
+```markdown
+An unnumbered list:
+- item 1
+- item 2
+
+A numbered list:
+1. item 1
+2. item 2
+```
+
+## LaTeX formulas
+
+You make an inline formula, like $f(x) = x^2$, by enclosing LaTeX-code between single dollar signs.
+
+You make a display style formula by enclosing the code between double dollar signs:
+
+$$\int_0^\pi\!\sin(2x)\,dx$$
+
+## Interactive slideshows (like this one)
+
+To make interactive slideshows, you must install RISE (or jupyterlab-rise).
+
+For more information see [anaconda.org/conda-forge/rise](anaconda.org/conda-forge/rise)
+
+<nav class="bottom-page-nav" aria-label="Page navigation">
+  <a class="page-nav-link prev" href="lecture01.html">Previous: Lecture 1</a>
+  <a class="page-nav-link next" href="lecture03_summer.html">Next: Lecture 3</a>
+</nav>

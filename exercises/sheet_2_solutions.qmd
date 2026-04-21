@@ -186,3 +186,8 @@ ax2.set_ylabel("|e^{a t} - u_n|")
 ax2.set_title("Error between exact and approximate solution")
 plt.show()
 ```
+
+<nav class="bottom-page-nav" aria-label="Page navigation">
+  <span class="page-nav-link prev is-disabled">Previous</span>
+  <a class="page-nav-link next" href="sheet_3_solutions.html">Next: Sheet 3 Solutions</a>
+</nav>
