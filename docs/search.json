@@ -25,7 +25,7 @@
     "href": "exercises/sheet_4.html",
     "title": "Sheet Four",
     "section": "",
-    "text": "NUMA01: Computational Programming with Python\nMalin Christersson, Robert Klöfkorn\nThe purpose of this training assignment is to experiment more with plotting and functions.\nThis assignment has 6 tasks.\nSolutions: Sheet 4 Solutions"
+    "text": "NUMA01: Computational Programming with Python\nMalin Christersson, Robert Klöfkorn\nThe purpose of this training assignment is to experiment more with plotting and functions.\nThis assignment has 6 tasks.\nSolutions: Sheet 4 Solutions\nDownload original exercise PDF"
   },
   {
     "objectID": "exercises/sheet_4.html#warming-up-exercises",
@@ -74,7 +74,7 @@
     "href": "exercises/sheet_11.html",
     "title": "Sheet Eleven",
     "section": "",
-    "text": "NUMA01: Computational Programming with Python\nMalin Christersson, Robert Klofkorn\nThe purpose of this training exercise is to work with object oriented techniques in plotting.\nThis assignment has 11 tasks.\nSolutions: Sheet 11 Solutions"
+    "text": "NUMA01: Computational Programming with Python\nMalin Christersson, Robert Klofkorn\nThe purpose of this training exercise is to work with object oriented techniques in plotting.\nThis assignment has 11 tasks.\nSolutions: Sheet 11 Solutions\nDownload original exercise PDF"
   },
   {
     "objectID": "exercises/sheet_11.html#warming-up-exercises",
@@ -95,7 +95,7 @@
     "href": "exercises/sheet_12.html",
     "title": "Sheet Twelve",
     "section": "",
-    "text": "NUMA01: Computational Programming with Python\nMalin Christersson, Robert Klofkorn\nThis exercise demonstrates the use of matplotlib’s GUI and continues Training Exercise 11.\nThis assignment has 4 tasks.\nSolutions: Sheet 12 Solutions"
+    "text": "NUMA01: Computational Programming with Python\nMalin Christersson, Robert Klofkorn\nThis exercise demonstrates the use of matplotlib’s GUI and continues Training Exercise 11.\nThis assignment has 4 tasks.\nSolutions: Sheet 12 Solutions\nDownload original exercise PDF"
   },
   {
     "objectID": "exercises/sheet_12.html#warming-up-exercises",
@@ -1222,14 +1222,14 @@
     "href": "slides/lecture14.html",
     "title": "Computational Programming with Python",
     "section": "",
-    "text": "Lecturer: Robert Klöfkorn"
+    "text": "Lecturer: Robert Klöfkorn\nDownload original notebook (.ipynb)"
   },
   {
     "objectID": "slides/lecture14.html#lecture-14-brief-introduction-to-pandas",
     "href": "slides/lecture14.html#lecture-14-brief-introduction-to-pandas",
     "title": "Computational Programming with Python",
     "section": "",
-    "text": "Lecturer: Robert Klöfkorn"
+    "text": "Lecturer: Robert Klöfkorn\nDownload original notebook (.ipynb)"
   },
   {
     "objectID": "slides/lecture14.html#typical-questions",
@@ -1348,7 +1348,7 @@
     "href": "slides/lecture12.html",
     "title": "GUI using matplotlib",
     "section": "",
-    "text": "Lecturer: Malin Christersson, Robert Klöfkorn"
+    "text": "Lecturer: Malin Christersson, Robert Klöfkorn\nDownload original notebook (.ipynb)"
   },
   {
     "objectID": "slides/lecture12.html#revision-interactive-plots",
@@ -1495,14 +1495,14 @@
     "href": "slides/lecture07.html",
     "title": "Computational Programming with Python",
     "section": "",
-    "text": "Lecturer: Malin Christersson, Robert Klöfkorn"
+    "text": "Lecturer: Malin Christersson, Robert Klöfkorn\nDownload original notebook (.ipynb)"
   },
   {
     "objectID": "slides/lecture07.html#lecture-7-more-on-arrays-more-on-functions",
     "href": "slides/lecture07.html#lecture-7-more-on-arrays-more-on-functions",
     "title": "Computational Programming with Python",
     "section": "",
-    "text": "Lecturer: Malin Christersson, Robert Klöfkorn"
+    "text": "Lecturer: Malin Christersson, Robert Klöfkorn\nDownload original notebook (.ipynb)"
   },
   {
     "objectID": "slides/lecture07.html#this-lecture",
@@ -1712,14 +1712,14 @@
     "href": "slides/lecture05.html",
     "title": "Computational Programming with Python",
     "section": "",
-    "text": "Lecturer: Malin Christersson, Robert Klöfkorn"
+    "text": "Lecturer: Malin Christersson, Robert Klöfkorn\nDownload original notebook (.ipynb)"
   },
   {
     "objectID": "slides/lecture05.html#lecture-5-functions-and-lists-revisited",
     "href": "slides/lecture05.html#lecture-5-functions-and-lists-revisited",
     "title": "Computational Programming with Python",
     "section": "",
-    "text": "Lecturer: Malin Christersson, Robert Klöfkorn"
+    "text": "Lecturer: Malin Christersson, Robert Klöfkorn\nDownload original notebook (.ipynb)"
   },
   {
     "objectID": "slides/lecture05.html#this-lecture",
@@ -1824,14 +1824,14 @@
     "href": "slides/lecture10.html",
     "title": "Computational Programming with Python",
     "section": "",
-    "text": "Lecturer: Malin Christersson, Robert Klöfkorn"
+    "text": "Lecturer: Malin Christersson, Robert Klöfkorn\nDownload original notebook (.ipynb)"
   },
   {
     "objectID": "slides/lecture10.html#lecture-10-file-handling-and-iterators",
     "href": "slides/lecture10.html#lecture-10-file-handling-and-iterators",
     "title": "Computational Programming with Python",
     "section": "",
-    "text": "Lecturer: Malin Christersson, Robert Klöfkorn"
+    "text": "Lecturer: Malin Christersson, Robert Klöfkorn\nDownload original notebook (.ipynb)"
   },
   {
     "objectID": "slides/lecture10.html#creating-errors",
@@ -2020,14 +2020,14 @@
     "href": "slides/lecture09.html",
     "title": "Computational Programming with Python",
     "section": "",
-    "text": "Lecturer: Malin Christersson, Robert Klöfkorn"
+    "text": "Lecturer: Malin Christersson, Robert Klöfkorn\nDownload original notebook (.ipynb)"
   },
   {
     "objectID": "slides/lecture09.html#lecture-object-oriented-programming",
     "href": "slides/lecture09.html#lecture-object-oriented-programming",
     "title": "Computational Programming with Python",
     "section": "",
-    "text": "Lecturer: Malin Christersson, Robert Klöfkorn"
+    "text": "Lecturer: Malin Christersson, Robert Klöfkorn\nDownload original notebook (.ipynb)"
   },
   {
     "objectID": "slides/lecture09.html#a-rational-number",
@@ -2223,14 +2223,14 @@
     "href": "slides/lecture03_summer.html",
     "title": "Computational Programming with Python",
     "section": "",
-    "text": "Lecturer: Malin Christersson, Robert Klöfkorn"
+    "text": "Lecturer: Malin Christersson, Robert Klöfkorn\nDownload original notebook (.ipynb)"
   },
   {
     "objectID": "slides/lecture03_summer.html#lecture-3-string-formatting-other-container-types-and-floating-point-numbers",
     "href": "slides/lecture03_summer.html#lecture-3-string-formatting-other-container-types-and-floating-point-numbers",
     "title": "Computational Programming with Python",
     "section": "",
-    "text": "Lecturer: Malin Christersson, Robert Klöfkorn"
+    "text": "Lecturer: Malin Christersson, Robert Klöfkorn\nDownload original notebook (.ipynb)"
   },
   {
     "objectID": "slides/lecture03_summer.html#this-lecture",
@@ -2580,14 +2580,14 @@
     "href": "slides/lecture08.html",
     "title": "Computational Programming with Python",
     "section": "",
-    "text": "Lecturer: Malin Christersson, Robert Klöfkorn"
+    "text": "Lecturer: Malin Christersson, Robert Klöfkorn\nDownload original notebook (.ipynb)"
   },
   {
     "objectID": "slides/lecture08.html#lecture-8-exceptions-and-introduction-to-oop",
     "href": "slides/lecture08.html#lecture-8-exceptions-and-introduction-to-oop",
     "title": "Computational Programming with Python",
     "section": "",
-    "text": "Lecturer: Malin Christersson, Robert Klöfkorn"
+    "text": "Lecturer: Malin Christersson, Robert Klöfkorn\nDownload original notebook (.ipynb)"
   },
   {
     "objectID": "slides/lecture08.html#this-lecture",
@@ -2825,14 +2825,14 @@
     "href": "slides/lecture04.html",
     "title": "Computational Programming with Python",
     "section": "",
-    "text": "Lecturer: Malin Christersson, Robert Klöfkorn"
+    "text": "Lecturer: Malin Christersson, Robert Klöfkorn\nDownload original notebook (.ipynb)"
   },
   {
     "objectID": "slides/lecture04.html#lecture-4-functions",
     "href": "slides/lecture04.html#lecture-4-functions",
     "title": "Computational Programming with Python",
     "section": "",
-    "text": "Lecturer: Malin Christersson, Robert Klöfkorn"
+    "text": "Lecturer: Malin Christersson, Robert Klöfkorn\nDownload original notebook (.ipynb)"
   },
   {
     "objectID": "slides/lecture04.html#this-lecture",
@@ -2986,14 +2986,14 @@
     "href": "slides/lecture11.html",
     "title": "Computational Programming with Python",
     "section": "",
-    "text": "Lecturer: Malin Christersson, Robert Klöfkorn"
+    "text": "Lecturer: Malin Christersson, Robert Klöfkorn\nDownload original notebook (.ipynb)"
   },
   {
     "objectID": "slides/lecture11.html#lecture-11-more-about-plotting",
     "href": "slides/lecture11.html#lecture-11-more-about-plotting",
     "title": "Computational Programming with Python",
     "section": "",
-    "text": "Lecturer: Malin Christersson, Robert Klöfkorn"
+    "text": "Lecturer: Malin Christersson, Robert Klöfkorn\nDownload original notebook (.ipynb)"
   },
   {
     "objectID": "slides/lecture11.html#packing-and-unpacking-in-assignments",
@@ -3189,14 +3189,14 @@
     "href": "slides/lecture13.html",
     "title": "Computational Programming with Python",
     "section": "",
-    "text": "Lecturer: Malin Christersson, Robert Klöfkorn"
+    "text": "Lecturer: Malin Christersson, Robert Klöfkorn\nDownload original notebook (.ipynb)"
   },
   {
     "objectID": "slides/lecture13.html#lecture-13-time-complexity-testing-and-decorators",
     "href": "slides/lecture13.html#lecture-13-time-complexity-testing-and-decorators",
     "title": "Computational Programming with Python",
     "section": "",
-    "text": "Lecturer: Malin Christersson, Robert Klöfkorn"
+    "text": "Lecturer: Malin Christersson, Robert Klöfkorn\nDownload original notebook (.ipynb)"
   },
   {
     "objectID": "slides/lecture13.html#example",
@@ -3434,14 +3434,14 @@
     "href": "slides/lecture06.html",
     "title": "Computational Programming with Python",
     "section": "",
-    "text": "Lecturer: Malin Christersson, Robert Klöfkorn"
+    "text": "Lecturer: Malin Christersson, Robert Klöfkorn\nDownload original notebook (.ipynb)"
   },
   {
     "objectID": "slides/lecture06.html#lecture-6-linear-algebra",
     "href": "slides/lecture06.html#lecture-6-linear-algebra",
     "title": "Computational Programming with Python",
     "section": "",
-    "text": "Lecturer: Malin Christersson, Robert Klöfkorn"
+    "text": "Lecturer: Malin Christersson, Robert Klöfkorn\nDownload original notebook (.ipynb)"
   },
   {
     "objectID": "slides/lecture06.html#this-lecture",
@@ -3665,14 +3665,14 @@
     "href": "slides/lecture01.html",
     "title": "Computational Programming with Python",
     "section": "",
-    "text": "Lecturer: Robert Klöfkorn (Malin Christersson)"
+    "text": "Lecturer: Robert Klöfkorn (Malin Christersson)\nDownload original notebook (.ipynb)"
   },
   {
     "objectID": "slides/lecture01.html#lecture-1-first-steps---a-bit-of-everything",
     "href": "slides/lecture01.html#lecture-1-first-steps---a-bit-of-everything",
     "title": "Computational Programming with Python",
     "section": "",
-    "text": "Lecturer: Robert Klöfkorn (Malin Christersson)"
+    "text": "Lecturer: Robert Klöfkorn (Malin Christersson)\nDownload original notebook (.ipynb)"
   },
   {
     "objectID": "slides/lecture01.html#this-lecture",
@@ -5149,14 +5149,14 @@
     "href": "slides/lecture02_summer.html",
     "title": "Computational Programming with Python",
     "section": "",
-    "text": "Lecturer: Malin Christersson, Robert Klöfkorn"
+    "text": "Lecturer: Malin Christersson, Robert Klöfkorn\nDownload original notebook (.ipynb)"
   },
   {
     "objectID": "slides/lecture02_summer.html#lecture-2-lists-and-elementary-plotting",
     "href": "slides/lecture02_summer.html#lecture-2-lists-and-elementary-plotting",
     "title": "Computational Programming with Python",
     "section": "",
-    "text": "Lecturer: Malin Christersson, Robert Klöfkorn"
+    "text": "Lecturer: Malin Christersson, Robert Klöfkorn\nDownload original notebook (.ipynb)"
   },
   {
     "objectID": "slides/lecture02_summer.html#this-lecture",
@@ -5373,7 +5373,7 @@
     "href": "exercises/sheet_13.html",
     "title": "Sheet Thirteen",
     "section": "",
-    "text": "NUMA01: Computational Programming with Python\nMalin Christersson, Robert Klofkorn\nIn this exercise we work with tests, both unit tests and pytest.\nThis assignment has 6 tasks.\nSolutions: Sheet 13 Solutions"
+    "text": "NUMA01: Computational Programming with Python\nMalin Christersson, Robert Klofkorn\nIn this exercise we work with tests, both unit tests and pytest.\nThis assignment has 6 tasks.\nSolutions: Sheet 13 Solutions\nDownload original exercise PDF"
   },
   {
     "objectID": "exercises/sheet_13.html#tasks",
@@ -5387,7 +5387,7 @@
     "href": "exercises/sheet_9.html",
     "title": "Sheet Nine",
     "section": "",
-    "text": "NUMA01: Computational Programming with Python\nMalin Christersson, Robert Klofkorn\nIn this exercise we study inheritance of classes.\nThis assignment has 4 tasks.\nSolutions: Sheet 9 Solutions"
+    "text": "NUMA01: Computational Programming with Python\nMalin Christersson, Robert Klofkorn\nIn this exercise we study inheritance of classes.\nThis assignment has 4 tasks.\nSolutions: Sheet 9 Solutions\nDownload original exercise PDF"
   },
   {
     "objectID": "exercises/sheet_9.html#tasks",
@@ -5401,7 +5401,7 @@
     "href": "exercises/sheet_8.html",
     "title": "Sheet Eight",
     "section": "",
-    "text": "NUMA01: Computational Programming with Python\nMalin Christersson, Robert Klofkorn\nIn this exercise we define some classes to start to become familiar with the principle syntax and methods.\nThis assignment has 10 tasks.\nSolutions: Sheet 8 Solutions"
+    "text": "NUMA01: Computational Programming with Python\nMalin Christersson, Robert Klofkorn\nIn this exercise we define some classes to start to become familiar with the principle syntax and methods.\nThis assignment has 10 tasks.\nSolutions: Sheet 8 Solutions\nDownload original exercise PDF"
   },
   {
     "objectID": "exercises/sheet_8.html#warming-up-exercises",
@@ -5422,7 +5422,7 @@
     "href": "exercises/sheet_6.html",
     "title": "Sheet Six",
     "section": "",
-    "text": "NUMA01: Computational Programming with Python\nMalin Christersson, Robert Klofkorn\nThis exercise trains knowledge about vectors and arrays, i.e. the basics from Chapter 4 and 5 in the course book.\nThis assignment has 8 tasks.\nSolutions: Sheet 6 Solutions"
+    "text": "NUMA01: Computational Programming with Python\nMalin Christersson, Robert Klofkorn\nThis exercise trains knowledge about vectors and arrays, i.e. the basics from Chapter 4 and 5 in the course book.\nThis assignment has 8 tasks.\nSolutions: Sheet 6 Solutions\nDownload original exercise PDF"
   },
   {
     "objectID": "exercises/sheet_6.html#warming-up-exercises",
@@ -5443,7 +5443,7 @@
     "href": "exercises/sheet_7.html",
     "title": "Sheet Seven",
     "section": "",
-    "text": "NUMA01: Computational Programming with Python\nClaus Fuhrer, Malin Christersson, Robert Klofkorn\nThis assignment has 3 tasks.\nSolutions: Sheet 7 Solutions"
+    "text": "NUMA01: Computational Programming with Python\nClaus Fuhrer, Malin Christersson, Robert Klofkorn\nThis assignment has 3 tasks.\nSolutions: Sheet 7 Solutions\nDownload original exercise PDF"
   },
   {
     "objectID": "exercises/sheet_7.html#exercises",
@@ -5457,7 +5457,7 @@
     "href": "exercises/sheet_5.html",
     "title": "Sheet Five",
     "section": "",
-    "text": "NUMA01: Computational Programming with Python\nMalin Christersson, Robert Klofkorn\nThis assignment has 8 tasks.\nSolutions: Sheet 5 Solutions"
+    "text": "NUMA01: Computational Programming with Python\nMalin Christersson, Robert Klofkorn\nThis assignment has 8 tasks.\nSolutions: Sheet 5 Solutions\nDownload original exercise PDF Download alternate original exercise PDF"
   },
   {
     "objectID": "exercises/sheet_5.html#warming-up-exercises",
@@ -5478,7 +5478,7 @@
     "href": "exercises/sheet_3.html",
     "title": "Sheet Three",
     "section": "",
-    "text": "NUMA01: Computational Programming with Python\nMalin Christersson, Robert Klöfkorn\nThe purpose of this training assignment is to repeat list comprehensions, practice slicing, work more with functions, and investigate sets in Python.\nYou should not run the code before you have written down what it will do when executed.\nThis assignment has 8 tasks.\nSolutions: Sheet 3 Solutions"
+    "text": "NUMA01: Computational Programming with Python\nMalin Christersson, Robert Klöfkorn\nThe purpose of this training assignment is to repeat list comprehensions, practice slicing, work more with functions, and investigate sets in Python.\nYou should not run the code before you have written down what it will do when executed.\nThis assignment has 8 tasks.\nSolutions: Sheet 3 Solutions\nDownload original exercise PDF"
   },
   {
     "objectID": "exercises/sheet_3.html#warming-up-exercises",
@@ -5499,7 +5499,7 @@
     "href": "exercises/sheet_2.html",
     "title": "Sheet Two",
     "section": "",
-    "text": "NUMA01: Computational Programming with Python\nMalin Christersson, Robert Klöfkorn\nThe purpose of this training assignment is to work with lists and for loops.\nYou should start working on these exercises during the scheduled computer lab hours and complete them on your own at home.\nThis assignment has 14 tasks.\nSolutions: Sheet 2 Solutions"
+    "text": "NUMA01: Computational Programming with Python\nMalin Christersson, Robert Klöfkorn\nThe purpose of this training assignment is to work with lists and for loops.\nYou should start working on these exercises during the scheduled computer lab hours and complete them on your own at home.\nThis assignment has 14 tasks.\nSolutions: Sheet 2 Solutions\nDownload original exercise PDF"
   },
   {
     "objectID": "exercises/sheet_2.html#warming-up-exercises",

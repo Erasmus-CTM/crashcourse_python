@@ -13,6 +13,8 @@ This assignment has 6 tasks.
 
 Solutions: [Sheet 13 Solutions](sheet_13_solutions.qmd)
 
+<a class="lecture-download-link" href="original_files/exercise13.pdf?download=1" download>Download original exercise PDF</a>
+
 ## Tasks
 
 ### Task 1

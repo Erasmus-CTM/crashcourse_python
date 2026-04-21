@@ -13,6 +13,8 @@ resources:
 ### Center for Mathematical Sciences, Lund University
 Lecturer: `Robert Klöfkorn`
 
+<a class="lecture-download-link" href="original_files/lecture14.ipynb?download=1" download>Download original notebook (.ipynb)</a>
+
 # This lecture
 
 This content is to be found in the book, chapter 10.

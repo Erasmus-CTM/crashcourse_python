@@ -14,6 +14,8 @@ This assignment has 10 tasks.
 
 Solutions: [Sheet 8 Solutions](sheet_8_solutions.qmd)
 
+<a class="lecture-download-link" href="original_files/exercise08.pdf?download=1" download>Download original exercise PDF</a>
+
 ## Warming-up Exercises
 
 ### Task 1

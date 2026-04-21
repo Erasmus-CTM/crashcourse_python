@@ -58,6 +58,24 @@ img[alt] {
   pointer-events: none;
 }
 
+.lecture-download-link {
+  display: inline-block;
+  margin: 0.5rem 0 1.5rem;
+  padding: 0.65rem 1rem;
+  border: 1px solid #198754;
+  border-radius: 0.75rem;
+  background: #f3fbf6;
+  color: #198754;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.lecture-download-link:hover,
+.lecture-download-link:focus {
+  background: #198754;
+  color: #ffffff;
+}
+
 @media (max-width: 640px) {
   .page-nav-link.prev,
   .page-nav-link.next {

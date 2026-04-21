@@ -13,6 +13,8 @@ resources:
 ### Center for Mathematical Sciences, Lund University
 Lecturer: Malin Christersson, `Robert Klöfkorn`
 
+<a class="lecture-download-link" href="original_files/lecture07.ipynb?download=1" download>Download original notebook (.ipynb)</a>
+
 ## This lecture
 
 - Showing more than one plot

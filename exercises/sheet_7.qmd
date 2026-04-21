@@ -12,6 +12,8 @@ This assignment has 3 tasks.
 
 Solutions: [Sheet 7 Solutions](sheet_7_solutions.qmd)
 
+<a class="lecture-download-link" href="original_files/exercise07.pdf?download=1" download>Download original exercise PDF</a>
+
 ## Exercises
 
 For these tasks you need knowledge about vectors and arrays, Chapter 4/5 in the

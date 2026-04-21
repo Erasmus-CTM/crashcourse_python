@@ -10,6 +10,8 @@ filters:
 
 Lecturer: `Robert Klöfkorn` (Malin Christersson)
 
+<a class="lecture-download-link" href="original_files/lecture01.ipynb?download=1" download>Download original notebook (.ipynb)</a>
+
 ## This lecture
 
 - About this course
